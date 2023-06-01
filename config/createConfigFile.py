@@ -1,7 +1,6 @@
 import pickle
 
-config=
-{
+config = {
     'database':
         {
             'ipAddress':'127.0.0.1',
@@ -44,4 +43,5 @@ config=
 
 
 }
-pickle.dump(config, '')
+with open('config.conf', 'wb') as f:
+    pickle.dump(config, f)

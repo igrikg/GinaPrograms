@@ -13,3 +13,5 @@ class MotorsSystems():
         pass
     def goto_plus_limit(self):
         pass
+    def stop(self):
+        pass

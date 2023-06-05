@@ -1,43 +1,34 @@
 import serial
 
+
 class SerialDevice():
     def __init__(self, config: dict):
-
+        self.config = config
         self.__port = serial.Serial()
-        self.__port.port = config['port']
-        self.__port.baudrate = config['baudrate']
-        PARITY_NONE, PARITY_EVEN, PARITY_ODD, PARITY_MARK, PARITY_SPACE = 'N', 'E', 'O', 'M', 'S'
-        STOPBITS_ONE, STOPBITS_ONE_POINT_FIVE, STOPBITS_TWO = (1, 1.5, 2)
-        FIVEBITS, SIXBITS, SEVENBITS, EIGHTBITS = (5, 6, 7, 8)
+        self.__port.port = self.config['port']
+        self.__port.baudrate = self.config['baudrate']
 
-        'bytesize': 8,
-        'parity': 'NONE',
-        'stopbits': 1,
-        'xonxoff': False,
-        'rtscts': False,
-        'dsrdtr': False,
+        self.__port.bytesize = self.config['bytesize']
+        self.__port.parity = self.config['parity']
+        self.__port.stopbits = self.config['stopbits']
 
+        self.__port.xonxoff = self.config['xonxoff']
+        self.__port.rtscts = self.config['rtscts']
+        self.__port.dsrdtr = self.config['dsrdtr']
 
+    def __write(self, message: str) -> None:
+        with self.__port as port:
+            port.write(message.encode())
 
-a = serial.Serial()
+    def __read(self) -> str:
+        with self.__port as port:
+            port.write(b'hello')
 
-__init__(port=None,
-         baudrate=9600,
-         bytesize=EIGHTBITS,
-         parity=PARITY_NONE,
-         stopbits=STOPBITS_ONE,
-         timeout=None,
-         xonxoff=False,
-         rtscts=False,
-         write_timeout=None,
-         dsrdtr=False,
-         inter_byte_timeout=None,
-         exclusive=None)
-
-
-
+    def send_message(self):
+        pass
 
 if __name__ == '__main__':
     from config.configurations import Configuration
+
     a = Configuration()['MCU-2']
     print(a)

@@ -3,7 +3,7 @@ import pickle
 config = {
     'database':
         {
-            'ipAddress':'127.0.0.1',
+            'ipAddress': '127.0.0.1',
             'port': 5432,
             'user': 'gina',
             'password': 'gina19',
@@ -11,7 +11,7 @@ config = {
         },
     'queue':
         {
-            'ipAddress':'127.0.0.1',
+            'ipAddress': '127.0.0.1',
             'port': 5672,
             'user': 'gina',
             'password': 'gina19',
@@ -40,25 +40,36 @@ config = {
 
                 ]
 
-
         },
     'MCU-2':
         {
+            'repeat_message': 5,
             'port': 'COM1',
             'baudrate': 9600,
-            'bytesize': 8,#(5, 6, 7, 8)
-            'parity': 'N',#PARITY_NONE, PARITY_EVEN, PARITY_ODD, PARITY_MARK, PARITY_SPACE = 'N', 'E', 'O', 'M', 'S'
-            'stopbits': 1,#(1, 1.5, 2)
+            'bytesize': 8,  # (5, 6, 7, 8)
+            'parity': 'N',  # PARITY_NONE, PARITY_EVEN, PARITY_ODD, PARITY_MARK, PARITY_SPACE = 'N', 'E', 'O', 'M', 'S'
+            'stopbits': 1,  # (1, 1.5, 2)
             'xonxoff': False,
             'rtscts': False,
             'dsrdtr': False,
+            'variable':
+                {'ADR': 1,
 
-
-            'motors':{}
-
+                 },
+            'commands': {
+                # name of command : [write command, read command]
+                'name': ['', ''],
+            },
+            'init': [],
+            'move': [],
+            'goto': [],
+            'set_position': [],
+            'goto_home': [],
+            'goto_minus_limit': [],
+            'goto_plus_limit': [],
+            'stop': []
 
         }
-
 
 }
 with open('config.conf', 'wb') as f:

@@ -44,7 +44,7 @@ config = {
     'MCU-2':
         {
             'repeat_message': 5,
-            'repeat_all_message': False,
+            'repeat_all_message': True,
             'send_in_bytes': False,
             'port': '/dev/ttyS4',
             'baudrate': 9600,
@@ -54,15 +54,12 @@ config = {
             'xonxoff': False,
             'rtscts': False,
             'dsrdtr': False,
-            'motor': [
-                {'name':'asdasd',
-                 'ADR': '01',
+            'motor': {
+                'name': {
+                        'ADR': '01',
+                        },
 
-
-
-                },
-
-            ],
+            },
             'commands': {
                 # All of using commands
                 # variables from motor like {ADR}, also you should use {position}

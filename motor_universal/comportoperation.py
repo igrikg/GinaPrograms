@@ -1,7 +1,7 @@
 from typing import Tuple
-from utils import repeat_decorator
 import serial
 import fakeSerial.fakeSerial as serial
+from utils import repeat_decorator
 
 
 class SerialDevice:
@@ -42,10 +42,18 @@ class SerialDevice:
         :param message:
         :return:
         """
+        if self.__repeat_separately and message[1]:
+            # repeat comand
+            def rep():
+                self.__write(message[0])
+                return self.__read(message[1][-1])
+            return repeat_decorator(self.__repeat_message, message[1])(rep)()
+        elif message[1]:
+            # without repeat command
+            self.__write(message[0])
+            return self.__read(message[1][-1]) == message[1]
+
         self.__write(message[0])
-        if message[1]:
-            # self.__repeat_separately
-            return repeat_decorator(self.__repeat_message)(lambda x: self.__read(message[0][-1]) == x)(message[1])
         return True
 
 
@@ -53,5 +61,7 @@ if __name__ == '__main__':
     from config.configurations import Configuration
 
     a = Configuration()['MCU-2']
+    a['repeat_all_message'] = True
     a = SerialDevice(a)
+
     print(a.send_message(('#02i-1000\n', '#02i-1000\n')))

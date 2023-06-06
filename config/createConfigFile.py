@@ -44,7 +44,7 @@ config = {
     'MCU-2':
         {
             'repeat_message': 5,
-            'repeat_all_message': True,
+            'repeat_all_message': False,
             'send_in_bytes': False,
             'port': '/dev/ttyS4',
             'baudrate': 9600,

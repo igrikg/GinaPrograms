@@ -44,7 +44,9 @@ config = {
     'MCU-2':
         {
             'repeat_message': 5,
-            'port': 'COM1',
+            'repeat_all_message': True,
+            'send_in_bytes': False,
+            'port': '/dev/ttyS4',
             'baudrate': 9600,
             'bytesize': 8,  # (5, 6, 7, 8)
             'parity': 'N',  # PARITY_NONE, PARITY_EVEN, PARITY_ODD, PARITY_MARK, PARITY_SPACE = 'N', 'E', 'O', 'M', 'S'
@@ -52,16 +54,24 @@ config = {
             'xonxoff': False,
             'rtscts': False,
             'dsrdtr': False,
-            'variable':
-                {'ADR': 1,
+            'motor': [
+                {'name':'asdasd',
+                 'ADR': '01',
 
-                 },
+
+
+                },
+
+            ],
             'commands': {
+                # All of using commands
+                # variables from motor like {ADR}, also you should use {position}
                 # name of command : [write command, read command]
                 'name': ['', ''],
             },
+            # list of commands for current function
             'init': [],
-            'move': [],
+            'get_position': [],
             'goto': [],
             'set_position': [],
             'goto_home': [],

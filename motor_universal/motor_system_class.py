@@ -7,19 +7,19 @@ class MotorsSystems:
         self.serialdevice = SerialDevice(config)
         self.debug = {}
 
-    def move(self, position: int):
+    def move(self, motor_name:str, position: int):
         pass
-    def goto(self, position: int):
+    def goto(self, motor_name:str, position: int):
         pass
-    def set_position(self, position: int):
+    def set_position(self, motor_name:str, position: int):
         pass
-    def goto_home(self):
+    def goto_home(self, motor_name:str):
         pass
-    def goto_minus_limit(self):
+    def goto_minus_limit(self, motor_name:str):
         pass
-    def goto_plus_limit(self):
+    def goto_plus_limit(self, motor_name:str):
         pass
-    def stop(self):
+    def stop(self, motor_name:str):
         pass
 
 

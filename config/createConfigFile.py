@@ -1,7 +1,7 @@
 import pickle
 
 config = {
-    'database':
+    'database_rabbit':
         {
             'ipAddress': '127.0.0.1',
             'port': 5432,
@@ -15,6 +15,7 @@ config = {
             'port': 5672,
             'user': 'gina',
             'password': 'gina19',
+            'exchange': 'gina'
         },
     'motors':
         {
@@ -62,7 +63,7 @@ config = {
             },
             'commands': {
                 # All of using commands
-                # variables from motor like {ADR}, also you should use {position}
+                # variables from motor like {ADR}, also you should use POSITION
                 # name of command : [write command, read command]
                 'name': ['', ''],
             },

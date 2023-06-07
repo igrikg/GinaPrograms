@@ -11,9 +11,7 @@ class SerialDevice:
 
     def __init__(self, config: dict):
         self.__port = serial.Serial()
-        self.__repeat_separately = not config['repeat_all_message']
         self.__send_in_bytes = config['send_in_bytes']
-        self.__repeat_message = config['repeat_message']
         self.__port.port = config['port']
         self.__port.baudrate = config['baudrate']
 
@@ -36,25 +34,15 @@ class SerialDevice:
             result = port.read_until(symbol).decode() if self.__send_in_bytes else port.read_until(symbol)
         return result
 
-    def send_message(self, message: Tuple) -> bool:
+    def send_message(self, message: Tuple) -> str:
         """
-
-        :param message:
-        :return:
+        :param message: Tuple message (write, read)
+        :return: read str
         """
-        if self.__repeat_separately and message[1]:
-            # repeat comand
-            def rep():
-                self.__write(message[0])
-                return self.__read(message[1][-1])
-            return repeat_decorator(self.__repeat_message, message[1])(rep)()
-        elif message[1]:
-            # without repeat command
-            self.__write(message[0])
-            return self.__read(message[1][-1]) == message[1]
-
         self.__write(message[0])
-        return True
+        if message[1]:
+            return self.__read(message[1][-1])
+        return ''
 
 
 if __name__ == '__main__':
@@ -64,4 +52,4 @@ if __name__ == '__main__':
     a['repeat_all_message'] = True
     a = SerialDevice(a)
 
-    print(a.send_message(('#02i-1000\n', '#02i-1000\n')))
+    print(a.send_message(('#02i-1000\n', 'fasdas')))

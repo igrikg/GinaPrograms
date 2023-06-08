@@ -6,13 +6,14 @@ class MotorDriver:
     """
     Class motor: for operating with independent motor
     """
-    def __init__(self, motor_name: str, config: dict, serial: SerialDevice)->None:
+
+    def __init__(self, motor_name: str, config: dict, serial: SerialDevice) -> None:
         self.motor_name = motor_name
         self.__buzy: bool = False
         self.config: dict = config
         self.serialdevice: SerialDevice = serial
         self.debug: bool = False
-        self.__POSITION_STR = 'POSITION' # position comands
+        self.__POSITION_STR = 'POSITION'  # position comands
         self.current_position: int = 0
         self.init()
 
@@ -69,54 +70,53 @@ class MotorDriver:
         result = []
         list_of_command = self.config[key_function]
         parameters = self.config['motors'][motor_name]
-        #'commands'
+        # 'commands'
         for command in list_of_command:
             result.append(
                 tuple(
                     map(lambda x: x.format(**parameters), self.config['commands'][command])
-                    )
+                )
             )
 
         return result
 
-    def __run_commands(self,key_function: str, position = None) -> Tuple:
+    def __run_commands(self, key_function: str, position=None) -> Tuple:
         self.__buzy = True
         commands_list = self.__create_list_of_command(self.motor_name, key_function)
         if not position is None:
             replace_func = lambda x: x.replace(self.__POSITION_STR, str(position))
             use_for_both = lambda x: (replace_func(x[0]), replace_func(x[1]))
-            commands_list = list(map(use_for_both,commands_list))
+            commands_list = list(map(use_for_both, commands_list))
         result = self.__send_list_of_message(commands_list)
-        result= (not result[0], result[1])
+        result = (not result[0], result[1])
         self.__buzy = False
         return result
 
-
-    def init(self)-> None:
+    def init(self) -> None:
         """ Run initialisation of motor"""
         self.debug, _ = self.__run_commands('init')
 
     def goto(self, position: int) -> None:
         print(self.debug)
         if self.debug:
-            self.debug,_ = self.__run_commands('init')
+            self.debug, _ = self.__run_commands('init')
             if not self.debug: return
         self.debug, _ = self.__run_commands('goto', position)
 
-
     def set_position(self, position: int) -> None:
         if self.debug:
-            self.debug,_ = self.__run_commands('init')
+            self.debug, _ = self.__run_commands('init')
             if not self.debug: return
-        self.debug,_ = self.__run_commands('set_position', position)
+        self.debug, _ = self.__run_commands('set_position', position)
 
     def get_position(self) -> None:
         if self.debug:
-            self.debug,_ = self.__run_commands('init')
+            self.debug, _ = self.__run_commands('init')
             if not self.debug: return
         self.debug, pos = self.__run_commands('get_position')
         if not self.debug and not pos is None:
             self.current_position = pos
+
     def goto_home(self) -> None:
         if self.debug:
             self.debug, _ = self.__run_commands('init')
@@ -133,7 +133,7 @@ class MotorDriver:
         if self.debug:
             self.debug, _ = self.__run_commands('init')
             if not self.debug: return
-        self.debug,  = self.__run_commands('goto_plus_limit')
+        self.debug, = self.__run_commands('goto_plus_limit')
 
     def stop(self) -> None:
         if not self.debug:
@@ -142,6 +142,7 @@ class MotorDriver:
 
 if __name__ == '__main__':
     from config.configurations import Configuration
+
     a = Configuration()['MCU-2']
     ss = MotorDriver('name', a, SerialDevice(a))
-    #ss.goto(123)
+    # ss.goto(123)

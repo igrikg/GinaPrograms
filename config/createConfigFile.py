@@ -55,9 +55,11 @@ config = {
             'xonxoff': False,
             'rtscts': False,
             'dsrdtr': False,
-            'motor': {
+            'motors': {
                 'name': {
-                        'ADR': '01',
+                        'ADR' : '01',
+                        'RATE' : '100',
+                        'TRUE' : 'hhh'
                         },
 
             },
@@ -65,10 +67,15 @@ config = {
                 # All of using commands
                 # variables from motor like {ADR}, also you should use POSITION
                 # name of command : [write command, read command]
-                'name': ['', ''],
+                'com1': ['', ''],
+                'com2': ['#{ADR}INIT\n', '#{ADR}INIT\n'],
+                'com3': ['#{ADR}{RATE}INIT\n', '#{ADR}{RATE}INIT\n'],
+                'com4': ['#{ADR}{RATE}INIT\n', '#{ADR}POSITIONINIT\n'],
+
+
             },
             # list of commands for current function
-            'init': [],
+            'init': ['com1','com2','com3','com4',],
             'get_position': [],
             'goto': [],
             'set_position': [],

@@ -29,7 +29,6 @@ class SerialDevice:
 
     def __read(self, symbol='\n') -> str:
         result = ''
-        print('-------------------------')
         with self.__port as port:
             result = port.read_until(symbol).decode() if self.__send_in_bytes else port.read_until(symbol)
         return result

@@ -15,6 +15,7 @@ class MotorDriver:
         self.debug: bool = False
         self.__POSITION_STR = 'POSITION'  # position comands
         self.current_position: int = 0
+        self.current_position_encoder: int = 0
         self.init()
 
     def __check_message(self, message: Tuple, result: str) -> Tuple:
@@ -135,6 +136,20 @@ class MotorDriver:
             if not self.debug: return
         self.debug, = self.__run_commands('goto_plus_limit')
 
+    def set_position_encoder(self, position: int) -> None:
+        if self.debug:
+            self.debug, _ = self.__run_commands('init')
+            if not self.debug: return
+            self.debug, _ = self.__run_commands('set_position_encoder', position)
+
+    def get_position_encoder(self) -> None:
+        if self.debug:
+            self.debug, _ = self.__run_commands('init')
+            if not self.debug: return
+        self.debug, pos = self.__run_commands('get_position_encoder')
+        if not self.debug and not pos is None:
+            self.current_position_encoder = pos
+
     def stop(self) -> None:
         if not self.debug:
             self.debug, _ = self.__run_commands('stop')
@@ -146,3 +161,4 @@ if __name__ == '__main__':
     a = Configuration()['MCU-2']
     ss = MotorDriver('name', a, SerialDevice(a))
     # ss.goto(123)
+

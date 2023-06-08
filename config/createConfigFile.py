@@ -1,7 +1,7 @@
 import pickle
 
 config = {
-    'database_rabbit':
+    'database':
         {
             'ipAddress': '127.0.0.1',
             'port': 5432,
@@ -76,9 +76,11 @@ config = {
             },
             # list of commands for current function
             'init': ['com1','com2','com3','com4',],
-            'get_position': [],
             'goto': [],
+            'get_position': [],
             'set_position': [],
+            'get_position_encoder': [],
+            'set_position_encoder': [],
             'goto_home': [],
             'goto_minus_limit': [],
             'goto_plus_limit': [],

@@ -1,0 +1,83 @@
+#aaA↵ AcceptDatato NVRAM aa↵
+#aaB=r↵ Base Rate Enter aa↵
+#aaC=r↵ Conversion Constant Error aa↵
+#aaDdd=+n↵ Distance Data Enter aa↵
+#aaJ=r↵D Jog Rate (Manual) Enter aa↵
+#aaK=1↵;aaK=10↵ Rate Division Constant Enter aa↵
+#aaP=+n↵ Position Enter aa↵
+#aaRdd=k↵ Ramp Data Enter aa↵
+#aaVdd=r↵ Velocity (Rate)Data Enter aa↵
+#aaW=b↵ Winding (Motor) Current On (b=1)
+ on Off (b=0) aa↵
+#aaZ↵ Zero Current Position aa↵
+#aaV00=r↵ Velocity Data for Manual and
+ immediate Slew Enter aa↵
+#aaR00=k↵ Ramp Data for Manual and
+ immediate Slew Enter aa↵
+
+Unit Configuration Instructions
+#aaUPE↵ Set Even Parity aa↵
+#aaUPO↵ Set Odd Parity aa↵
+#aaUPN↵ Set No Parity aa↵
+#aaUaa↵ Set Unit Address to aa aa↵
+#aaPRES↵ Preset NVRAM to Default Conditions aa↵
+
+Advanced Control Systems MCU-2
+25
+3.3 Data Examine Instructions
+MNEMONIC DESCRIPTION RESPONSE
+#aaB↵ Base Rate Examine aaB=r↵
+#aaC↵ Conversion Constant Examine aaC=c↵
+#aaDdd↵ Distance Data Examine aaDdd=+n↵
+#aaE↵ Examine Limits/Home Inputs aaE=bbb↵
+#aaJ↵ Jog Rate (Manual) Examine aaJ=r↵
+#aaK↵ Rate Division Constant Examine aaK=1↵ or aaK=10↵
+#aaM↵ Motion Status aaM=bb↵
+#aaP↵ Present Position Examine aaP=+n↵
+#aaRdd↵ Ramp Data Examine aaRdd=k↵
+#aaVdd↵ Velocity (Rate) Data Examine aaVdd=r↵
+#aaW↵ Winding (Motor) Current Examine aaW=b↵
+Data Block 00: Velocity data for Slew function
+ Ramp Index for Slew function
+Data Block 01: Default Ramping Index
+ Velocity data for Go function and Index function
+ Ramp Index for Go function and Index function
+Note: There are 80 data blocks. Each block contains Velocity (top rate),
+Distance, and Ramp index. All this information is needed for motion execute
+commands.
+Advanced Control Systems MCU-2
+26
+3.4 Motion Execute Instructions
+MNEMONIC RESPONSE DESCRIPTION MOTOR RESPONSE
+#aaF↵ aa↵ Finish Function Motor decelerates to Base
+ Rate and stops.
+#aaG+n↵aa↵ Go Function Motor moves to +n absolute
+#aaG-n↵ aa↵ position using rate and
+ramp data stored in Location 01.
+#aaGdd↵ aa↵ Go Function Motor moves to next
+position rate and ramp data stored at Location dd.
+#aaH+↵ aa↵ Home Function Motor moves at Base Rate
+to
+#aaH-↵ aa↵ Home position in positive
+and negative direction.
+#aaI+n↵ aa↵ Index Function Motor moves n steps in
+#aaI-n↵ aa↵ positive or negative using
+rate and ramp data store at Location 01.
+#aaIdd↵ aa↵ Index Function Motor moves preset
+number of steps using data stored at Location dd.
+#aaL+↵ aa↵ Limit Function Motor moves at base rate
+to
+#aaL-↵ aa↵ positive or negative limit
+ switch.
+#aaQ↵ aa↵ Quit Function Motor stops stepping
+ immediately.
+#aaS+↵ aa↵ Slew Start Function Motor ramps in selected
+#aaS-↵ aa↵ direction from Base rate
+using rate and ramp data stored in Location dd.
+#aaSdd↵ aa↵ Slew Function Motor ramps to next rate
+ using rate and ramp data
+ stored in Location dd.
+#aaS+r↵ aa↵ Slew Function Motor ramps in selected
+#aaS-r↵ aa↵ direction using ramp data
+ stored in
+Location 00; and for speed using immediate data (provided for instructions).

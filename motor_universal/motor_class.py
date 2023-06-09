@@ -2,6 +2,7 @@ from comportoperation import SerialDevice
 from typing import Tuple, List
 
 
+
 class MotorDriver:
     """
     Class motor: for operating with independent motor
@@ -161,4 +162,3 @@ if __name__ == '__main__':
     a = Configuration()['MCU-2']
     ss = MotorDriver('name', a, SerialDevice(a))
     # ss.goto(123)
-

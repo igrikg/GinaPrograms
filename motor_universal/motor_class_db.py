@@ -1,32 +1,34 @@
-from pony.orm import Database,Required,PrimaryKey
+from pony.orm import Required, PrimaryKey
 
-db = Database()
-class PositionTable(db.Entity):
-    _table_ = 'positions'
-    motor_name = PrimaryKey(str)
-    position = Required(int)
-    encoder_position = Required(int)
-class ParametersTable(db.Entity):
-    _table_ = 'parameters'
-    id = PrimaryKey(int, auto=True)
-    motor_name = Required(str, unique=True)
-    parameter_name = Required(str)
-    value = Required(str)
-
-
-db2 = Database()
+# db2 = Database()
 db_structures = {
-      'PositionTable':{ '_table_': 'positions',
-                        'motor_name': PrimaryKey(str),
-                        'position': Required(int),
-                        'encoder_position': Required(int)},
+    'PositionTable': {'_table_': 'positions',
+                      'motor_name': PrimaryKey(str),
+                      'position': Required(int),
+                      'encoder_position': Required(int),
+                      'debug': Required(bool)
+                      },
 
-      'ParametersTable':{'_table_':'parameters',
-    'id': PrimaryKey(int, auto=True),
-    'motor_name': Required(str, unique=True),
-    'parameter_name': Required(str),
-    'value': Required(str)}
-    }
+    'ParametersTable': {'_table_': 'parameters',
+                        'id': PrimaryKey(int, auto=True),
+                        'motor_name': Required(str, unique=True),
+                        'parameter_name': Required(str),
+                        'value': Required(str)
+                        },
+}
 
-a=[type(class_name, (db2.Entity,), attr) for class_name, attr in db_structures.items()]
-print(a)
+db_default_values = {
+    'PositionTable': {'motor_name': '',
+                      'position': 0,
+                      'encoder_position': 0,
+                      'debug': False
+                      },
+
+    'ParametersTable': {'id': 0,
+                        'motor_name': '',
+                        'parameter_name': '',
+                        'value': ''
+                        }
+}
+
+

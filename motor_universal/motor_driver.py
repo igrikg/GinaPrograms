@@ -17,7 +17,8 @@ class MotorsSystem:
     def __add_all_motor(self):
         for motor_name in self.__config[self.name_of_system]['motors']:
             self.__motors[motor_name] = MotorDriver(motor_name, self.__config[self.name_of_system], self.__serial)
-
+    def __add_all_motor_to_database(self):
+        pass
 
     def run(self):
         pass

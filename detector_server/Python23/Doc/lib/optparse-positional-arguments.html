@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="optparse-options.html">
+<LINK REL="parent" href="optparse-philosophy.html">
+<LINK REL="next" href="optparse-basic-usage.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="What are positional arguments for? ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.1.3 What are positional arguments for? </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1.2 What are options" 
+  href="optparse-options.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-options.html">6.20.1.2 What are options</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082013000000000000000">&nbsp;</A>
+<BR>
+6.20.1.3 What are positional arguments for? 
+</H3>
+
+<P>
+In case it wasn't clear from the above example: positional arguments
+are for those pieces of information that your program absolutely,
+positively requires to run.
+
+<P>
+A good user interface should have as few absolute requirements as
+possible.  If your program requires 17 distinct pieces of information in
+order to run successfully, it doesn't much matter <i>how</i> you get that
+information from the user--most people will give up and walk away
+before they successfully run the program.  This applies whether the user
+interface is a command-line, a configuration file, a GUI, or whatever:
+if you make that many demands on your users, most of them will just give
+up.
+
+<P>
+In short, try to minimize the amount of information that users are
+absolutely required to supply--use sensible defaults whenever
+possible.  Of course, you also want to make your programs reasonably
+flexible.  That's what options are for.  Again, it doesn't matter if
+they are entries in a config file, checkboxes in the ``Preferences''
+dialog of a GUI, or command-line options--the more options you
+implement, the more flexible your program is, and the more complicated
+its implementation becomes.  It's quite easy to overwhelm users (and
+yourself!) with too much flexibility, so be careful there.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1.2 What are options" 
+  rel="prev" title="6.20.1.2 What are options" 
+  href="optparse-options.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2 Basic Usage" 
+  rel="next" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-options.html">6.20.1.2 What are options</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

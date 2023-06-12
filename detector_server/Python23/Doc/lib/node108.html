@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="match-objects.html">
+<LINK REL="parent" href="module-re.html">
+<LINK REL="next" href="module-struct.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>4.2.6 Examples</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.2.5 Match Objects" 
+  href="match-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.2 re  " 
+  href="module-re.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.3 struct  " 
+  href="module-struct.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="match-objects.html">4.2.5 Match Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-struct.html">4.3 struct  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006260000000000000000">
+4.2.6 Examples</A>
+</H2>
+
+<P>
+<DIV CLASS="leftline" ID="par77746" ALIGN="LEFT">
+<b>Simulating <tt class="cfunction">scanf()</tt></b></DIV>
+
+<P>
+Python does not currently have an equivalent to <tt class="cfunction">scanf()</tt>.
+<a name="l2h-876">&nbsp;</a>Regular expressions are generally more powerful, though also more
+verbose, than <tt class="cfunction">scanf()</tt> format strings.  The table below
+offers some more-or-less equivalent mappings between
+<tt class="cfunction">scanf()</tt> format tokens and regular expressions.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b><tt class="cfunction">scanf()</tt> Token</b>&nbsp;</th>
+      <th align="left"><b>Regular Expression</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>%c</code></td>
+        <td align="left"><tt class="regexp">.</tt></td>
+    <tr><td align="left" valign="baseline"><code>%5c</code></td>
+        <td align="left"><tt class="regexp">.{5}</tt></td>
+    <tr><td align="left" valign="baseline"><code>%d</code></td>
+        <td align="left"><tt class="regexp">[-+]?&#92;d+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%e</code>, <code>%E</code>, <code>%f</code>, <code>%g</code></td>
+        <td align="left"><tt class="regexp">[-+]?(&#92;d+(&#92;.&#92;d*)?|&#92;d*&#92;.&#92;d+)([eE][-+]?&#92;d+)?</tt></td>
+    <tr><td align="left" valign="baseline"><code>%i</code></td>
+        <td align="left"><tt class="regexp">[-+]?(0[xX][&#92;dA-Fa-f]+|0[0-7]*|&#92;d+)</tt></td>
+    <tr><td align="left" valign="baseline"><code>%o</code></td>
+        <td align="left"><tt class="regexp">0[0-7]*</tt></td>
+    <tr><td align="left" valign="baseline"><code>%s</code></td>
+        <td align="left"><tt class="regexp">&#92;S+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%u</code></td>
+        <td align="left"><tt class="regexp">&#92;d+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%x</code>, <code>%X</code></td>
+        <td align="left"><tt class="regexp">0[xX][&#92;dA-Fa-f]+</tt></td></tbody>
+</table>
+
+<P>
+To extract the filename and numbers from a string like
+
+<P>
+<div class="verbatim"><pre>
+    /usr/sbin/sendmail - 0 errors, 4 warnings
+</pre></div>
+
+<P>
+you would use a <tt class="cfunction">scanf()</tt> format like
+
+<P>
+<div class="verbatim"><pre>
+    %s - %d errors, %d warnings
+</pre></div>
+
+<P>
+The equivalent regular expression would be
+
+<P>
+<div class="verbatim"><pre>
+    (\S+) - (\d+) errors, (\d+) warnings
+</pre></div>
+
+<P>
+<DIV CLASS="leftline" ID="par77747" ALIGN="LEFT">
+<b>Avoiding recursion</b></DIV>
+
+<P>
+If you create regular expressions that require the engine to perform a
+lot of recursion, you may encounter a RuntimeError exception with
+the message <code>maximum recursion limit</code> exceeded. For example,
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import re
+&gt;&gt;&gt; s = 'Begin ' + 1000*'a very long string ' + 'end'
+&gt;&gt;&gt; re.match('Begin (\w| )*? end', s).end()
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "/usr/local/lib/python2.3/sre.py", line 132, in match
+    return _compile(pattern, flags).match(string)
+RuntimeError: maximum recursion limit exceeded
+</pre></div>
+
+<P>
+You can often restructure your regular expression to avoid recursion.
+
+<P>
+Starting with Python 2.3, simple uses of the <tt class="regexp">*?</tt> pattern are
+special-cased to avoid recursion.  Thus, the above regular expression
+can avoid recursion by being recast as
+<tt class="regexp">Begin [a-zA-Z0-9_ ]*?end</tt>.  As a further benefit, such regular
+expressions will run faster than their recursive equivalents.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.2.5 Match Objects" 
+  rel="prev" title="4.2.5 Match Objects" 
+  href="match-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.2 re  " 
+  rel="parent" title="4.2 re  " 
+  href="module-re.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.3 struct  " 
+  rel="next" title="4.3 struct  " 
+  href="module-struct.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="match-objects.html">4.2.5 Match Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-struct.html">4.3 struct  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

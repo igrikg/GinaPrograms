@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node284.html">
+<LINK REL="prev" HREF="node282.html">
+<LINK REL="parent" HREF="node282.html">
+<LINK REL="next" HREF="node284.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="StreamHandler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.2.1 StreamHandler</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.2 FileHandler" 
+  HREF="node284.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node284.html">6.28.2.2 FileHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082821000000000000000">
+6.28.2.1 StreamHandler</A>
+</H3>
+
+<P>
+The <tt class="class">StreamHandler</tt> class sends logging output to streams such as
+<var>sys.stdout</var>, <var>sys.stderr</var> or any file-like object (or, more
+precisely, any object which supports <tt class="method">write()</tt> and <tt class="method">flush()</tt>
+methods).
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2337"><tt class="class">StreamHandler</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>strm</var><big>]</big>)</td></tr></table>
+<dd>
+Returns a new instance of the <tt class="class">StreamHandler</tt> class. If <var>strm</var> is
+specified, the instance will use it for logging output; otherwise,
+<var>sys.stderr</var> will be used.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2338"><tt class="method">emit</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+If a formatter is specified, it is used to format the record.
+The record is then written to the stream with a trailing newline.
+If exception information is present, it is formatted using
+<tt class="function">traceback.print_exception()</tt> and appended to the stream.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2339"><tt class="method">flush</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Flushes the stream by calling its <tt class="method">flush()</tt> method. Note that
+the <tt class="method">close()</tt> method is inherited from <tt class="class">Handler</tt> and
+so does nothing, so an explicit <tt class="method">flush()</tt> call may be needed
+at times.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2 Handler Objects" 
+  rel="prev" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.2 FileHandler" 
+  rel="next" title="6.28.2.2 FileHandler" 
+  HREF="node284.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node284.html">6.28.2.2 FileHandler</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

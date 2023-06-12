@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="unknown-handler-objects.html">
+<LINK REL="parent" href="module-urllib2.html">
+<LINK REL="next" href="module-httplib.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.5.20 Examples </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.5.19 UnknownHandler Objects" 
+  href="unknown-handler-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.5 urllib2  " 
+  href="module-urllib2.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="unknown-handler-objects.html">11.5.19 UnknownHandler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-httplib.html">11.6 httplib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00135200000000000000000">&nbsp;</A>
+<BR>
+11.5.20 Examples 
+</H2>
+
+<P>
+This example gets the python.org main page and displays the first 100
+bytes of it:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import urllib2
+&gt;&gt;&gt; f = urllib2.urlopen('http://www.python.org/')
+&gt;&gt;&gt; print f.read(100)
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;?xml-stylesheet href="./css/ht2html
+</pre></div>
+
+<P>
+Here we are sending a data-stream to the stdin of a CGI and reading
+the data it returns to us:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import urllib2
+&gt;&gt;&gt; req = urllib2.Request(url='https://localhost/cgi-bin/test.cgi',
+...                       data='This data is passed to stdin of the CGI')
+&gt;&gt;&gt; f = urllib2.urlopen(req)
+&gt;&gt;&gt; print f.read()
+Got Data: "This data is passed to stdin of the CGI"
+</pre></div>
+
+<P>
+The code for the sample CGI used in the above example is:
+
+<P>
+<div class="verbatim"><pre>
+#!/usr/bin/env python
+import sys
+data = sys.stdin.read()
+print 'Content-type: text-plain\n\nGot Data: "%s"' %
+data
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.5.19 UnknownHandler Objects" 
+  rel="prev" title="11.5.19 UnknownHandler Objects" 
+  href="unknown-handler-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.5 urllib2  " 
+  rel="parent" title="11.5 urllib2  " 
+  href="module-urllib2.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.6 httplib  " 
+  rel="next" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="unknown-handler-objects.html">11.5.19 UnknownHandler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-httplib.html">11.6 httplib  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

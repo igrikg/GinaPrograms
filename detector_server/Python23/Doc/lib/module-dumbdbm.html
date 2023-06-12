@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-zlib.html">
+<LINK REL="prev" href="module-bsddb.html">
+<LINK REL="parent" href="someos.html">
+<LINK REL="next" href="dumbdbm-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="dumbdbm -- Portable DBM implementation">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.14 dumbdbm -- Portable DBM implementation</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.13.1 Hash, BTree and" 
+  href="bsddb-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.14.1 Dumbdbm Objects" 
+  href="dumbdbm-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="bsddb-objects.html">7.13.1 Hash, BTree and</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="dumbdbm-objects.html">7.14.1 Dumbdbm Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091400000000000000000">
+7.14 <tt class="module">dumbdbm</tt> --
+         Portable DBM implementation</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2615">&nbsp;</a>
+<P>
+<div class="note"><b class="label">Note:</b>
+The <tt class="module">dumbdbm</tt> module is intended as a last resort fallback for
+the <tt class="module"><a href="module-anydbm.html">anydbm</a></tt> module when no more robust module is available.
+The <tt class="module">dumbdbm</tt> module is not written for speed and is not nearly as
+heavily used as the other database modules.
+</div>
+
+<P>
+The <tt class="module">dumbdbm</tt> module provides a persistent dictionary-like interface
+which is written entirely in Python.  Unlike other modules such as
+<tt class="module"><a href="module-gdbm.html">gdbm</a></tt> and <tt class="module"><a href="module-bsddb.html">bsddb</a></tt>, no external library is required.  As
+with other persistent mappings, the keys and values must always be strings.
+
+<P>
+The module defines the following:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2613"><tt class="exception">error</tt></a></b>
+<dd>
+Raised on dumbdbm-specific errors, such as I/O errors.  <tt class="exception">KeyError</tt>
+is raised for general mapping errors like specifying an incorrect key.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2614"><tt class="function">open</tt></a></b>(</nobr></td>
+  <td><var>filename</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Open a dumbdbm database and return a dumbdbm object.  The <var>filename</var>
+argument is the basename of the database file (without any specific
+extensions).  When a dumbdbm database is created, files with <span class="file">.dat</span> and
+<span class="file">.dir</span> extensions are created.
+
+<P>
+The optional <var>flag</var> argument is currently ignored; the database is
+always opened for update, and will be created if it does not exist.
+
+<P>
+The optional <var>mode</var> argument is the <font style="font-variant: small-caps;">Unix</font> mode of the file, used
+only when the database has to be created.  It defaults to octal
+<code>0666</code> (and will be modified by the prevailing umask).
+
+<span class="versionnote">Changed in version 2.2:
+The <var>mode</var> argument was ignored in earlier
+                versions.</span>
+
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-anydbm.html">anydbm</a></tt>:</b>
+    <dd>Generic interface to <code>dbm</code>-style databases.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-dbm.html">dbm</a></tt>:</b>
+    <dd>Similar interface to the DBM/NDBM library.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-gdbm.html">gdbm</a></tt>:</b>
+    <dd>Similar interface to the GNU GDBM library.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-shelve.html">shelve</a></tt>:</b>
+    <dd>Persistence module which stores non-string data.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dumbdbm-objects.html">7.14.1 Dumbdbm Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.13.1 Hash, BTree and" 
+  rel="prev" title="7.13.1 Hash, BTree and" 
+  href="bsddb-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.14.1 Dumbdbm Objects" 
+  rel="next" title="7.14.1 Dumbdbm Objects" 
+  href="dumbdbm-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="bsddb-objects.html">7.13.1 Hash, BTree and</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="dumbdbm-objects.html">7.14.1 Dumbdbm Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

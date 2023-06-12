@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" HREF="node126.html">
+<LINK REL="parent" href="module-codecs.html">
+<LINK REL="next" href="module-unicodedata.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="encodings.idna -- Internationalized Domain Names in Applications">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>4.9.3 encodings.idna -- Internationalized Domain Names in Applications</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.9.2 Standard Encodings" 
+  HREF="node126.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.9 codecs  " 
+  href="module-codecs.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.10 unicodedata  " 
+  href="module-unicodedata.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node126.html">4.9.2 Standard Encodings</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-codecs.html">4.9 codecs  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-unicodedata.html">4.10 unicodedata  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006930000000000000000">
+4.9.3 <tt class="module">encodings.idna</tt> --
+            Internationalized Domain Names in Applications</A>
+</H2>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+This module implements <a class="rfc" name="rfcref-77883"
+href="http://www.faqs.org/rfcs/rfc3490.html">RFC 3490</a> (Internationalized Domain Names in
+Applications) and <a class="rfc" name="rfcref-77885"
+href="http://www.faqs.org/rfcs/rfc3492.html">RFC 3492</a> (Nameprep: A Stringprep Profile for
+Internationalized Domain Names (IDN)). It builds upon the
+<code>punycode</code> encoding and <tt class="module"><a href="module-stringprep.html">stringprep</a></tt>.
+
+<P>
+These RFCs together define a protocol to support non-ASCII characters
+in domain names. A domain name containing non-ASCII characters (such
+as ``www.Alliancefran&#231;aise.nu'') is converted into an
+ASCII-compatible encoding (ACE, such as
+``www.xn-alliancefranaise-npb.nu''). The ACE form of the domain name
+is then used in all places where arbitrary characters are not allowed
+by the protocol, such as DNS queries, HTTP <span class="mailheader">Host:</span> fields, and so
+on. This conversion is carried out in the application; if possible
+invisible to the user: The application should transparently convert
+Unicode domain labels to IDNA on the wire, and convert back ACE labels
+to Unicode before presenting them to the user.
+
+<P>
+Python supports this conversion in several ways: The <code>idna</code> codec
+allows to convert between Unicode and the ACE. Furthermore, the
+<tt class="module"><a href="module-socket.html">socket</a></tt> module transparently converts Unicode host names to
+ACE, so that applications need not be concerned about converting host
+names themselves when they pass them to the socket module. On top of
+that, modules that have host names as function parameters, such as
+<tt class="module"><a href="module-httplib.html">httplib</a></tt> and <tt class="module"><a href="module-ftplib.html">ftplib</a></tt>, accept Unicode host names
+(<tt class="module"><a href="module-httplib.html">httplib</a></tt> then also transparently sends an IDNA hostname in
+the <span class="mailheader">Host:</span> field if it sends that field at all). 
+
+<P>
+When receiving host names from the wire (such as in reverse name
+lookup), no automatic conversion to Unicode is performed: Applications
+wishing to present such host names to the user should decode them to
+Unicode.
+
+<P>
+The module <tt class="module">encodings.idna</tt> also implements the nameprep
+procedure, which performs certain normalizations on host names, to
+achieve case-insensitivity of international domain names, and to unify
+similar characters. The nameprep functions can be used directly if
+desired.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-977"><tt class="function">nameprep</tt></a></b>(</nobr></td>
+  <td><var>label</var>)</td></tr></table>
+<dd>
+Return the nameprepped version of <var>label</var>. The implementation
+currently assumes query strings, so <code>AllowUnassigned</code> is
+true.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-978"><tt class="function">ToASCII</tt></a></b>(</nobr></td>
+  <td><var>label</var>)</td></tr></table>
+<dd>
+Convert a label to ASCII, as specified in <a class="rfc" name="rfcref-77887"
+href="http://www.faqs.org/rfcs/rfc3490.html">RFC 3490</a>.
+<code>UseSTD3ASCIIRules</code> is assumed to be false.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-979"><tt class="function">ToUnicode</tt></a></b>(</nobr></td>
+  <td><var>label</var>)</td></tr></table>
+<dd>
+Convert a label to Unicode, as specified in <a class="rfc" name="rfcref-77889"
+href="http://www.faqs.org/rfcs/rfc3490.html">RFC 3490</a>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.9.2 Standard Encodings" 
+  rel="prev" title="4.9.2 Standard Encodings" 
+  HREF="node126.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.9 codecs  " 
+  rel="parent" title="4.9 codecs  " 
+  href="module-codecs.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.10 unicodedata  " 
+  rel="next" title="4.10 unicodedata  " 
+  href="module-unicodedata.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node126.html">4.9.2 Standard Encodings</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-codecs.html">4.9 codecs  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-unicodedata.html">4.10 unicodedata  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-hotshot.html">
+<LINK REL="parent" href="profile.html">
+<LINK REL="next" HREF="node396.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="timeit -- Measure execution time of small code snippets">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>10.10 timeit -- Measure execution time of small code snippets</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="10.9.3 Example Usage" 
+  href="hotshot-example.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="10. The Python Profiler" 
+  href="profile.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="10.10.1 Command Line Interface" 
+  HREF="node396.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="hotshot-example.html">10.9.3 Example Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node396.html">10.10.1 Command Line Interface</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00121000000000000000000">
+10.10 <tt class="module">timeit</tt> --
+         Measure execution time of small code snippets</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+<a name="l2h-2934">&nbsp;</a>
+<P>
+This module provides a simple way to time small bits of Python code.
+It has both command line as well as callable interfaces.  It avoids a
+number of common traps for measuring execution times.  See also Tim
+Peters' introduction to the ``Algorithms'' chapter in the
+<em class="citetitle"
+ >Python Cookbook</em>, published by O'Reilly.
+
+<P>
+The module defines the following public class:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2930"><tt class="class">Timer</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>stmt=<code>'pass'</code>
+                         </var><big>[</big><var>, setup=<code>'pass'</code>
+                         </var><big>[</big><var>, timer=&lt;timer function&gt;</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Class for timing execution speed of small code snippets.
+
+<P>
+The constructor takes a statement to be timed, an additional statement
+used for setup, and a timer function.  Both statements default to
+<code>'pass'</code>; the timer function is platform-dependent (see the
+module doc string).  The statements may contain newlines, as long as
+they don't contain multi-line string literals.
+
+<P>
+To measure the execution time of the first statement, use the
+<tt class="method">timeit()</tt> method.  The <tt class="method">repeat()</tt> method is a
+convenience to call <tt class="method">timeit()</tt> multiple times and return a list
+of results.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2931"><tt class="method">print_exc</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>file=<tt class="constant">None</tt></var><big>]</big>)</td></tr></table>
+<dd>
+Helper to print a traceback from the timed code.
+
+<P>
+Typical use:
+
+<P>
+<div class="verbatim"><pre>
+    t = Timer(...)       # outside the try/except
+    try:
+        t.timeit(...)    # or t.repeat(...)
+    except:
+        t.print_exc()
+</pre></div>
+
+<P>
+The advantage over the standard traceback is that source lines in the
+compiled template will be displayed.
+The optional <var>file</var> argument directs where the traceback is sent;
+it defaults to <code>sys.stderr</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2932"><tt class="method">repeat</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>repeat<code>=3</code> </var><big>[</big><var>,
+                           number<code>=1000000</code></var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Call <tt class="method">timeit()</tt> a few times.
+
+<P>
+This is a convenience function that calls the <tt class="method">timeit()</tt>
+repeatedly, returning a list of results.  The first argument specifies
+how many times to call <tt class="method">timeit()</tt>.  The second argument
+specifies the <var>number</var> argument for <tt class="function">timeit()</tt>.
+
+<P>
+<div class="note"><b class="label">Note:</b>
+It's tempting to calculate mean and standard deviation from the result
+vector and report these.  However, this is not very useful.  In a typical
+case, the lowest value gives a lower bound for how fast your machine can run
+the given code snippet; higher values in the result vector are typically not
+caused by variability in Python's speed, but by other processes interfering
+with your timing accuracy.  So the <tt class="function">min()</tt> of the result is
+probably the only number you should be interested in.  After that, you
+should look at the entire vector and apply common sense rather than
+statistics.
+</div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2933"><tt class="method">timeit</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>number<code>=1000000</code></var><big>]</big>)</td></tr></table>
+<dd>
+Time <var>number</var> executions of the main statement.
+This executes the setup statement once, and then
+returns the time it takes to execute the main statement a number of
+times, measured in seconds as a float.  The argument is the number of
+times through the loop, defaulting to one million.  The main
+statement, the setup statement and the timer function to be used are
+passed to the constructor.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node396.html">10.10.1 Command Line Interface</a>
+<LI><A href="node397.html">10.10.2 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="10.9.3 Example Usage" 
+  rel="prev" title="10.9.3 Example Usage" 
+  href="hotshot-example.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="10. The Python Profiler" 
+  rel="parent" title="10. The Python Profiler" 
+  href="profile.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="10.10.1 Command Line Interface" 
+  rel="next" title="10.10.1 Command Line Interface" 
+  HREF="node396.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="hotshot-example.html">10.9.3 Example Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node396.html">10.10.1 Command Line Interface</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

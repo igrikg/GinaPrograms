@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node293.html">
+<LINK REL="prev" HREF="node281.html">
+<LINK REL="parent" href="module-logging.html">
+<LINK REL="next" HREF="node283.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Handler Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.2 Handler Objects</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.1 Logger Objects" 
+  HREF="node281.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28 logging  " 
+  href="module-logging.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.1 StreamHandler" 
+  HREF="node283.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node281.html">6.28.1 Logger Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-logging.html">6.28 logging  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node283.html">6.28.2.1 StreamHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082820000000000000000">
+6.28.2 Handler Objects</A>
+</H2>
+
+<P>
+Handlers have the following attributes and methods. Note that
+<tt class="class">Handler</tt> is never instantiated directly; this class acts as a
+base for more useful subclasses. However, the <tt class="method">__init__()</tt>
+method in subclasses needs to call <tt class="method">Handler.__init__()</tt>.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2322"><tt class="method">__init__</tt></a></b>(</nobr></td>
+  <td><var>level=<tt class="constant">NOTSET</tt></var>)</td></tr></table>
+<dd>
+Initializes the <tt class="class">Handler</tt> instance by setting its level, setting
+the list of filters to the empty list and creating a lock (using
+<tt class="method">createLock()</tt>) for serializing access to an I/O mechanism.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2323"><tt class="method">createLock</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Initializes a thread lock which can be used to serialize access to
+underlying I/O functionality which may not be threadsafe.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2324"><tt class="method">acquire</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Acquires the thread lock created with <tt class="method">createLock()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2325"><tt class="method">release</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Releases the thread lock acquired with <tt class="method">acquire()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2326"><tt class="method">setLevel</tt></a></b>(</nobr></td>
+  <td><var>lvl</var>)</td></tr></table>
+<dd>
+Sets the threshold for this handler to <var>lvl</var>. Logging messages which are
+less severe than <var>lvl</var> will be ignored. When a handler is created, the
+level is set to <tt class="constant">NOTSET</tt> (which causes all messages to be processed).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2327"><tt class="method">setFormatter</tt></a></b>(</nobr></td>
+  <td><var>form</var>)</td></tr></table>
+<dd>
+Sets the <tt class="class">Formatter</tt> for this handler to <var>form</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2328"><tt class="method">addFilter</tt></a></b>(</nobr></td>
+  <td><var>filt</var>)</td></tr></table>
+<dd>
+Adds the specified filter <var>filt</var> to this handler.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2329"><tt class="method">removeFilter</tt></a></b>(</nobr></td>
+  <td><var>filt</var>)</td></tr></table>
+<dd>
+Removes the specified filter <var>filt</var> from this handler.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2330"><tt class="method">filter</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Applies this handler's filters to the record and returns a true value if
+the record is to be processed.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2331"><tt class="method">flush</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Ensure all logging output has been flushed. This version does
+nothing and is intended to be implemented by subclasses.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2332"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Tidy up any resources used by the handler. This version does
+nothing and is intended to be implemented by subclasses.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2333"><tt class="method">handle</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Conditionally emits the specified logging record, depending on
+filters which may have been added to the handler. Wraps the actual
+emission of the record with acquisition/release of the I/O thread
+lock.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2334"><tt class="method">handleError</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+This method should be called from handlers when an exception is
+encountered during an emit() call. By default it does nothing,
+which means that exceptions get silently ignored. This is what is
+mostly wanted for a logging system - most users will not care
+about errors in the logging system, they are more interested in
+application errors. You could, however, replace this with a custom
+handler if you wish.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2335"><tt class="method">format</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Do formatting for a record - if a formatter is set, use it.
+Otherwise, use the default formatter for the module.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2336"><tt class="method">emit</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Do whatever it takes to actually log the specified logging record.
+This version is intended to be implemented by subclasses and so
+raises a <tt class="exception">NotImplementedError</tt>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node283.html">6.28.2.1 StreamHandler</a>
+<LI><A href="node284.html">6.28.2.2 FileHandler</a>
+<LI><A href="node285.html">6.28.2.3 RotatingFileHandler</a>
+<LI><A href="node286.html">6.28.2.4 SocketHandler</a>
+<LI><A href="node287.html">6.28.2.5 DatagramHandler</a>
+<LI><A href="node288.html">6.28.2.6 SysLogHandler</a>
+<LI><A href="node289.html">6.28.2.7 NTEventLogHandler</a>
+<LI><A href="node290.html">6.28.2.8 SMTPHandler</a>
+<LI><A href="node291.html">6.28.2.9 MemoryHandler</a>
+<LI><A href="node292.html">6.28.2.10 HTTPHandler</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.1 Logger Objects" 
+  rel="prev" title="6.28.1 Logger Objects" 
+  HREF="node281.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28 logging  " 
+  rel="parent" title="6.28 logging  " 
+  href="module-logging.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.1 StreamHandler" 
+  rel="next" title="6.28.2.1 StreamHandler" 
+  HREF="node283.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node281.html">6.28.1 Logger Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-logging.html">6.28 logging  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node283.html">6.28.2.1 StreamHandler</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

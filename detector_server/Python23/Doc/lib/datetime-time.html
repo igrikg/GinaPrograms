@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="datetime-tzinfo.html">
+<LINK REL="prev" href="datetime-datetime.html">
+<LINK REL="parent" href="module-datetime.html">
+<LINK REL="next" href="datetime-tzinfo.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="time Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.9.5 time Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.4 datetime Objects" 
+  href="datetime-datetime.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.6 tzinfo Objects" 
+  href="datetime-tzinfo.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="datetime-datetime.html">6.9.4 datetime Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-tzinfo.html">6.9.6 tzinfo Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008950000000000000000">&nbsp;</A>
+<BR>
+6.9.5 <tt class="class">time</tt> Objects 
+</H2>
+
+<P>
+A time object represents a (local) time of day, independent of any
+particular day, and subject to adjustment via a <tt class="class">tzinfo</tt> object.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1733"><tt class="class">time</tt></a></b>(</nobr></td>
+  <td><var>hour=0, minute=0, second=0, microsecond=0,
+                        tzinfo=None</var>)</td></tr></table>
+<dd>
+  All arguments are optional.  <var>tzinfo</var> may be <code>None</code>, or
+  an instance of a <tt class="class">tzinfo</tt> subclass.  The remaining arguments
+  may be ints or longs, in the following ranges:
+
+<P>
+
+<UL>
+<LI><code>0 &lt;= <var>hour</var> &lt; 24</code>
+</LI>
+<LI><code>0 &lt;= <var>minute</var> &lt; 60</code>
+</LI>
+<LI><code>0 &lt;= <var>second</var> &lt; 60</code>
+</LI>
+<LI><code>0 &lt;= <var>microsecond</var> &lt; 1000000</code>.
+  
+</LI>
+</UL>
+
+<P>
+If an argument outside those ranges is given,
+  <tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+Class attributes:
+
+<P>
+<dl><dt><b><a name="l2h-1734"><tt class="member">min</tt></a></b>
+<dd>
+  The earliest representable <tt class="class">time</tt>, <code>time(0, 0, 0, 0)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1735"><tt class="member">max</tt></a></b>
+<dd>
+  The latest representable <tt class="class">time</tt>, <code>time(23, 59, 59, 999999)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1736"><tt class="member">resolution</tt></a></b>
+<dd>
+  The smallest possible difference between non-equal <tt class="class">time</tt>
+  objects, <code>timedelta(microseconds=1)</code>, although note that
+  arithmetic on <tt class="class">time</tt> objects is not supported.
+</dl>
+
+<P>
+Instance attributes (read-only):
+
+<P>
+<dl><dt><b><a name="l2h-1737"><tt class="member">hour</tt></a></b>
+<dd>
+  In <code>range(24)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1738"><tt class="member">minute</tt></a></b>
+<dd>
+  In <code>range(60)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1739"><tt class="member">second</tt></a></b>
+<dd>
+  In <code>range(60)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1740"><tt class="member">microsecond</tt></a></b>
+<dd>
+  In <code>range(1000000)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1741"><tt class="member">tzinfo</tt></a></b>
+<dd>
+  The object passed as the tzinfo argument to the <tt class="class">time</tt>
+  constructor, or <code>None</code> if none was passed.
+</dl>
+
+<P>
+Supported operations:
+
+<P>
+
+<UL>
+<LI>comparison of <tt class="class">time</tt> to <tt class="class">time</tt>,
+    where <var>a</var> is considered less than <var>b</var> when <var>a</var> precedes
+    <var>b</var> in time.  If one comparand is naive and the other is aware,
+    <tt class="exception">TypeError</tt> is raised.  If both comparands are aware, and
+    have the same <tt class="member">tzinfo</tt> member, the common <tt class="member">tzinfo</tt>
+    member is ignored and the base times are compared.  If both
+    comparands are aware and have different <tt class="member">tzinfo</tt> members,
+    the comparands are first adjusted by subtracting their UTC offsets
+    (obtained from <code>self.utcoffset()</code>).
+    In order to stop mixed-type comparisons from falling back to the
+    default comparison by object address, when a <tt class="class">time</tt> object is
+    compared to an object of a different type, <tt class="exception">TypeError</tt> is
+    raised unless the comparison is <code>==</code> or <code>!=</code>.  The latter
+    cases return <tt class="constant">False</tt> or <tt class="constant">True</tt>, respectively.
+
+<P>
+</LI>
+<LI>hash, use as dict key
+
+<P>
+</LI>
+<LI>efficient pickling
+
+<P>
+</LI>
+<LI>in Boolean contexts, a <tt class="class">time</tt> object is considered to be
+    true if and only if, after converting it to minutes and
+    subtracting <tt class="method">utcoffset()</tt> (or <code>0</code> if that's
+    <code>None</code>), the result is non-zero.
+</LI>
+</UL>
+
+<P>
+Instance methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1742"><tt class="method">replace</tt></a></b>(</nobr></td>
+  <td><var>(</var>)</td></tr></table>
+<dd>hour=, minute=, second=, microsecond=, tzinfo=)
+  Return a <tt class="class">time</tt> with the same value, except for those members given
+  new values by whichever keyword arguments are specified.  Note that
+  <code>tzinfo=None</code> can be specified to create a naive <tt class="class">time</tt> from
+  an aware <tt class="class">time</tt>, without conversion of the time members.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1743"><tt class="method">isoformat</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  Return a string representing the time in ISO 8601 format,
+      HH:MM:SS.mmmmmm
+  or, if self.microsecond is 0,
+      HH:MM:SS
+  If <tt class="method">utcoffset()</tt> does not return <code>None</code>, a 6-character
+  string is appended, giving the UTC offset in (signed) hours and
+  minutes:
+      HH:MM:SS.mmmmmm+HH:MM
+  or, if self.microsecond is 0,
+      HH:MM:SS+HH:MM
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1744"><tt class="method">__str__</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  For a time <var>t</var>, <code>str(<var>t</var>)</code> is equivalent to
+  <code><var>t</var>.isoformat()</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1745"><tt class="method">strftime</tt></a></b>(</nobr></td>
+  <td><var>format</var>)</td></tr></table>
+<dd>
+  Return a string representing the time, controlled by an explicit
+  format string.  See the section on <tt class="method">strftime()</tt> behavior.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1746"><tt class="method">utcoffset</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  If <tt class="member">tzinfo</tt> is <code>None</code>, returns <code>None</code>, else
+  returns <code><var>self</var>.tzinfo.utcoffset(None)</code>, and
+  raises an exception if the latter doesn't return <code>None</code> or
+  a <tt class="class">timedelta</tt> object representing a whole number of minutes
+  with magnitude less than one day.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1747"><tt class="method">dst</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  If <tt class="member">tzinfo</tt> is <code>None</code>, returns <code>None</code>, else
+  returns <code><var>self</var>.tzinfo.dst(None)</code>, and
+  raises an exception if the latter doesn't return <code>None</code>, or
+  a <tt class="class">timedelta</tt> object representing a whole number of minutes
+  with magnitude less than one day.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1748"><tt class="method">tzname</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  If <tt class="member">tzinfo</tt> is <code>None</code>, returns <code>None</code>, else
+  returns <code><var>self</var>.tzinfo.tzname(None)</code>, or
+  raises an exception if the latter doesn't return <code>None</code> or
+  a string object.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.4 datetime Objects" 
+  rel="prev" title="6.9.4 datetime Objects" 
+  href="datetime-datetime.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.6 tzinfo Objects" 
+  rel="next" title="6.9.6 tzinfo Objects" 
+  href="datetime-tzinfo.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="datetime-datetime.html">6.9.4 datetime Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-tzinfo.html">6.9.6 tzinfo Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

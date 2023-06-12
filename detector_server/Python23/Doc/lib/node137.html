@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node138.html">
+<LINK REL="prev" HREF="node136.html">
+<LINK REL="parent" href="module-doctest.html">
+<LINK REL="next" HREF="node138.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Advanced Usage">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.2.5 Advanced Usage</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.2.4 What About Exceptions?" 
+  HREF="node136.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.2 doctest  " 
+  href="module-doctest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.2.6 How are Docstring" 
+  HREF="node138.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node136.html">5.2.4 What About Exceptions?</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node138.html">5.2.6 How are Docstring</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007250000000000000000">
+5.2.5 Advanced Usage</A>
+</H2>
+
+<P>
+Several module level functions are available for controlling how doctests
+are run.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1018"><tt class="function">debug</tt></a></b>(</nobr></td>
+  <td><var>module, name</var>)</td></tr></table>
+<dd>
+  Debug a single docstring containing doctests.
+
+<P>
+Provide the <var>module</var> (or dotted name of the module) containing the
+  docstring to be debugged and the <var>name</var> (within the module) of the
+  object with the docstring to be debugged.
+
+<P>
+The doctest examples are extracted (see function <tt class="function">testsource()</tt>),
+  and written to a temporary file.  The Python debugger, <tt class="module"><a href="module-pdb.html">pdb</a></tt>,
+  is then invoked on that file.
+  
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1019"><tt class="function">testmod</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  This function provides the most basic interface to the doctests.
+  It creates a local instance of class <tt class="class">Tester</tt>, runs appropriate
+  methods of that class, and merges the results into the global <tt class="class">Tester</tt>
+  instance, <code>master</code>.
+
+<P>
+To get finer control than <tt class="function">testmod()</tt> offers, create an instance
+  of <tt class="class">Tester</tt> with custom policies, or run methods of <code>master</code>
+  directly.  See <code>Tester.__doc__</code> for details.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1020"><tt class="function">testsource</tt></a></b>(</nobr></td>
+  <td><var>module, name</var>)</td></tr></table>
+<dd>
+  Extract the doctest examples from a docstring.
+
+<P>
+Provide the <var>module</var> (or dotted name of the module) containing the
+  tests to be extracted and the <var>name</var> (within the module) of the object
+  with the docstring containing the tests to be extracted.
+
+<P>
+The doctest examples are returned as a string containing Python
+  code.  The expected output blocks in the examples are converted
+  to Python comments.
+  
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1021"><tt class="function">DocTestSuite</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>module</var><big>]</big>)</td></tr></table>
+<dd>
+  Convert doctest tests for a module to a
+  <tt class="class"><tt class="module"><a href="module-unittest.html">unittest</a></tt>.TestSuite</tt>.
+
+<P>
+The returned <tt class="class">TestSuite</tt> is to be run by the unittest framework
+  and runs each doctest in the module.  If any of the doctests fail,
+  then the synthesized unit test fails, and a <tt class="exception">DocTestTestFailure</tt>
+  exception is raised showing the name of the file containing the test and a
+  (sometimes approximate) line number.
+
+<P>
+The optional <var>module</var> argument provides the module to be tested.  It
+  can be a module object or a (possibly dotted) module name.  If not
+  specified, the module calling this function is used.
+
+<P>
+Example using one of the many ways that the <tt class="module"><a href="module-unittest.html">unittest</a></tt> module
+  can use a <tt class="class">TestSuite</tt>:
+
+<P>
+<div class="verbatim"><pre>
+    import unittest
+    import doctest
+    import my_module_with_doctests
+
+    suite = doctest.DocTestSuite(my_module_with_doctests)
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
+</pre></div>
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+  <span class="warning"><b class="label">Warning:</b>
+This function does not currently search <code>M.__test__</code>
+  and its search technique does not exactly match <tt class="function">testmod()</tt> in
+  every detail.  Future versions will bring the two into convergence.</span>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.2.4 What About Exceptions?" 
+  rel="prev" title="5.2.4 What About Exceptions?" 
+  HREF="node136.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.2 doctest  " 
+  rel="parent" title="5.2 doctest  " 
+  href="module-doctest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.2.6 How are Docstring" 
+  rel="next" title="5.2.6 How are Docstring" 
+  HREF="node138.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node136.html">5.2.4 What About Exceptions?</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node138.html">5.2.6 How are Docstring</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

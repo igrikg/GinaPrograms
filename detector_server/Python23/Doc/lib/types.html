@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-exceptions.html">
+<LINK REL="prev" href="built-in-funcs.html">
+<LINK REL="parent" href="builtin.html">
+<LINK REL="next" href="truth.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Built-in Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>2.2 Built-in Types </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="2.1 Built-in Functions" 
+  href="built-in-funcs.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="2. Built-In Objects" 
+  href="builtin.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="2.2.1 Truth Value Testing" 
+  href="truth.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="built-in-funcs.html">2.1 Built-in Functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="builtin.html">2. Built-In Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="truth.html">2.2.1 Truth Value Testing</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004200000000000000000">&nbsp;</A>
+<BR>
+2.2 Built-in Types 
+</H1>
+
+<P>
+The following sections describe the standard types that are built into
+the interpreter.  Historically, Python's built-in types have differed
+from user-defined types because it was not possible to use the built-in
+types as the basis for object-oriented inheritance. With the 2.2
+release this situation has started to change, although the intended
+unification of user-defined and built-in types is as yet far from
+complete.
+
+<P>
+The principal built-in types are numerics, sequences, mappings, files
+classes, instances and exceptions.
+<a name="l2h-85">&nbsp;</a>
+<P>
+Some operations are supported by several object types; in particular,
+all objects can be compared, tested for truth value, and converted to
+a string (with the <code>` ...`</code> notation).  The latter
+conversion is implicitly used when an object is written by the
+<tt class="keyword">print</tt><a name="l2h-86">&nbsp;</a> statement.
+(Information on <a class="ulink" href="../ref/print.html"
+  ><tt class="keyword">print</tt> statement</a>
+and other language statements can be found in the
+<em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em> and the
+<em class="citetitle"><a
+ href="../tut/tut.html"
+ title="Python Tutorial"
+ >Python Tutorial</a></em>.)
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="truth.html">2.2.1 Truth Value Testing</a>
+<LI><A href="boolean.html">2.2.2 Boolean Operations</a>
+<LI><A href="comparisons.html">2.2.3 Comparisons</a>
+<LI><A href="typesnumeric.html">2.2.4 Numeric Types</a>
+<UL>
+<LI><A href="bitstring-ops.html">2.2.4.1 Bit-string Operations on Integer Types</a>
+</ul>
+<LI><A href="typeiter.html">2.2.5 Iterator Types</a>
+<LI><A href="typesseq.html">2.2.6 Sequence Types</a>
+<UL>
+<LI><A href="string-methods.html">2.2.6.1 String Methods</a>
+<LI><A href="typesseq-strings.html">2.2.6.2 String Formatting Operations</a>
+<LI><A href="typesseq-xrange.html">2.2.6.3 XRange Type</a>
+<LI><A href="typesseq-mutable.html">2.2.6.4 Mutable Sequence Types</a>
+</ul>
+<LI><A href="typesmapping.html">2.2.7 Mapping Types</a>
+<LI><A href="bltin-file-objects.html">2.2.8 File Objects</a>
+<LI><A href="typesother.html">2.2.9 Other Built-in Types</a>
+<UL>
+<LI><A href="typesmodules.html">2.2.9.1 Modules</a>
+<LI><A href="typesobjects.html">2.2.9.2 Classes and Class Instances</a>
+<LI><A href="typesfunctions.html">2.2.9.3 Functions</a>
+<LI><A href="typesmethods.html">2.2.9.4 Methods</a>
+<LI><A href="bltin-code-objects.html">2.2.9.5 Code Objects</a>
+<LI><A href="bltin-type-objects.html">2.2.9.6 Type Objects</a>
+<LI><A href="bltin-null-object.html">2.2.9.7 The Null Object</a>
+<LI><A href="bltin-ellipsis-object.html">2.2.9.8 The Ellipsis Object</a>
+<LI><A href="node29.html">2.2.9.9 Boolean Values</a>
+<LI><A href="typesinternal.html">2.2.9.10 Internal Objects</a>
+</ul>
+<LI><A href="specialattrs.html">2.2.10 Special Attributes</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="2.1 Built-in Functions" 
+  rel="prev" title="2.1 Built-in Functions" 
+  href="built-in-funcs.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="2. Built-In Objects" 
+  rel="parent" title="2. Built-In Objects" 
+  href="builtin.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="2.2.1 Truth Value Testing" 
+  rel="next" title="2.2.1 Truth Value Testing" 
+  href="truth.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="built-in-funcs.html">2.1 Built-in Functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="builtin.html">2. Built-In Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="truth.html">2.2.1 Truth Value Testing</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

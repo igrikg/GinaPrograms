@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-statvfs.html">
+<LINK REL="prev" href="module-stat.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" href="module-statvfs.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="statcache -- An optimization of os.stat()">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.5 statcache -- An optimization of os.stat()</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.4 stat  " 
+  href="module-stat.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.6 statvfs  " 
+  href="module-statvfs.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-stat.html">6.4 stat  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-statvfs.html">6.6 statvfs  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008500000000000000000">
+6.5 <tt class="module">statcache</tt> --
+         An optimization of <tt class="function">os.stat()</tt></A>
+</H1>
+
+<P>
+
+
+<P>
+<div class="versionnote"><b>Deprecated since release 2.2.</b>
+Use <tt class="function"><tt class="module"><a href="module-os.html">os</a></tt>.stat()</tt> directly instead
+of using the cache; the cache introduces a very high level of
+fragility in applications using it and complicates application code
+with the addition of cache management support.</div><p>
+
+<P>
+The <tt class="module">statcache</tt> module provides a simple optimization to
+<tt class="function">os.stat()</tt>: remembering the values of previous invocations.
+
+<P>
+The <tt class="module">statcache</tt> module defines the following functions:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1616"><tt class="function">stat</tt></a></b>(</nobr></td>
+  <td><var>path</var>)</td></tr></table>
+<dd>
+This is the main module entry-point.
+Identical for <tt class="function">os.stat()</tt>, except for remembering the result
+for future invocations of the function.
+</dl>
+
+<P>
+The rest of the functions are used to clear the cache, or parts of
+it.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1617"><tt class="function">reset</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Clear the cache: forget all results of previous <tt class="function">stat()</tt>
+calls.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1618"><tt class="function">forget</tt></a></b>(</nobr></td>
+  <td><var>path</var>)</td></tr></table>
+<dd>
+Forget the result of <code>stat(<var>path</var>)</code>, if any.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1619"><tt class="function">forget_prefix</tt></a></b>(</nobr></td>
+  <td><var>prefix</var>)</td></tr></table>
+<dd>
+Forget all results of <code>stat(<var>path</var>)</code> for <var>path</var> starting
+with <var>prefix</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1620"><tt class="function">forget_dir</tt></a></b>(</nobr></td>
+  <td><var>prefix</var>)</td></tr></table>
+<dd>
+Forget all results of <code>stat(<var>path</var>)</code> for <var>path</var> a file in 
+the directory <var>prefix</var>, including <code>stat(<var>prefix</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1621"><tt class="function">forget_except_prefix</tt></a></b>(</nobr></td>
+  <td><var>prefix</var>)</td></tr></table>
+<dd>
+Similar to <tt class="function">forget_prefix()</tt>, but for all <var>path</var> values
+<i>not</i> starting with <var>prefix</var>.
+</dl>
+
+<P>
+Example:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import os, statcache
+&gt;&gt;&gt; statcache.stat('.')
+(16893, 2049, 772, 18, 1000, 1000, 2048, 929609777, 929609777, 929609777)
+&gt;&gt;&gt; os.stat('.')
+(16893, 2049, 772, 18, 1000, 1000, 2048, 929609777, 929609777, 929609777)
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.4 stat  " 
+  rel="prev" title="6.4 stat  " 
+  href="module-stat.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.6 statvfs  " 
+  rel="next" title="6.6 statvfs  " 
+  href="module-statvfs.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-stat.html">6.4 stat  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-statvfs.html">6.6 statvfs  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

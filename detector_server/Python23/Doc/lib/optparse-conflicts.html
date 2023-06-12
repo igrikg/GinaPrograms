@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="optparse-querying-and-manipulating.html">
+<LINK REL="parent" href="optparse-advanced-usage.html">
+<LINK REL="next" href="optparse-callback-options.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Conflicts between options">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.3.6 Conflicts between options</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.5 Querying and manipulating" 
+  href="optparse-querying-and-manipulating.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-querying-and-manipulating.html">6.20.3.5 Querying and manipulating</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082036000000000000000">&nbsp;</A>
+<BR>
+6.20.3.6 Conflicts between options
+</H3>
+
+<P>
+If you're not careful, it's easy to define conflicting options:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-n", "--dry-run", ...)
+...
+parser.add_option("-n", "--noisy", ...)
+</pre></div> 
+
+<P>
+(This is even easier to do if you've defined your own
+<tt class="class">OptionParser</tt> subclass with some standard options.)
+
+<P>
+On the assumption that this is usually a mistake, <tt class="module">optparse</tt>
+raises an exception (<tt class="exception">OptionConflictError</tt>) by default when
+this happens.  Since this is an easily-fixed programming error, you
+shouldn't try to catch this exception--fix your mistake and get on
+with life.
+
+<P>
+Sometimes, you want newer options to deliberately replace the option
+strings used by older options.  You can achieve this by calling:
+
+<P>
+<div class="verbatim"><pre>
+parser.set_conflict_handler("resolve")
+</pre></div>
+
+<P>
+which instructs <tt class="module">optparse</tt> to resolve option conflicts
+intelligently.
+
+<P>
+Here's how it works: every time you add an option, <tt class="module">optparse</tt>
+checks for conflicts with previously-added options.  If it finds any,
+it invokes the conflict-handling mechanism you specify either to the
+<tt class="class">OptionParser</tt> constructor:
+
+<P>
+<div class="verbatim"><pre>
+parser = OptionParser(..., conflict_handler="resolve")
+</pre></div>
+
+<P>
+or via the <tt class="method">set_conflict_handler()</tt> method.
+
+<P>
+The default conflict-handling mechanism is <code>error</code>.
+
+<P>
+Here's an example: first, define an <tt class="class">OptionParser</tt> set to
+resolve conflicts intelligently:
+
+<P>
+<div class="verbatim"><pre>
+parser = OptionParser(conflict_handler="resolve")
+</pre></div>
+
+<P>
+Now add all of our options:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-n", "--dry-run", ..., help="original dry-run option")
+...
+parser.add_option("-n", "--noisy", ..., help="be noisy")
+</pre></div> 
+
+<P>
+At this point, <tt class="module">optparse</tt> detects that a previously-added option is already
+using the <b class="programopt">-n</b> option string.  Since <code>conflict_handler
+== "resolve"</code>, it resolves the situation by removing <b class="programopt">-n</b>
+from the earlier option's list of option strings.  Now,
+<b class="programopt">--dry-run</b> is the only way for the user to activate that
+option.  If the user asks for help, the help message will reflect
+that, e.g.:
+
+<P>
+<div class="verbatim"><pre>
+options:
+  --dry-run     original dry-run option
+  ...
+  -n, --noisy   be noisy
+</pre></div>
+
+<P>
+Note that it's possible to whittle away the option strings for a
+previously-added option until there are none left, and the user has no
+way of invoking that option from the command-line.  In that case,
+<tt class="module">optparse</tt> removes that option completely, so it doesn't show
+up in help text or anywhere else.  E.g. if we carry on with our
+existing <tt class="class">OptionParser</tt>:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("--dry-run", ..., help="new dry-run option")
+</pre></div>
+
+<P>
+At this point, the first <b class="programopt">-n</b>/<b class="programopt">--dry-run</b>
+option is no longer accessible, so <tt class="module">optparse</tt> removes it.  If
+the user asks for help, they'll get something like this:
+
+<P>
+<div class="verbatim"><pre>
+options:
+  ...
+  -n, --noisy   be noisy
+  --dry-run     new dry-run option
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.5 Querying and manipulating" 
+  rel="prev" title="6.20.3.5 Querying and manipulating" 
+  href="optparse-querying-and-manipulating.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.4 Callback Options" 
+  rel="next" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-querying-and-manipulating.html">6.20.3.5 Querying and manipulating</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

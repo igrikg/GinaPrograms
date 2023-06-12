@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" HREF="node300.html">
+<LINK REL="parent" HREF="node300.html">
+<LINK REL="next" href="someos.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Basic example - log to a file">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.8.1 Basic example - log to a file</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.8 Using the logging" 
+  HREF="node300.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.8 Using the logging" 
+  HREF="node300.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node300.html">6.28.8 Using the logging</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node300.html">6.28.8 Using the logging</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="someos.html">7. Optional Operating System</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082881000000000000000">
+6.28.8.1 Basic example - log to a file</A>
+</H3>
+
+<P>
+Here's a simple logging example that just logs to a file. In order,
+it creates a <tt class="class">Logger</tt> instance, then a <tt class="class">FileHandler</tt>
+and a <tt class="class">Formatter</tt>. It attaches the <tt class="class">Formatter</tt> to the
+<tt class="class">FileHandler</tt>, then the <tt class="class">FileHandler</tt> to the <tt class="class">Logger</tt>.
+Finally, it sets a debug level for the logger.
+
+<P>
+<div class="verbatim"><pre>
+import logging
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('/var/tmp/myapp.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.WARNING)
+</pre></div>
+
+<P>
+We can use this logger object now to write entries to the log file:
+
+<P>
+<div class="verbatim"><pre>
+logger.error('We have a problem')
+logger.info('While this is just chatty')
+</pre></div>
+
+<P>
+If we look in the file that was created, we'll see something like this:
+<div class="verbatim"><pre>
+2003-07-08 16:49:45,896 ERROR We have a problem
+</pre></div>
+
+<P>
+The info message was not written to the file - we called the <tt class="method">setLevel</tt>
+method to say we only wanted <code>WARNING</code> or worse, so the info message is 
+discarded.
+
+<P>
+The timestamp is of the form  
+``year-month-day hour:minutes:seconds,milliseconds.''
+Note that despite the three digits of precision in the milliseconds field,
+not all systems provide time with this much precision.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.8 Using the logging" 
+  rel="prev" title="6.28.8 Using the logging" 
+  HREF="node300.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.8 Using the logging" 
+  rel="parent" title="6.28.8 Using the logging" 
+  HREF="node300.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7. Optional Operating System" 
+  rel="next" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node300.html">6.28.8 Using the logging</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node300.html">6.28.8 Using the logging</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="someos.html">7. Optional Operating System</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

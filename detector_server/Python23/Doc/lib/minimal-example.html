@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="organizing-tests.html">
+<LINK REL="prev" href="module-unittest.html">
+<LINK REL="parent" href="module-unittest.html">
+<LINK REL="next" href="organizing-tests.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Basic example ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.3.1 Basic example </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.3 unittest  " 
+  href="module-unittest.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.3 unittest  " 
+  href="module-unittest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.3.2 Organizing test code" 
+  href="organizing-tests.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="organizing-tests.html">5.3.2 Organizing test code</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007310000000000000000">&nbsp;</A>
+<BR>
+5.3.1 Basic example 
+</H2>
+
+<P>
+The <tt class="module">unittest</tt> module provides a rich set of tools for
+constructing and running tests.  This section demonstrates that a
+small subset of the tools suffice to meet the needs of most users.
+
+<P>
+Here is a short script to test three functions from the
+<tt class="module"><a href="module-random.html">random</a></tt> module:
+
+<P>
+<div class="verbatim"><pre>
+import random
+import unittest
+
+class TestSequenceFunctions(unittest.TestCase):
+    
+    def setUp(self):
+        self.seq = range(10)
+
+    def testshuffle(self):
+        # make sure the shuffled sequence does not lose any elements
+        random.shuffle(self.seq)
+        self.seq.sort()
+        self.assertEqual(self.seq, range(10))
+
+    def testchoice(self):
+        element = random.choice(self.seq)
+        self.assert_(element in self.seq)
+
+    def testsample(self):
+        self.assertRaises(ValueError, random.sample, self.seq, 20)
+        for element in random.sample(self.seq, 5):
+            self.assert_(element in self.seq)
+
+if __name__ == '__main__':
+    unittest.main()
+</pre></div>
+
+<P>
+A testcase is created by subclassing <code>unittest.TestCase</code>.
+The three individual tests are defined with methods whose names start with
+the letters <code>test</code>.  This naming convention informs the test runner
+about which methods represent tests.
+
+<P>
+The crux of each test is a call to <tt class="method">assertEqual()</tt> to
+check for an expected result; <tt class="method">assert_()</tt> to verify a condition;
+or <tt class="method">assertRaises()</tt> to verify that an expected exception gets
+raised.  These methods are used instead of the <tt class="keyword">assert</tt> statement
+so the test runner can accumulate all test results and produce a report.
+
+<P>
+When a <tt class="method">setUp()</tt> method is defined, the test runner will run that
+method prior to each test.  Likewise, if a <tt class="method">tearDown()</tt> method is
+defined, the test runner will invoke that method after each test.  In the
+example, <tt class="method">setUp()</tt> was used to create a fresh sequence for each test.
+
+<P>
+The final block shows a simple way to run the tests.  <code>unittest.main()</code>
+provides a command line interface to the test script.  When run from the
+command line, the above script produces an output that looks like this:
+
+<P>
+<div class="verbatim"><pre>
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+</pre></div>
+
+<P>
+Instead of <code>unittest.main()</code>, there are other ways to run the tests
+with a finer level of control, less terse output, and no requirement to be
+run from the command line.  For example, the last two lines may be replaced
+with:
+
+<P>
+<div class="verbatim"><pre>
+suite = unittest.TestSuite()
+suite.addTest(unittest.makeSuite(TestSequenceFunctions))
+unittest.TextTestRunner(verbosity=2).run(suite)
+</pre></div>
+
+<P>
+Running the revised script from the interpreter or another script
+produces the following output:
+
+<P>
+<div class="verbatim"><pre>
+testchoice (__main__.TestSequenceFunctions) ... ok
+testsample (__main__.TestSequenceFunctions) ... ok
+testshuffle (__main__.TestSequenceFunctions) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.110s
+
+OK
+</pre></div>
+
+<P>
+The above examples show the most commonly used <tt class="module">unittest</tt> features
+which are sufficient to meet many everyday testing needs.  The remainder
+of the documentation explores the full feature set from first principles.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.3 unittest  " 
+  rel="prev" title="5.3 unittest  " 
+  href="module-unittest.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.3 unittest  " 
+  rel="parent" title="5.3 unittest  " 
+  href="module-unittest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.3.2 Organizing test code" 
+  rel="next" title="5.3.2 Organizing test code" 
+  href="organizing-tests.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="organizing-tests.html">5.3.2 Organizing test code</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

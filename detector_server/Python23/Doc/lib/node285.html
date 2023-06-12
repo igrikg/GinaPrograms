@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node286.html">
+<LINK REL="prev" HREF="node284.html">
+<LINK REL="parent" HREF="node282.html">
+<LINK REL="next" HREF="node286.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="RotatingFileHandler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.2.3 RotatingFileHandler</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.2 FileHandler" 
+  HREF="node284.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.4 SocketHandler" 
+  HREF="node286.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node284.html">6.28.2.2 FileHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node286.html">6.28.2.4 SocketHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082823000000000000000">
+6.28.2.3 RotatingFileHandler</A>
+</H3>
+
+<P>
+The <tt class="class">RotatingFileHandler</tt> class supports rotation of disk log files.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2343"><tt class="class">RotatingFileHandler</tt></a></b>(</nobr></td>
+  <td><var>filename</var><big>[</big><var>, mode</var><big>[</big><var>,
+                                       maxBytes</var><big>[</big><var>, backupCount</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Returns a new instance of the <tt class="class">RotatingFileHandler</tt> class. The
+specified file is opened and used as the stream for logging. If
+<var>mode</var> is not specified, <code>'a'</code> is used. By default, the
+file grows indefinitely. 
+
+<P>
+You can use the <var>maxBytes</var> and
+<var>backupCount</var> values to allow the file to <i class="dfn">rollover</i> at a
+predetermined size. When the size is about to be exceeded, the file is
+closed and a new file is silently opened for output. Rollover occurs
+whenever the current log file is nearly <var>maxBytes</var> in length; if
+<var>maxBytes</var> is zero, rollover never occurs.  If <var>backupCount</var>
+is non-zero, the system will save old log files by appending the
+extensions ".1", ".2" etc., to the filename. For example, with
+a <var>backupCount</var> of 5 and a base file name of
+<span class="file">app.log</span>, you would get <span class="file">app.log</span>,
+<span class="file">app.log.1</span>, <span class="file">app.log.2</span>, up to <span class="file">app.log.5</span>. The file being
+written to is always <span class="file">app.log</span>.  When this file is filled, it is
+closed and renamed to <span class="file">app.log.1</span>, and if files <span class="file">app.log.1</span>,
+<span class="file">app.log.2</span>, etc.  exist, then they are renamed to <span class="file">app.log.2</span>,
+<span class="file">app.log.3</span> etc.  respectively.  
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2344"><tt class="method">doRollover</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Does a rollover, as described above.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2345"><tt class="method">emit</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Outputs the record to the file, catering for rollover as described
+in <tt class="method">setRollover()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.2 FileHandler" 
+  rel="prev" title="6.28.2.2 FileHandler" 
+  HREF="node284.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.4 SocketHandler" 
+  rel="next" title="6.28.2.4 SocketHandler" 
+  HREF="node286.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node284.html">6.28.2.2 FileHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node286.html">6.28.2.4 SocketHandler</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

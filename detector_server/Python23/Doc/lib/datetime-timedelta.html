@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="datetime-date.html">
+<LINK REL="prev" HREF="node202.html">
+<LINK REL="parent" href="module-datetime.html">
+<LINK REL="next" href="datetime-date.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="timedelta Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.9.2 timedelta Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.1 Available Types" 
+  HREF="node202.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.3 date Objects" 
+  href="datetime-date.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node202.html">6.9.1 Available Types</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-date.html">6.9.3 date Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008920000000000000000">&nbsp;</A>
+<BR>
+6.9.2 <tt class="class">timedelta</tt> Objects 
+</H2>
+
+<P>
+A <tt class="class">timedelta</tt> object represents a duration, the difference
+between two dates or times.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1672"><tt class="class">timedelta</tt></a></b>(</nobr></td>
+  <td><var>days=0, seconds=0, microseconds=0,
+                             milliseconds=0, minutes=0, hours=0, weeks=0</var>)</td></tr></table>
+<dd>
+
+<P>
+All arguments are optional.  Arguments may be ints, longs, or floats,
+  and may be positive or negative.
+
+<P>
+Only <var>days</var>, <var>seconds</var> and <var>microseconds</var> are stored
+  internally.  Arguments are converted to those units:
+
+<P>
+
+<UL>
+<LI>A millisecond is converted to 1000 microseconds.
+</LI>
+<LI>A minute is converted to 60 seconds.
+</LI>
+<LI>An hour is converted to 3600 seconds.
+</LI>
+<LI>A week is converted to 7 days.
+</LI>
+</UL>
+
+<P>
+and days, seconds and microseconds are then normalized so that the
+  representation is unique, with
+
+<P>
+
+<UL>
+<LI><code>0 &lt;= <var>microseconds</var> &lt; 1000000</code>
+</LI>
+<LI><code>0 &lt;= <var>seconds</var> &lt; 3600*24</code> (the number of seconds in one day)
+</LI>
+<LI><code>-999999999 &lt;= <var>days</var> &lt;= 999999999</code>
+</LI>
+</UL>
+
+<P>
+If any argument is a float and there are fractional microseconds,
+  the fractional microseconds left over from all arguments are combined
+  and their sum is rounded to the nearest microsecond.  If no
+  argument is a float, the conversion and normalization processes
+  are exact (no information is lost).
+
+<P>
+If the normalized value of days lies outside the indicated range,
+  <tt class="exception">OverflowError</tt> is raised.
+
+<P>
+Note that normalization of negative values may be surprising at first.
+  For example,
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; d = timedelta(microseconds=-1)
+&gt;&gt;&gt; (d.days, d.seconds, d.microseconds)
+(-1, 86399, 999999)
+</pre></div>
+</dl>
+
+<P>
+Class attributes are:
+
+<P>
+<dl><dt><b><a name="l2h-1673"><tt class="member">min</tt></a></b>
+<dd>
+  The most negative <tt class="class">timedelta</tt> object,
+  <code>timedelta(-999999999)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1674"><tt class="member">max</tt></a></b>
+<dd>
+  The most positive <tt class="class">timedelta</tt> object,
+  <code>timedelta(days=999999999, hours=23, minutes=59, seconds=59,
+                  microseconds=999999)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1675"><tt class="member">resolution</tt></a></b>
+<dd>
+  The smallest possible difference between non-equal
+  <tt class="class">timedelta</tt> objects, <code>timedelta(microseconds=1)</code>.
+</dl>
+
+<P>
+Note that, because of normalization, <code>timedelta.max</code> &gt;
+<code>-timedelta.min</code>.  <code>-timedelta.max</code> is not representable as
+a <tt class="class">timedelta</tt> object.
+
+<P>
+Instance attributes (read-only):
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Attribute</b>&nbsp;</th>
+      <th align="left"><b>Value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>days</code></td>
+        <td align="left">Between -999999999 and 999999999 inclusive</td>
+    <tr><td align="center" valign="baseline"><code>seconds</code></td>
+        <td align="left">Between 0 and 86399 inclusive</td>
+    <tr><td align="center" valign="baseline"><code>microseconds</code></td>
+        <td align="left">Between 0 and 999999 inclusive</td></tbody>
+</table>
+
+<P>
+Supported operations:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Result</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code><var>t1</var> = <var>t2</var> + <var>t3</var></code></td>
+        <td align="left">Sum of <var>t2</var> and <var>t3</var>.
+           Afterwards <var>t1</var>-<var>t2</var> == <var>t3</var> and <var>t1</var>-<var>t3</var>
+           == <var>t2</var> are true.
+          (1)</td>
+    <tr><td align="center" valign="baseline"><code><var>t1</var> = <var>t2</var> - <var>t3</var></code></td>
+        <td align="left">Difference of <var>t2</var> and <var>t3</var>.
+           Afterwards <var>t1</var> == <var>t2</var> - <var>t3</var> and <var>t2</var> == <var>t1</var> + <var>t3</var> are
+           true.
+          (1)</td>
+    <tr><td align="center" valign="baseline"><code><var>t1</var> = <var>t2</var> * <var>i</var> or <var>t1</var> = <var>i</var> * <var>t2</var></code></td>
+        <td align="left">Delta multiplied by an integer or long.
+           Afterwards <var>t1</var> // i == <var>t2</var> is true,
+           provided <code>i != 0</code>.</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">In general, <var>t1</var> * i == <var>t1</var> * (i-1) + <var>t1</var> is true.
+          (1)</td>
+    <tr><td align="center" valign="baseline"><code><var>t1</var> = <var>t2</var> // <var>i</var></code></td>
+        <td align="left">The floor is computed and the remainder (if any) is thrown away.
+          (3)</td>
+    <tr><td align="center" valign="baseline"><code>+<var>t1</var></code></td>
+        <td align="left">Returns a <tt class="class">timedelta</tt> object with the same value.
+          (2)</td>
+    <tr><td align="center" valign="baseline"><code>-<var>t1</var></code></td>
+        <td align="left">equivalent to <tt class="class">timedelta</tt>(-<var>t1.days</var>, -<var>t1.seconds</var>,
+           -<var>t1.microseconds</var>), and to <var>t1</var>* -1.
+          (1)(4)</td>
+    <tr><td align="center" valign="baseline"><code>abs(<var>t</var>)</code></td>
+        <td align="left">equivalent to +<var>t</var> when <code>t.days &gt;= 0</code>, and to
+           -<var>t</var> when <code>t.days &lt; 0</code>.
+          (2)</td></tbody>
+</table>
+
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>This is exact, but may overflow.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>This is exact, and cannot overflow.
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>Division by 0 raises <tt class="exception">ZeroDivisionError</tt>.
+
+<P>
+</DD>
+<DT><STRONG>(4)</STRONG></DT>
+<DD>-<var>timedelta.max</var> is not representable as a <tt class="class">timedelta</tt> object.
+</DD>
+</DL>
+
+<P>
+In addition to the operations listed above <tt class="class">timedelta</tt> objects
+support certain additions and subtractions with <tt class="class">date</tt> and
+<tt class="class">datetime</tt> objects (see below).
+
+<P>
+Comparisons of <tt class="class">timedelta</tt> objects are supported with the
+<tt class="class">timedelta</tt> object representing the smaller duration considered
+to be the smaller timedelta.
+In order to stop mixed-type comparisons from falling back to the
+default comparison by object address, when a <tt class="class">timedelta</tt> object is
+compared to an object of a different type, <tt class="exception">TypeError</tt> is
+raised unless the comparison is <code>==</code> or <code>!=</code>.  The latter
+cases return <tt class="constant">False</tt> or <tt class="constant">True</tt>, respectively.
+
+<P>
+<tt class="class">timedelta</tt> objects are hashable (usable as dictionary keys),
+support efficient pickling, and in Boolean contexts, a <tt class="class">timedelta</tt>
+object is considered to be true if and only if it isn't equal to
+<code>timedelta(0)</code>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.1 Available Types" 
+  rel="prev" title="6.9.1 Available Types" 
+  HREF="node202.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.3 date Objects" 
+  rel="next" title="6.9.3 date Objects" 
+  href="datetime-date.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node202.html">6.9.1 Available Types</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-date.html">6.9.3 date Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

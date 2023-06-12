@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-setting-default-values.html">
+<LINK REL="prev" href="optparse-store-action.html">
+<LINK REL="parent" href="optparse-basic-usage.html">
+<LINK REL="next" href="optparse-setting-default-values.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Other store_* actions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.2.2 Other store_* actions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2.1 The store action" 
+  href="optparse-store-action.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.3 Setting default values" 
+  href="optparse-setting-default-values.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-store-action.html">6.20.2.1 The store action</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-setting-default-values.html">6.20.2.3 Setting default values</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082022000000000000000">&nbsp;</A>
+<BR>
+6.20.2.2 Other <i>store_*</i> actions
+</H3>
+
+<P>
+Flag options--set a variable to true or false when a particular
+option is seen--are quite common.  <tt class="module">optparse</tt> supports them
+with two separate actions, ``store_true'' and ``store_false''.  For
+example, you might have a <var>verbose</var> flag that is turned on with
+<b class="programopt">-v</b> and off with <b class="programopt">-q</b>:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-v", action="store_true", dest="verbose")
+parser.add_option("-q", action="store_false", dest="verbose")
+</pre></div>
+
+<P>
+Here we have two different options with the same destination, which is
+perfectly OK.  (It just means you have to be a bit careful when setting
+default values--see below.)
+
+<P>
+When <tt class="module">optparse</tt> sees <b class="programopt">-v</b> on the command line, it sets
+<code>options.verbose</code> to <code>True</code>; when it sees <b class="programopt">-q</b>, it
+sets <code>options.verbose</code> to <code>False</code>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2.1 The store action" 
+  rel="prev" title="6.20.2.1 The store action" 
+  href="optparse-store-action.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.3 Setting default values" 
+  rel="next" title="6.20.2.3 Setting default values" 
+  href="optparse-setting-default-values.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-store-action.html">6.20.2.1 The store action</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-setting-default-values.html">6.20.2.3 Setting default values</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

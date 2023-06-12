@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-xml.parsers.expat.html">
+<LINK REL="prev" href="module-htmllib.html">
+<LINK REL="parent" href="markup.html">
+<LINK REL="next" href="module-xml.parsers.expat.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="htmlentitydefs -- Definitions of HTML general entities">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>13.4 htmlentitydefs -- Definitions of HTML general entities</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="13.3.1 HTMLParser Objects" 
+  href="html-parser-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="13. Structured Markup Processing" 
+  href="markup.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="13.5 xml.parsers.expat  " 
+  href="module-xml.parsers.expat.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="html-parser-objects.html">13.3.1 HTMLParser Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015400000000000000000">
+13.4 <tt class="module">htmlentitydefs</tt> --
+         Definitions of HTML general entities</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines three dictionaries, <code>name2codepoint</code>,
+<code>codepoint2name</code>, and <code>entitydefs</code>. <code>entitydefs</code> is
+used by the <tt class="module"><a href="module-htmllib.html">htmllib</a></tt> module to provide the
+<tt class="member">entitydefs</tt> member of the <tt class="class">HTMLParser</tt> class.  The
+definition provided here contains all the entities defined by XHTML 1.0 
+that can be handled using simple textual substitution in the Latin-1
+character set (ISO-8859-1).
+
+<P>
+<dl><dt><b><a name="l2h-3990"><tt>entitydefs</tt></a></b>
+<dd>
+  A dictionary mapping XHTML 1.0 entity definitions to their
+  replacement text in ISO Latin-1.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3991"><tt>name2codepoint</tt></a></b>
+<dd>
+  A dictionary that maps HTML entity names to the Unicode codepoints.
+  
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3992"><tt>codepoint2name</tt></a></b>
+<dd>
+  A dictionary that maps Unicode codepoints to HTML entity names.
+  
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="13.3.1 HTMLParser Objects" 
+  rel="prev" title="13.3.1 HTMLParser Objects" 
+  href="html-parser-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="13. Structured Markup Processing" 
+  rel="parent" title="13. Structured Markup Processing" 
+  href="markup.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="13.5 xml.parsers.expat  " 
+  rel="next" title="13.5 xml.parsers.expat  " 
+  href="module-xml.parsers.expat.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="html-parser-objects.html">13.3.1 HTMLParser Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

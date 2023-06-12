@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-options.html">
+<LINK REL="prev" href="optparse-philosophy.html">
+<LINK REL="parent" href="optparse-philosophy.html">
+<LINK REL="next" href="optparse-options.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Terminology">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.1.1 Terminology</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.1.2 What are options" 
+  href="optparse-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-options.html">6.20.1.2 What are options</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082011000000000000000">&nbsp;</A>
+<BR>
+6.20.1.1 Terminology
+</H3>
+
+<P>
+First, we need to establish some terminology.
+
+<P>
+<dl class="definitions">
+<dt><b><a name="l2h-2006">argument</a></b>
+<dd>
+a chunk of text that a user enters on the command-line, and that the
+shell passes to <tt class="cfunction">execl()</tt> or <tt class="cfunction">execv()</tt>.  In
+Python, arguments are elements of
+<code>sys.argv[1:]</code>. (<code>sys.argv[0]</code> is the name of the program
+being executed; in the context of parsing arguments, it's not very
+important.)  <font style="font-variant: small-caps;">Unix</font> shells also use the term ``word''.
+
+<P>
+It is occasionally desirable to use an argument list other than
+<code>sys.argv[1:]</code>, so you should read ``argument'' as ``an element of
+<code>sys.argv[1:]</code>, or of some other list provided as a substitute for
+<code>sys.argv[1:]</code>''.
+
+<P>
+<dt><b><a name="l2h-2007">option</a></b>
+<dd>
+  an argument used to supply extra information to guide or customize
+  the execution of a program.  There are many different syntaxes for
+  options; the traditional <font style="font-variant: small-caps;">Unix</font> syntax is <b class="programopt">-</b> followed by a
+  single letter, e.g. <b class="programopt">-x</b> or <b class="programopt">-F</b>.  Also,
+  traditional <font style="font-variant: small-caps;">Unix</font> syntax allows multiple options to be merged into a
+  single argument, e.g.  <b class="programopt">-x -F</b> is equivalent to
+  <b class="programopt">-xF</b>.  The GNU project introduced <b class="programopt">--</b>
+  followed by a series of hyphen-separated words,
+  e.g. <b class="programopt">--file</b> or <b class="programopt">--dry-run</b>.  These are
+  the only two option syntaxes provided by <tt class="module">optparse</tt>.
+
+<P>
+Some other option syntaxes that the world has seen include:
+
+<P>
+
+<UL>
+<LI>a hyphen followed by a few letters, e.g. <b class="programopt">-pf</b> (this is
+      <i>not</i> the same as multiple options merged into a single
+      argument.)
+</LI>
+<LI>a hyphen followed by a whole word, e.g. <b class="programopt">-file</b> (this is
+      technically equivalent to the previous syntax, but they aren't
+      usually seen in the same program.)
+</LI>
+<LI>a plus sign followed by a single letter, or a few letters,
+      or a word, e.g. <b class="programopt">+f</b>, <b class="programopt">+rgb</b>.
+</LI>
+<LI>a slash followed by a letter, or a few letters, or a word, e.g.
+      <b class="programopt">/f</b>, <b class="programopt">/file</b>.
+</LI>
+</UL>
+
+<P>
+<tt class="module">optparse</tt> does not support these option syntaxes, and it never
+will.  (If you really want to use one of those option syntaxes, you'll
+have to subclass <tt class="class">OptionParser</tt> and override all the difficult
+bits.  But please don't!  <tt class="module">optparse</tt> does things the traditional
+<font style="font-variant: small-caps;">Unix</font>/GNU way deliberately; the first three are non-standard anywhere,
+and the last one makes sense only if you're exclusively targeting
+MS-DOS/Windows and/or VMS.)
+
+<P>
+<dt><b><a name="l2h-2008">option argument</a></b>
+<dd>
+an argument that follows an option, is closely associated with that
+option, and is consumed from the argument list when the option is.
+Often, option arguments may also be included in the same argument as
+the option, e.g. :
+
+<P>
+<div class="verbatim"><pre>
+    ["-f", "foo"]
+</pre></div>
+
+<P>
+may be equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+    ["-ffoo"]
+</pre></div>
+
+<P>
+(<tt class="module">optparse</tt> supports this syntax.)
+
+<P>
+Some options never take an argument.  Some options always take an
+argument.  Lots of people want an ``optional option arguments'' feature,
+meaning that some options will take an argument if they see it, and
+won't if they don't.  This is somewhat controversial, because it makes
+parsing ambiguous: if <b class="programopt">-a</b> and <b class="programopt">-b</b> are both
+options, and <b class="programopt">-a</b> takes an optional argument, how do we
+interpret <b class="programopt">-ab</b>?  <tt class="module">optparse</tt> does not support optional
+option arguments.
+
+<P>
+<dt><b><a name="l2h-2009">positional argument</a></b>
+<dd>
+something leftover in the argument list after options have been
+parsed, i.e., after options and their arguments have been parsed and
+removed from the argument list.
+
+<P>
+<dt><b><a name="l2h-2010">required option</a></b>
+<dd>
+an option that must be supplied on the command-line.  The phrase
+``required option'' is an oxymoron; the presence of ``required options''
+in a program is usually a sign of careless user interface design.
+<tt class="module">optparse</tt> doesn't prevent you from implementing required
+options, but doesn't give you much help with it either.  See ``Extending
+Examples'' (section&nbsp;<A href="optparse-extending-examples.html#optparse-extending-examples">6.20.5</A>) for two ways to
+implement required options with <tt class="module">optparse</tt>.
+
+<P>
+</dl>
+
+<P>
+For example, consider this hypothetical command-line:
+
+<P>
+<div class="verbatim"><pre>
+  prog -v --report /tmp/report.txt foo bar
+</pre></div>
+
+<P>
+<b class="programopt">-v</b> and <b class="programopt">--report</b> are both options.  Assuming
+the <b class="programopt">--report</b> option takes one argument,
+<code>/tmp/report.txt</code> is an option argument.  <code>foo</code> and <code>bar</code>
+are positional arguments.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1 Philosophy" 
+  rel="prev" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.1.2 What are options" 
+  rel="next" title="6.20.1.2 What are options" 
+  href="optparse-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-options.html">6.20.1.2 What are options</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

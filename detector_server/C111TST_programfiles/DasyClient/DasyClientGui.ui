@@ -1,0 +1,883 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>DasyClientMainWindow</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>DasyClientMainWindow</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>363</width>
+            <height>486</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Dasy Client GUI</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="Line" row="0" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>line1_2</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>statusTextLabel</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="frameShape">
+                <enum>Panel</enum>
+            </property>
+            <property name="text">
+                <string> CONNECTION STATUS</string>
+            </property>
+            <property name="textFormat">
+                <enum>AutoText</enum>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="2" column="4">
+            <property name="name">
+                <cstring>startButton</cstring>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>88</red>
+                    <green>236</green>
+                    <blue>125</blue>
+                </color>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>START</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="2" column="0">
+            <property name="name">
+                <cstring>stopButton</cstring>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>255</red>
+                    <green>35</green>
+                    <blue>35</blue>
+                </color>
+            </property>
+            <property name="palette">
+                <palette>
+                    <active>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>35</green>
+                            <blue>35</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>129</green>
+                            <blue>129</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>65</green>
+                            <blue>65</blue>
+                        </color>
+                        <color>
+                            <red>127</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>170</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>212</red>
+                            <green>208</green>
+                            <blue>200</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                    </active>
+                    <disabled>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>35</green>
+                            <blue>35</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>129</green>
+                            <blue>129</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>40</green>
+                            <blue>40</blue>
+                        </color>
+                        <color>
+                            <red>127</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>170</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>212</red>
+                            <green>208</green>
+                            <blue>200</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                    </disabled>
+                    <inactive>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>35</green>
+                            <blue>35</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>129</green>
+                            <blue>129</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>40</green>
+                            <blue>40</blue>
+                        </color>
+                        <color>
+                            <red>127</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>170</red>
+                            <green>1</green>
+                            <blue>1</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>212</red>
+                            <green>208</green>
+                            <blue>200</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                    </inactive>
+                </palette>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>STOP</string>
+            </property>
+        </widget>
+        <widget class="Line" row="4" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="3" column="2">
+            <property name="name">
+                <cstring>clearButton</cstring>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>252</red>
+                    <green>168</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="text">
+                <string>CLEAR</string>
+            </property>
+        </widget>
+        <widget class="Line" row="6" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>line1_4</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="5" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>getDataButton</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>GET DATA</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="5" column="3" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>showStatsButton</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>SHOW STATS</string>
+            </property>
+        </widget>
+        <widget class="Line" row="8" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>line1_3</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QTextEdit" row="9" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>logTextEdit</cstring>
+            </property>
+            <property name="vScrollBarMode">
+                <enum>AlwaysOn</enum>
+            </property>
+            <property name="hScrollBarMode">
+                <enum>AlwaysOn</enum>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="7" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>closeConnButton</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>CLOSE CONNECTION</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="1" column="2">
+            <property name="name">
+                <cstring>connectButton</cstring>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>170</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                </color>
+            </property>
+            <property name="text">
+                <string>CONNECT</string>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>MenuBar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileNewAction"/>
+        <action name="fileOpenAction"/>
+        <action name="fileSaveAction"/>
+        <action name="fileSaveAsAction"/>
+        <separator/>
+        <action name="filePrintAction"/>
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="&amp;Edit" name="EditMenu">
+        <action name="editUndoAction"/>
+        <action name="editRedoAction"/>
+        <separator/>
+        <action name="editCutAction"/>
+        <action name="editCopyAction"/>
+        <action name="editPasteAction"/>
+        <separator/>
+        <action name="editFindAction"/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpContentsAction"/>
+        <action name="helpIndexAction"/>
+        <separator/>
+        <action name="helpAboutAction"/>
+    </item>
+</menubar>
+<toolbars>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileNewAction</cstring>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileOpenAction</cstring>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileSaveAsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>filePrintAction</cstring>
+        </property>
+        <property name="text">
+            <string>Print</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Print...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editUndoAction</cstring>
+        </property>
+        <property name="text">
+            <string>Undo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Undo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Z</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editRedoAction</cstring>
+        </property>
+        <property name="text">
+            <string>Redo</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Redo</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Y</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCutAction</cstring>
+        </property>
+        <property name="text">
+            <string>Cut</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Cut</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editCopyAction</cstring>
+        </property>
+        <property name="text">
+            <string>Copy</string>
+        </property>
+        <property name="menuText">
+            <string>C&amp;opy</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+C</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editPasteAction</cstring>
+        </property>
+        <property name="text">
+            <string>Paste</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Paste</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+V</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editFindAction</cstring>
+        </property>
+        <property name="text">
+            <string>Find</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Find...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+F</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpContentsAction</cstring>
+        </property>
+        <property name="text">
+            <string>Contents</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Contents...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpIndexAction</cstring>
+        </property>
+        <property name="text">
+            <string>Index</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Index...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+</actions>
+<connections>
+    <connection>
+        <sender>fileNewAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>fileNew()</slot>
+    </connection>
+    <connection>
+        <sender>fileOpenAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>fileSave()</slot>
+    </connection>
+    <connection>
+        <sender>fileSaveAsAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>fileSaveAs()</slot>
+    </connection>
+    <connection>
+        <sender>filePrintAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>filePrint()</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>fileExit()</slot>
+    </connection>
+    <connection>
+        <sender>editUndoAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editUndo()</slot>
+    </connection>
+    <connection>
+        <sender>editRedoAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editRedo()</slot>
+    </connection>
+    <connection>
+        <sender>editCutAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editCut()</slot>
+    </connection>
+    <connection>
+        <sender>editCopyAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editCopy()</slot>
+    </connection>
+    <connection>
+        <sender>editPasteAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editPaste()</slot>
+    </connection>
+    <connection>
+        <sender>editFindAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>editFind()</slot>
+    </connection>
+    <connection>
+        <sender>helpIndexAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>helpIndex()</slot>
+    </connection>
+    <connection>
+        <sender>helpContentsAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>helpContents()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutAction</sender>
+        <signal>activated()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>helpAbout()</slot>
+    </connection>
+    <connection>
+        <sender>connectButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>connectServer()</slot>
+    </connection>
+    <connection>
+        <sender>stopButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>sendStop()</slot>
+    </connection>
+    <connection>
+        <sender>startButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>sendStart()</slot>
+    </connection>
+    <connection>
+        <sender>clearButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>sendClear()</slot>
+    </connection>
+    <connection>
+        <sender>getDataButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>getData()</slot>
+    </connection>
+    <connection>
+        <sender>showStatsButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>showStats()</slot>
+    </connection>
+    <connection>
+        <sender>closeConnButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DasyClientMainWindow</receiver>
+        <slot>leaveServer()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>editUndo()</slot>
+    <slot>editRedo()</slot>
+    <slot>editCut()</slot>
+    <slot>editCopy()</slot>
+    <slot>editPaste()</slot>
+    <slot>editFind()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+    <slot>connectServer()</slot>
+    <slot>sendStop()</slot>
+    <slot>sendStart()</slot>
+    <slot>sendClear()</slot>
+    <slot>getData()</slot>
+    <slot>showStats()</slot>
+    <slot>leaveServer()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="simple-xmlrpc-servers.html">
+<LINK REL="parent" href="module-SimpleXMLRPCServer.html">
+<LINK REL="next" href="module-DocXMLRPCServer.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="CGIXMLRPCRequestHandler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.21.2 CGIXMLRPCRequestHandler</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.21.1 SimpleXMLRPCServer Objects" 
+  href="simple-xmlrpc-servers.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.21 SimpleXMLRPCServer  " 
+  href="module-SimpleXMLRPCServer.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.22 DocXMLRPCServer  " 
+  href="module-DocXMLRPCServer.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="simple-xmlrpc-servers.html">11.21.1 SimpleXMLRPCServer Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-SimpleXMLRPCServer.html">11.21 SimpleXMLRPCServer  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-DocXMLRPCServer.html">11.22 DocXMLRPCServer  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00132120000000000000000">
+11.21.2 CGIXMLRPCRequestHandler</A>
+</H2>
+
+<P>
+The <tt class="class">CGIXMLRPCRequestHandler</tt> class can be used to 
+handle XML-RPC requests sent to Python CGI scripts.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3434"><tt class="method">register_function</tt></a></b>(</nobr></td>
+  <td><var>function</var><big>[</big><var>, name</var><big>]</big>)</td></tr></table>
+<dd>
+Register a function that can respond to XML-RPC requests. If 
+<var>name</var> is given, it will be the method name associated with 
+function, otherwise <var>function.__name__</var> will be used. <var>name</var>
+can be either a normal or Unicode string, and may contain 
+characters not legal in Python identifiers, including the period
+character. 
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3435"><tt class="method">register_instance</tt></a></b>(</nobr></td>
+  <td><var>instance</var>)</td></tr></table>
+<dd>
+Register an object which is used to expose method names 
+which have not been registered using <tt class="method">register_function()</tt>. If 
+instance contains a <tt class="method">_dispatch()</tt> method, it is called with the 
+requested method name and the parameters from the 
+request; the return value is returned to the client as the result.
+If instance does not have a <tt class="method">_dispatch()</tt> method, it is searched 
+for an attribute matching the name of the requested method; if 
+the requested method name contains periods, each 
+component of the method name is searched for individually, 
+with the effect that a simple hierarchical search is performed. 
+The value found from this search is then called with the 
+parameters from the request, and the return value is passed 
+back to the client. 
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3436"><tt class="method">register_introspection_functions</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Register the XML-RPC introspection functions 
+<code>system.listMethods</code>, <code>system.methodHelp</code> and 
+<code>system.methodSignature</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3437"><tt class="method">register_multicall_functions</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Register the XML-RPC multicall function <code>system.multicall</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3438"><tt class="method">handle_request</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>request_text = None</var><big>]</big>)</td></tr></table>
+<dd>
+Handle a XML-RPC request. If <var>request_text</var> is given, it 
+should be the POST data provided by the HTTP server, 
+otherwise the contents of stdin will be used.
+</dl>
+
+<P>
+Example:
+
+<P>
+<div class="verbatim"><pre>
+class MyFuncs:
+    def div(self, x, y) : return div(x,y)
+
+
+handler = CGIXMLRPCRequestHandler()
+handler.register_function(pow)
+handler.register_function(lambda x,y: x+y, 'add')
+handler.register_introspection_functions()
+handler.register_instance(MyFuncs())
+handler.handle_request()
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.21.1 SimpleXMLRPCServer Objects" 
+  rel="prev" title="11.21.1 SimpleXMLRPCServer Objects" 
+  href="simple-xmlrpc-servers.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.21 SimpleXMLRPCServer  " 
+  rel="parent" title="11.21 SimpleXMLRPCServer  " 
+  href="module-SimpleXMLRPCServer.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.22 DocXMLRPCServer  " 
+  rel="next" title="11.22 DocXMLRPCServer  " 
+  href="module-DocXMLRPCServer.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="simple-xmlrpc-servers.html">11.21.1 SimpleXMLRPCServer Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-SimpleXMLRPCServer.html">11.21 SimpleXMLRPCServer  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-DocXMLRPCServer.html">11.22 DocXMLRPCServer  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

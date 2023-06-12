@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="ref.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="ref.html" title='Python Reference Manual'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="interactive.html">
+<LINK REL="parent" href="top-level.html">
+<LINK REL="next" HREF="node103.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Expression input">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>8.4 Expression input</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.3 Interactive input" 
+  href="interactive.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8. Top-level components" 
+  href="top-level.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="A. History and License" 
+  HREF="node103.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="interactive.html">8.3 Interactive input</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="top-level.html">8. Top-level components</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node103.html">A. History and License</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010400000000000000000">&nbsp;</A>
+<a name="l2h-622">&nbsp;</a>
+<BR>
+8.4 Expression input
+</H1>
+
+<P>
+There are two forms of expression input.  Both ignore leading
+whitespace.
+The string argument to <tt class="function">eval()</tt> must have the following form:
+<a name="l2h-623">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-eval_input">eval_input</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="exprlists.html#tok-expression_list">expression_list</a> NEWLINE*</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The input line read by <tt class="function">input()</tt> must have the following form:
+<a name="l2h-624">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-input_input">input_input</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="exprlists.html#tok-expression_list">expression_list</a> NEWLINE</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Note: to read `raw' input line without interpretation, you can use the
+built-in function <tt class="function">raw_input()</tt> or the <tt class="method">readline()</tt> method
+of file objects.
+<a name="l2h-625">&nbsp;</a><a name="l2h-629">&nbsp;</a><a name="l2h-626">&nbsp;</a><a name="l2h-628">&nbsp;</a>
+<P>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.3 Interactive input" 
+  rel="prev" title="8.3 Interactive input" 
+  href="interactive.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8. Top-level components" 
+  rel="parent" title="8. Top-level components" 
+  href="top-level.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="A. History and License" 
+  rel="next" title="A. History and License" 
+  HREF="node103.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="interactive.html">8.3 Interactive input</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="top-level.html">8. Top-level components</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node103.html">A. History and License</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

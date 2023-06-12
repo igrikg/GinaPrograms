@@ -1,0 +1,757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-sched.html">
+<LINK REL="prev" href="module-datetime.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" href="module-sched.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="time -- Time access and conversions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.10 time -- Time access and conversions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.7 strftime() Behavior" 
+  HREF="node208.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.11 sched  " 
+  href="module-sched.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node208.html">6.9.7 strftime() Behavior</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-sched.html">6.11 sched  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081000000000000000000">
+6.10 <tt class="module">time</tt> --
+         Time access and conversions</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides various time-related functions.  It is always
+available, but not all functions are available on all platforms.  Most
+of the functions defined in this module call platform C library
+functions with the same name.  It may sometimes be helpful to consult
+the platform documentation, because the semantics of these functions
+varies among platforms.
+
+<P>
+An explanation of some terminology and conventions is in order.
+
+<P>
+
+<UL>
+<LI>The <i class="dfn">epoch</i><a name="l2h-1771">&nbsp;</a>is the point where the time starts.  On
+January 1st of that year, at 0 hours, the ``time since the epoch'' is
+zero.  For <font style="font-variant: small-caps;">Unix</font>, the epoch is 1970.  To find out what the epoch is,
+look at <code>gmtime(0)</code>.
+
+<P>
+</LI>
+<LI>The functions in this module do not handle dates and times before the
+epoch or far in the future.  The cut-off point in the future is
+determined by the C library; for <font style="font-variant: small-caps;">Unix</font>, it is typically in
+2038<a name="l2h-1772">&nbsp;</a>.
+
+<P>
+</LI>
+<LI><b>Year 2000 (Y2K) issues</b>:<a name="l2h-1773">&nbsp;</a> Python
+depends on the platform's C library, which generally doesn't have year
+2000 issues, since all dates and times are represented internally as
+seconds since the epoch.  Functions accepting a <tt class="class">struct_time</tt>
+(see below) generally require a 4-digit year.  For backward
+compatibility, 2-digit years are supported if the module variable
+<code>accept2dyear</code> is a non-zero integer; this variable is
+initialized to <code>1</code> unless the environment variable
+<a class="envvar" name="l2h-1774">PYTHONY2K</a> is set to a non-empty string, in which case it is
+initialized to <code>0</code>.  Thus, you can set
+<a class="envvar" name="l2h-1775">PYTHONY2K</a> to a non-empty string in the environment to require 4-digit
+years for all year input.  When 2-digit years are accepted, they are
+converted according to the POSIX or X/Open standard: values 69-99
+are mapped to 1969-1999, and values 0-68 are mapped to 2000-2068.
+Values 100-1899 are always illegal.  Note that this is new as of
+Python 1.5.2(a2); earlier versions, up to Python 1.5.1 and 1.5.2a1,
+would add 1900 to year values below 1900.
+
+<P>
+</LI>
+<LI>UTC<a name="l2h-1776">&nbsp;</a>is Coordinated Universal Time<a name="l2h-1777">&nbsp;</a>(formerly known as Greenwich Mean
+Time,<a name="l2h-1778">&nbsp;</a>or GMT).  The acronym UTC is not a
+mistake but a compromise between English and French.
+
+<P>
+</LI>
+<LI>DST is Daylight Saving Time,<a name="l2h-1779">&nbsp;</a>an adjustment
+of the timezone by (usually) one hour during part of the year.  DST
+rules are magic (determined by local law) and can change from year to
+year.  The C library has a table containing the local rules (often it
+is read from a system file for flexibility) and is the only source of
+True Wisdom in this respect.
+
+<P>
+</LI>
+<LI>The precision of the various real-time functions may be less than
+suggested by the units in which their value or argument is expressed.
+E.g. on most <font style="font-variant: small-caps;">Unix</font> systems, the clock ``ticks'' only 50 or 100 times a
+second, and on the Mac, times are only accurate to whole seconds.
+
+<P>
+</LI>
+<LI>On the other hand, the precision of <tt class="function">time()</tt> and
+<tt class="function">sleep()</tt> is better than their <font style="font-variant: small-caps;">Unix</font> equivalents: times are
+expressed as floating point numbers, <tt class="function">time()</tt> returns the
+most accurate time available (using <font style="font-variant: small-caps;">Unix</font> <tt class="cfunction">gettimeofday()</tt>
+where available), and <tt class="function">sleep()</tt> will accept a time with a
+nonzero fraction (<font style="font-variant: small-caps;">Unix</font> <tt class="cfunction">select()</tt> is used to implement
+this, where available).
+
+<P>
+</LI>
+<LI>The time value as returned by <tt class="function">gmtime()</tt>,
+<tt class="function">localtime()</tt>, and <tt class="function">strptime()</tt>, and accepted by
+<tt class="function">asctime()</tt>, <tt class="function">mktime()</tt> and <tt class="function">strftime()</tt>,
+is a sequence of 9 integers.  The return values of <tt class="function">gmtime()</tt>,
+<tt class="function">localtime()</tt>, and <tt class="function">strptime()</tt> also offer attribute
+names for individual fields.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Attribute</b>&nbsp;</th>
+      <th align="left"><b>Values</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>0</code></td>
+        <td align="left"><tt class="member">tm_year</tt></td>
+        <td align="left">(for example, 1993)</td>
+    <tr><td align="center" valign="baseline"><code>1</code></td>
+        <td align="left"><tt class="member">tm_mon</tt></td>
+        <td align="left">range [1,12]</td>
+    <tr><td align="center" valign="baseline"><code>2</code></td>
+        <td align="left"><tt class="member">tm_mday</tt></td>
+        <td align="left">range [1,31]</td>
+    <tr><td align="center" valign="baseline"><code>3</code></td>
+        <td align="left"><tt class="member">tm_hour</tt></td>
+        <td align="left">range [0,23]</td>
+    <tr><td align="center" valign="baseline"><code>4</code></td>
+        <td align="left"><tt class="member">tm_min</tt></td>
+        <td align="left">range [0,59]</td>
+    <tr><td align="center" valign="baseline"><code>5</code></td>
+        <td align="left"><tt class="member">tm_sec</tt></td>
+        <td align="left">range [0,61]; see <b>(1)</b> in <tt class="function">strftime()</tt> description</td>
+    <tr><td align="center" valign="baseline"><code>6</code></td>
+        <td align="left"><tt class="member">tm_wday</tt></td>
+        <td align="left">range [0,6], Monday is 0</td>
+    <tr><td align="center" valign="baseline"><code>7</code></td>
+        <td align="left"><tt class="member">tm_yday</tt></td>
+        <td align="left">range [1,366]</td>
+    <tr><td align="center" valign="baseline"><code>8</code></td>
+        <td align="left"><tt class="member">tm_isdst</tt></td>
+        <td align="left">0, 1 or -1; see below</td></tbody>
+</table>
+
+<P>
+Note that unlike the C structure, the month value is a
+range of 1-12, not 0-11.  A year value will be handled as described
+under ``Year 2000 (Y2K) issues'' above.  A <code>-1</code> argument as the
+daylight savings flag, passed to <tt class="function">mktime()</tt> will usually
+result in the correct daylight savings state to be filled in.
+
+<P>
+When a tuple with an incorrect length is passed to a function
+expecting a <tt class="class">struct_time</tt>, or having elements of the wrong type, a
+<tt class="exception">TypeError</tt> is raised.
+
+<P>
+
+<span class="versionnote">Changed in version 2.2:
+The time value sequence was changed from a tuple to a
+                <tt class="class">struct_time</tt>, with the addition of attribute names
+                for the fields.</span>
+
+</LI>
+</UL>
+
+<P>
+The module defines the following functions and data items:
+
+<P>
+<dl><dt><b><a name="l2h-1754"><tt>accept2dyear</tt></a></b>
+<dd>
+Boolean value indicating whether two-digit year values will be
+accepted.  This is true by default, but will be set to false if the
+environment variable <a class="envvar" name="l2h-1780">PYTHONY2K</a> has been set to a non-empty
+string.  It may also be modified at run time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1755"><tt>altzone</tt></a></b>
+<dd>
+The offset of the local DST timezone, in seconds west of UTC, if one
+is defined.  This is negative if the local DST timezone is east of UTC
+(as in Western Europe, including the UK).  Only use this if
+<code>daylight</code> is nonzero.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1756"><tt class="function">asctime</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>t</var><big>]</big>)</td></tr></table>
+<dd>
+Convert a tuple or <tt class="class">struct_time</tt> representing a time as returned
+by <tt class="function">gmtime()</tt>
+or <tt class="function">localtime()</tt> to a 24-character string of the following form:
+<code>'Sun Jun 20 23:21:05 1993'</code>.  If <var>t</var> is not provided, the
+current time as returned by <tt class="function">localtime()</tt> is used.
+Locale information is not used by <tt class="function">asctime()</tt>.
+<span class="note"><b class="label">Note:</b>
+Unlike the C function of the same name, there is no trailing
+newline.</span>
+
+<span class="versionnote">Changed in version 2.1:
+Allowed <var>t</var> to be omitted.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1757"><tt class="function">clock</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+On <font style="font-variant: small-caps;">Unix</font>, return
+the current processor time as a floating point number expressed in
+seconds.  The precision, and in fact the very definition of the meaning
+of ``processor time''<a name="l2h-1781">&nbsp;</a>, depends
+on that of the C function of the same name, but in any case, this is
+the function to use for benchmarking<a name="l2h-1782">&nbsp;</a>Python or
+timing algorithms.
+
+<P>
+On Windows, this function returns wall-clock seconds elapsed since the
+first call to this function, as a floating point number,
+based on the Win32 function <tt class="cfunction">QueryPerformanceCounter()</tt>.
+The resolution is typically better than one microsecond.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1758"><tt class="function">ctime</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>secs</var><big>]</big>)</td></tr></table>
+<dd>
+Convert a time expressed in seconds since the epoch to a string
+representing local time. If <var>secs</var> is not provided, the current time
+as returned by <tt class="function">time()</tt> is used.  <code>ctime(<var>secs</var>)</code>
+is equivalent to <code>asctime(localtime(<var>secs</var>))</code>.
+Locale information is not used by <tt class="function">ctime()</tt>.
+
+<span class="versionnote">Changed in version 2.1:
+Allowed <var>secs</var> to be omitted.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1759"><tt>daylight</tt></a></b>
+<dd>
+Nonzero if a DST timezone is defined.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1760"><tt class="function">gmtime</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>secs</var><big>]</big>)</td></tr></table>
+<dd>
+Convert a time expressed in seconds since the epoch to a <tt class="class">struct_time</tt>
+in UTC in which the dst flag is always zero.  If <var>secs</var> is not
+provided, the current time as returned by <tt class="function">time()</tt> is used.
+Fractions of a second are ignored.  See above for a description of the
+<tt class="class">struct_time</tt> object.
+
+<span class="versionnote">Changed in version 2.1:
+Allowed <var>secs</var> to be omitted.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1761"><tt class="function">localtime</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>secs</var><big>]</big>)</td></tr></table>
+<dd>
+Like <tt class="function">gmtime()</tt> but converts to local time.  The dst flag is
+set to <code>1</code> when DST applies to the given time.
+
+<span class="versionnote">Changed in version 2.1:
+Allowed <var>secs</var> to be omitted.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1762"><tt class="function">mktime</tt></a></b>(</nobr></td>
+  <td><var>t</var>)</td></tr></table>
+<dd>
+This is the inverse function of <tt class="function">localtime()</tt>.  Its argument
+is the <tt class="class">struct_time</tt> or full 9-tuple (since the dst flag is
+needed; use <code>-1</code> as the dst flag if it is unknown) which
+expresses the time in
+<i>local</i> time, not UTC.  It returns a floating point number, for
+compatibility with <tt class="function">time()</tt>.  If the input value cannot be
+represented as a valid time, either <tt class="exception">OverflowError</tt> or
+<tt class="exception">ValueError</tt> will be raised (which depends on whether the
+invalid value is caught by Python or the underlying C libraries).  The
+earliest date for which it can generate a time is platform-dependent.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1763"><tt class="function">sleep</tt></a></b>(</nobr></td>
+  <td><var>secs</var>)</td></tr></table>
+<dd>
+Suspend execution for the given number of seconds.  The argument may
+be a floating point number to indicate a more precise sleep time.
+The actual suspension time may be less than that requested because any
+caught signal will terminate the <tt class="function">sleep()</tt> following
+execution of that signal's catching routine.  Also, the suspension
+time may be longer than requested by an arbitrary amount because of
+the scheduling of other activity in the system.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1764"><tt class="function">strftime</tt></a></b>(</nobr></td>
+  <td><var>format</var><big>[</big><var>, t</var><big>]</big>)</td></tr></table>
+<dd>
+Convert a tuple or <tt class="class">struct_time</tt> representing a time as returned
+by <tt class="function">gmtime()</tt> or <tt class="function">localtime()</tt> to a string as
+specified by the <var>format</var> argument.  If <var>t</var> is not
+provided, the current time as returned by <tt class="function">localtime()</tt> is
+used.  <var>format</var> must be a string.
+
+<span class="versionnote">Changed in version 2.1:
+Allowed <var>t</var> to be omitted.</span>
+
+<P>
+The following directives can be embedded in the <var>format</var> string.
+They are shown without the optional field width and precision
+specification, and are replaced by the indicated characters in the
+<tt class="function">strftime()</tt> result:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Directive</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>%a</code></td>
+        <td align="left">Locale's abbreviated weekday name.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%A</code></td>
+        <td align="left">Locale's full weekday name.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%b</code></td>
+        <td align="left">Locale's abbreviated month name.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%B</code></td>
+        <td align="left">Locale's full month name.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%c</code></td>
+        <td align="left">Locale's appropriate date and time representation.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%d</code></td>
+        <td align="left">Day of the month as a decimal number [01,31].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%H</code></td>
+        <td align="left">Hour (24-hour clock) as a decimal number [00,23].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%I</code></td>
+        <td align="left">Hour (12-hour clock) as a decimal number [01,12].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%j</code></td>
+        <td align="left">Day of the year as a decimal number [001,366].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%m</code></td>
+        <td align="left">Month as a decimal number [01,12].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%M</code></td>
+        <td align="left">Minute as a decimal number [00,59].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%p</code></td>
+        <td align="left">Locale's equivalent of either AM or PM.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%S</code></td>
+        <td align="left">Second as a decimal number [00,61].</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code>%U</code></td>
+        <td align="left">Week number of the year (Sunday as the first day of the
+                week) as a decimal number [00,53].  All days in a new year
+                preceding the first Sunday are considered to be in week 0.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%w</code></td>
+        <td align="left">Weekday as a decimal number [0(Sunday),6].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%W</code></td>
+        <td align="left">Week number of the year (Monday as the first day of the
+                week) as a decimal number [00,53].  All days in a new year
+                preceding the first Monday are considered to be in week 0.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%x</code></td>
+        <td align="left">Locale's appropriate date representation.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%X</code></td>
+        <td align="left">Locale's appropriate time representation.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%y</code></td>
+        <td align="left">Year without century as a decimal number [00,99].</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%Y</code></td>
+        <td align="left">Year with century as a decimal number.</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%Z</code></td>
+        <td align="left">Time zone name (no characters if no time zone exists).</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>%%</code></td>
+        <td align="left">A literal "<tt class="character">%</tt>" character.</td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The range really is <code>0</code> to <code>61</code>; this accounts for leap
+    seconds and the (very rare) double leap seconds.
+</DD>
+</DL>
+
+<P>
+Here is an example, a format for dates compatible with that specified 
+in the <a class="rfc" name="rfcref-78848"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> Internet email standard.
+	<A NAME="tex2html34"
+  HREF="#foot25177"><SUP>6.1</SUP></A>
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; from time import gmtime, strftime
+&gt;&gt;&gt; strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+'Thu, 28 Jun 2001 14:17:15 +0000'
+</pre></div>
+
+<P>
+Additional directives may be supported on certain platforms, but
+only the ones listed here have a meaning standardized by ANSI C.
+
+<P>
+On some platforms, an optional field width and precision
+specification can immediately follow the initial "<tt class="character">%</tt>" of a
+directive in the following order; this is also not portable.
+The field width is normally 2 except for <code>%j</code> where it is 3.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1765"><tt class="function">strptime</tt></a></b>(</nobr></td>
+  <td><var>string</var><big>[</big><var>, format</var><big>]</big>)</td></tr></table>
+<dd>
+Parse a string representing a time according to a format.  The return 
+value is a <tt class="class">struct_time</tt> as returned by <tt class="function">gmtime()</tt> or
+<tt class="function">localtime()</tt>.  The <var>format</var> parameter uses the same
+directives as those used by <tt class="function">strftime()</tt>; it defaults to
+<code>"%a %b %d %H:%M:%S %Y"</code> which matches the formatting
+returned by <tt class="function">ctime()</tt>.  If <var>string</var> cannot be parsed
+according to <var>format</var>, <tt class="exception">ValueError</tt> is raised.  If the
+string to be parsed has excess data after parsing,
+<tt class="exception">ValueError</tt> is raised.  The default values used to fill in
+any missing data is <code>(1900, 1, 1, 0, 0, 0, 0, 1, -1)</code> .
+
+<P>
+Support for the <code>%Z</code> directive is based on the values contained in
+<code>tzname</code> and whether <code>daylight</code> is true.  Because of this,
+it is platform-specific except for recognizing UTC and GMT which are
+always known (and are considered to be non-daylight savings
+timezones).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1766"><tt>struct_time</tt></a></b>
+<dd>
+The type of the time value sequence returned by <tt class="function">gmtime()</tt>,
+<tt class="function">localtime()</tt>, and <tt class="function">strptime()</tt>.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1767"><tt class="function">time</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the time as a floating point number expressed in seconds since
+the epoch, in UTC.  Note that even though the time is always returned
+as a floating point number, not all systems provide time with a better
+precision than 1 second.  While this function normally returns
+non-decreasing values, it can return a lower value than a previous
+call if the system clock has been set back between the two calls.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1768"><tt>timezone</tt></a></b>
+<dd>
+The offset of the local (non-DST) timezone, in seconds west of UTC
+(negative in most of Western Europe, positive in the US, zero in the
+UK).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1769"><tt>tzname</tt></a></b>
+<dd>
+A tuple of two strings: the first is the name of the local non-DST
+timezone, the second is the name of the local DST timezone.  If no DST
+timezone is defined, the second string should not be used.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1770"><tt class="function">tzset</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Resets the time conversion rules used by the library routines.
+The environment variable <a class="envvar" name="l2h-1783">TZ</a> specifies how this is done.
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+Availability: <font style="font-variant: small-caps;">Unix</font>.
+
+<P>
+<div class="note"><b class="label">Note:</b>
+Although in many cases, changing the <a class="envvar" name="l2h-1784">TZ</a> environment variable
+may affect the output of functions like <tt class="function">localtime</tt> without calling 
+<tt class="function">tzset</tt>, this behavior should not be relied on.
+
+<P>
+The <a class="envvar" name="l2h-1785">TZ</a> environment variable should contain no whitespace.
+</div>
+
+<P>
+The standard format of the <a class="envvar" name="l2h-1786">TZ</a> environment variable is:
+(whitespace added for clarity)
+<DL COMPACT>
+<DT>std offset [dst [offset] [,start[/time], end[/time]</DT>
+<DD>]]
+</DD>
+</DL>
+
+<P>
+Where:
+
+<P>
+<DL COMPACT>
+<DT>std and dst</DT>
+<DD>Three or more alphanumerics giving the timezone abbreviations.
+    These will be propogated into time.tzname
+
+<P>
+</DD>
+<DT>offset</DT>
+<DD>The offset has the form: &plusmn; hh[:mm[:ss]].
+    This indicates the value added the local time to arrive at UTC. 
+    If preceded by a '-', the timezone is east of the Prime 
+    Meridian; otherwise, it is west. If no offset follows
+    dst, summmer time is assumed to be one hour ahead of standard time.
+
+<P>
+</DD>
+<DT>start[/time],end[/time]</DT>
+<DD>Indicates when to change to and back from DST. The format of the
+    start and end dates are one of the following:
+
+<P>
+<DL COMPACT>
+<DT>J<var>n</var></DT>
+<DD>The Julian day <var>n</var> (1 &lt;= <var>n</var> &lt;= 365). Leap days are not 
+        counted, so in all years February 28 is day 59 and
+        March 1 is day 60.
+
+<P>
+</DD>
+<DT><var>n</var></DT>
+<DD>The zero-based Julian day (0 &lt;= <var>n</var> &lt;= 365). Leap days are
+        counted, and it is possible to refer to February 29.
+
+<P>
+</DD>
+<DT>M<var>m</var>.<var>n</var>.<var>d</var></DT>
+<DD>The <var>d</var>'th day (0 &lt;= <var>d</var> &lt;= 6) or week <var>n</var> 
+        of month <var>m</var> of the year (1 &lt;= <var>n</var> &lt;= 5, 
+        1 &lt;= <var>m</var> &lt;= 12, where week 5 means "the last <var>d</var> day
+        in month <var>m</var>" which may occur in either the fourth or 
+        the fifth week). Week 1 is the first week in which the 
+        <var>d</var>'th day occurs. Day zero is Sunday.
+    
+</DD>
+</DL>
+
+<P>
+time has the same format as offset except that no leading sign ('-' or
+    '+') is allowed. The default, if time is not given, is 02:00:00.
+</DD>
+</DL>
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; os.environ['TZ'] = 'EST+05EDT,M4.1.0,M10.5.0'
+&gt;&gt;&gt; time.tzset()
+&gt;&gt;&gt; time.strftime('%X %x %Z')
+'02:07:36 05/08/03 EDT'
+&gt;&gt;&gt; os.environ['TZ'] = 'AEST-10AEDT-11,M10.5.0,M3.5.0'
+&gt;&gt;&gt; time.tzset()
+&gt;&gt;&gt; time.strftime('%X %x %Z')
+'16:08:12 05/08/03 AEST'
+</pre></div>
+
+<P>
+On many Unix systems (including *BSD, Linux, Solaris, and Darwin), it
+is more convenient to use the system's zoneinfo (<span class="manpage"><i>tzfile</i>(5)</span>) 
+database to specify the timezone rules. To do this, set the 
+<a class="envvar" name="l2h-1787">TZ</a> environment variable to the path of the required timezone 
+datafile, relative to the root of the systems 'zoneinfo' timezone database,
+usually located at <span class="file">/usr/share/zoneinfo</span>. For example, 
+<code>'US/Eastern'</code>, <code>'Australia/Melbourne'</code>, <code>'Egypt'</code> or 
+<code>'Europe/Amsterdam'</code>.
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; os.environ['TZ'] = 'US/Eastern'
+&gt;&gt;&gt; time.tzset()
+&gt;&gt;&gt; time.tzname
+('EST', 'EDT')
+&gt;&gt;&gt; os.environ['TZ'] = 'Egypt'
+&gt;&gt;&gt; time.tzset()
+&gt;&gt;&gt; time.tzname
+('EET', 'EEST')
+</pre></div>
+
+<P>
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-locale.html">locale</a></tt>:</b>
+    <dd>Internationalization services.  The locale
+                     settings can affect the return values for some of 
+                     the functions in the <tt class="module">time</tt> module.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-calendar.html">calendar</a></tt>:</b>
+    <dd>General calendar-related functions.  
+                       <tt class="function">timegm()</tt> is the inverse of
+                       <tt class="function">gmtime()</tt> from this module.
+  </dl>
+</div>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot25177">... standard.</A><A
+ href="module-time.html#tex2html34"><SUP>6.1</SUP></A></DT>
+<DD>The use of <code>%Z</code> is now
+	deprecated, but the <code>%z</code> escape that expands to the preferred 
+	hour/minute offset is not supported by all ANSI C libraries. Also,
+	a strict reading of the original 1982 <a class="rfc" name="rfcref-78802"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a> standard calls for
+	a two-digit year (%y rather than %Y), but practice moved to
+	4-digit years long before the year 2000.  The 4-digit year has
+        been mandated by <a class="rfc" name="rfcref-78804"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>, which obsoletes <a class="rfc" name="rfcref-78806"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>.
+
+</DD>
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9.7 strftime() Behavior" 
+  rel="prev" title="6.9.7 strftime() Behavior" 
+  HREF="node208.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.11 sched  " 
+  rel="next" title="6.11 sched  " 
+  href="module-sched.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node208.html">6.9.7 strftime() Behavior</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-sched.html">6.11 sched  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

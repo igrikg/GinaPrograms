@@ -1,0 +1,1715 @@
+MIME-Version: 1.0
+Content-Type: multipart/related; boundary="----=_NextPart_01C82D14.2EA302D0"
+
+This document is a Web archive file.  If you are seeing this message, this means your browser or editor doesn't support Web archive files.  For more information on the Web archive format, go to http://officeupdate.microsoft.com/office/webarchive.htm
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="us-ascii"
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=3D"Microsoft Theme 2.00" content=3D"strtedge 001">
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DProgId content=3DWord.Document>
+<meta name=3DGenerator content=3D"Microsoft Word 10">
+<meta name=3DOriginator content=3D"Microsoft Word 10">
+<link rel=3DFile-List href=3D"DasyServerHelp_files/filelist.xml">
+<link rel=3DEdit-Time-Data href=3D"DasyServerHelp_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Main Heading Goes Here</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Bernard SCARINGELLA</o:Author>
+  <o:LastAuthor>username</o:LastAuthor>
+  <o:Revision>29</o:Revision>
+  <o:TotalTime>1297</o:TotalTime>
+  <o:Created>2007-11-14T13:52:00Z</o:Created>
+  <o:LastSaved>2007-11-22T13:30:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1350</o:Words>
+  <o:Characters>7425</o:Characters>
+  <o:Company>ESRF</o:Company>
+  <o:Lines>61</o:Lines>
+  <o:Paragraphs>17</o:Paragraphs>
+  <o:CharactersWithSpaces>8758</o:CharactersWithSpaces>
+  <o:Version>10.6830</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:Arial;
+	color:black;
+	mso-font-kerning:16.0pt;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-bidi-font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:14.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h5
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:normal;
+	mso-bidi-font-style:italic;}
+h6
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	font-size:8.0pt;
+	font-family:Arial;
+	color:black;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#660000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#003399;
+	text-decoration:underline;
+	text-underline:single;}
+p.TitreGras, li.TitreGras, div.TitreGras
+	{mso-style-name:TitreGras;
+	margin-top:1.0pt;
+	margin-right:5.0cm;
+	margin-bottom:1.0pt;
+	margin-left:5.0cm;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	border:none;
+	mso-border-alt:solid white 1.0pt;
+	padding:0cm;
+	mso-padding-alt:1.0pt 4.0pt 1.0pt 4.0pt;
+	mso-border-shadow:yes;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:893661349;
+	mso-list-type:hybrid;
+	mso-list-template-ids:158598132 -1950213504 67895299 67895301 67895297 678=
+95299 67895301 67895297 67895299 67895301;}
+@list l0:level1
+	{mso-level-start-at:4;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"8194"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=3Dwhite lang=3DFR link=3D"#660000" vlink=3D"#003399" style=3D=
+'tab-interval:
+36.0pt'>
+<!--[if gte mso 9]><xml>
+ <v:background id=3D"_x0000_s1025" o:bwmode=3D"white" o:targetscreensize=3D=
+"800,600">
+  <v:fill type=3D"frame"/>
+ </v:background></xml><![endif]-->
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<table class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0
+ style=3D'border-collapse:collapse;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style=3D'mso-yfti-irow:0'>
+  <td width=3D648 colspan=3D2 valign=3Dtop style=3D'width:486.0pt;padding:0=
+cm 5.4pt 0cm 5.4pt'>
+  <h1 style=3D'margin-top:0cm'><b style=3D'mso-bidi-font-weight:normal'><sp=
+an
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><a name=3D"_Pa=
+di_Help"></a><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;</span><u>C111 Server (
+  DasyServer) Help<o:p></o:p></u></b></h1>
+  </td>
+ </tr>
+ <tr style=3D'mso-yfti-irow:1'>
+  <td width=3D16 valign=3Dtop style=3D'width:11.8pt;padding:0cm 5.4pt 0cm 5=
+.4pt'>
+  <h5><span style=3D'font-size:12.0pt'><o:p>&nbsp;</o:p></span></h5>
+  </td>
+  <td width=3D632 valign=3Dtop style=3D'width:474.2pt;padding:0cm 5.4pt 0cm=
+ 5.4pt'>
+  <h3><u><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'><o:p><span
+   style=3D'text-decoration:none'>&nbsp;</span></o:p></span></u></h3>
+  <h3><u><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>Concept:<a
+  name=3D"_Section_2_Heading"></a><o:p></o:p></span></u></h3>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>The
+  DasyServer was created in order to address the problem of having the comp=
+uter
+  hosting the TDC in one place, and the user somewhere else, not able or
+  willing to stay close to the computer hosting the TDC. DasyServer is a
+  network server over IP and uses TCP transport layer. It is accessed over =
+the
+  network by clients (to be developed by the user). DasyServer uses a speci=
+fic
+  network port on the computer, which is configurable. The default is 12111.
+  DasyServer uses the standard socket api. <o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>It acts
+  on and answers to known commands and simply sends back what it recieves in
+  other cases ( a simple echo). DasyServer purpose is only to give remote
+  access to the TDC, not to configure nor test it. Before to start DasyServ=
+er,
+  the TDC must have been correctly configured. <o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>DasyServer
+  works for one TDC on one computer. Users cannot start two DasyServers on =
+the same
+  computer nor one DasyServer for several TDCs on one computer. DasyServer =
+will
+  answer to one and only one client. As long as a client is connected to
+  DasyServer no other client can connect to it. Another client will be able=
+ to
+  connect to DasyServer as soon as the first one has closed the connection =
+or
+  ?? died.<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>The
+  distribution comes with a DasyClient example for convenience.<o:p></o:p><=
+/span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <h3><a name=3D"_Section_1"></a><u><span lang=3DEN-GB style=3D'mso-ansi-la=
+nguage:
+  EN-GB'>Startup:<a name=3D"_Section_1_Heading"></a><o:p></o:p></span></u><=
+/h3>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>Before to
+  start DasyServer the TDC must have been configured with the C111 Gui
+  application either 1D or 2D. Refer to the GUI help in order to configure =
+your
+  TDC. Once a valid and purposefull configuration has been downloaded to the
+  TDC users have two ways for starting DasyServer. The first one is to star=
+t it
+  from the GUI with the &#8220;Launch&#8221; item<span
+  style=3D'mso-spacerun:yes'>&nbsp; </span>in the file menu.<o:p></o:p></sp=
+an></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><!--[if gte vml 1]><v:shapetype
+   id=3D"_x0000_t75" coordsize=3D"21600,21600" o:spt=3D"75" o:preferrelativ=
+e=3D"t"
+   path=3D"m@4@5l@4@11@9@11@9@5xe" filled=3D"f" stroked=3D"f">
+   <v:stroke joinstyle=3D"miter"/>
+   <v:formulas>
+    <v:f eqn=3D"if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn=3D"sum @0 1 0"/>
+    <v:f eqn=3D"sum 0 0 @1"/>
+    <v:f eqn=3D"prod @2 1 2"/>
+    <v:f eqn=3D"prod @3 21600 pixelWidth"/>
+    <v:f eqn=3D"prod @3 21600 pixelHeight"/>
+    <v:f eqn=3D"sum @0 0 1"/>
+    <v:f eqn=3D"prod @6 1 2"/>
+    <v:f eqn=3D"prod @7 21600 pixelWidth"/>
+    <v:f eqn=3D"sum @8 21600 0"/>
+    <v:f eqn=3D"prod @7 21600 pixelHeight"/>
+    <v:f eqn=3D"sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok=3D"f" gradientshapeok=3D"t" o:connecttype=3D"rect"=
+/>
+   <o:lock v:ext=3D"edit" aspectratio=3D"t"/>
+  </v:shapetype><v:shape id=3D"_x0000_i1025" type=3D"#_x0000_t75" style=3D'=
+width:213.75pt;
+   height:165.75pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image001.gif" o:title=3D"1D-Fil=
+eMenu"/>
+  </v:shape><![endif]--><![if !vml]><img width=3D285 height=3D221
+  src=3D"DasyServerHelp_files/image001.gif" v:shapes=3D"_x0000_i1025"><![en=
+dif]></span><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang=3DE=
+N-GB
+  style=3D'mso-ansi-language:EN-GB'><!--[if gte vml 1]><v:shape id=3D"_x000=
+0_i1026"
+   type=3D"#_x0000_t75" style=3D'width:210pt;height:191.25pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image002.gif" o:title=3D"2D-Fil=
+eMenu"/>
+  </v:shape><![endif]--><![if !vml]><img width=3D280 height=3D255
+  src=3D"DasyServerHelp_files/image002.gif" v:shapes=3D"_x0000_i1026"><![en=
+dif]></span></p>
+  <p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+  <p class=3DMsoNormal><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;
+  </span>C111GUI-1D File menu<span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;
+  </span>---------<span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>C111GUI-2D File menu.</p>
+  <p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>The
+  DasyServer starts in the DOS window of the application. It <span
+  style=3D'mso-spacerun:yes'>&nbsp;</span>then wait for client calls. The G=
+UI is
+  frozen and unusable as long as DasyServer is alive. Once DasyServer exits,
+  the GUI can be used again. <o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>The
+  second way to start DasyServer is to first download a valid and purposefu=
+ll
+  configuration to the TDC then save the downloaded configuration for
+  DasyServer with the<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>&#8220;Save
+  config for DasyServer&#8221; item in the Tools menu either 1D or 2D. <o:p=
+></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><!--[if gte vml 1]><v:shape
+   id=3D"_x0000_i1027" type=3D"#_x0000_t75" style=3D'width:269.25pt;height:=
+211.5pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image003.gif" o:title=3D"1D-Too=
+lsMenu"/>
+  </v:shape><![endif]--><![if !vml]><img width=3D359 height=3D282
+  src=3D"DasyServerHelp_files/image003.gif" v:shapes=3D"_x0000_i1027"><![en=
+dif]><o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><!--[if gte vml 1]><v:shape
+   id=3D"_x0000_i1028" type=3D"#_x0000_t75" style=3D'width:246.75pt;height:=
+224.25pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image004.gif" o:title=3D"image0=
+09"/>
+  </v:shape><![endif]--><![if !vml]><img width=3D329 height=3D299
+  src=3D"DasyServerHelp_files/image004.gif" v:shapes=3D"_x0000_i1028"><![en=
+dif]><o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>Once the
+  configuration has been saved for DasyServer, users can exit the GUI and s=
+tart
+  DasyServer with a double clic on the Desktop icon.<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><!--[if gte vml 1]><v:shape
+   id=3D"_x0000_i1029" type=3D"#_x0000_t75" style=3D'width:126.75pt;height:=
+152.25pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image005.png" o:title=3D"DasySe=
+rver-icon"/>
+  </v:shape><![endif]--><![if !vml]><img width=3D169 height=3D203
+  src=3D"DasyServerHelp_files/image006.jpg" v:shapes=3D"_x0000_i1029"><![en=
+dif]><o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>As long
+  as DasyServer is alive, the GUIs are not usable. After DasyServer has die=
+d,
+  the GUIs can be started. If the configuration of the TDC is changed, users
+  must follow the steps discribed above. At startup DasyServer knows the
+  defined network port to use, and where to find the TDC configuration,
+  that&#8217;s all. DasyServer does not store nor remember any other parame=
+ters
+  between sessions and uses it&#8217;s defaults at startup. So the paramete=
+rs
+  configured with the BSIZE, STOR, PFTP should be configured by the client =
+at
+  least once. BSIZE default at startup is 1kb, STOR default is YES, PTFP
+  defaults are NONE for all parameters. Refer below for details on these
+  commands.<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp; </span><a href=3D"#_Padi_Help">Top</a><=
+o:p></o:p></span></p>
+  <h3><a name=3D"_Interacting_with_the"></a><u><span lang=3DEN-GB style=3D'=
+mso-ansi-language:
+  EN-GB'><o:p><span style=3D'text-decoration:none'>&nbsp;</span></o:p></spa=
+n></u></h3>
+  <h3><u><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>Protocol:<o:p=
+></o:p></span></u></h3>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>DasyServer
+  protocol uses simple text for commands, configuration, 1D data and statis=
+tics,
+  binary for 2D acquisition data. The client connects to DasyServer with the
+  computer name or IP address and the port number. The default is 12111. If
+  changed the client must know it to be able to connect to DasyServer. Once
+  connected to DasyServer the client can send the commands. In case of netw=
+ork
+  layers problems the socket layer should give meaningfull error messages to
+  the client. For each command DasyServer sends back a specific answer. The
+  format of the answer<span style=3D'mso-spacerun:yes'>&nbsp; </span><o:p><=
+/o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>[CMD_NAME:OK/NOTOK[:error-message&gt;]].
+  <o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>For CFG,
+  STATS,DATA commands, the answer is the data if everything was OK. The err=
+or
+  message tries to explain the problem encountered. Remember the error mess=
+age
+  may or may not be present.<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>A typical
+  sequence for the client is :<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>So=
+cket.send(&#8220;CMD;[par;[&#8230;]]&#8221;)<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>An=
+swer =3D
+  Socket.recieve()<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If=
+ (
+  Answer matches &#8220;CMD;NOTOK&#8221; )<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;
+  </span>Then print ( Answer ) # may contain an error msg.<o:p></o:p></span=
+></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>El=
+se<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;
+  </span>&#8230;&#8230;. Do something<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+>Commands:<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>-<span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp; </span><b style=3D'ms=
+o-bidi-font-weight:
+  normal'>CFG</b> <o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>DasyServer send back the configuration =
+file
+  used on the TDC in one bloc of data. In case of problem, DasyServer answe=
+rs <b
+  style=3D'mso-bidi-font-weight:normal'>CFG;NOTOK. </b>Configuration can be=
+ very
+  usefull for the client at least for display purpose, but also for data fi=
+les
+  naming.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>-<span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span><b style=3D'mso-bidi=
+-font-weight:
+  normal'>CLEAR</b><o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>DasyServer clears the TDC memory. The T=
+DC
+  must be stopped first. In case of problem, DasyServer answers <span
+  style=3D'mso-spacerun:yes'>&nbsp;</span><b style=3D'mso-bidi-font-weight:=
+normal'>CFG;NOTOK,
+  </b>for example if the TDC has not been stopped before sending CLEAR.<o:p=
+></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>STOP<o:p></o:p></span></b>=
+</p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>DasyServer stops the TDC but do not cle=
+ar the
+  memory. In case of problem, DasyServer answers <b style=3D'mso-bidi-font-=
+weight:
+  normal'>STOP;NOTOK<o:p></o:p></b></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><b style=3D'mso-bidi-fo=
+nt-weight:
+  normal'><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;<=
+/o:p></span></b></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>START<o:p></o:p></span></b=
+></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>DasyServer starts the TDC but does not =
+clear
+  the memory. In case of problem, DasyServer answers <b style=3D'mso-bidi-f=
+ont-weight:
+  normal'>START;NOTOK<o:p></o:p></b></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><b style=3D'mso-bidi-fo=
+nt-weight:
+  normal'><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;<=
+/o:p></span></b></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>DATA<o:p></o:p></span></b>=
+</p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>The client sends DATA to retrieve data =
+from the
+  TDC. The TDC must be stopped. The server receives DATA and then reads data
+  from the TDC, then sends the size of the whole data with the message
+  DATA;SIZE;&lt;data-size=3Dnumber of bytes&gt; . The Client can then take =
+any
+  action according to the size. Then the Client must send DATA;OK if it wan=
+ts
+  the data to be transferred. If it does not want to receive data it must s=
+end
+  DATA;NOTOK. The server then stops the transfer. When receiving DATA;OK the
+  server sends data to the client in blocks of BSIZE (default is 1kb). After
+  each block received the client must send DATA;OK, otherwise the server pa=
+uses.
+  At any time sending anything else than DATA;OK to the server aborts the
+  transfer and sends the server back to waiting for commands. When all bloc=
+ks
+  have been sent the server sends DATA;END. When receiving this last message
+  the client knows the data transfer is finished. The server does not wait =
+any
+  answer after this last message.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>On DasyServer computer, data files are =
+saved
+  under C:\TEMP if this option has not been disabled, so be aware of disk
+  space.<span style=3D'mso-spacerun:yes'>&nbsp; </span>The files names are =
+build
+  from the mode (GFD1D,GFD2D,MHIT,MHIP), a unique identifier and a .dat
+  extension for 1D, a .edf for 2D . In any case an error occurs the data fi=
+le
+  will not be removed from the server hard disk, so data are not lost.<o:p>=
+</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>Typical data transfer sequence:<o:p></o=
+:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><!--[if gte vml 1]><v:shape id=3D"_x000=
+0_i1030"
+   type=3D"#_x0000_t75" style=3D'width:356.25pt;height:571.5pt'>
+   <v:imagedata src=3D"DasyServerHelp_files/image007.gif" o:title=3D"DAT-CM=
+D"/>
+  </v:shape><![endif]--><![if !vml]><img border=3D0 width=3D475 height=3D762
+  src=3D"DasyServerHelp_files/image007.gif" v:shapes=3D"_x0000_i1030"><![en=
+dif]><o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>STATS<o:p></o:p></span></b=
+></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>DasyServer reads the statistics from th=
+e TDC
+  , and send back the whole data<span style=3D'mso-spacerun:yes'>&nbsp; </s=
+pan>in
+  one block of data. The block is readable/printable. In case of problem,
+  DasyServer will answer STATS;NOTOK[;&lt;msg&gt;]<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>EXIT<o:p></o:p></span></b>=
+</p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>DasyServ=
+er quits
+  when receiving this command. It does not do anything else. The <o:p></o:p=
+></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>TDC is l=
+eft as
+  it is. The DasyServer never answers.<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>BSIZE<o:p></o:p></span></b=
+></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>BSIZE is used to change the block size =
+used
+  for data transfers. The default is 1kb. The format is :<span
+  style=3D'mso-spacerun:yes'>&nbsp; </span>BSIZE;&lt;size&gt;<span
+  style=3D'mso-spacerun:yes'>&nbsp; </span>where size is between 1 for 1kb =
+at
+  least<span style=3D'mso-spacerun:yes'>&nbsp; </span>and 8 for 8kb at most=
+. DasyServer
+  changes the size for data transfers. If the format or the size value are =
+not
+  valid ones the server answers BSIZE;NOTOK[;&lt;message&gt;]. Else it answ=
+ers
+  BSIZE:OK. For example sending BSIZE:4 changes the block size to 4 kb.<o:p=
+></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>STOR<o:p></o:p></span></b>=
+</p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>STOR is used to enable/disable the stor=
+age of
+  data file on the DasyServer computer ( on the hard disk in C:\TEMP ). The
+  client sends STOR;YES to enable storage, STOR;NO to disable storage. The
+  default is to store locally data files. If the format or the value are not
+  valid ones the server answers STOR;NOTOK[;&lt;message&gt;]. Else it answe=
+rs
+  STOR:OK.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>FTP<o:p></o:p></span></b><=
+/p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>FTP command gives the opportunity to us=
+e the
+  FTP protocol for data transfers. For example if the computer hosting the =
+TDC is
+  short in disk space and the computer hosting the client also, a third
+  computer with a FTP server and sufficient disk space could be used for da=
+ta
+  storage. Data are transferred as files and stored on the FTP computer. The
+  data file name is the one used to store data on DasyServer computer. So i=
+t is
+  unique. FTP protocol needs some parameters to work, users have to use the
+  PFTP command before initiating the FTP command. Any error from the FTP
+  protocol is sent to the client as received in the format FTP;NOTOK[;&lt;e=
+rror
+  message&gt;]. <o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:36.0pt;text-indent:-18.0pt;mso-=
+list:
+  l0 level1 lfo2;tab-stops:list 36.0pt'><![if !supportLists]><span lang=3DE=
+N-GB
+  style=3D'mso-fareast-font-family:Arial;mso-ansi-language:EN-GB'><span
+  style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New Roman"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]><b style=3D'mso-bidi-font-weight:normal'><=
+span
+  lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'>PFTP<o:p></o:p></span></b>=
+</p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>The PFTP command is used before using t=
+he FTP
+  command in order to give DasyServer the needed parameters for FTP transfe=
+rs.
+  The format of the command is:<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>PFTP;&lt;ftp_host&gt;;&lt;user&gt;;&lt;=
+password&gt;;&lt;dir&gt;<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>ftp_host is either the name or the IP a=
+ddress
+  of the data files storage computer.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>user is a valid user login on the data =
+files
+  storage computer.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>password is the above user associated
+  password on the data files storage computer.<o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>dir is a valid existing full path with =
+the
+  ending &#8216;\&#8217; (Win32) or &#8216;/&#8217; (U**ix) on the data fil=
+es
+  storage computer where data files will be uploaded. <o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'>It is up to the client to give valid
+  parameters since the DasyServer will not check their validity before tran=
+sferring.
+  <o:p></o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal style=3D'margin-left:18.0pt'><span lang=3DEN-GB
+  style=3D'mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><a
+  href=3D"#_Padi_Help">Top</a><o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span>_______________________________________<o:p></o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  <p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style=3D'mso-yfti-irow:2;mso-yfti-lastrow:yes'>
+  <td width=3D16 valign=3Dtop style=3D'width:11.8pt;padding:0cm 5.4pt 0cm 5=
+.4pt'>
+  <h5><span lang=3DEN-GB style=3D'font-size:12.0pt;mso-ansi-language:EN-GB'=
+><o:p>&nbsp;</o:p></span></h5>
+  </td>
+  <td width=3D632 valign=3Dtop style=3D'width:474.2pt;padding:0cm 5.4pt 0cm=
+ 5.4pt'>
+  <h3><u><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'><o:p><span
+   style=3D'text-decoration:none'>&nbsp;</span></o:p></span></u></h3>
+  </td>
+ </tr>
+</table>
+
+<p class=3DMsoNormal><span lang=3DEN-US style=3D'mso-ansi-language:EN-US'><=
+o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-GB style=3D'mso-ansi-language:EN-GB'><=
+o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image001.gif
+Content-Transfer-Encoding: base64
+Content-Type: image/gif
+
+R0lGODlhHQHdAHcAACH/C01TT0ZGSUNFOS4wDQAAAAFzUkdCAK7OHOkAIf8LR0FNTUFOT1cxLjAE
+XlsDAAAh/wtNU09GRklDRTkuMCwAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgA
+ABdwnLpRPAAh/wtNU09GRklDRTkuMBgAAAAMbXNPUE1TT0ZGSUNFOS4wbrWdmeUALAAAAAAdAd0A
+hgAAAAAAewAA/wA5AAghaxAhawghYxApcxApawgpaxgpcxgxcxAxcxgxexg5ewBCnAhKjABatQBC
+pQBKpQBavQB7AAhz1gB73gC9AAD/ACEhADk5ADk5OSExeyE5eyE5hCk5hDk5/yFaACFCezFKezFC
+czFKcylCcylChCFChClCjClKjClKhDFKjDFSjDlSlDlSjDFKhDlrpTFrvTFrtTlrtSF71iF7zilz
+zilzxiGcACmE3jmc9zGc9ymU7yGU7ymU9yHeAEJCAFpaAEJCQkJCvVJSzkJrtVqMxkK9AFKl72Nj
+AHt7AHt7e3Nzc3t7/2OcAHuEe2uc3muc1nOUzmOl3mOt52Ol55xaAISEAISEhIyEjIyMjISMhJSM
+lJSUlIyUjJyUnJycnJSclL0AAL29OaWlpa2trdbWzt7e3sbGxv//AP//9////wECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwf/gDKCg4SFhoeIiYlt
+jIqOj5CRkpOUlZaXmJCMm5ydnp+NmaKjpKWmp6ipmKCsraGqsLGys7S1k664noRovL2+v8DBwsPE
+xcbHyMnKy8zNzs/PudKvMmjT19jZ2tvc3d7f4OHin7tt0Ofo6err7O3uyuNt5e/09fb3+PnG8fNo
+Wv8AAwoE2ERLwYNaohhMyFChQ4YDIw7cooWixYpauGDUSFGjx4wgP4rs4pFkRpIouaTkwrKly5cs
+vXCRSXMmly82ccrEyfOmz55AwfAUelOo0S9HhX5BupRp06dLwzSVGvWL1KtWv4jRynWr165gvfIb
+ZI3XPwBo06pdC4BhQYlw/+PKnSuQI8iOJlWWhMm3r9+/gF/uzJmTKNObUBMrXsy4cWOqWZd+nax1
+jBgxYwWV9acFwJcQIZ6EFhBCgGkjRb4AQFhQYeuF/xTGBigbIkSK/3BjzA3Qru+QwEUGP7mXJEvj
+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
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image002.gif
+Content-Transfer-Encoding: base64
+Content-Type: image/gif
+
+R0lGODlhGAH/AHcAACH/C01TT0ZGSUNFOS4wDQAAAAFzUkdCAK7OHOkAIf8LR0FNTUFOT1cxLjAE
+XlsDAAAh/wtNU09GRklDRTkuMCwAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgA
+ABdwnLpRPAAh/wtNU09GRklDRTkuMBgAAAAMbXNPUE1TT0ZGSUNFOS4wXpNEqUkALAAAAAAYAf8A
+hgAAAAAAhAghaxAhaxApawgpaxApcxAxcxgpcxgxcxgxexg5ewBCnAhKjABatQBCpQBKpQBavQhz
+1gB73iE5eyExeyE5hCk5hCFCezFKezFCczFKcylCcyFChClChClKhClKjDFKjDFSjDlSjDlSlDla
+lClCjDFSlDFKhDlrpTFrvTFrtTlrtSF71iF7zilzzilzximE3jmc9zGc9ymU7yGU7ymU91paWkJC
+QlJSUkpKSkJalEJrtVqMxlKl72tra3t7e2NjY3Nzc2uc3muc1nOUzmOl3mOt52Ol54SEAISEhJyc
+nIyMjJSUlLW1taWlpb29va2trdbWztbW1s7OzsbGxt7e3v//AOfn1v//9+fn5/f39+/v7////wEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwf/gCmCg4SFhoeIiYqL
+jI2Oj5CRkpOUlZaGXZmam5ydl5+gl12hpKWmp6KdqquajaOLr6iQm7CJsbK4ubqzrL2Zg7eVwbuH
+w7bEyMnKtr69wCmjr63Q0r+CrdPL18XW1L/S29HZ2uTlvM2rz9ax4OzQhMbK8eHq2+/Rz+b6+4jo
+zfbv7InDBm9ftYP46OFbmI+fQ37+0hUE2K7QrXnILga8V49hwo0PQ5KLqMoiMCkoU6pcybKly5cw
+Y8qcSbOmzZs4c+rceZOkp4mCpPgcSrSo0aNIkypdynTpIqE8o0qdSrWq1atYZRp92iWr169gw4od
+63KrIqhSBKhdy7at2wFr/wkIkEugboG6ePEaILC3L18DfQELBnzAAAIDCQ4kQKw4gePHjxVETiC5
+MmUFkhdgVkBhQefPnimIHk26tIXRp093oLDaA2sMHjrEni3bg+3buHPr/uABxAffIT4EHw4ihPHi
+xpMrXx5CRPPmIqKPiC6CRPXr1kmMIMG9u3fvJUiUMJsIrdvzbeGqF2BgLnv37Q0UiM93Pt/7fhHc
+T0DgMP/FACLGmAKKHUBgZQZSlmAFlCVAQYMPRuggZw56ZuFnFFgQmoanXZAhBa61BuKIHsAGImyw
+yZZiibTZZsJtIHjAWwge0GijcDUKp+NwOxYnXHM/nvAcCUOGMB2R2WGnZP+S2mU3QgkihLfDkySQ
+h4h56GWZngBw0TWXXXntVZdfgv01GGCHAbZYYY81lhhkkEnmmGWbTYhZZ5qBNlpopfWJ2miriRZb
+ax10sGJts+mmqG282ebbBzpCGoKPyf3I3KXPOUedCCdQZ92RIhzJXXWjfvddeOMVxRVKaknggwwz
+yEDDDDPUUIMNNczQwwQArOelXPG9J9+w9g2LX3/36afff4gREGBiCgxo4LR0NmgZgxJmW2GEFy6g
+YWepfagaBR66Zi6JJKLIorqyIVrbiy/SGKONNdbL4707CofCpMppWiSSISC55MBMVvfkwaiOYOUh
+WDrwAAMQRwwxBAxA0ED/BEqsBZdav4LZRV5jHhvYyGcW5p9ijMEJp5zWtlynZnd2i6Gffp4mWrir
+iWhobF20m+iiQHvQhYy9/ZYvcckhhylz/m46XXQFO2nq1OKJZ9Y0sWAZAzpHKLHeAJy0B6wAXcwX
+Nl+ZHJvJXvwhkPazBnSSQCYJZqLAJgkwKNmDezvoNwUUfsaJaJwsMLhrh59o7tArcsLzJjASHUIX
+9HKio+WTcwKkcUI6R6TnRlYXMMEEb2cwlFJSufBHWLaADhIZs5UJXGl/WTYBaYuJ9tqA4c47YJqo
+aUBhmbzp2AHFO1b83V24jJmdnC2Q54UUZEKa9dd3Qbj21XMPYqHfdzC0/8+ZICr00EB/gP6jmUCa
+SXGZGCdc/Esn1zR1nUId6nWiZlcq1VVLFVGugTVoYMkF6DCC17g0l0w0sAvC6oJ81lYss31sL/rJ
+hLKctTZmza0LBhoQ3Qhktw9WC1t/S+FnHJQJC1mgheHKxGky4aFMnOuG1VMXBmzYOPS9ywPxEpq9
+zmej9sXvcpTTF7/sl6mAORFgUSMdkxBGpRIoTFXuuAeWXoCOIcSOgbVLW10+NkYyqk2CZvod8EBo
+GMYUz00ffEzylue8zGxGTxYa3OC6lyHrvXATOtuhz2RjQ9w4TjfoIxoI2hec+GmOfvVjoqao8zQp
+bgeA4LEaFhsyCizBAP8dRFigesLmHghOEI3GitsF77M2Z/XnbQL6IGI08cG6dUEyJdQb3jbRveIJ
+rgvUK1zibIguFjGOReIbHzIP2RsZUW6I8auREZPYSMotMn4iCFKRQHek0UUxaqbTDupIMKXwXC0b
+nexKWgSgAlB+US2zcw9dPnaX3OnFd2VS5Zl4tyZVvoluyYsj8+oIPTxFD0PY65P1FtoFmyV0UN/r
+wqHOZz5DJvI2iWRfFyClPsrRb36UMw4kl3O/6OSPfyjtDqn8RzVULcwQWFoBOoogygfChz0SZE8B
+KNgXCybLdxuUpQdHqErmTauEJbyWClXoGRYCE1wuZOgMu1DDoRWzeor/QxEPW2QbG8JLiPOqVzSP
+eMRqDud9/WoiFJ8oRUta8a3iueIAz6JOtbBgpl+k3cfkibu74IUTu8udKn+3iTb+kxPK2wQuNVGt
+l91RZobj5R792L0/suayIVLmIB3HTIzihjfX1MRZNzGpTtSvpPvTHzgxmUkBDmVV6+SBJrLACpp+
+7T1jM6VO6ZNKkSGLbf1pFtwANC1oJehACpKM3vzWt2wFDrI325C3yPWhEF1ViFmdzYomCkQYbXSI
+Nwrv0Xo0nM2FoHNO5Kbovlk6J42znFVSFV1ZJQAAZEADGtiAfverXw5kIAPvZGCXGogXv4YsZCMz
+05nSJCA2Ha9NKpvT/2Qq8zzAxWx6M+MTzUwDqNFAtGc785ltKgq0oTWqaJLiKL8sZalIGge1J/1U
+Sv/H0qm5VL7lqataAMDjHvv4x76Sp7CENZ8i95RMv0XWspwl3FiG0LgHOq7LGoRCbXHryi50obg+
+tJpyXTdd6wqziBP1VXmB117jxVcI9qW0JoJureyNMxUT9tJCYElLWdqYkAsMsnsiOZ9nIoxhUWa8
+CDdIwo19HswOKrMN98lmW87ZiELcIhIHbTdFA87RlNZmF6O2kt+8JGsDWGdC3BnPbLmt2HBLZN4W
+y7f6Aa5/mDzc4lIrubheLt+WCjgs6ylD0u1QdTFbTBOJGZnI/qGjJP8HXhypedPlzSbntunEbsZ5
+SeF8UpTIqTocX0mdZAm3uMdN7nILxdsMA7e5183udrt7JqUeBFreTe9625vc8Q6KupXA7377+98A
+97e6703wgtM73ymYtxSUIJWBG/zhEBc3whXO8Kg4POIYzzhWJr7vhmv84yCvCsdVUnGeXDzkUgDA
+VVSO8nWPPCUljwnLW3JxH7dk5ji3yo9nMnOeq6TnKQF6yyWObph2fCU7V7nQU+Lwpf886GBx+s1t
+0vOlS33oYXk5SmKOEqu/pOks6XHXeZxysitd7GMne9mvDvWgq33tXU+7zJ8O95Svne1YF3nR7Xx0
+ukOd5WhHSc3VnvP/nMe98H+netvtjni8p13sjV983r+i9YWH3eZKt3vcBQ+Ts0N+8Zk//N8dv3nN
+Mz7xb+/805NuetJPfieV57rpRb9zzr8k9KBPvOhLn/rb5x7xY5+77ofv+tfnJPZhR/rpWXLy3S+/
+9dA3fOlVz/vo+90lVbe+9I2/cSyyguLJXz30bf/zwJsf8Jk3POZ773u345zwdaf+5tHu+eJzvyfe
+V8UUwK988cdf4VGHcvZ3fzixFatABVTAfyYXFoEHcgNIgDZhgJ3gBDfwBAoIexCYgRkngZzwBD/g
+BBeoE82ngSTobhyYCVXwBFQABUugcEtRgjB4byfYBUwABFXABEEA/4AxuINjgQNiwYFQoAVU4AQ4
+mIMD1xRImIRKuIRMWBRK4INZ531UkANAAAVNEARBIARowW9CgWpe+IVgGIZiOIZkWIZmeIZg+IQB
+t4Zs2Ib8ZoBWoAVNQIRY+ANaeIRomId6uId82Id+WIZP+IOqUgVBEAVUoAQ3cAN2CARbyHAQ9IeQ
+GImSOImU6BZq6IaYiIlboQU/8ARAkAOJ+ANAwIjqFIiPWImomIqquIpa8oQ48IqwGIuyOIu0WItb
+AQVQwAQ6AIpBIIqOuHU+eIqsOIzEWIx++IRWkIzKuIzM2IzO+IxbQQVN8Im86ItbGIzGmI3auI1h
+iIzP+I3gCI2q4v8EOgAETJCIvTiK19iF3IiKwtiOZviOkuiN4ViP4bgVW6AETdAESlCHQkCKwMiO
+ergJZ0iQ6CGPbsEJZLOQ8KglBImQCLkWBnmG9GiPFtmMEsiJSsAEP5CFALlw2DiQe3iKERmRsnMe
+JtmQ7wiRJ1lfDLmHFXmRMmkFEmgFQKAES8CRWbiOKRmG8qgJ8CSR8ORALRmUZEOUQHmUK9kWEPSI
+SdmQLymRDtSUUfmIPNaTYhiTM2mRHKgFXNAETNAEP/ADPMmHTymUJPmSwriWTBmVQimVQEmVaQmV
+PymVRmmUANAFeUmUaKiVW1mPMwgEN7CPZFmKIdmHTpmUVKmUfFn/lUM5lbJzlkvZlBMJj3V5l5S5
+CXsJAHdphn75l+A4g1oABU8QlmXph4vJkItZkieZlnPpmK3plnSZkG8Jm3upl7I5hp8JmuI4QG14
+moiplrX5msIpnK/JlrFJnJbZlpjZkrepl1iJarvJmxipKkrwfYYpkGg4kdwZmSspmYqZmI05mY8J
+ld6ZmMWJl5zAmX2JA9TJldapCT6WCcBpnvZ5n2vxnJnAnp7pnu8JmPEpn1fZFdkZnV7YCfiZoHmo
+n/tJkf75n6EZoHrZY/RZoAp6oQ3JoA0KiA8Kob35Wtc5oXmZl7Znihh6otuooRuqmx3qodXpm/v5
+nCV6mChao6zI/6A/RobT6aFbEaL6OaPaaaNCWom3uZnt6aLf2KPyuQlAaqBD+qRnuJlG6qBI+qE+
+kQIh2glNyoNcOqJdt588saMQuhU/ZnM8yaU8+HabGaYtWqXJmG9biqYxCHRrqhNi+p9weqZyKqd1
+mhN3+p55WqA3V6bst6ct16c38afUGagB2XSr8ICGem+IahOKypuMCpI6OKLzCamROhauV6g0Uamg
+eammiHSPKnMNOH2S16m393nhN6igmqht6qakGoym+mMiKnXb136syquqOn3Z96s4Iap/uTonoadf
+qgoAUAXL6nSRV39y16uv6n6nF6zVFxXEupXGeg1xendlyqzM6v+so+d8uCet/ed38Cd5u+qns1ql
+L4UPcbqsVTCv9Eqvzcqs2Ed/xDd75rqq48d4ZXp3U5GtM1lnrxCvhPpj8yqu6Gp9/XquuQes1ycV
+BCuTBhsUeiqv9dpvC4uv2HeuuFeuD6uq0met/Iqt7Yqk7/oO8Vqv83oFMLuwsUqn+1p2I1t+hBey
+18epLVGxF7mtBpSxCetjHnuzMeiz8DlXnNStGuuy4Hp1AWu0Q4e09lirCje0sSq1BEi1AKq0DIOs
+WmuuXHuPeydvYBu2vTq2Eeq1MHW2aNupapukZYuxgvq20hq3VkoSmKAJ3Wq3cJuyLgq0Cee2fiun
+eOuM5PERg1v/t4UbqYf7oq8lEL/Qt41ruIDLowaICZRbuVz6uMx4FCDBrYTLuUd7uWO6SZo7uven
+ptzHs5RquniKut7QSap7E8CneCs3fBCHeVP3scIqq24KuZH7tYwbFeu6bjQbcckLsdbquiAZvJ8b
+b5urE8Cnr5qXfZD3ftqLfnRqdtebteYmdJ9Xrs1LsbALqHO7uI1aFaGns4Anse/Lr+6rrqjnr+0m
+vm4nsf6HstC7jFY7grZ7vd5arbPXvvPnqgDbgI1npvWGv9VHqM7Hpv2rjP/LvgJMs+nnf+97uyL7
+eyfbwK+6fRg8sOe7qOk7vTvBwdeqexu8ryJcv7/Lbsv7whAr/8ETTJMnXLs4oX6sS7IC/L05G8Qg
+C8QGZ6beq78TuxOe6785XLyHSrrAe8MVPBVRG3XgC8UsscQU3MTri8WdW8KWysWYCsBefH9a/KZi
+XKplvINnjMNsa2c6vMbG18ZTLMclSMdpbKt2fMdgPKp5rIN7bMZ9XKx/TMaBPLWDrK2FfMgaiMdv
+bGpxzMgo58jDS7xdLMmCfMNuXMlt68Tv5rw7CMozQclXWh6R7HNU4aypusM8t8piwbvTWsP8K8WL
+TMUW3LsfXBN4J8o5sbw7m8Q2PME9uoYozMo4+8DnB60NG63ZS611l6riC386+8y5HMtwl8H0WxWk
+rLdK4LTzWv/MATx1Kly+EVu95Pqv3Ru/APvA40oTDmyzBQzMSpzIBWudVRAA+JzPAQDOuOt+8xvB
+IpzMR9zC5MrAysd6LAzL7hzCo4fQVLHNEYGl96zP+MzPutyw47zM87eq8fvP1ay78azOMYzLERvP
+9jvPmtyjE03RFr3QHnzO5Hyt5vx805zLHr3CHSx8JW2yvPy8tOybK63PLd3KQcy904zAPM3MGx1/
+Qoyz2uvDzjyARlzTBezKw0rPFmvP3jzUmKxxEO0PEh1wXI2qVt3VYvHV6BDWWnrKZo1xaP0P3Zyl
+fMvWbQ1xb+0Las0JY13XBnfXzhDXa+3JfB1yfs0Kec2kdD3/2ARX2OkA2Hqd2Iptb4xdEo6N2IId
+2Rk32Z5Q2ZmQBHuN2fSm2Zxw2J392aDtbqJNC5ytl6Z92uyW2q2w2ix32a7d11j9s/Ys111QcbRd
+2xc9FrD9C2zY2pfnyjkttQotz/+K0j8NoqtA3LJM0mHry9m8wswtzBI6n9A9sQvc0xAYzRlsss8X
+zP2rpAJKopCdr6xL0Gj7zun6q6Ic3KOQpdqd3tLNzm/r3g3NwPF920nr3CIKndttv7c73QyNxBF8
+3eUdoANKn/ZtzQbs3Ro4w9W93Hbq31XL4I/d21Sn0O0r4d9Nf1Qd0woOveYNnXPN4b5db/KNpc/9
+4GRd1ise/6oY3rWvNbQDPuNnXeNk+8hmq+I63m4tbspAHuTrNuRXAuNGHhZIbsljvOS2ndJ/nIlU
+XuVWfuVYnuVavuVc3uUAx+Nry8lwbJi1WOZmfuZonuZqvuZs3uZu/uZwHuewKOVzO6OafOd4nud6
+vuc9rrQXYed8HuiCPuiEHsby1Q20a5iFvuiM3uiLDroAQbfA6OiUXumWbuKJO+aTfumc3umejts4
+FgyA/umkXuqkDukgoU6Kbuqs3uqUjuruMOquPuu0vueQjjWqvum1vuu8vuA+Luk+3evCPuyx++vq
+G+zEnuzK/t+lnOSrvuzQHu3Cq7dEruvSfu3QXqvYvu3Lrv/t3P7twu7t4D7utC7u5H7upm7u6L7u
+na7u7P7ur57H8D7vle7u9H7vgW7v+L7veK7v/P7vvi7mkPzsAF/w2G3ssm7wCu+u8r7wDq+yDf/w
+Eo++CH+NE3/xhi7wP27tGN/xGV7xBO/xIi+3IM/xI3/yTFzyyI7yLL/Jze7kbdzy4O7vMo/xNF/z
+E3/zOP/wOr/zC9/zPm/wQB/0AD/0RM/vRn/0+J70Sk/vTN/08P70UM/uVgJwCT/1Cl/1WLD1W3/1
+WF/wWm/ZJv/1Re9tSoAFYr/yZF/2Xnv2aR/za7/rYZ/iYx/3S2/2aE/3am/3d9/2ee/gIc/3fV/J
+bq/3cC/5+K0+94Bf94j/7oqf63vf+I6P928P5pIf7pRv+JZ/+bz++F7P+eju+RYP+vMu+oFP+udu
++oyP+t+u+pHP+q3fhLI/+7Rf+7Z/+7if+7q/+7zf+77/+8Af/MI//MRf/MZ//Mif/Mq//Mzf/M7/
+/NAf/dI//dRf/dZ//dif/dq//dzf/d7//eAf/uI//uRf/uZ//uif/uq//uzf/u7//vAf//I///Rf
+//Z///if//q///zf//7//4DQJThIWGh4iJiouMjY6PgIGSk5SVlpeYmZqbnJ2en5CRoqOkpaanqK
+mqq6ytrq+gobKztLW2t7i5uru8vb6/sL3BgIADs=
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image003.gif
+Content-Transfer-Encoding: base64
+Content-Type: image/gif
+
+R0lGODlhZwEaAXcAACH/C01TT0ZGSUNFOS4wDQAAAAFzUkdCAK7OHOkAIf8LR0FNTUFOT1cxLjAE
+XlsDAAAh/wtNU09GRklDRTkuMCwAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgA
+ABdwnLpRPAAh/wtNU09GRklDRTkuMBgAAAAMbXNPUE1TT0ZGSUNFOS4wh2xLwzkALAAAAABnARoB
+hwAAAAghaxAhaxApawgpaxApcxgxcxAxcxgxexg5ewghYxgpcwBCnAhKjABatQBCpQBKpQBavQhz
+1gB73iE5eyExeyE5hCFCezFKezFCczFKcylCcyFChClChClKhClKjDFKjDFSjDlSjDlSlDlalClC
+jDFKhDFSlClzKTlrpTFrvTFrtTlrtSF71iF7zilzzilzxiGMECGcCDmcOSmEKSmE3jmc9zGc9ymU
+7yGU7ymU9zmlGDm9GDG1EDm9MTm1MTmtMTmlMTHGMUJCQkJalEJanEJjnEpjnEJjlEpjpUprpUJr
+tVqMxkK9GEK1GFq9KVq9IVK1IVK9IVKl71rGWkrOSmuc3muc1nOUzmOtWmOl3mOt52Ol53PGMWvG
+KWvGMWPGKXvOQmPGQnPGQnvOSmvGa5x7GISEhISthITOUoTWe5zWc4TWc4zWY5TWc5TehKXee6Xe
+hKXGnL3Wtb3OtbXGra3nnMacGMaUGM6lId69a9bWzs7Wxv/Wa//ne///nP/3jPf3jP/3lP/vhP//
+pf//9////wECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+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
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image004.gif
+Content-Transfer-Encoding: base64
+Content-Type: image/gif
+
+R0lGODlhSQErAXcAACH/C01TT0ZGSUNFOS4wDQAAAAFzUkdCAK7OHOkAIf8LTVNPRkZJQ0U5LjAY
+AAAADG1zT1BNU09GRklDRTkuMFx9SshlACwAAAAASQErAYYAAAAAAIQIIWsQIWsIIWMQKXMQKWsI
+KWsYKXMYMXMQMXMYMXsYOXsAQpwISowAWrUAQqUASqUAWr0Ic9YAe94hMXshOXshOYQpOYQhQnsx
+SnsxQnMxSnMpQnMpQoQhQoQpQowpSowpSoQxSowxUow5UpQ5Uow5WpQxSoQ5a6Uxa70xa7U5a7Uh
+e9Yhe84pc84pc8YphN45nPcxnPcplO8hlO8plPdaWlpCQkJSUlJCWpRCWpxCY5xKY5xCY5RCa7Va
+jMZSpe9ra2tjY2Nzc3N7e3trnN5rnNZzlM5jpd5jredjpeeEhACEhIScnJyMjIyUlJS1tbWlpaW9
+vb3W1s7W1tbOzs7Gxsbe3t7n59b///f///8BAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMB
+AgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMBAgMB
+AgMBAgMBAgMBAgMBAgMBAgMBAgMH/4BbgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGi
+o6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDoCnGx8dbyMvJzM7P0NHQhNLKz9bS2drb
+3N3e3+Dh4uPGnePY5Ofc6Ont7u/w8fLgnuWC9vbYgyn789rs+ZLts0aQH79+/hIqXMiwnTmD5SLq
+gxix4bRoyiYWNJixmcWPIEM2fDiRIzV0AEMSvHfwnkaOMEuKnEmzZjiSHjsiQ2mTIkyJzToKpZiy
+p9GjNUlSWcq0qdOnUKNKnUq1qtWrWLNq3cq1q9evYL0+TEGFmNmzaF8dKxu2rdu3cP/jyp1Lt+7U
+sWzt6t3Lt6/fv3rxblkqoLDhw4gPDyAwQEABAQYcQ5Zc4MDjypgNFNDMeTMCzp83JzCQoMDo0qgV
+LDCtWnWCBa5hL0hQ4XUCC7Zx677N2wID38B/W7ggnPgFCxiGW/CgnLnz5dA9ZJDu4QN169Oxe/AA
+wrqHEB5EeBjxffx4EeRHoF+vvj36EO1HxCcxgn6J+iPumyBxvwT///4FCOCAJZjg3wkmIHhCCTqU
+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
+fQi0pD3blbzIpn2FRz7LVh3oPD4VhH7dRR4WbJzoqqjosGzZl13aaE3Zc421om64fq4VJU6vmh7Z
+Wb7ofS7rx1vntD3qdn7apr7ju87mq37pA+jmt0zHhe7dMy7lszyKzdjLN167YA67dG3mPz7Wv1yO
+X07jmC7sx0zsr+7/4CNOzdpuzdxO5LD+7dR33Dwt4+Z+7uHuzePOyuma4us+j+1ezu++160s4vNO
+71Wuyvd+0iit7/sex+M5xMVO3gMPGM797yddFvL98BAf8RJfk/XOzgz/0fm93xp/Ceh+8ecs8Anv
+uAVv0hgP8iFP7v86xfDOrfJ+8iifrTt84tFs8iGf6S+v7i6vFx0P5zOf8/hc8fPs8e584Cw+3Tsv
+8zB7x7BN2NP+ytOnvv539Ae/3nFdvHu8hlhvfVCPwkCvz0Jfz3JO62ru9FGuyW1r9mh+52dP2F6e
+flLf7RXO6bM+9kqu459b6qHO58ib2Vzf78PO80n/2tdb6WSfjZ8L/7R3v+POzvRoX/QK3/UP/fWS
+LNm0ruqWLvZ+nviVvepzPbw4DPkWLfnYLfeifOp1b/i2rvmLX/qP7vgb7ffbDvglG9i0ndZsb+2Y
+n/aJrftJPdaxTX9vf/OGPheu/xfF/8Gg39Kiv+lxcfx94fzAn/w0vfzl7vN0Efwr/6wtf/LYj+/x
+TvMJ3/0Av/01L/07Tf3ebv0rbf6IkO7Dr/7rD/viLvsaS/7hz/6H4P7GDv/xP/IHPfWAgCU4SFho
+eIiYqDhItUX1CBkpOUlZaXmJmam5ydnp+anZhLNIWrh1ipqqusq6lZLy6EglWlpre4vbCLrL2+v7
+CxwcSYur2HqMfP/6GvtIXPwMfasrTF1tfY096RxNmOy9ujy9zU1eLjiNDVCtnt3u3jlO/j2vDCs+
+ap5Pju4L4M/+COA/gZIABpxkMFPCSAsrNXzXLh43evPCyZKoL2Mpfr0IHqSy0B9DgyILBnuIEKLK
+ZvjyUfxmkaXGmdJk/fLI7mHCnQj/QfIZUGTOkkGHChRKdGU2jNBeeos5qyXNqYk48sL5MSVDk1xB
+miTpVWtYr2CVvmP6zGkyqGipTrW6a+DPrF3pjp37US5RdQ2P+txr9qzUcmqRsR3sNjEWuKBC2sUL
++TFBjyD53oXc13LgiIgnFm51WLHoczb7ie1b9/JYzXcto84KFuX/ZmBtcX0Gbe9i59EzGX/iObIk
+0Mp+Cw7XK7yoceXEf8qezav2rdusQvNO7Ns09O3cM0m3RR1cbpnX3Wbv2D29+mG7m4ZPZb3829Lr
+69v/9b3W+1RNmjCLKh9V591HYIGV5FfKfqhkkcV/CAZYk4ESTnjJg4somIqD7UHIzYAUfriehcZg
+eIqGHPZGH4gq3idiIiSWeM+JGjXSX4023ohjjjruyGOPPv4IZJBCDklkkBsW86IsusmYUSNJPgll
+lFKq1SIiSZrIZD4ershlYFUecmWMWZqzZZdmQvSlIWEuOWY5ZZ4JJzZpmvIilm12mGKceqJ5pG11
+inlnNG/uSagv/3N28yebgUIzaKGOfnLoIGuSt+gzjdqXlCWZPspJpIJMCmClluYZ13DvUEbJc8Zt
+yolc9XmKBaiwynhpqpup+tglqLZqIKyy9inqIbWK5VxOeJnKHFCu/lUUScIlV1Zeewk1V0jQrpas
+atEBC16ilAZry7A9OTZZZNGyhi62mFULnF2sqassu7Bhy+q2Gf0Kbi6kokecsUYldS691Zq7rmPH
+/hVbSgO9q9nC2vbiq7eh5luLuA7BG5ZOWx1ULscEz2uwx7D5q3BdDaeGH7f6STzriRbbSlnMG4M8
+sMitFXzavOuWbLPOZFUTMYl2UkzKy80WiyqyzS3dccamOmvsqv9Q8wUw0sW6G1yuEKucIMtc52s0
+gbgKM3Z3QWM4NNGKhL2e0u6Uzd3ZCqatNiJsc4r3t4R5XXfR++YNODxfX8h332v/HXjimMi9H92G
+E3K34oQy/p7jj5MmeeadDj6i0IBeXsgsRY5Oeummn4566jdy7mLhoBeCQ+yyz0577bbfjnvuuu/O
+e+++/w588MDfi6EVVlj+evLKLx8rhjnkgDzz0k9PMYnxUY999sFaP97E2n8PPpPcRx9++eZPNf7n
+56/PvkbpK9p+/PJH877e89+Pf+f7XZ9///5/6rr/CRB/9fPeAA/YvgK2DIEMBNeLurfABkowUNZT
+kv0miEHpVZDvfBnsoOE2qD4PivByD+TgCE8oKgWyDoUshJAKWwjD6mGIfzGsYZteaMMc3nCGEFyh
+Dn+oDxwCcYjyESIRjygaIyJxiejjoQmZCMW0ODGEUayiZxREQytqEUlThN8WvzidLl4QjGRs3ZTO
+iMY0qnGNbGyjG98IxzjKcY50rKMd74jHPOpxj3zsox//CMhACnKQhCykIQ+JyEQqcpGMbKQjHwnJ
+SEpykpSspCUviclManKTnOykJz8JylCKcpSkLKUpT4nKVKpylaxspStfCctYynKWtKylLW+Jy1zq
+cpe87KUvfwnMYApzmMQspjFHGQgAOw==
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image005.png
+Content-Transfer-Encoding: base64
+Content-Type: image/png
+
+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
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image006.jpg
+Content-Transfer-Encoding: base64
+Content-Type: image/jpeg
+
+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
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/image007.gif
+Content-Transfer-Encoding: base64
+Content-Type: image/gif
+
+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
+
+------=_NextPart_01C82D14.2EA302D0
+Content-Location: file:///C:/5145A1F0/DasyServerHelp_files/filelist.xml
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/xml; charset="utf-8"
+
+<xml xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+ <o:MainFile HRef=3D"../DasyServerHelp.htm"/>
+ <o:File HRef=3D"image001.gif"/>
+ <o:File HRef=3D"image002.gif"/>
+ <o:File HRef=3D"image003.gif"/>
+ <o:File HRef=3D"image004.gif"/>
+ <o:File HRef=3D"image005.png"/>
+ <o:File HRef=3D"image006.jpg"/>
+ <o:File HRef=3D"image007.gif"/>
+ <o:File HRef=3D"filelist.xml"/>
+</xml>
+------=_NextPart_01C82D14.2EA302D0--

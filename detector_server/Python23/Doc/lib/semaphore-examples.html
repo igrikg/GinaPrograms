@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="semaphore-objects.html">
+<LINK REL="parent" href="semaphore-objects.html">
+<LINK REL="next" href="event-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Semaphore Example ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.5.4.1 Semaphore Example </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.5.4 Semaphore Objects" 
+  href="semaphore-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.5.4 Semaphore Objects" 
+  href="semaphore-objects.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.5.5 Event Objects" 
+  href="event-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="event-objects.html">7.5.5 Event Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION009541000000000000000">&nbsp;</A>
+<BR>
+7.5.4.1 <tt class="class">Semaphore</tt> Example 
+</H3>
+
+<P>
+Semaphores are often used to guard resources with limited capacity, for
+example, a database server.  In any situation where the size of the resource
+size is fixed, you should use a bounded semaphore.  Before spawning any
+worker threads, your main thread would initialize the semaphore:
+
+<P>
+<div class="verbatim"><pre>
+maxconnections = 5
+...
+pool_sema = BoundedSemaphore(value=maxconnections)
+</pre></div>
+
+<P>
+Once spawned, worker threads call the semaphore's acquire and release
+methods when they need to connect to the server:
+
+<P>
+<div class="verbatim"><pre>
+pool_sema.acquire()
+conn = connectdb()
+... use connection ...
+conn.close()
+pool_sema.release()
+</pre></div>
+
+<P>
+The use of a bounded semaphore reduces the chance that a programming error
+which causes the semaphore to be released more than it's acquired will go
+undetected.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.5.4 Semaphore Objects" 
+  rel="prev" title="7.5.4 Semaphore Objects" 
+  href="semaphore-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.5.4 Semaphore Objects" 
+  rel="parent" title="7.5.4 Semaphore Objects" 
+  href="semaphore-objects.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.5.5 Event Objects" 
+  rel="next" title="7.5.5 Event Objects" 
+  href="event-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="event-objects.html">7.5.5 Event Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

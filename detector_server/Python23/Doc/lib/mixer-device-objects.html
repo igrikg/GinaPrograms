@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="ossaudio-device-objects.html">
+<LINK REL="parent" href="module-ossaudiodev.html">
+<LINK REL="next" href="crypto.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Mixer Device Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>14.11.2 Mixer Device Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.11.1 Audio Device Objects" 
+  href="ossaudio-device-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.11 ossaudiodev  " 
+  href="module-ossaudiodev.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="15. Cryptographic Services" 
+  href="crypto.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="ossaudio-device-objects.html">14.11.1 Audio Device Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-ossaudiodev.html">14.11 ossaudiodev  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="crypto.html">15. Cryptographic Services</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00161120000000000000000">&nbsp;</A>
+<BR>
+14.11.2 Mixer Device Objects 
+</H2>
+
+<P>
+File-like interface
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4476"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+This method closes the open mixer device file.  Any further attempts to
+use the mixer after this file is closed will raise an IOError.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4477"><tt class="method">fileno</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns the file handle number of the open mixer device file.
+</dl>
+
+<P>
+Mixer interface
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4478"><tt class="method">controls</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+This method returns a bitmask specifying the available mixer controls
+(``Control'' being a specific mixable ``channel'', such as
+<tt class="constant">SOUND_MIXER_PCM</tt> or <tt class="constant">SOUND_MIXER_SYNTH</tt>).  This
+bitmask indicates a subset of all available mixer channels--the
+<tt class="constant">SOUND_MIXER_*</tt> constants defined at module level.  To determine if,
+for example, the current mixer object supports a PCM mixer, use the
+following Python code:
+
+<P>
+<div class="verbatim"><pre>
+mixer=ossaudiodev.openmixer()
+if mixer.channels() &amp; (1 &lt;&lt; ossaudiodev.SOUND_MIXER_PCM):
+	# PCM is supported
+	&lt;code&gt;
+</pre></div>
+
+<P>
+For most purposes, the <tt class="constant">SOUND_MIXER_VOLUME</tt> (Master volume) and
+<tt class="constant">SOUND_MIXER_PCM</tt> channels should suffice--but code that uses the
+mixer should be flexible when it comes to choosing sound channels.  On
+the Gravis Ultrasound, for example, <tt class="constant">SOUND_MIXER_VOLUME</tt> does not
+exist.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4479"><tt class="method">stereocontrols</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns a bitmask indicating stereo mixer channels.  If a bit is set,
+the corresponding channel is stereo; if it is unset, the channel is
+either monophonic or not supported by the mixer (use in combination with
+<tt class="method">channels()</tt> to determine which).
+
+<P>
+See the code example for the <tt class="method">channels()</tt> function for an example
+of getting data from a bitmask.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4480"><tt class="method">reccontrols</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns a bitmask specifying the mixer controls that may be used to
+record.  See the code example for <tt class="method">controls()</tt> for an example of
+reading from a bitmask.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4481"><tt class="method">get</tt></a></b>(</nobr></td>
+  <td><var>channel</var>)</td></tr></table>
+<dd>
+Returns the volume of a given mixer channel.  The returned volume is a
+2-tuple <code>(left_volume,right_volume)</code>.  Volumes are specified as
+numbers from 0 (silent) to 100 (full volume).  If the channel is
+monophonic, a 2-tuple is still returned, but both channel volumes are
+the same.
+
+<P>
+If an unknown channel is specified, <tt class="exception">error</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4482"><tt class="method">set</tt></a></b>(</nobr></td>
+  <td><var>channel, (left, right)</var>)</td></tr></table>
+<dd>
+Sets the volume for a given mixer channel to <code>(left,right)</code>.
+<code>left</code> and <code>right</code> must be ints and between 0 (silent) and 100
+(full volume).  On success, the new volume is returned as a 2-tuple.
+Note that this may not be exactly the same as the volume specified,
+because of the limited resolution of some soundcard's mixers.
+
+<P>
+Raises <tt class="exception">IOError</tt> if an invalid mixer channel was specified;
+<tt class="exception">TypeError</tt> if the argument format was incorrect, and
+<tt class="exception">error</tt> if the specified volumes were out-of-range.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4483"><tt class="method">get_recsrc</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+This method returns a bitmask indicating which channel or channels are
+currently being used as a recording source.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4484"><tt class="method">set_recsrc</tt></a></b>(</nobr></td>
+  <td><var>bitmask</var>)</td></tr></table>
+<dd>
+Call this function to specify a recording source.  Returns a bitmask
+indicating the new recording source (or sources) if successful; raises
+<tt class="exception">IOError</tt> if an invalid source was specified.  To set the current
+recording source to the microphone input:
+
+<P>
+<div class="verbatim"><pre>
+mixer.setrecsrc (1 &lt;&lt; ossaudiodev.SOUND_MIXER_MIC)
+</pre></div>
+</dl>
+
+<P>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.11.1 Audio Device Objects" 
+  rel="prev" title="14.11.1 Audio Device Objects" 
+  href="ossaudio-device-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.11 ossaudiodev  " 
+  rel="parent" title="14.11 ossaudiodev  " 
+  href="module-ossaudiodev.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="15. Cryptographic Services" 
+  rel="next" title="15. Cryptographic Services" 
+  href="crypto.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="ossaudio-device-objects.html">14.11.1 Audio Device Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-ossaudiodev.html">14.11 ossaudiodev  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="crypto.html">15. Cryptographic Services</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

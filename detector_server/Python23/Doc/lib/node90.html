@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-pprint.html">
+<LINK REL="parent" href="module-pprint.html">
+<LINK REL="next" href="module-repr.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="PrettyPrinter Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.25.1 PrettyPrinter Objects</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.25 pprint  " 
+  href="module-pprint.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.25 pprint  " 
+  href="module-pprint.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.26 repr  " 
+  href="module-repr.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-pprint.html">3.25 pprint  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-pprint.html">3.25 pprint  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-repr.html">3.26 repr  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052510000000000000000">&nbsp;</A>
+<BR>
+3.25.1 PrettyPrinter Objects
+</H2>
+
+<P>
+<tt class="class">PrettyPrinter</tt> instances have the following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-740"><tt class="method">pformat</tt></a></b>(</nobr></td>
+  <td><var>object</var>)</td></tr></table>
+<dd>
+Return the formatted representation of <var>object</var>.  This takes into
+Account the options passed to the <tt class="class">PrettyPrinter</tt> constructor.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-741"><tt class="method">pprint</tt></a></b>(</nobr></td>
+  <td><var>object</var>)</td></tr></table>
+<dd>
+Print the formatted representation of <var>object</var> on the configured
+stream, followed by a newline.
+</dl>
+
+<P>
+The following methods provide the implementations for the
+corresponding functions of the same names.  Using these methods on an
+instance is slightly more efficient since new <tt class="class">PrettyPrinter</tt>
+objects don't need to be created.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-742"><tt class="method">isreadable</tt></a></b>(</nobr></td>
+  <td><var>object</var>)</td></tr></table>
+<dd>
+Determine if the formatted representation of the object is
+``readable,'' or can be used to reconstruct the value using
+<tt class="function">eval()</tt><a name="l2h-743">&nbsp;</a>.  Note that this returns false for
+recursive objects.  If the <var>depth</var> parameter of the
+<tt class="class">PrettyPrinter</tt> is set and the object is deeper than allowed,
+this returns false.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-744"><tt class="method">isrecursive</tt></a></b>(</nobr></td>
+  <td><var>object</var>)</td></tr></table>
+<dd>
+Determine if the object requires a recursive representation.
+</dl>
+
+<P>
+This method is provided as a hook to allow subclasses to modify the
+way objects are converted to strings.  The default implementation uses
+the internals of the <tt class="function">saferepr()</tt> implementation.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-745"><tt class="method">format</tt></a></b>(</nobr></td>
+  <td><var>object, context, maxlevels, level</var>)</td></tr></table>
+<dd>
+Returns three values: the formatted version of <var>object</var> as a
+string, a flag indicating whether the result is readable, and a flag
+indicating whether recursion was detected.  The first argument is the
+object to be presented.  The second is a dictionary which contains the
+<tt class="function">id()</tt> of objects that are part of the current presentation
+context (direct and indirect containers for <var>object</var> that are
+affecting the presentation) as the keys; if an object needs to be
+presented which is already represented in <var>context</var>, the third
+return value should be true.  Recursive calls to the <tt class="method">format()</tt>
+method should add additionaly entries for containers to this
+dictionary.  The fourth argument, <var>maxlevels</var>, gives the requested
+limit to recursion; this will be <code>0</code> if there is no requested
+limit.  This argument should be passed unmodified to recursive calls.
+The fourth argument, <var>level</var> gives the current level; recursive
+calls should be passed a value less than that of the current call.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.25 pprint  " 
+  rel="prev" title="3.25 pprint  " 
+  href="module-pprint.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.25 pprint  " 
+  rel="parent" title="3.25 pprint  " 
+  href="module-pprint.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.26 repr  " 
+  rel="next" title="3.26 repr  " 
+  href="module-repr.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-pprint.html">3.25 pprint  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-pprint.html">3.25 pprint  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-repr.html">3.26 repr  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

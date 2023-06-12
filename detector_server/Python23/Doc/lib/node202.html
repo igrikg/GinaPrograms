@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="datetime-timedelta.html">
+<LINK REL="prev" href="module-datetime.html">
+<LINK REL="parent" href="module-datetime.html">
+<LINK REL="next" href="datetime-timedelta.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Available Types">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.9.1 Available Types</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.2 timedelta Objects" 
+  href="datetime-timedelta.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-timedelta.html">6.9.2 timedelta Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008910000000000000000">
+6.9.1 Available Types</A>
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1667"><tt class="class">date</tt></a></b>
+<dd>
+  An idealized naive date, assuming the current Gregorian calendar
+  always was, and always will be, in effect.
+  Attributes: <tt class="member">year</tt>, <tt class="member">month</tt>, and <tt class="member">day</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1668"><tt class="class">time</tt></a></b>
+<dd>
+  An idealized time, independent of any particular day, assuming
+  that every day has exactly 24*60*60 seconds (there is no notion
+  of "leap seconds" here).
+  Attributes: <tt class="member">hour</tt>, <tt class="member">minute</tt>, <tt class="member">second</tt>,
+              <tt class="member">microsecond</tt>, and <tt class="member">tzinfo</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1669"><tt class="class">datetime</tt></a></b>
+<dd>
+  A combination of a date and a time.
+  Attributes: <tt class="member">year</tt>, <tt class="member">month</tt>, <tt class="member">day</tt>,
+              <tt class="member">hour</tt>, <tt class="member">minute</tt>, <tt class="member">second</tt>,
+              <tt class="member">microsecond</tt>, and <tt class="member">tzinfo</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1670"><tt class="class">timedelta</tt></a></b>
+<dd>
+  A duration expressing the difference between two <tt class="class">date</tt>,
+  <tt class="class">time</tt>, or <tt class="class">datetime</tt> instances to microsecond
+  resolution.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1671"><tt class="class">tzinfo</tt></a></b>
+<dd>
+  An abstract base class for time zone information objects.  These
+  are used by the  <tt class="class">datetime</tt> and <tt class="class">time</tt> classes to
+  provide a customizable notion of time adjustment (for example, to
+  account for time zone and/or daylight saving time).
+</dl>
+
+<P>
+Objects of these types are immutable.
+
+<P>
+Objects of the <tt class="class">date</tt> type are always naive.
+
+<P>
+An object <var>d</var> of type <tt class="class">time</tt> or <tt class="class">datetime</tt> may be
+naive or aware.  <var>d</var> is aware if <code><var>d</var>.tzinfo</code> is not
+<code>None</code> and <code><var>d</var>.tzinfo.utcoffset(<var>d</var>)</code> does not return
+<code>None</code>.  If <code><var>d</var>.tzinfo</code> is <code>None</code>, or if
+<code><var>d</var>.tzinfo</code> is not <code>None</code> but
+<code><var>d</var>.tzinfo.utcoffset(<var>d</var>)</code> returns <code>None</code>, <var>d</var>
+is naive.
+
+<P>
+The distinction between naive and aware doesn't apply to
+<code>timedelta</code> objects.
+
+<P>
+Subclass relationships:
+
+<P>
+<div class="verbatim"><pre>
+object
+    timedelta
+    tzinfo
+    time
+    date
+        datetime
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.9 datetime  " 
+  rel="prev" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.9 datetime  " 
+  rel="parent" title="6.9 datetime  " 
+  href="module-datetime.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.9.2 timedelta Objects" 
+  rel="next" title="6.9.2 timedelta Objects" 
+  href="datetime-timedelta.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-datetime.html">6.9 datetime  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="datetime-timedelta.html">6.9.2 timedelta Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

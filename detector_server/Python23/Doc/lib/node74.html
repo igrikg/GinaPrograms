@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node75.html">
+<LINK REL="prev" href="module-shelve.html">
+<LINK REL="parent" href="module-shelve.html">
+<LINK REL="next" HREF="node75.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Restrictions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.17.1 Restrictions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.17 shelve  " 
+  href="module-shelve.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.17 shelve  " 
+  href="module-shelve.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.17.2 Example" 
+  HREF="node75.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-shelve.html">3.17 shelve  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shelve.html">3.17 shelve  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node75.html">3.17.2 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051710000000000000000">
+3.17.1 Restrictions</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>The choice of which database package will be used
+(such as <tt class="module"><a href="module-dbm.html">dbm</a></tt>, <tt class="module"><a href="module-gdbm.html">gdbm</a></tt> or <tt class="module"><a href="module-bsddb.html">bsddb</a></tt>) depends on
+which interface is available.  Therefore it is not safe to open the database
+directly using <tt class="module"><a href="module-dbm.html">dbm</a></tt>.  The database is also (unfortunately) subject
+to the limitations of <tt class="module"><a href="module-dbm.html">dbm</a></tt>, if it is used -- this means
+that (the pickled representation of) the objects stored in the
+database should be fairly small, and in rare cases key collisions may
+cause the database to refuse updates.
+<a name="l2h-658">&nbsp;</a>
+<P>
+</LI>
+<LI>Depending on the implementation, closing a persistent dictionary may
+or may not be necessary to flush changes to disk.  The <tt class="method">__del__</tt>
+method of the <tt class="class">Shelf</tt> class calls the <tt class="method">close</tt> method, so the
+programmer generally need not do this explicitly.
+
+<P>
+</LI>
+<LI>The <tt class="module">shelve</tt> module does not support <i>concurrent</i> read/write
+access to shelved objects.  (Multiple simultaneous read accesses are
+safe.)  When a program has a shelf open for writing, no other program
+should have it open for reading or writing.  <font style="font-variant: small-caps;">Unix</font> file locking can
+be used to solve this, but this differs across <font style="font-variant: small-caps;">Unix</font> versions and
+requires knowledge about the database implementation used.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-655"><tt class="class">Shelf</tt></a></b>(</nobr></td>
+  <td><var>dict</var><big>[</big><var>, protocol=None</var><big>[</big><var>, writeback=False</var><big>[</big><var>, binary=None</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+A subclass of <tt class="class">UserDict.DictMixin</tt> which stores pickled values in the
+<var>dict</var> object.  
+
+<P>
+By default, version 0 pickles are used to serialize values.  The
+version of the pickle protocol can be specified with the
+<var>protocol</var> parameter. See the <tt class="module">pickle</tt> documentation for a
+discussion of the pickle protocols. 
+<span class="versionnote">Changed in version 2.3:
+The <var>protocol</var>
+parameter was added. The <var>binary</var> parameter is deprecated and
+provided for backwards compatibility only.</span>
+
+<P>
+If the <var>writeback</var> parameter is <code>True</code>, the object will hold a
+cache of all entries accessed and write them back to the <var>dict</var> at
+sync and close times.  This allows natural operations on mutable entries,
+but can consume much more memory and make sync and close take a long time.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-656"><tt class="class">BsdDbShelf</tt></a></b>(</nobr></td>
+  <td><var>dict</var><big>[</big><var>, protocol=None</var><big>[</big><var>, writeback=False</var><big>[</big><var>, binary=None</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+
+<P>
+A subclass of <tt class="class">Shelf</tt> which exposes <tt class="method">first</tt>,
+<tt class="method">next</tt>, <tt class="method">previous</tt>, <tt class="method">last</tt> and
+<tt class="method">set_location</tt> which are available in the <tt class="module">bsddb</tt> module
+but not in other database modules.  The <var>dict</var> object passed to
+the constructor must support those methods.  This is generally
+accomplished by calling one of <tt class="function">bsddb.hashopen</tt>,
+<tt class="function">bsddb.btopen</tt> or <tt class="function">bsddb.rnopen</tt>.  The optional
+<var>protocol</var>, <var>writeback</var>, and <var>binary</var> parameters have the
+same interpretation as for the <tt class="class">Shelf</tt> class.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-657"><tt class="class">DbfilenameShelf</tt></a></b>(</nobr></td>
+  <td><var>filename</var><big>[</big><var>, flag='c'</var><big>[</big><var>, protocol=None</var><big>[</big><var>, writeback=False</var><big>[</big><var>, binary=None</var><big>]</big><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+
+<P>
+A subclass of <tt class="class">Shelf</tt> which accepts a <var>filename</var> instead of
+a dict-like object.  The underlying file will be opened using
+<tt class="function">anydbm.open</tt>.  By default, the file will be created and
+opened for both read and write.  The optional <var>flag</var> parameter has
+the same interpretation as for the <tt class="function">open</tt> function.  The
+optional <var>protocol</var>, <var>writeback</var>, and <var>binary</var> parameters
+have the same interpretation as for the <tt class="class">Shelf</tt> class.
+
+<P>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.17 shelve  " 
+  rel="prev" title="3.17 shelve  " 
+  href="module-shelve.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.17 shelve  " 
+  rel="parent" title="3.17 shelve  " 
+  href="module-shelve.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.17.2 Example" 
+  rel="next" title="3.17.2 Example" 
+  HREF="node75.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-shelve.html">3.17 shelve  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shelve.html">3.17 shelve  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node75.html">3.17.2 Example</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

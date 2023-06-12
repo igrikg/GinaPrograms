@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-extending-other-reasons.html">
+<LINK REL="prev" href="optparse-adding-types.html">
+<LINK REL="parent" href="optparse-extending.html">
+<LINK REL="next" href="optparse-extending-other-reasons.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Adding new actions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.5.2 Adding new actions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.1 Adding new types" 
+  href="optparse-adding-types.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5.3 Other reasons to" 
+  href="optparse-extending-other-reasons.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-adding-types.html">6.20.5.1 Adding new types</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending-other-reasons.html">6.20.5.3 Other reasons to</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082052000000000000000">&nbsp;</A>
+<BR>
+6.20.5.2 Adding new actions
+</H3>
+
+<P>
+Adding new actions is a bit trickier, because you have to understand
+that <tt class="module">optparse</tt> has a couple of classifications for actions:
+
+<P>
+<dl class="definitions">
+<dt><b><a name="l2h-2039">``store'' actions</a></b>
+<dd>
+    actions that result in <tt class="module">optparse</tt> storing a value to an attribute
+    of the OptionValues instance; these options require a <var>dest</var>
+    attribute to be supplied to the Option constructor
+<dt><b><a name="l2h-2040">``typed'' actions</a></b>
+<dd>
+    actions that take a value from the command line and expect it to be
+    of a certain type; or rather, a string that can be converted to a
+    certain type.  These options require a <var>type</var> attribute to the
+    Option constructor.
+</dl>
+
+<P>
+Some default ``store'' actions are <var>store</var>, <var>store_const</var>,
+<var>append</var>, and <var>count</var>. The default ``typed'' actions are
+<var>store</var>, <var>append</var>, and <var>callback</var>.
+
+<P>
+When you add an action, you need to decide if it's a ``store'' action,
+a ``typed'', neither, or both.  Three class attributes of
+<tt class="class">Option</tt> (or your <tt class="class">Option</tt> subclass) control this:
+
+<P>
+<dl><dt><b><a name="l2h-2036"><tt class="member">ACTIONS</tt></a></b>
+<dd>
+    All actions must be listed as strings in ACTIONS.
+</dl>
+<dl><dt><b><a name="l2h-2037"><tt class="member">STORE_ACTIONS</tt></a></b>
+<dd>
+    ``store'' actions are additionally listed here.
+</dl>
+<dl><dt><b><a name="l2h-2038"><tt class="member">TYPED_ACTIONS</tt></a></b>
+<dd>
+    ``typed'' actions are additionally listed here.
+</dl>
+
+<P>
+In order to actually implement your new action, you must override
+<tt class="class">Option</tt>'s <tt class="method">take_action()</tt> method and add a case that
+recognizes your action.
+
+<P>
+For example, let's add an ``extend'' action.  This is similar to the
+standard ``append'' action, but instead of taking a single value from
+the command-line and appending it to an existing list, ``extend'' will
+take multiple values in a single comma-delimited string, and extend an
+existing list with them.  That is, if <b class="programopt">--names</b> is an
+``extend'' option of type string, the command line:
+
+<P>
+<div class="verbatim"><pre>
+--names=foo,bar --names blah --names ding,dong
+</pre></div>
+
+<P>
+would result in a list:
+
+<P>
+<div class="verbatim"><pre>
+["foo", "bar", "blah", "ding", "dong"]
+</pre></div>
+
+<P>
+Again we define a subclass of <tt class="class">Option</tt>:
+
+<P>
+<div class="verbatim"><pre>
+class MyOption (Option):
+
+    ACTIONS = Option.ACTIONS + ("extend",)
+    STORE_ACTIONS = Option.STORE_ACTIONS + ("extend",)
+    TYPED_ACTIONS = Option.TYPED_ACTIONS + ("extend",)
+
+    def take_action (self, action, dest, opt, value, values, parser):
+        if action == "extend":
+            lvalue = value.split(",")
+            values.ensure_value(dest, []).extend(lvalue)
+        else:
+            Option.take_action(
+                self, action, dest, opt, value, values, parser)
+</pre></div>
+
+<P>
+Features of note:
+
+<P>
+
+<UL>
+<LI>``extend'' both expects a value on the command-line and stores that
+value somewhere, so it goes in both <tt class="member">STORE_ACTIONS</tt> and
+<tt class="member">TYPED_ACTIONS</tt>.
+
+<P>
+</LI>
+<LI><tt class="method">MyOption.take_action()</tt> implements just this one new
+action, and passes control back to <tt class="method">Option.take_action()</tt> for
+the standard <tt class="module">optparse</tt> actions.
+
+<P>
+</LI>
+<LI><var>values</var> is an instance of the <tt class="class">Values</tt> class, which
+provides the very useful <tt class="method">ensure_value()</tt>
+method. <tt class="method">ensure_value()</tt> is essentially <tt class="function">getattr()</tt>
+with a safety valve; it is called as:
+
+<P>
+<div class="verbatim"><pre>
+values.ensure_value(attr, value)
+</pre></div>
+</LI>
+</UL>
+
+<P>
+If the <tt class="member">attr</tt> attribute of <var>values</var> doesn't exist or is
+<code>None</code>, then <tt class="method">ensure_value()</tt> first sets it to <var>value</var>, and
+then returns <var>value</var>. This is very handy for actions like
+``extend'', ``append'', and ``count'', all of which accumulate data in
+a variable and expect that variable to be of a certain type (a list
+for the first two, an integer for the latter).  Using
+<tt class="method">ensure_value()</tt> means that scripts using your action don't
+have to worry about setting a default value for the option
+destinations in question; they can just leave the default as <code>None</code> and
+<tt class="method">ensure_value()</tt> will take care of getting it right when it's
+needed.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.1 Adding new types" 
+  rel="prev" title="6.20.5.1 Adding new types" 
+  href="optparse-adding-types.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5.3 Other reasons to" 
+  rel="next" title="6.20.5.3 Other reasons to" 
+  href="optparse-extending-other-reasons.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-adding-types.html">6.20.5.1 Adding new types</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending-other-reasons.html">6.20.5.3 Other reasons to</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

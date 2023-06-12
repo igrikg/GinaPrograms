@@ -1,0 +1,1099 @@
+diff
+                ActiveState's Changes to Python and PyWin32
+
+This document describes changes made to the core Python and PyWin32 sources
+by ActiveState Corp. for this distribution.
+
+
+=============================================================================
+    The Python interactive shell version/copyright-info message was extended
+    to properly identify the Python executable as ActivePython (with the
+    appropriate ActivePython version number). As well the interactive shell's
+    license() was adjusted to properly show ActivePython's license:
+
+--- dist/src/Lib/site.py	Wed Apr 10 09:16:01 2002
++++ src/Core/Lib/site.py	Wed Apr 10 09:03:49 2002
+@@ -257,14 +257,18 @@
+         "credits",
+         "Jython is maintained by the Jython developers (www.jython.org).")
+ else:
+-    __builtin__.credits = _Printer("credits", """\
++    __builtin__.credits = _Printer("credits", """ActivePython is a Python distribution by ActiveState Corp.
+ Thanks to CWI, CNRI, BeOpen.com, Digital Creations and a cast of thousands
+ for supporting Python development.  See www.python.org for more information.""")
+ here = os.path.dirname(os.__file__)
+ __builtin__.license = _Printer(
+-    "license", "See http://www.python.org/%.3s/license.html" % sys.version,
+-    ["LICENSE.txt", "LICENSE"],
+-    [os.path.join(here, os.pardir), here, os.curdir])
++    "license",
++    "See http://www.ActiveState.com/Products/ActivePython/license_agreement.plex",
++    ["LICENSE.txt", "LICENSE", "License.txt"],
++    [os.path.join(here, os.pardir), # dev build and installation on Windows
++     os.path.join(here, os.pardir, os.pardir, "doc", # APy install on Linux
++                  "python%s.%s" % sys.version_info[:2]),
++     here]) # dev build on Linux
+ 
+ 
+ # Define new built-in 'help'.
+--- dist/src/Makefile.pre.in	Wed Apr 10 09:15:52 2002
++++ src/Core/Makefile.pre.in	Wed Apr 10 09:03:50 2002
+@@ -639,7 +639,6 @@
+ 			esac; \
+ 		done; \
+ 	done
+-	$(INSTALL_DATA) $(srcdir)/LICENSE $(LIBDEST)/LICENSE.txt
+ 	PYTHONPATH=$(LIBDEST) \
+ 		./$(BUILDPYTHON) -tt $(LIBDEST)/compileall.py -x badsyntax \
+ 	        $(LIBDEST)
+--- /home/trentm/tmp/python/dist/src/Modules/main.c	Wed Apr 10 09:16:30 2002
++++ src/Core/Modules/main.c	Wed Apr 10 09:03:50 2002
+@@ -24,6 +24,8 @@
+     "Type \"help\", \"copyright\", \"credits\" or \"license\" " \
+     "for more information."
+ 
++#define ACTIVEPYTHON_SIGNON "ActivePython 2.2.1 Build 222 (ActiveState Corp.) based on\n"
++
+ /* For Py_GetArgcArgv(); set by main() */
+ static char **orig_argv;
+ static int  orig_argc;
+@@ -328,7 +330,8 @@
+ 
+ 	if (Py_VerboseFlag ||
+ 	    (command == NULL && filename == NULL && stdin_is_interactive))
+-		fprintf(stderr, "Python %s on %s\n%s\n",
++		fprintf(stderr, "%sPython %s on %s\n%s\n",
++			ACTIVEPYTHON_SIGNON,
+ 			Py_GetVersion(), Py_GetPlatform(), COPYRIGHT);
+ 
+ 	if (command != NULL) {
+--- dist/src/Python/getcopyright.c	Wed Apr 10 09:16:38 2002
++++ src/Core/Python/getcopyright.c	Wed Apr 10 09:03:50 2002
+@@ -4,6 +4,8 @@
+ 
+ static char cprt[] = 
+ "\
++Copyright (c) 2000-2002 ActiveState Corp.\n\
++\n\
+ Copyright (c) 2001, 2002 Python Software Foundation.\n\
+ All Rights Reserved.\n\
+ \n\
+
+
+
+=============================================================================
+    Aesthetic (i.e. CSS) changes were made to the standard Python
+    documentation.
+
+
+
+=============================================================================
+    Minor build system changes (to setup.py and the relevant PCbuild/*.dsp
+    files) to control the standard extension builds (_tkinter, zlib, expat):
+
+--- dist/src/setup.py	Tue Apr  2 10:36:02 2002
++++ src/Core/setup.py	Tue Apr  2 09:43:19 2002
+@@ -11,6 +11,14 @@
+ from distutils.command.build_ext import build_ext
+ from distutils.command.install import install
+ 
++# ActivePython builds some external libraries into a private build directory
++# for controlled use by common Python extension modules.
++apy_top_dir = os.path.join(os.path.dirname(sys.executable),
++                           os.pardir, os.pardir)
++apy_build_dir = os.path.join(apy_top_dir, "build")
++apy_inc_dir = os.path.join(apy_build_dir, "include")
++apy_lib_dir = os.path.join(apy_build_dir, "lib")
++
+ # This global variable is used to hold the list of modules to be disabled.
+ disabled_module_list = []
+ 
+@@ -401,17 +408,19 @@
+         # Berkeley DB 3.x.)
+ 
+         dblib = []
+-        if self.compiler.find_library_file(lib_dirs, 'db-3.2'):
+-            dblib = ['db-3.2']
+-        elif self.compiler.find_library_file(lib_dirs, 'db-3.1'):
+-            dblib = ['db-3.1']
+-        elif self.compiler.find_library_file(lib_dirs, 'db3'):
+-            dblib = ['db3']
+-        elif self.compiler.find_library_file(lib_dirs, 'db2'):
+-            dblib = ['db2']
+-        elif self.compiler.find_library_file(lib_dirs, 'db1'):
+-            dblib = ['db1']
+-        elif self.compiler.find_library_file(lib_dirs, 'db'):
++        # ActivePython change: only allow dep on "libdb.so*". This setups up
++        # a dependency that should work fine on a base RH 6.2 system.
++        #if self.compiler.find_library_file(lib_dirs, 'db-3.2'):
++        #    dblib = ['db-3.2']
++        #elif self.compiler.find_library_file(lib_dirs, 'db-3.1'):
++        #    dblib = ['db-3.1']
++        #elif self.compiler.find_library_file(lib_dirs, 'db3'):
++        #    dblib = ['db3']
++        #elif self.compiler.find_library_file(lib_dirs, 'db2'):
++        #    dblib = ['db2']
++        #elif self.compiler.find_library_file(lib_dirs, 'db1'):
++        #    dblib = ['db1']
++        if self.compiler.find_library_file(lib_dirs, 'db'):
+             dblib = ['db']
+         
+         db185_incs = find_file('db_185.h', inc_dirs,
+@@ -515,23 +524,15 @@
+         # Andrew Kuchling's zlib module.
+         # This require zlib 1.1.3 (or later).
+         # See http://www.cdrom.com/pub/infozip/zlib/
+-        zlib_inc = find_file('zlib.h', [], inc_dirs)
+-        if zlib_inc is not None:
+-            zlib_h = zlib_inc[0] + '/zlib.h'
+-            version = '"0.0.0"'
+-            version_req = '"1.1.3"'
+-            fp = open(zlib_h)
+-            while 1:
+-                line = fp.readline()
+-                if not line:
+-                    break
+-                if line.find('#define ZLIB_VERSION', 0) == 0:
+-                    version = line.split()[2]
+-                    break
+-            if version >= version_req:
+-                if (self.compiler.find_library_file(lib_dirs, 'z')):
+-                    exts.append( Extension('zlib', ['zlibmodule.c'],
+-                                           libraries = ['z']) )
++        # 
++        # ActivePython's build ALWAYS expects a zlib install in
++        # $(TOP)/build. 
++        zlib_inc_dirs = [apy_inc_dir]
++        zlib_lib_dirs = [apy_lib_dir]
++        exts.append( Extension('zlib', ['zlibmodule.c'],
++                     include_dirs = zlib_inc_dirs,
++                     library_dirs = zlib_lib_dirs,
++                     libraries = ['z']) )
+ 
+         # Interface to the Expat XML parser
+         #
+@@ -553,19 +554,20 @@
+         #
+         #    ar cr libexpat.a xmltok/*.o xmlparse/*.o
+         #
+-        expat_defs = []
+-        expat_incs = find_file('expat.h', inc_dirs, [])
+-        if expat_incs is not None:
+-            # expat.h was found
+-            expat_defs = [('HAVE_EXPAT_H', 1)]
+-        else:
+-            expat_incs = find_file('xmlparse.h', inc_dirs, [])
+-
+-        if (expat_incs is not None and
+-            self.compiler.find_library_file(lib_dirs, 'expat')):
+-            exts.append( Extension('pyexpat', ['pyexpat.c'],
+-                                   define_macros = expat_defs,
+-                                   libraries = ['expat']) )
++        # ActivePython's build ALWAYS expects an Expat install in
++        # $(TOP)/build. If both libexpat.so and libexpat.a are installed,
++        # Extension will dynamically link. We want *static* linking so try to
++        # pass '-static' option to gcc.
++        expat_inc_dirs = [apy_inc_dir]
++        expat_static_lib = os.path.join(apy_lib_dir, "libexpat.a")
++        expat_defs = [('HAVE_EXPAT_H', 1)]
++
++        exts.append( Extension('pyexpat', ['pyexpat.c'],
++                               include_dirs=expat_inc_dirs,
++                               define_macros=expat_defs,
++                               extra_objects=[expat_static_lib],
++                              )
++                   )
+ 
+         # Platform-specific libraries
+         if platform == 'linux2':
+@@ -685,11 +685,11 @@
+         # The versions with dots are used on Unix, and the versions without
+         # dots on Windows, for detection by cygwin.
+         tcllib = tklib = tcl_includes = tk_includes = None
+-        for version in ['8.4', '84', '8.3', '83', '8.2',
+-                        '82', '8.1', '81', '8.0', '80']:
+-            tklib = self.compiler.find_library_file(lib_dirs,
++        apy_tcltk_versions = ['8.3', '83']
++        for version in apy_tcltk_versions:
++            tklib = self.compiler.find_library_file([apy_lib_dir],
+                                                     'tk' + version )
+-            tcllib = self.compiler.find_library_file(lib_dirs,
++            tcllib = self.compiler.find_library_file([apy_lib_dir],
+                                                      'tcl' + version )
+             if tklib and tcllib:
+                 # Exit the loop when we've found the Tcl/Tk libraries
+@@ -693,8 +695,8 @@
+             debian_tcl_include = [ '/usr/include/tcl' + version ]
+             debian_tk_include =  [ '/usr/include/tk'  + version ] + \
+                                  debian_tcl_include
+-            tcl_includes = find_file('tcl.h', inc_dirs, debian_tcl_include)
+-            tk_includes = find_file('tk.h', inc_dirs, debian_tk_include)
++            tcl_includes = find_file('tcl.h', [], [apy_inc_dir])
++            tk_includes = find_file('tk.h', [], [apy_inc_dir])
+ 
+         if (tcllib is None or tklib is None and
+             tcl_includes is None or tk_includes is None):
+@@ -704,11 +706,13 @@
+         # OK... everything seems to be present for Tcl/Tk.
+ 
+         include_dirs = [] ; libs = [] ; defs = [] ; added_lib_dirs = []
++        static_libs = []
+         for dir in tcl_includes + tk_includes:
+             if dir not in include_dirs:
+                 include_dirs.append(dir)
+ 
+         # Check for various platform-specific directories
++        #XXX Will ActivePython get caught here?
+         platform = self.get_platform()
+         if platform == 'sunos5':
+             include_dirs.append('/usr/openwin/include')
+@@ -732,14 +736,17 @@
+                 return
+ 
+         # Check for BLT extension
++        #XXX What about this for ActivePython?
+         if self.compiler.find_library_file(lib_dirs + added_lib_dirs,
+                                            'BLT8.0'):
+             defs.append( ('WITH_BLT', 1) )
+             libs.append('BLT8.0')
+ 
+         # Add the Tcl/Tk libraries
+-        libs.append('tk'+version)
+-        libs.append('tcl'+version)
++        #XXX ActivePython currently statically links to libtcl<ver>.a and
++        #    libtk<ver>.a.
++        static_libs.append( os.path.join(apy_lib_dir, "libtk%s.a" % version) )
++        static_libs.append( os.path.join(apy_lib_dir, "libtcl%s.a" % version) )
+ 
+         if platform in ['aix3', 'aix4']:
+             libs.append('ld')
+@@ -752,6 +759,7 @@
+                         define_macros=[('WITH_APPINIT', 1)] + defs,
+                         include_dirs = include_dirs,
+                         libraries = libs,
++                        extra_objects=static_libs,
+                         library_dirs = added_lib_dirs,
+                         )
+         self.extensions.append(ext)
+
+
+
+=============================================================================
+    Propagated a change from the Python-CVS trunk to allow Python to build
+    with VS7:
+
+--- dist/src/PC/python_nt.rc	Wed Apr 10 09:16:37 2002
++++ src/Core/PC/python_nt.rc	Wed Apr 10 09:03:50 2002
+@@ -1,7 +1,6 @@
+ // Resource script for Python core DLL.
+ // Currently only holds version information.
+ //
+-#include "ver.h"
+ #include "winver.h"
+ 
+ #define MS_WINDOWS
+
+
+
+=============================================================================
+    Tweak to Python doc build system to have it log the node renamings that
+    it carries out. This log is necessary when generating an index for the
+    ActivePython compiled help file from the latex2html index.dat files.
+
+--- dist/src/Doc/tools/mkhowto	Tue Dec  4 08:32:04 2001
++++ src/Core/Doc/tools/mkhowto	Wed Apr 10 09:03:49 2002
+@@ -489,7 +489,8 @@
+                         ):
+             safe_unlink(pattern % self.doc)
+         map(safe_unlink, glob.glob(self.doc + "*.syn"))
+-        for spec in ("IMG*", "*.pl", "WARNINGS", "index.dat", "modindex.dat"):
++        for spec in ("IMG*", "*.pl", "WARNINGS", "index.dat", "modindex.dat",
++                     "node2label.log"):
+             pattern = os.path.join(self.doc, spec)
+             map(safe_unlink, glob.glob(pattern))
+         if "dvi" not in self.options.formats:
+--- dist/src/Doc/tools/node2label.pl	Fri Jun 22 21:35:09 2001
++++ src/Core/Doc/tools/node2label.pl	Wed Apr 10 09:03:49 2002
+@@ -57,6 +57,9 @@
+   print;
+ }
+ 
++open(FOUT, ">node2label.log");
+ foreach $oldname (keys %newnames) {
++  print FOUT "rename $oldname $newnames{$oldname}\n";
+   rename($oldname, $newnames{$oldname});
+ }
++close(FOUT);
+
+
+
+=============================================================================
+    Change the core Python dll version number to ensure that, given MSI's exe
+    update rules, ActivePython's core DLL will update an existing DLL of the
+    same Python version.
+
+--- dist/src/PC/python_nt.rc	Wed Apr 10 09:16:37 2002
++++ src/Core/PC/python_nt.rc	Wed Apr 10 09:03:50 2002
+@@ -38,8 +37,18 @@
+ #if PY_RELEASE_SERIAL > 9
+ #   error "PY_RELEASE_SERIAL > 9"
+ #endif
++/* ActivePython change: Add one to the 4th field of the DLL version number.
++   While this may look evil, because it appears that we are changing the
++   PYTHON_API_VERSION, noone should have been using the python22.dll version
++   number to determine the PYTHON_API_VERSION.
++   Changing the value allows ActivePython's python22.dll to install over
++   PythonLabs' python22.dll following the MSI install rule (whereby a DLL is
++   not upgraded by a DLL of the same version).
++*/
++#define ACTIVEPYTHON_ID 1
+ #define FIELD3 (PY_MICRO_VERSION*1000 + PY_RELEASE_LEVEL*10 + PY_RELEASE_SERIAL)
+-#define PYVERSION64 PY_MAJOR_VERSION, PY_MINOR_VERSION, FIELD3, PYTHON_API_VERSION
++#define FIELD4 (PYTHON_API_VERSION + ACTIVEPYTHON_ID)
++#define PYVERSION64 PY_MAJOR_VERSION, PY_MINOR_VERSION, FIELD3, FIELD4
+ 
+ // String Tables
+ STRINGTABLE DISCARDABLE
+
+
+
+=============================================================================
+    Show pydoc where to find the Library Reference and API docs in an
+    ActivePython installation on Linux.
+
+--- dist/src/Lib/pydoc.py	Wed Apr 10 09:16:00 2002
++++ src/Core/Lib/pydoc.py	Wed Apr 10 09:03:49 2002
+@@ -1487,6 +1487,10 @@
+         for dir in [os.environ.get('PYTHONDOCS'),
+                     homedir and os.path.join(homedir, 'doc'),
+                     os.path.join(execdir, 'doc'),
++                    os.path.abspath(os.path.join(execdir,
++                                 os.pardir, 'doc',
++                                 'python%d.%d' % sys.version_info[:2],
++                                 'python')),
+                     '/usr/doc/python-docs-' + split(sys.version)[0],
+                     '/usr/doc/python-' + split(sys.version)[0],
+                     '/usr/doc/python-docs-' + sys.version[:3],
+
+
+=============================================================================
+    Prefix calls to .py files with "python" so one does not rely on the build
+    machine's .py file association being correct.
+
+
+--- AutoDuck/com.mak	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/com.mak	Tue Apr  2 09:43:19 2002
+@@ -75,73 +75,73 @@
+ clean: cleanad
+ 
+ $(GENDIR)\mapi.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIABContainer.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIContainer $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIContainer $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIAddrBook.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIAttach.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIDistList.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMailUser.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIContainer $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIContainer $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMAPIContainer.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMAPIFolder.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMAPIProp.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMAPISession.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMAPITable.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMessage.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMsgServiceAdmin.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIMsgStore.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIProfAdmin.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIUnknown $(MAPI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIProfSect.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d -p PyIMAPIProp $(MAPI_DIR)/src/$(*B).i
+ 
+ # Exchange stuff.
+ $(GENDIR)\exchange.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
+ 
+ # Exchange stuff.
+ $(GENDIR)\exchdapi.d: $(MAPI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(MAPI_DIR)/src/$(*B).i
+ 
+ # ADSI
+ $(GENDIR)\adsi.d: $(ADSI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIADsContainer.d: $(ADSI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIADsUser.d: $(ADSI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
+ 
+ $(GENDIR)\PyIDirectoryObject.d: $(ADSI_DIR)/src/$(*B).i
+-	makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
++	python makedfromi.py -o$*.d $(ADSI_DIR)/src/$(*B).i
+ 
+ 
+ !include "common.mak"
+--- AutoDuck/common.mak	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/common.mak	Tue Apr  2 09:43:19 2002
+@@ -29,7 +30,7 @@
+ 
+ "..\$(TARGET).hlp": "$(GENDIR)\$(TARGET).rtf" "$(GENDIR)\$(TARGET).hpj"
+     if exist "$(GENDIR)\$(TARGET).ph" del "$(GENDIR)\$(TARGET).ph"
+-    fixHelpCompression.py "$(GENDIR)\$(TARGET).hpj"
++    python fixHelpCompression.py "$(GENDIR)\$(TARGET).hpj"
+     cd "$(GENDIR)"
+     $(HC) $(TARGET).hpj
+     if exist "..\..\..\$(TARGET).hlp" del "..\..\..\$(TARGET).hlp" 
+@@ -55,18 +56,18 @@
+ # Generate an HTML Help file.
+ 
+ "$(GENDIR)\$(TARGET).hhp" : BuildHHP.py $(HTML_FILES) "$(GENDIR)\$(HTML_DIR)"
+-	BuildHHP.py "$(GENDIR)\$(TARGET)" "$(TARGET)" "$(GENDIR)\$(HTML_DIR)" $(HTML_FILES)
++	python BuildHHP.py "$(GENDIR)\$(TARGET)" "$(TARGET)" "$(GENDIR)\$(HTML_DIR)" $(HTML_FILES)
+ 
+ "$(GENDIR)\$(TARGET).html" "$(GENDIR)\$(TARGET).dump" "$(GENDIR)\$(TARGET).idx" : $(SOURCE) pyhtml.fmt "$(GENDIR)\$(TARGET).hhlog" AutoDuckPostProcess.py $(EXT_TOPICS)
+ 	@echo Running autoduck for the .html
+ 	@$(ADHTMLFMT) $(ADHTML) /t$(ADTAB) $(SOURCE)
+-	AutoDuckPostProcess.py "$(GENDIR)\$(TARGET).html" "$(EXT_TOPICS)"
++	python AutoDuckPostProcess.py "$(GENDIR)\$(TARGET).html" "$(EXT_TOPICS)"
+ 
+ "$(GENDIR)\$(TARGET).hhk" : "$(GENDIR)\$(TARGET).idx" "$(GENDIR)\$(TARGET).idx" TOCToHHK.py
+-	TOCToHHK.py "$(GENDIR)\$(TARGET).idx" "$(GENDIR)\$(TARGET).hhk"
++	python TOCToHHK.py "$(GENDIR)\$(TARGET).idx" "$(GENDIR)\$(TARGET).hhk"
+ 
+ "$(GENDIR)\$(TARGET).hhc" : "$(GENDIR)\$(TARGET).dump" "$(GENDIR)\$(TARGET).dump" Dump2HHC.py "$(EXT_TOPICS)"
+-	Dump2HHC.py "$(GENDIR)\$(TARGET).dump" "$(GENDIR)\$(TARGET).hhc" "$(TITLE)" "$(TARGET)" "$(EXT_TOPICS)"
++	python Dump2HHC.py "$(GENDIR)\$(TARGET).dump" "$(GENDIR)\$(TARGET).hhc" "$(TITLE)" "$(TARGET)" "$(EXT_TOPICS)"
+ 
+ "..\$(TARGET).chm" : $(SOURCE) "$(GENDIR)\$(TARGET).html" "$(GENDIR)\$(TARGET).hhc" "$(GENDIR)\$(TARGET).hhk" "$(GENDIR)\$(TARGET).hhp"
+ 	-$(HHC) "$(GENDIR)\$(TARGET).hhp"
+--- AutoDuck/win32.mak	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/win32.mak	Tue Apr  2 09:43:19 2002
+@@ -44,30 +44,30 @@
+ clean: cleanad
+ 
+ $(GENDIR)/win32file.d: $(SOURCE_DIR)/win32file.i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32event.d: $(SOURCE_DIR)/win32event.i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32evtlog.d: $(SOURCE_DIR)/win32evtlog.i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32service.d: $(SOURCE_DIR)/win32service.i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32pipe.d: $(SOURCE_DIR)/win32pipe.i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32security.d: $(SOURCE_DIR)/$(*B).i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32process.d: $(SOURCE_DIR)/$(*B).i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/wincerapi.d: $(SOURCE_DIR)/$(*B).i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ $(GENDIR)/win32gui.d: $(SOURCE_DIR)/$(*B).i
+-	makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
++	python makedfromi.py -o$*.d $(SOURCE_DIR)/$(*B).i
+ 
+ !include "common.mak"
+
+
+
+
+
+
+=============================================================================
+    Fix invocation of SWIG in the PyWin32 build. The previous invocations
+    relied on an older mechanism for invoking SWIG that had previously been
+    used in the PyWin32 tree. Most swig invocations have moved to the new
+    mechanism, only the ones in this patch remain. This has been sent to Mark
+    Hammond.
+
+
+--- com/adsi.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/adsi.dsp	Tue Apr  2 09:43:20 2002
+@@ -164,8 +164,7 @@
+ InputName=PyIADsContainer
+ 
+ BuildCmds= \
+-	cd $(InputDir) \
+-	..\swig.bat -dnone -pythoncom -com_interface_parent IDispatch -c++ -o $(InputName).cpp  $(InputName).i \
++	..\swig.bat $(InputDir) -dnone -pythoncom -com_interface_parent IDispatch -c++ -o $(InputName).cpp  $(InputName).i
+ 	
+ 
+ "$(InputDir)\$(InputName).cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+--- com/exchange.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/exchange.dsp	Tue Apr  2 09:43:20 2002
+@@ -108,7 +108,7 @@
+ InputName=exchange
+ 
+ "$(InputDir)\$(InputName).cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	%SWIG_EXE% -dnone -python -c++ -o $(InputName).cpp $(InputName).i
++	..\swig.bat $(InputDir) -dnone -python -c++ -o $(InputName).cpp $(InputName).i
+ 
+ # End Custom Build
+ 
+--- com/exchdapi.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/exchdapi.dsp	Tue Apr  2 09:43:20 2002
+@@ -108,7 +108,7 @@
+ InputName=exchdapi
+ 
+ "$(InputDir)\$(InputName).cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	%SWIG_EXE% -dnone -python -c++ -o $(InputName).cpp $(InputName).i
++	..\swig.bat $(InputDir) -dnone -python -c++ -o $(InputName).cpp $(InputName).i
+ 
+ # End Custom Build
+
+--- com/mapi.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/mapi.dsp	Tue Apr  2 09:43:20 2002
+@@ -172,7 +172,7 @@
+ InputName=mapi
+ 
+ "$(InputDir)\$(InputName).cpp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	%SWIG_EXE% -dnone -python -c++ -o $(InputName).cpp $(InputName).i 
++	..\swig.bat $(InputDir) -dnone -python -c++ -o $(InputName).cpp $(InputName).i 
+ 	
+ # End Custom Build
+
+
+ 
+=============================================================================
+    Fix batch file to work on Windows XP.
+
+--- swig.bat	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/swig.bat	Tue Apr  2 09:43:20 2002
+@@ -4,7 +4,7 @@
+ rem SWIG binaries are kept under source control,
+ rem so this batch file should find that version.
+ 
+-if "%SWIG_EXE%==" goto not_set
++if "%SWIG_EXE%"=="" goto not_set
+ if not exist %SWIG_EXE% goto not_set
+ 
+ echo NOTE: The build process has changed (hopefully for the better!)
+
+
+
+
+=============================================================================
+    Override PyWin32 build step for these projects which copies built DLLs to
+    the system directory. This is fine for development but not when one is
+    just building to make a distribution.
+
+--- com/win32com.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com.dsp	Tue Apr  2 09:43:20 2002
+@@ -71,7 +71,8 @@
+ SOURCE="$(InputPath)"
+ 
+ "$(ProjDir)\$(TargetName).flg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
++	echo ActivePython change - Do not want to copy to system dir during build.
++	echo copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
+ 
+ # End Custom Build
+ 
+@@ -113,7 +114,7 @@
+ SOURCE="$(InputPath)"
+ 
+ "$(ProjDir)\$(TargetName).flg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
++	echo copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
+ 
+ # End Custom Build
+ 
+--- win32/PyWinTypes.dsp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/win32/PyWinTypes.dsp	Tue Apr  2 09:43:20 2002
+@@ -73,7 +73,8 @@
+ SOURCE="$(InputPath)"
+ 
+ "$(ProjDir)\$(TargetName).flg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
++	echo ActivePython change - Do not want to copy to system dir during build.
++	echo copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
+ 
+ # End Custom Build
+ 
+@@ -115,7 +116,7 @@
+ SOURCE="$(InputPath)"
+ 
+ "$(ProjDir)\$(TargetName).flg" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+-	copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
++	echo copy $(TargetPath) %SYSTEMROOT%\System32\. && echo Done >                                      $(ProjDir)\$(TargetName).flg
+ 
+ # End Custom Build
+ 
+
+
+
+
+=============================================================================
+    Make Active Debugging build compile against Python core sources. This
+    patch has been submitted to MarkH. Note that I have no confidence that
+    this is the correct patch. Updates may follow after testing and/or
+    conversation with Mark.
+
+--- com/win32comext/axdebug/src/AXDebug.cpp	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32comext/axdebug/src/AXDebug.cpp	Tue Apr  2 09:43:20 2002
+@@ -173,8 +173,8 @@
+ 	if (!PyArg_ParseTuple(args, "lO", &handle, &func))
+ 		return NULL;
+ 	PyThreadState *state = (PyThreadState *)handle;
+-	Py_XDECREF(state->sys_tracefunc);
+-	state->sys_tracefunc = func;
++	Py_XDECREF(state->c_traceobj);
++	state->c_traceobj = func;
+ 	Py_INCREF(func);
+ 	// Loop back over all frames, setting each frame back to our
+ 	// first script block frame with the tracer.
+
+
+
+=============================================================================
+    Drop the wincerapi project from the metaproject: _win32 - projects.  This
+    has never been supported by ActivePython (nor is it by normal win32all
+    builds, I don't believe).
+
+--- Python and Extensions.dsw	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/Python and Extensions.dsw	Tue Apr  2 09:43:19 2002
+@@ -237,9 +237,6 @@
+     Project_Dep_Name win32wnet
+     End Project Dependency
+     Begin Project Dependency
+-    Project_Dep_Name wincerapi
+-    End Project Dependency
+-    Begin Project Dependency
+     Project_Dep_Name win32clipboard
+     End Project Dependency
+     Begin Project Dependency
+
+
+
+=============================================================================
+    Fix the PyWin32 docs and doc build process for inclusion in documentation
+    packaging (.chm, plain HTML with a Table of Contents).
+
+
+--- AutoDuck/AutoDuckPostProcess.py	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/AutoDuckPostProcess.py	Tue Apr  2 09:43:19 2002
+@@ -80,15 +80,31 @@
+   s = ""
+   d = g_dExtOverviewTopics
+   keys = d.keys()
+-  keys.sort()
++  keys.sort(lambda a,b: cmp(a.lower(), b.lower()))
+   for k in keys:
+-    s = s + '<LI><A HREF="%s">%s</A>\n' % (d[k].context, d[k].name)
++    s = s + '<LI><A HREF="%s">%s</A></LI>\n' % (d[k].context, d[k].name)
+   return s
+-    
++
++def addCSS(html, cssref):
++    headEndMarkers = ['</head>', '</HEAD>']
++    for headEndMarker in headEndMarkers:
++        headEndIndex = html.find(headEndMarker)
++        if headEndIndex != -1:
++            break
++    else:
++        raise ValueError, "ERROR: Could not fine the head end tag to find where to "\
++              "place CSS file link: markers=%s" % headEndMarkers
++    html = html[:headEndIndex] + cssref + html[headEndIndex:]
++    return html
++  
+ def main():
+   if len(sys.argv) > 2:
+     overview = sys.argv[2]
+     file = sys.argv[1]
++    input = open(file, "r")
++    modified = addCSS(input.read(), cssref = '<link rel="STYLESHEET" href="aspython.css" type="text/css">\n')
++    input.close()
++    open(file, 'w').write(modified)
+     input = open(file, "r")
+     out = open(file + ".2", "w")
+     parseOverview(open(sys.argv[2], "r"))
+--- AutoDuck/comOverviews.dat	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/comOverviews.dat	Tue Apr  2 09:43:19 2002
+@@ -1,3 +1,3 @@
+-Quick-Starts to Python and COM	win32com/win32com/HTML/docindex.html
+ win32com readme	win32com/win32com/readme.htm
+-ADSI and Python	win32com/help/adsi.html
+\ No newline at end of file
++Quick-Starts to Python and COM	win32com/win32com/HTML/docindex.html
++ADSI and Python	win32com/help/adsi.html
+--- AutoDuck/common.mak	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/common.mak	Tue Apr  2 09:43:19 2002
+@@ -2,6 +2,7 @@
+ 
+ $(GENDIR):
+ 	@if not exist $(GENDIR)\. md $(GENDIR)
++	copy ..\aspython.css $(GENDIR)\aspython.css
+ 
+ "$(GENDIR)\$(HTML_DIR)":
+ 	@if not exist $(GENDIR)\$(HTML_DIR)\. md "$(GENDIR)\$(HTML_DIR)"
+--- AutoDuck/pyhtml.fmt	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/AutoDuck/pyhtml.fmt	Tue Apr  2 09:43:19 2002
+@@ -95,8 +95,11 @@
+ <BODY>
+ <H1>$(title)</H1>
+ <P>
++<ul>
+ <!-- <LI><A HREF="overviews.html">Overviews</A> -->
++</ul>
+ <H2>Python Objects</H2>
++<ul>
+ <LI><A HREF="modules.html">Modules</A>
+ <LI><A HREF="objects.html">Objects</A>
+ <!--
+@@ -107,51 +110,74 @@
+ <LI><A HREF="messages.html">Messages</A>
+ <LI><A HREF="structsnenum.html">Structs and Enums</A>
+ -->
++</ul>
+ <H2>Overviews and other documentation</H2>
++<ul>
+ $[index:topic]<!--index:extopics-->
+ <LI><A HREF="constants.html">Constants</A>
+-
++</ul>
+ <p>Help file built: $!d</p>
+ 
+ $(node_b0)overviews.html$(node_b1)Overviews$(node_e)
+ <H2>Overviews</H2>
++<ul>
+ $[index:topic]
+ <!--index:extopics-->
++</ul>
++
+ $(node_b0)modules.html$(node_b1)Modules$(node_e)
+ <H1>Modules</H1>
++<ul>
+ $[index:module]
++</ul>
+ 
+ $(node_b0)objects.html$(node_b1)Objects$(node_e)
+ <H1>Objects</H1>
++<ul>
+ $[index:pyobject,object]
++</ul>
+ 
+ $(node_b0)objectmodmethods.html$(node_b1)Objects and Module Methods$(node_e)
+ <H1>Object and Module Methods</H1>
++<ul>
+ $[index:method,pymethod,pyvirtual]
++</ul>
+ 
+ $(node_b0)objectmodprops.html$(node_b1)Objects and Module Properties$(node_e)
+ <H1>Object and Module Properties</H1>
++<ul>
+ $[index:property]
++</ul>
+ 
+ $(node_b0)classesandcmember.html$(node_b1)Classes and class members$(node_e)
+ <H1>Classes and class members</H1>
++<ul>
+ $[index:class,mfunc,mdata]
++</ul>
+ 
+ $(node_b0)functions.html$(node_b1)Functions$(node_e)
+ <H1>Functions</H1>
++<ul>
+ $[index:function,cb]
++</ul>
+ 
+ $(node_b0)Messages.html$(node_b1)Messages$(node_e)
+ <H1>Messages</H1>
++<ul>
+ $[index:msg]
++</ul>
+ 
+ $(node_b0)structsnenum.html$(node_b1)Structures and Enums$(node_e)
+ <H1>Structures and enumerations</H1>
++<ul>
+ $[index:struct,enum]
++</ul>
+ 
+ $(node_b0)constants.html$(node_b1)Constants$(node_e)
+ <H1>Constants</H1>
++<ul>
+ $[index:const]
++</ul>
+ 
+ .post=</BODY>
+ 
+--- Pythonwin/readme.html	Tue Apr  2 10:27:35 2002
++++ src/PyWin32/Pythonwin/readme.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft FrontPage 4.0">
+ <TITLE>Pythonwin Readme</TITLE>
+--- com/help/adsi.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/help/adsi.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <TITLE>ADSI, Exchange, and Python</TITLE>
+ </HEAD>
+ 	<BODY BGCOLOR="FFFFFF">
+--- com/win32com/HTML/GeneratedSupport.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/GeneratedSupport.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>Generated Python COM Support</TITLE>
+@@ -9,7 +10,6 @@
+ </HEAD>
+ <BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+ 
+-<P><IMG SRC="image/pycom_blowing.gif" WIDTH=549 HEIGHT=99 ALT="Python and COM - Blowing the others away"></P>
+ <H1>Generated Python COM Support</H1>
+ <P>This file describes how the Python COM extensions support "generated files". The information contained here is for expert Python users, and people who need to take advantage of the advanced features of the support. More general information is available in the <A HREF="QuickStartClientCom.html">Quick Start to Client Side COM</A> documentation.</P>
+ <H2>Introduction</H2>
+--- com/win32com/HTML/PythonCOM.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/PythonCOM.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>Untitled</TITLE>
+@@ -7,7 +8,6 @@
+ </HEAD>
+ <BODY LINK="#0000ff" VLINK="#800080">
+ 
+-<H1><IMG SRC="image/pycom_blowing.gif" WIDTH=549 HEIGHT=99 ALT="Python and COM - Blowing the others away"></H1>
+ <H1>Python and COM - Implementation Details </H1>
+ <H2>Introduction </H2>
+ <P>This document describes the technical implementation of the COM support in Python. It is primarily concerned with the underlying C++ interface to COM, although general Python issues are touched. </P>
+--- com/win32com/HTML/QuickStartClientCom.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/QuickStartClientCom.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>Quick Start to Client side COM and Python</TITLE>
+--- com/win32com/HTML/docindex.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/docindex.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="/aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>win32com Documentation Index</TITLE>
+@@ -7,7 +8,6 @@
+ </HEAD>
+ <BODY LINK="#0000ff" VLINK="#800080">
+ 
+-<H1><IMG SRC="image/pycom_blowing.gif" WIDTH=549 HEIGHT=99 ALT="Python and COM - Blowing the others away"></H1>
+ <H1>PythonCOM Documentation Index</H1>
+ <P>The following documentation is available</P>
+ <P><A HREF="QuickStartClientCom.html">A Quick Start to Client Side COM</A> (including makepy)</P>
+--- com/win32com/HTML/index.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/index.html	Tue Apr  2 09:43:20 2002
+@@ -9,7 +9,6 @@
+ <DIR>
+ 
+ <P><!-- Enclose the entire page in UL, so bullets don't indent. --></P>
+-<H1><IMG SRC="image/pycom_blowing.gif" WIDTH=549 HEIGHT=99></H1>
+ <H2>Python and COM</H2>
+ <H3>Introduction</H3>
+ <P>Python has an excellent interface to COM (also known variously as OLE2, ActiveX, etc).</P>
+--- com/win32com/HTML/misc.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/misc.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>Misc win32com Stuff</TITLE>
+--- com/win32com/HTML/package.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/HTML/package.html	Tue Apr  2 09:43:20 2002
+@@ -1,5 +1,6 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+ <META NAME="Generator" CONTENT="Microsoft Word 97">
+ <TITLE>The win32com package</TITLE>
+@@ -7,7 +8,6 @@
+ </HEAD>
+ <BODY LINK="#0000ff" VLINK="#800080">
+ 
+-<H1><IMG SRC="image/pycom_blowing.gif" WIDTH=549 HEIGHT=99 ALT="Python and COM - Blowing the others away"></H1>
+ <H1>The win32com package </H1>
+ <FONT SIZE=2><P>This document describes the win32com package in general terms.</FONT> </P>
+ <FONT SIZE=2><P>The COM support can be thought of as existing in 2 main portions - the C++ support code (the core PythonCOM module), and helper code, implemented in Python. The total package is known as "win32com".</FONT> </P>
+--- com/win32com/readme.htm	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/com/win32com/readme.htm	Tue Apr  2 09:43:20 2002
+@@ -4,9 +4,6 @@
+ <title>win32com Readme</title>
+ </head>
+ 
+-<p><img width=551 height=99 id="_x0000_i1025" src="html\image\pycom_blowing.gif"
+-alt="Python and COM - Blowing the others away"></p>
+-
+ <h1>Python COM Extensions Readme </h1>
+ 
+ <p>This is the readme for win32com. Please check out the <a
+--- win32/help/process_info.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/win32/help/process_info.html	Tue Apr  2 09:43:20 2002
+@@ -1,19 +1,12 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <TITLE>Getting process info: Win32 and COM with python and C++</TITLE>
+ </HEAD>
+ 	<BODY BGCOLOR="FFFFFF">
+ 	<!-- beginning of leaf header-->
+ 
+-	<TABLE border=0  cellpadding=0 cellspacing=0 width=100%>
+-	<TR>
+-		<TD valign=middle width="100%"
+-		bgcolor="#99ccff"> <font face="sans-serif" size="+1"
+-		color="#111111">&nbsp;&nbsp;&nbsp;Getting process info: Win32 and COM with python and C++</font>
+-		</TD>
+-	</TR>
+-	</TABLE>
+-	<p>&nbsp</p>
++	<h1>Getting process info: Win32 and COM with python and C++</h1>
+ 	<!-- end of leaf content-->
+ <!-- INDEX BEGIN -->
+ 
+--- win32/help/security_directories.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/win32/help/security_directories.html	Tue Apr  2 09:43:20 2002
+@@ -1,19 +1,12 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <TITLE>Extending Python: directory permissions with GetNamedSecurityInfo</TITLE>
+ </HEAD>
+ 	<BODY BGCOLOR="FFFFFF">
+ 	<!-- beginning of leaf header-->
+ 
+-	<TABLE border=0  cellpadding=0 cellspacing=0 width=100%>
+-	<TR>
+-		<TD valign=middle width="100%"
+-		bgcolor="#99ccff"> <font face="sans-serif" size="+1"
+-		color="#111111">&nbsp;&nbsp;&nbsp;Extending Python  (directory permisisions w/GetNamedSecurityInfo)  </font>
+-		</TD>
+-	</TR>
+-	</TABLE>
+-	<p>&nbsp</p>
++	<h1>Extending Python  (directory permisisions w/GetNamedSecurityInfo)</h1>
+ 	<!-- end of leaf content-->
+ <!-- INDEX BEGIN -->
+ 
+--- win32/help/win32net.html	Tue Apr  2 10:27:36 2002
++++ src/PyWin32/win32/help/win32net.html	Tue Apr  2 09:43:20 2002
+@@ -1,19 +1,12 @@
+ <HTML>
+ <HEAD>
++<link rel="STYLESHEET" href="aspython.css" type="text/css">
+ <TITLE>Windows Network Management: win32net</TITLE>
+ </HEAD>
+ 	<BODY BGCOLOR="FFFFFF">
+ 	<!-- beginning of leaf header-->
+ 
+-	<TABLE border=0  cellpadding=0 cellspacing=0 width=100%>
+-	<TR>
+-		<TD valign=middle width="100%"
+-		bgcolor="#99ccff"> <font face="sans-serif" size="+1"
+-		color="#111111">&nbsp;&nbsp;&nbsp;Windows Network Management: win32net</font>
+-		</TD>
+-	</TR>
+-	</TABLE>
+-	<p>&nbsp</p>
++	<h1>Windows Network Management: win32net</h1>
+ 	<!-- end of leaf content-->
+ <!-- INDEX BEGIN -->
+ 
+
+=============================================================================
+       Fix SSL support in the socket module.
+       Core bug fix candidate that did not make it into Python 2.1.2.
+       http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/python/python/dist/src/Lib/httplib.py
+       http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/python/python/dist/src/Lib/httplib.py.diff?r1=1.42.10.3&r2=1.42.10.4
+
+--- src/Core/Lib/httplib.py.~1~      Mon Apr  8 10:48:33 2002
++++ src/Core/Lib/httplib.py  Mon Apr  8 10:48:33 2002
+@@ -600,6 +600,9 @@
+     def send(self, stuff, flags = 0):
+         return self.__ssl.write(stuff)
+
++    def sendall(self, stuff, flags = 0):
++        return self.__ssl.write(stuff)
++
+     def recv(self, len = 1024, flags = 0):
+         return self.__ssl.read(len)
+
+End of Patch.
+

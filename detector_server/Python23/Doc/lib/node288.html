@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node289.html">
+<LINK REL="prev" HREF="node287.html">
+<LINK REL="parent" HREF="node282.html">
+<LINK REL="next" HREF="node289.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="SysLogHandler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.2.6 SysLogHandler</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.5 DatagramHandler" 
+  HREF="node287.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.7 NTEventLogHandler" 
+  HREF="node289.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node287.html">6.28.2.5 DatagramHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node289.html">6.28.2.7 NTEventLogHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082826000000000000000">
+6.28.2.6 SysLogHandler</A>
+</H3>
+
+<P>
+The <tt class="class">SysLogHandler</tt> class supports sending logging messages to a
+remote or local <font style="font-variant: small-caps;">Unix</font> syslog.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2358"><tt class="class">SysLogHandler</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>address</var><big>[</big><var>, facility</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Returns a new instance of the <tt class="class">SysLogHandler</tt> class intended to
+communicate with a remote <font style="font-variant: small-caps;">Unix</font> machine whose address is given by
+<var>address</var> in the form of a <code>(<var>host</var>, <var>port</var>)</code>
+tuple.  If <var>address</var> is not specified, <code>('localhost', 514)</code> is
+used.  The address is used to open a UDP socket.  If <var>facility</var> is
+not specified, <tt class="constant">LOG_USER</tt> is used.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2359"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Closes the socket to the remote host.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2360"><tt class="method">emit</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+The record is formatted, and then sent to the syslog server. If
+exception information is present, it is <i>not</i> sent to the server.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2361"><tt class="method">encodePriority</tt></a></b>(</nobr></td>
+  <td><var>facility, priority</var>)</td></tr></table>
+<dd>
+Encodes the facility and priority into an integer. You can pass in strings
+or integers - if strings are passed, internal mapping dictionaries are used
+to convert them to integers.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.5 DatagramHandler" 
+  rel="prev" title="6.28.2.5 DatagramHandler" 
+  HREF="node287.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.7 NTEventLogHandler" 
+  rel="next" title="6.28.2.7 NTEventLogHandler" 
+  HREF="node289.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node287.html">6.28.2.5 DatagramHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node289.html">6.28.2.7 NTEventLogHandler</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="asynchat-example.html">
+<LINK REL="prev" href="module-asynchat.html">
+<LINK REL="parent" href="module-asynchat.html">
+<LINK REL="next" href="asynchat-example.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="asynchat - Auxiliary Classes and Functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.24.1 asynchat - Auxiliary Classes and Functions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.24 asynchat  " 
+  href="module-asynchat.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.24 asynchat  " 
+  href="module-asynchat.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.24.2 asynchat Example" 
+  href="asynchat-example.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-asynchat.html">11.24 asynchat  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-asynchat.html">11.24 asynchat  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="asynchat-example.html">11.24.2 asynchat Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00132410000000000000000">
+11.24.1 asynchat - Auxiliary Classes and Functions</A>
+</H2>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3487"><tt class="class">simple_producer</tt></a></b>(</nobr></td>
+  <td><var>data</var><big>[</big><var>, buffer_size=512</var><big>]</big>)</td></tr></table>
+<dd>
+  A <tt class="class">simple_producer</tt> takes a chunk of data and an optional buffer size.
+  Repeated calls to its <tt class="method">more()</tt> method yield successive chunks of the
+  data no larger than <var>buffer_size</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3488"><tt class="method">more</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  Produces the next chunk of information from the producer, or returns the empty string.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3489"><tt class="class">fifo</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>list=None</var><big>]</big>)</td></tr></table>
+<dd>
+  Each channel maintains a <tt class="class">fifo</tt> holding data which has been pushed by the
+  application but not yet popped for writing to the channel.
+  A <tt class="class">fifo</tt> is a list used to hold data and/or producers until they are required.
+  If the <var>list</var> argument is provided then it should contain producers or
+  data items to be written to the channel.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3490"><tt class="method">is_empty</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  Returns <code>True</code> iff the fifo is empty.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3491"><tt class="method">first</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  Returns the least-recently <tt class="method">push()</tt>ed item from the fifo.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3492"><tt class="method">push</tt></a></b>(</nobr></td>
+  <td><var>data</var>)</td></tr></table>
+<dd>
+  Adds the given data (which may be a string or a producer object) to the
+  producer fifo.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3493"><tt class="method">pop</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  If the fifo is not empty, returns <code>True, first()</code>, deleting the popped
+  item. Returns <code>False, None</code> for an empty fifo.
+</dl>
+
+<P>
+The <tt class="module">asynchat</tt> module also defines one utility function, which may be
+of use in network and textual analysis operations.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3494"><tt class="function">find_prefix_at_end</tt></a></b>(</nobr></td>
+  <td><var>haystack, needle</var>)</td></tr></table>
+<dd>
+  Returns <code>True</code> if string <var>haystack</var> ends with any non-empty
+  prefix of string <var>needle</var>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.24 asynchat  " 
+  rel="prev" title="11.24 asynchat  " 
+  href="module-asynchat.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.24 asynchat  " 
+  rel="parent" title="11.24 asynchat  " 
+  href="module-asynchat.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.24.2 asynchat Example" 
+  rel="next" title="11.24.2 asynchat Example" 
+  href="asynchat-example.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-asynchat.html">11.24 asynchat  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-asynchat.html">11.24 asynchat  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="asynchat-example.html">11.24.2 asynchat Example</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

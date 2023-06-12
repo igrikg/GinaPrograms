@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="httpresponse-objects.html">
+<LINK REL="prev" href="module-httplib.html">
+<LINK REL="parent" href="module-httplib.html">
+<LINK REL="next" href="httpresponse-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="HTTPConnection Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.6.1 HTTPConnection Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.6.2 HTTPResponse Objects" 
+  href="httpresponse-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="httpresponse-objects.html">11.6.2 HTTPResponse Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013610000000000000000">&nbsp;</A>
+<BR>
+11.6.1 HTTPConnection Objects 
+</H2>
+
+<P>
+<tt class="class">HTTPConnection</tt> instances have the following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3103"><tt class="method">request</tt></a></b>(</nobr></td>
+  <td><var>method, url</var><big>[</big><var>, body</var><big>[</big><var>, headers</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+This will send a request to the server using the HTTP request method
+<var>method</var> and the selector <var>url</var>.  If the <var>body</var> argument is
+present, it should be a string of data to send after the headers are finished.
+The header Content-Length is automatically set to the correct value.
+The <var>headers</var> argument should be a mapping of extra HTTP headers to send
+with the request.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3104"><tt class="method">getresponse</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Should be called after a request is sent to get the response from the server.
+Returns an <tt class="class">HTTPResponse</tt> instance.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3105"><tt class="method">set_debuglevel</tt></a></b>(</nobr></td>
+  <td><var>level</var>)</td></tr></table>
+<dd>
+Set the debugging level (the amount of debugging output printed).
+The default debug level is <code>0</code>, meaning no debugging output is
+printed.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3106"><tt class="method">connect</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Connect to the server specified when the object was created.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3107"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Close the connection to the server.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3108"><tt class="method">send</tt></a></b>(</nobr></td>
+  <td><var>data</var>)</td></tr></table>
+<dd>
+Send data to the server.  This should be used directly only after the
+<tt class="method">endheaders()</tt> method has been called and before
+<tt class="method">getreply()</tt> has been called.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3109"><tt class="method">putrequest</tt></a></b>(</nobr></td>
+  <td><var>request, selector</var>)</td></tr></table>
+<dd>
+This should be the first call after the connection to the server has
+been made.  It sends a line to the server consisting of the
+<var>request</var> string, the <var>selector</var> string, and the HTTP version
+(<code>HTTP/1.1</code>).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3110"><tt class="method">putheader</tt></a></b>(</nobr></td>
+  <td><var>header, argument</var><big>[</big><var>, ...</var><big>]</big>)</td></tr></table>
+<dd>
+Send an <a class="rfc" name="rfcref-80560"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>-style header to the server.  It sends a line to the
+server consisting of the header, a colon and a space, and the first
+argument.  If more arguments are given, continuation lines are sent,
+each consisting of a tab and an argument.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3111"><tt class="method">endheaders</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Send a blank line to the server, signalling the end of the headers.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.6 httplib  " 
+  rel="prev" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.6 httplib  " 
+  rel="parent" title="11.6 httplib  " 
+  href="module-httplib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.6.2 HTTPResponse Objects" 
+  rel="next" title="11.6.2 HTTPResponse Objects" 
+  href="httpresponse-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="httpresponse-objects.html">11.6.2 HTTPResponse Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

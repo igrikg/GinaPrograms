@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node140.html">
+<LINK REL="prev" HREF="node138.html">
+<LINK REL="parent" href="module-doctest.html">
+<LINK REL="next" HREF="node140.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Warnings">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.2.7 Warnings</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.2.6 How are Docstring" 
+  HREF="node138.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.2 doctest  " 
+  href="module-doctest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.2.8 Soapbox" 
+  HREF="node140.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node138.html">5.2.6 How are Docstring</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node140.html">5.2.8 Soapbox</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007270000000000000000">
+5.2.7 Warnings</A>
+</H2>
+
+<P>
+
+<OL>
+<LI><tt class="module">doctest</tt> is serious about requiring exact matches in expected
+  output.  If even a single character doesn't match, the test fails.  This
+  will probably surprise you a few times, as you learn exactly what Python
+  does and doesn't guarantee about output.  For example, when printing a
+  dict, Python doesn't guarantee that the key-value pairs will be printed
+  in any particular order, so a test like
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; foo()
+{"Hermione": "hippogryph", "Harry": "broomstick"}
+&gt;&gt;&gt;
+</pre></div>
+
+<P>
+is vulnerable!  One workaround is to do
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; foo() == {"Hermione": "hippogryph", "Harry": "broomstick"}
+1
+&gt;&gt;&gt;
+</pre></div>
+
+<P>
+instead.  Another is to do
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; d = foo().items()
+&gt;&gt;&gt; d.sort()
+&gt;&gt;&gt; d
+[('Harry', 'broomstick'), ('Hermione', 'hippogryph')]
+</pre></div>
+
+<P>
+There are others, but you get the idea.
+
+<P>
+Another bad idea is to print things that embed an object address, like
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; id(1.0) # certain to fail some of the time
+7948648
+&gt;&gt;&gt;
+</pre></div>
+
+<P>
+Floating-point numbers are also subject to small output variations across
+platforms, because Python defers to the platform C library for float
+formatting, and C libraries vary widely in quality here.
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; 1./7  # risky
+0.14285714285714285
+&gt;&gt;&gt; print 1./7 # safer
+0.142857142857
+&gt;&gt;&gt; print round(1./7, 6) # much safer
+0.142857
+</pre></div>
+
+<P>
+Numbers of the form <code>I/2.**J</code> are safe across all platforms, and I
+often contrive doctest examples to produce numbers of that form:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; 3./4  # utterly safe
+0.75
+</pre></div>
+
+<P>
+Simple fractions are also easier for people to understand, and that makes
+for better documentation.
+
+<P>
+</LI>
+<LI>Be careful if you have code that must only execute once.
+
+<P>
+If you have module-level code that must only execute once, a more foolproof
+definition of <tt class="function">_test()</tt> is
+
+<P>
+<div class="verbatim"><pre>
+def _test():
+    import doctest, sys
+    doctest.testmod()
+</pre></div>
+
+<P>
+</LI>
+<LI>WYSIWYG isn't always the case, starting in Python 2.3.  The
+  string form of boolean results changed from <code>'0'</code> and
+  <code>'1'</code> to <code>'False'</code> and <code>'True'</code> in Python 2.3.
+  This makes it clumsy to write a doctest showing boolean results that
+  passes under multiple versions of Python.  In Python 2.3, by default,
+  and as a special case, if an expected output block consists solely
+  of <code>'0'</code> and the actual output block consists solely of
+  <code>'False'</code>, that's accepted as an exact match, and similarly for
+  <code>'1'</code> versus <code>'True'</code>.  This behavior can be turned off by
+  passing the new (in 2.3) module constant
+  <tt class="constant">DONT_ACCEPT_TRUE_FOR_1</tt> as the value of <tt class="function">testmod()</tt>'s
+  new (in 2.3) optional <var>optionflags</var> argument.  Some years after
+  the integer spellings of booleans are history, this hack will
+  probably be removed again.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.2.6 How are Docstring" 
+  rel="prev" title="5.2.6 How are Docstring" 
+  HREF="node138.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.2 doctest  " 
+  rel="parent" title="5.2 doctest  " 
+  href="module-doctest.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.2.8 Soapbox" 
+  rel="next" title="5.2.8 Soapbox" 
+  HREF="node140.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node138.html">5.2.6 How are Docstring</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node140.html">5.2.8 Soapbox</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-compileall.html">
+<LINK REL="prev" href="module-pyclbr.html">
+<LINK REL="parent" href="language.html">
+<LINK REL="next" href="module-compileall.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="py_compile -- Compile Python source files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>18.8 py_compile -- Compile Python source files</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.7.1 Class Descriptor Objects" 
+  href="pyclbr-class-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18. Python Language Services" 
+  href="language.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.9 compileall  " 
+  href="module-compileall.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="pyclbr-class-objects.html">18.7.1 Class Descriptor Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="language.html">18. Python Language Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-compileall.html">18.9 compileall  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0020800000000000000000">
+18.8 <tt class="module">py_compile</tt> --
+         Compile Python source files</A>
+</H1>
+
+<P>
+
+<P>
+
+<P>
+<a name="l2h-4696">&nbsp;</a>The <tt class="module">py_compile</tt> module provides a function to generate a
+byte-code file from a source file, and another function used when the
+module source file is invoked as a script.
+
+<P>
+Though not often needed, this function can be useful when installing
+modules for shared use, especially if some of the users may not have
+permission to write the byte-code cache files in the directory
+containing the source code.
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-4697"><tt class="exception">PyCompileError</tt></a></b>
+<dd>
+Exception raised when an error occurs while attempting to compile the file.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4698"><tt class="function">compile</tt></a></b>(</nobr></td>
+  <td><var>file</var><big>[</big><var>, cfile</var><big>[</big><var>, dfile</var><big>[</big><var>, doraise</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+  Compile a source file to byte-code and write out the byte-code cache 
+  file.  The source code is loaded from the file name <var>file</var>.  The 
+  byte-code is written to <var>cfile</var>, which defaults to <var>file</var>
+  <code>+</code> <code>'c'</code> (<code>'o'</code> if optimization is enabled in the
+  current interpreter).  If <var>dfile</var> is specified, it is used as
+  the name of the source file in error messages instead of <var>file</var>. 
+  If <var>doraise</var> = True, a PyCompileError is raised when an error is 
+  encountered while compiling <var>file</var>. If <var>doraise</var> = False (the default), 
+  an error string is written to sys.stderr, but no exception is raised.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4699"><tt class="function">main</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>args</var><big>]</big>)</td></tr></table>
+<dd>
+  Compile several source files.  The files named in <var>args</var> (or on
+  the command line, if <var>args</var> is not specified) are compiled and
+  the resulting bytecode is cached in the normal manner.  This
+  function does not search a directory structure to locate source
+  files; it only compiles files named explicitly.
+</dl>
+
+<P>
+When this module is run as a script, the <tt class="function">main()</tt> is used to
+compile all the files named on the command line.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-compileall.html">compileall</a></tt>:</b>
+    <dd>Utilities to compile all Python source files
+                         in a directory tree.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.7.1 Class Descriptor Objects" 
+  rel="prev" title="18.7.1 Class Descriptor Objects" 
+  href="pyclbr-class-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18. Python Language Services" 
+  rel="parent" title="18. Python Language Services" 
+  href="language.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.9 compileall  " 
+  rel="next" title="18.9 compileall  " 
+  href="module-compileall.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="pyclbr-class-objects.html">18.7.1 Class Descriptor Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="language.html">18. Python Language Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-compileall.html">18.9 compileall  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

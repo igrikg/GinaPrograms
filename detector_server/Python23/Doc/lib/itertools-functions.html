@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="itertools-example.html">
+<LINK REL="prev" href="module-itertools.html">
+<LINK REL="parent" href="module-itertools.html">
+<LINK REL="next" href="itertools-example.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Itertool functions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.14.1 Itertool functions </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.14.2 Examples" 
+  href="itertools-example.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="itertools-example.html">5.14.2 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0071410000000000000000">&nbsp;</A>
+<BR>
+5.14.1 Itertool functions 
+</H2>
+
+<P>
+The following module functions all construct and return iterators.
+Some provide streams of infinite length, so they should only be accessed
+by functions or loops that truncate the stream.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1215"><tt class="function">chain</tt></a></b>(</nobr></td>
+  <td><var>*iterables</var>)</td></tr></table>
+<dd>
+  Make an iterator that returns elements from the first iterable until
+  it is exhausted, then proceeds to the next iterable, until all of the
+  iterables are exhausted.  Used for treating consecutive sequences as
+  a single sequence.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def chain(*iterables):
+         for it in iterables:
+             for element in it:
+                 yield element
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1216"><tt class="function">count</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>n</var><big>]</big>)</td></tr></table>
+<dd>
+  Make an iterator that returns consecutive integers starting with <var>n</var>.
+  Does not currently support python long integers.  Often used as an
+  argument to <tt class="function">imap()</tt> to generate consecutive data points.
+  Also, used with <tt class="function">izip()</tt> to add sequence numbers.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def count(n=0):
+         while True:
+             yield n
+             n += 1
+</pre></div>
+
+<P>
+Note, <tt class="function">count()</tt> does not check for overflow and will return
+  negative numbers after exceeding <code>sys.maxint</code>.  This behavior
+  may change in the future.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1217"><tt class="function">cycle</tt></a></b>(</nobr></td>
+  <td><var>iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator returning elements from the iterable and saving a
+  copy of each.  When the iterable is exhausted, return elements from
+  the saved copy.  Repeats indefinitely.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def cycle(iterable):
+         saved = []
+         for element in iterable:
+             yield element
+             saved.append(element)
+         while saved:
+             for element in saved:
+                   yield element
+</pre></div>
+
+<P>
+Note, this is the only member of the toolkit that may require
+  significant auxiliary storage (depending on the length of the
+  iterable).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1218"><tt class="function">dropwhile</tt></a></b>(</nobr></td>
+  <td><var>predicate, iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator that drops elements from the iterable as long as
+  the predicate is true; afterwards, returns every element.  Note,
+  the iterator does not produce <i>any</i> output until the predicate
+  is true, so it may have a lengthy start-up time.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def dropwhile(predicate, iterable):
+         iterable = iter(iterable)
+         for x in iterable:
+             if not predicate(x):
+                 yield x
+                 break
+         for x in iterable:
+             yield x
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1219"><tt class="function">ifilter</tt></a></b>(</nobr></td>
+  <td><var>predicate, iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator that filters elements from iterable returning only
+  those for which the predicate is <code>True</code>.
+  If <var>predicate</var> is <code>None</code>, return the items that are true.
+  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def ifilter(predicate, iterable):
+         if predicate is None:
+             def predicate(x):
+                 return x
+         for x in iterable:
+             if predicate(x):
+                 yield x
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1220"><tt class="function">ifilterfalse</tt></a></b>(</nobr></td>
+  <td><var>predicate, iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator that filters elements from iterable returning only
+  those for which the predicate is <code>False</code>.
+  If <var>predicate</var> is <code>None</code>, return the items that are false.
+  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def ifilterfalse(predicate, iterable):
+         if predicate is None:
+             def predicate(x):
+                 return x
+         for x in iterable:
+             if not predicate(x):
+                 yield x
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1221"><tt class="function">imap</tt></a></b>(</nobr></td>
+  <td><var>function, *iterables</var>)</td></tr></table>
+<dd>
+  Make an iterator that computes the function using arguments from
+  each of the iterables.  If <var>function</var> is set to <code>None</code>, then
+  <tt class="function">imap()</tt> returns the arguments as a tuple.  Like
+  <tt class="function">map()</tt> but stops when the shortest iterable is exhausted
+  instead of filling in <code>None</code> for shorter iterables.  The reason
+  for the difference is that infinite iterator arguments are typically
+  an error for <tt class="function">map()</tt> (because the output is fully evaluated)
+  but represent a common and useful way of supplying arguments to
+  <tt class="function">imap()</tt>.
+  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def imap(function, *iterables):
+         iterables = map(iter, iterables)
+         while True:
+             args = [i.next() for i in iterables]
+             if function is None:
+                 yield tuple(args)
+             else:
+                 yield function(*args)
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1222"><tt class="function">islice</tt></a></b>(</nobr></td>
+  <td><var>iterable, </var><big>[</big><var>start,</var><big>]</big><var> stop </var><big>[</big><var>, step</var><big>]</big>)</td></tr></table>
+<dd>
+  Make an iterator that returns selected elements from the iterable.
+  If <var>start</var> is non-zero, then elements from the iterable are skipped
+  until start is reached.  Afterward, elements are returned consecutively
+  unless <var>step</var> is set higher than one which results in items being
+  skipped.  If <var>stop</var> is <code>None</code>, then iteration continues until
+  the iterator is exhausted, if at all; otherwise, it stops at the specified
+  position.  Unlike regular slicing,
+  <tt class="function">islice()</tt> does not support negative values for <var>start</var>,
+  <var>stop</var>, or <var>step</var>.  Can be used to extract related fields
+  from data where the internal structure has been flattened (for
+  example, a multi-line report may list a name field on every
+  third line).  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def islice(iterable, *args):
+         s = slice(*args)
+         next, stop, step = s.start or 0, s.stop, s.step or 1
+         for cnt, element in enumerate(iterable):
+             if cnt &lt; next:
+                 continue
+             if stop is not None and cnt &gt;= stop:
+                 break
+             yield element
+             next += step
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1223"><tt class="function">izip</tt></a></b>(</nobr></td>
+  <td><var>*iterables</var>)</td></tr></table>
+<dd>
+  Make an iterator that aggregates elements from each of the iterables.
+  Like <tt class="function">zip()</tt> except that it returns an iterator instead of
+  a list.  Used for lock-step iteration over several iterables at a
+  time.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def izip(*iterables):
+         iterables = map(iter, iterables)
+         while iterables:
+             result = [i.next() for i in iterables]
+             yield tuple(result)
+</pre></div>
+
+<P>
+
+<span class="versionnote">Changed in version 2.3.1:
+When no iterables are specified, returns a zero length
+                  iterator instead of raising a TypeError exception.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1224"><tt class="function">repeat</tt></a></b>(</nobr></td>
+  <td><var>object</var><big>[</big><var>, times</var><big>]</big>)</td></tr></table>
+<dd>
+  Make an iterator that returns <var>object</var> over and over again.
+  Runs indefinitely unless the <var>times</var> argument is specified.
+  Used as argument to <tt class="function">imap()</tt> for invariant parameters
+  to the called function.  Also used with <tt class="function">izip()</tt> to create
+  an invariant part of a tuple record.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def repeat(object, times=None):
+         if times is None:
+             while True:
+                 yield object
+         else:
+             for i in xrange(times):
+                 yield object
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1225"><tt class="function">starmap</tt></a></b>(</nobr></td>
+  <td><var>function, iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator that computes the function using arguments tuples
+  obtained from the iterable.  Used instead of <tt class="function">imap()</tt> when
+  argument parameters are already grouped in tuples from a single iterable
+  (the data has been ``pre-zipped'').  The difference between
+  <tt class="function">imap()</tt> and <tt class="function">starmap()</tt> parallels the distinction
+  between <code>function(a,b)</code> and <code>function(*c)</code>.
+  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def starmap(function, iterable):
+         iterable = iter(iterable)
+         while True:
+             yield function(*iterable.next())
+</pre></div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1226"><tt class="function">takewhile</tt></a></b>(</nobr></td>
+  <td><var>predicate, iterable</var>)</td></tr></table>
+<dd>
+  Make an iterator that returns elements from the iterable as long as
+  the predicate is true.  Equivalent to:
+
+<P>
+<div class="verbatim"><pre>
+     def takewhile(predicate, iterable):
+         for x in iterable:
+             if predicate(x):
+                 yield x
+             else:
+                 break
+</pre></div>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.14 itertools  " 
+  rel="prev" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.14 itertools  " 
+  rel="parent" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.14.2 Examples" 
+  rel="next" title="5.14.2 Examples" 
+  href="itertools-example.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="itertools-example.html">5.14.2 Examples</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

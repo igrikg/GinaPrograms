@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-positional-arguments.html">
+<LINK REL="prev" href="optparse-terminology.html">
+<LINK REL="parent" href="optparse-philosophy.html">
+<LINK REL="next" href="optparse-positional-arguments.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="What are options for?">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.1.2 What are options for?</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1.1 Terminology" 
+  href="optparse-terminology.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.1.3 What are positional" 
+  href="optparse-positional-arguments.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-terminology.html">6.20.1.1 Terminology</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-positional-arguments.html">6.20.1.3 What are positional</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082012000000000000000">&nbsp;</A>
+<BR>
+6.20.1.2 What are options for?
+</H3>
+
+<P>
+Options are used to provide extra information to tune or customize the
+execution of a program.  In case it wasn't clear, options should be
+<i>optional</i>.  A program should be able to run just fine with no
+options whatsoever.  (Pick a random program from the <font style="font-variant: small-caps;">Unix</font> or GNU
+toolsets.  Can it run without any options at all and still make sense?
+The only exceptions I can think of are <b class="program">find</b>, <b class="program">tar</b>,
+and <b class="program">dd</b>--all of which are mutant oddballs that have been
+rightly criticized for their non-standard syntax and confusing
+interfaces.)
+
+<P>
+Lots of people want their programs to have ``required options''.
+Think about it.  If it's required, then it's <i>not optional</i>!  If
+there is a piece of information that your program absolutely requires
+in order to run successfully, that's what positional arguments are
+for.  (However, if you insist on adding ``required options'' to your
+programs, look in ``Extending Examples''
+(section&nbsp;<A href="optparse-extending-examples.html#optparse-extending-examples">6.20.5</A>) for two ways of
+implementing them with <tt class="module">optparse</tt>.)
+
+<P>
+Consider the humble <b class="program">cp</b> utility, for copying files.  It
+doesn't make much sense to try to copy files without supplying a
+destination and at least one source.  Hence, <b class="program">cp</b> fails if you
+run it with no arguments.  However, it has a flexible, useful syntax
+that does not rely on options at all:
+
+<P>
+<div class="verbatim"><pre>
+$ cp SOURCE DEST
+$ cp SOURCE ... DEST-DIR
+</pre></div>
+
+<P>
+You can get pretty far with just that.  Most <b class="program">cp</b>
+implementations provide a bunch of options to tweak exactly how the
+files are copied: you can preserve mode and modification time, avoid
+following symlinks, ask before clobbering existing files, etc.  But
+none of this distracts from the core mission of <b class="program">cp</b>, which is
+to copy one file to another, or N files to another directory.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.1.1 Terminology" 
+  rel="prev" title="6.20.1.1 Terminology" 
+  href="optparse-terminology.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.1 Philosophy" 
+  rel="parent" title="6.20.1 Philosophy" 
+  href="optparse-philosophy.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.1.3 What are positional" 
+  rel="next" title="6.20.1.3 What are positional" 
+  href="optparse-positional-arguments.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-terminology.html">6.20.1.1 Terminology</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-philosophy.html">6.20.1 Philosophy</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-positional-arguments.html">6.20.1.3 What are positional</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

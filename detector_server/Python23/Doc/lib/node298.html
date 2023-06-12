@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node299.html">
+<LINK REL="prev" HREF="node297.html">
+<LINK REL="parent" HREF="node297.html">
+<LINK REL="next" HREF="node299.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Configuration functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.7.1 Configuration functions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.7 Configuration" 
+  HREF="node297.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.7 Configuration" 
+  HREF="node297.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.7.2 Configuration file format" 
+  HREF="node299.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node297.html">6.28.7 Configuration</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node297.html">6.28.7 Configuration</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node299.html">6.28.7.2 Configuration file format</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082871000000000000000">
+6.28.7.1 Configuration functions</A>
+</H3>
+
+<P>
+The following functions allow the logging module to be
+configured. Before they can be used, you must import
+<tt class="module">logging.config</tt>.  Their use is optional -- you can configure
+the logging module entirely by making calls to the main API (defined
+in <tt class="module">logging</tt> itself) and defining handlers which are declared
+either in <tt class="module">logging</tt> or <tt class="module">logging.handlers</tt>.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2389"><tt class="function">fileConfig</tt></a></b>(</nobr></td>
+  <td><var>fname</var><big>[</big><var>, defaults</var><big>]</big>)</td></tr></table>
+<dd>
+Reads the logging configuration from a ConfigParser-format file named
+<var>fname</var>. This function can be called several times from an application,
+allowing an end user the ability to select from various pre-canned
+configurations (if the developer provides a mechanism to present the
+choices and load the chosen configuration). Defaults to be passed to
+ConfigParser can be specified in the <var>defaults</var> argument.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2390"><tt class="function">listen</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>port</var><big>]</big>)</td></tr></table>
+<dd>
+Starts up a socket server on the specified port, and listens for new
+configurations. If no port is specified, the module's default
+<tt class="constant">DEFAULT_LOGGING_CONFIG_PORT</tt> is used. Logging configurations
+will be sent as a file suitable for processing by <tt class="function">fileConfig()</tt>.
+Returns a <tt class="class">Thread</tt> instance on which you can call <tt class="method">start()</tt>
+to start the server, and which you can <tt class="method">join()</tt> when appropriate.
+To stop the server, call <tt class="function">stopListening()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2391"><tt class="function">stopListening</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Stops the listening server which was created with a call to
+<tt class="function">listen()</tt>. This is typically called before calling <tt class="method">join()</tt>
+on the return value from <tt class="function">listen()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.7 Configuration" 
+  rel="prev" title="6.28.7 Configuration" 
+  HREF="node297.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.7 Configuration" 
+  rel="parent" title="6.28.7 Configuration" 
+  HREF="node297.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.7.2 Configuration file format" 
+  rel="next" title="6.28.7.2 Configuration file format" 
+  HREF="node299.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node297.html">6.28.7 Configuration</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node297.html">6.28.7 Configuration</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node299.html">6.28.7.2 Configuration file format</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

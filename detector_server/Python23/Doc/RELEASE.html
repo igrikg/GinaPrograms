@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>ActivePython 2.3.2 Build 232 Release Notes</title>
+<LINK REL=StyleSheet HREF="aspn.css" TYPE="text/css">
+</head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="1">
+<tr class="header">
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="3" bgcolor="#EAE2BB">
+<tr>
+<td width="100">
+<a target="_blank" href="http://www.activestate.com/Products/ActivePython/">
+<img src="activepython.gif" width="66" height="50" border="0" align="left">
+</a>
+</td>
+<td>
+<div align="center" class="heading">ActivePython Release Notes</div>
+</td>
+<td width="113" height="50" align="right">
+<a target="_blank" href="http://www.activestate.com/">
+<img src="AS_logo.gif" width="113" height="50" border="0" align="right">
+</a>
+</td>
+</tr>
+<tr>
+<td class="lineColour" colspan="3"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<h1>ActivePython 2.3.2 Build 232 Release Notes</h1>
+
+<h3>Table of Contents</h3>
+
+<table>
+<tr>
+<td>
+
+<ul>
+<li><a class="doc" href="#introduction">Introduction</a></li>
+<li><a class="doc" href="#extension-modules-built-in">Built-In Python Extension Modules</a>
+<ul>
+    <li><a class="doc" href="#mod_all_platforms">All Platforms</a></li>
+    <li><a class="doc" href="#mod_windows">Windows</a></li> 
+</ul>
+</li>
+<li><a class="doc" href="#change_history">Change History</a></li>
+<li><a class="doc" href="#known_issues">Known Issues</a>
+<ul>
+    <li><a class="doc" href="#KI_all_platforms">All Platforms</a></li>
+    <li><a class="doc" href="#KI_windows">Windows</a></li>
+    <li><a class="doc" href="#KI_solaris">Solaris</a></li>
+</ul>
+</li>
+<li><a class="doc" href="#documentation">Documentation</a></li>
+<li><a class="doc" href="#contact_AS">Contact ActiveState</a></li>
+</ul>
+
+
+<h2><a NAME="introduction">Introduction</a></h2>
+
+<p>Welcome, and thank you for using ActivePython. This release
+corresponds to Python version 2.3.2.  ActivePython
+provides a one-step installation of all essential Python modules, as well as
+extensive documentation.  ActivePython includes:</p>
+
+<ul>
+<li>the core Python language;</li>
+<li>the Python for Windows extensions (Windows-only);</li>
+<li>Andrew Kuchling's <i>What's New in Python X.Y</i> documentation series;</li>
+<li>the <i>Dive into Python</i> tutorial;</li>
+<li>the <i>An Easy Tutorial to Python</i> tutorial;</li>
+<li>the Python FAQs and HOWTOs;</li>
+<li>a snapshot of the Python PEPs (Python Enhancement Proposals);</li>
+<li>and more.</li>
+</ul>
+
+<p>Binaries for the following platforms are freely available:</p>
+
+<UL>
+<LI>Windows x86 (for Windows 98, ME, NT, 2000, XP and 2003)</li>
+<LI>Linux x86 (for RedHat 7.3 or later)</li>
+<LI>Solaris Sparc (for Solaris 2.6 or later)</li>
+</UL>
+
+
+<h2><a NAME="extension-modules-built-in">Built-In Python Extension Modules</a></h2>
+
+<p>This section describes the Python extension modules that are included with
+ActivePython.</p>
+
+<h3><a NAME="mod_all_platforms">All Platforms</a></h3>
+
+<ul>
+<li>Tkinter - Python interface to Tk (version 8.4.4)<br>
+ActivePython ships with Tk and Tkinter, the Python interface to both.</li>
+<li>expat - James Clark's fast XML parser<br>
+The Python interface to expat is part of ActivePython, as is expat itself
+(c.f. xmlparse.dll and xmltok.dll).</li>
+<li>zlib - general purpose compression library<br>
+ActivePython contains zlib version 1.1.4</li>
+<li>bzip2 - general purpose compression library<br>
+<li>bsddb - interface to the Berkeley DB library (version 4.1.25)</li>
+</ul>
+
+<h3><a NAME="mod_windows">Windows</a></h3>
+
+<ul>
+<li>Mark Hammond's Win32 extensions (build 163). PyWin32
+includes interfaces to Win32 APIs such as COM, MFC, ASP, ODBC. It also
+includes the PythonWin IDE.</li>
+</ul>
+
+
+<h2><a NAME="change_history">Change History</a></h2>
+
+<strong>ActivePython 2.3.2 Build 232: November 2003</strong><br/>
+<ul>
+<li>[Windows] Upgrade to PyWin32 (a.k.a. win32all) build 163.</li>
+<li>[Windows] Fix issues regarding win32com cache (bug 28173).</li>
+</ul>
+
+<strong>ActivePython 2.2.3 Build 227: November 2003</strong><br/>
+<ul>
+<li>[Windows] Upgrade to PyWin32 (a.k.a. win32all) build 162.</li>
+<li>[Windows] Fix issues regarding win32com cache (bug 28173).</li>
+</ul>
+
+<strong>ActivePython 2.3.2 Build 231: November 2003</strong><br/>
+<ul>
+<li>[Windows] Upgrade to PyWin32 (a.k.a. win32all) build 161.</li>
+<li>Re-add the _tkinter module that was mistakenly not included in build 230
+    on Linux and Solaris.</li>
+</ul>
+
+<strong>ActivePython 2.2.3 Build 226: November 2003</strong><br/>
+<ul>
+<li>[Windows] Upgrade to PyWin32 (a.k.a. win32all) build 160.</li>
+<li>Update to Tcl/Tk 8.4.4.</li>
+</ul>
+
+<strong>ActivePython 2.3.2 Build 230: October 2003</strong><br/>
+<strong>ActivePython 2.2.3 Build 225: October 2003</strong><br/>
+<strong>ActivePython 2.2.2 Build 224: November 2002</strong><br/>
+<strong>ActivePython 2.2.1 Build 222: April 2002</strong><br/>
+<strong>ActivePython 2.1.3 Build 214: April 2002</strong><br/>
+<strong>ActivePython 2.2.0 Build 221: March 2002</strong><br/>
+<strong>ActivePython 2.1.1 Build 212: July 2001</strong><br/>
+<strong>ActivePython 2.1.0 Build 211: June 2001</strong><br/>
+<strong>ActivePython 2.1.0 Build 210: April 2001</strong><br/>
+<strong>ActivePython 2.0.0 Build 203: March 2001</strong><br/>
+<strong>ActivePython 2.0.0 Build 202: October 2000</strong><br/>
+<strong>ActivePython 2.0.0 Build 201: September 2000</strong><br/>
+<strong>ActivePython 1.6.0 Build 100: August 2000</strong><br/>
+
+
+<h2><a NAME="known_issues">Known Issues</a></h2>
+
+<p>This section lists known issues with ActivePython and Python:</p>
+
+<h3><a NAME="KI_all_platforms">All Platforms</a></h3>
+<ul>
+<li>ActivePython should not be installed in a path that contains
+    spaces in it, as the spaces may cause problems for some ActivePython
+    components.  It is recommended that you install ActivePython in the
+    default location.</li>
+</ul>
+
+<h3><a NAME="KI_windows">Windows</a></h3>
+<ul>
+<li>Search results in the ActivePython help browser result in invalid page
+references.  In each case, the alternate page references are correct.  </li> 
+
+<li>ActivePython 2.3.2 cannot co-exist with other
+Python installations based on Python 2.3. This includes any
+ActivePython 2.3.x and reference Python
+2.3.x releases from python.org. Please uninstall any Python
+2.3-based installations before installing this
+ActivePython.</li> 
+
+<li>The following Microsoft knowledge base articles may be helpful in solving
+MSI problems:
+    <p>Q236597 - OFF2000: Error Message: The Installation Package Could Not Be Opened ...<br>
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q236/5/97.ASP">http://support.microsoft.com/support/kb/articles/Q236/5/97.ASP</a></p>
+    <p>Q224094 - OFF2000: Error Message: This Application Requires the Windows Installer to Run<br>
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q224/0/94.ASP">http://support.microsoft.com/support/kb/articles/Q224/0/94.ASP</a></p>
+    <p>Q247532 - Works 2000 Error Message: Installer Terminated Prematurely<br>
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q247/5/32.ASP">http://support.microsoft.com/support/kb/articles/Q247/5/32.ASP</a></p>
+    <p>Error 1303: The installer has insufficient privileges... (while running Office Setup)<br>
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q228/6/58.ASP">http://support.microsoft.com/support/kb/articles/Q228/6/58.ASP</a></p>
+    <p>Error 1316: Running Setup for Admin Installation<br>
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q228/5/92.ASP">http://support.microsoft.com/support/kb/articles/Q228/5/92.ASP</a></p>
+    <p>Error 1327: Invalid Drive During Office Installation<br> 
+    <a target="_blank" class="doc" HREF="http://support.microsoft.com/support/kb/articles/Q217/6/66.ASP">http://support.microsoft.com/support/kb/articles/Q217/6/66.ASP</a></p>
+</li>
+
+<li>On Windows 98, popen() functions may crash the PC when certain versions of
+Norton Anti Virus are installed.  This includes os.popen(), popen2.popen*() and
+win32pipe.popen*()</li>
+
+<li>On Windows 9x, the ActivePython installer cannot automatically add the
+install directory to your PATH.</li>
+
+<li>On Windows95, Python COM integration will not work, because win32com
+registration does not work.</li>
+
+<li>In certain situations, attempting to use any COM functions may fail.  The
+error message will usually indicate an inability to load one of
+<code>pythoncomxx.dll</code> or <code>pywintypesxx.dll</code>. This generally
+indicates that your COM .dlls need to be updated.  Visit the COM/DCOM download
+pages at
+<a target="_blank" class="doc"
+HREF="http://www.microsoft.com/com">http://www.microsoft.com/com</a>, 
+select <code>Resources|Downloads</code> and download the COM/DCOM update
+for your system.  More details are available on Mark Hammond's Python for
+Win32 pages at
+<a target="_blank" class="doc"
+href="http://starship.python.net/crew/mhammond/win32/InstallationProblems.html">http://starship.python.net/crew/mhammond/win32/InstallationProblems.html</a>.</li>
+</ul>
+
+<h3><a NAME="KI_solaris">Solaris</a></h3>
+<ul>
+<li>Solaris 2.6+ builds of ActivePython do not include the _tkinter extension.
+The _tkinter extension *does* still work in the Solaris 2.8+ builds. See
+<a target="_blank" href="http://bugs.activestate.com/ActivePython/show_bug.cgi?id=28116">bug 28116</a>.
+</li>
+<li>Solaris 2.6+ builds of ActivePython do not include the _bsddb extension.
+The _bsddb extension *does* still work in the Solaris 2.8+ builds. See
+<a target="_blank" href="http://bugs.activestate.com/ActivePython/show_bug.cgi?id=28117">bug 28117</a>.
+</li>
+</ul>
+
+<h2><a name="documentation">Documentation</a></h2>
+
+<p>The ActivePython distribution includes extensive documentation,
+including the core language documentation (library and language
+references, etc.) as well as tutorials and additional docs.</p>
+
+<p>On Unix platforms, HTML documentation is installed under the Python
+install location in the <code>doc/python2.3</code> directory. For
+example, if ActivePython is installed in
+<code>/usr/local/ActivePython-2.3</code>, then the HTML documentation is
+located in
+<code>/usr/local/ActivePython-2.3/doc/python2.3</code>.</p>
+
+<p>On Windows systems, the standard documentation and Windows-specific Python
+documentation is installed in Compiled HTML Help (.chm) format and is
+accessible from the "Start" menu (<code>Start|Programs|ActiveState
+ActivePython 2.3|ActivePython Documentation</code>).</p>
+
+<p>Updated versions of the HTML documentation are available on
+the ActiveState website:</p>
+
+<a target="_blank" class="doc" HREF="http://aspn.activestate.com/ASPN/Reference/">
+http://aspn.activestate.com/ASPN/Reference/</a>
+
+
+<h2><a NAME="contact_AS">Contact ActiveState</a></h2>
+<ul>
+<li>Please send any feedback regarding the installer or any other aspect of
+ActivePython to
+<a href="mailto:ActivePython-feedback@ActiveState.com">ActivePython-feedback@ActiveState.com</a>.</li>
+
+<li><strong>Bug Reports</strong> Submit ActivePython bugs to the
+<a target="_blank" class="doc" href="http://bugs.ActiveState.com/ActivePython">ActivePython Bug Database</a>.
+Please include all relevant information that you think will help us recreate
+the circumstances in which the bug was observed.</li>
+
+<li><strong>Mailing Lists</strong> ActiveState hosts a number of mailing 
+lists of interest to the Python community, including a list specifically 
+devoted to ActivePython. See <a target="_blank" class="doc" href="http://aspn.activestate.com/ASPN/Mail/">Mailing Lists</a> on the 
+ActiveState Programmer Network for more information. For help with the 
+ActiveState mailing lists, see <a class="doc" target="_blank" href="http://aspn.activestate.com/ASPN/Mail/help">Mailing List Help</a> page.</li>
+
+<li><strong>Installation Support</strong> For installation-related support, 
+send an email to <a href="mailto:support@ActiveState.com">support@ActiveState.com</a>.</li>
+</ul>
+
+
+<!-- Footer Start -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="1">
+<tr>
+<td><img src="shim.gif" width="100%" height="1"></td>
+</tr>
+</table><br>
+<div class="footer" align="center"><em>Copyright (c) 2000-2003 ActiveState Corp. 
+<a class="doc" target="_blank" href="http://www.ActiveState.com">http://www.ActiveState.com</a>  
+All Rights Reserved.</em></div>
+<!-- Footer End -->
+
+</td>
+</tr>
+</table>
+
+</BODY>
+
+</HTML>

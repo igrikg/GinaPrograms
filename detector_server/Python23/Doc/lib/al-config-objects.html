@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="al-port-objects.html">
+<LINK REL="prev" href="module-al.html">
+<LINK REL="parent" href="module-al.html">
+<LINK REL="next" href="al-port-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Configuration Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>20.1.1 Configuration Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="20.1 al  " 
+  href="module-al.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="20.1 al  " 
+  href="module-al.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="20.1.2 Port Objects" 
+  href="al-port-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="al-port-objects.html">20.1.2 Port Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0022110000000000000000">&nbsp;</A>
+<BR>
+20.1.1 Configuration Objects 
+</H2>
+
+<P>
+Configuration objects returned by <tt class="function">newconfig()</tt> have the
+following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4744"><tt class="method">getqueuesize</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the queue size.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4745"><tt class="method">setqueuesize</tt></a></b>(</nobr></td>
+  <td><var>size</var>)</td></tr></table>
+<dd>
+Set the queue size.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4746"><tt class="method">getwidth</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Get the sample width.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4747"><tt class="method">setwidth</tt></a></b>(</nobr></td>
+  <td><var>width</var>)</td></tr></table>
+<dd>
+Set the sample width.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4748"><tt class="method">getchannels</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Get the channel count.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4749"><tt class="method">setchannels</tt></a></b>(</nobr></td>
+  <td><var>nchannels</var>)</td></tr></table>
+<dd>
+Set the channel count.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4750"><tt class="method">getsampfmt</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Get the sample format.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4751"><tt class="method">setsampfmt</tt></a></b>(</nobr></td>
+  <td><var>sampfmt</var>)</td></tr></table>
+<dd>
+Set the sample format.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4752"><tt class="method">getfloatmax</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Get the maximum value for floating sample formats.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4753"><tt class="method">setfloatmax</tt></a></b>(</nobr></td>
+  <td><var>floatmax</var>)</td></tr></table>
+<dd>
+Set the maximum value for floating sample formats.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="20.1 al  " 
+  rel="prev" title="20.1 al  " 
+  href="module-al.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="20.1 al  " 
+  rel="parent" title="20.1 al  " 
+  href="module-al.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="20.1.2 Port Objects" 
+  rel="next" title="20.1.2 Port Objects" 
+  href="al-port-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="al-port-objects.html">20.1.2 Port Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="inspect-stack.html">
+<LINK REL="prev" href="inspect-source.html">
+<LINK REL="parent" href="module-inspect.html">
+<LINK REL="next" href="inspect-stack.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Classes and functions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.11.3 Classes and functions </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.11.2 Retrieving source code" 
+  href="inspect-source.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.11 inspect  " 
+  href="module-inspect.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.11.4 The interpreter stack" 
+  href="inspect-stack.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="inspect-source.html">3.11.2 Retrieving source code</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="inspect-stack.html">3.11.4 The interpreter stack</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051130000000000000000">&nbsp;</A>
+<BR>
+3.11.3 Classes and functions
+            
+</H2>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-582"><tt class="function">getclasstree</tt></a></b>(</nobr></td>
+  <td><var>classes</var><big>[</big><var>, unique</var><big>]</big>)</td></tr></table>
+<dd>
+  Arrange the given list of classes into a hierarchy of nested lists.
+  Where a nested list appears, it contains classes derived from the class
+  whose entry immediately precedes the list.  Each entry is a 2-tuple
+  containing a class and a tuple of its base classes.  If the <var>unique</var>
+  argument is true, exactly one entry appears in the returned structure
+  for each class in the given list.  Otherwise, classes using multiple
+  inheritance and their descendants will appear multiple times.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-583"><tt class="function">getargspec</tt></a></b>(</nobr></td>
+  <td><var>func</var>)</td></tr></table>
+<dd>
+  Get the names and default values of a function's arguments.
+  A tuple of four things is returned: <code>(<var>args</var>,
+    <var>varargs</var>, <var>varkw</var>, <var>defaults</var>)</code>.
+  <var>args</var> is a list of the argument names (it may contain nested lists).
+  <var>varargs</var> and <var>varkw</var> are the names of the <code>*</code> and
+  <code>**</code> arguments or <code>None</code>.
+  <var>defaults</var> is a tuple of default argument values; if this tuple
+  has <var>n</var> elements, they correspond to the last <var>n</var> elements
+  listed in <var>args</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-584"><tt class="function">getargvalues</tt></a></b>(</nobr></td>
+  <td><var>frame</var>)</td></tr></table>
+<dd>
+  Get information about arguments passed into a particular frame.
+  A tuple of four things is returned: <code>(<var>args</var>,
+    <var>varargs</var>, <var>varkw</var>, <var>locals</var>)</code>.
+  <var>args</var> is a list of the argument names (it may contain nested
+  lists).
+  <var>varargs</var> and <var>varkw</var> are the names of the <code>*</code> and
+  <code>**</code> arguments or <code>None</code>.
+  <var>locals</var> is the locals dictionary of the given frame.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-585"><tt class="function">formatargspec</tt></a></b>(</nobr></td>
+  <td><var>args</var><big>[</big><var>, varargs, varkw, defaults,
+      argformat, varargsformat, varkwformat, defaultformat</var><big>]</big>)</td></tr></table>
+<dd>
+
+<P>
+Format a pretty argument spec from the four values returned by
+  <tt class="function">getargspec()</tt>.  The other four arguments are the
+  corresponding optional formatting functions that are called to turn
+  names and values into strings.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-586"><tt class="function">formatargvalues</tt></a></b>(</nobr></td>
+  <td><var>args</var><big>[</big><var>, varargs, varkw, locals,
+      argformat, varargsformat, varkwformat, valueformat</var><big>]</big>)</td></tr></table>
+<dd>
+  Format a pretty argument spec from the four values returned by
+  <tt class="function">getargvalues()</tt>.  The other four arguments are the
+  corresponding optional formatting functions that are called to turn
+  names and values into strings.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-587"><tt class="function">getmro</tt></a></b>(</nobr></td>
+  <td><var>cls</var>)</td></tr></table>
+<dd>
+  Return a tuple of class cls's base classes, including cls, in
+  method resolution order.  No class appears more than once in this tuple.
+  Note that the method resolution order depends on cls's type.  Unless a
+  very peculiar user-defined metatype is in use, cls will be the first
+  element of the tuple.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.11.2 Retrieving source code" 
+  rel="prev" title="3.11.2 Retrieving source code" 
+  href="inspect-source.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.11 inspect  " 
+  rel="parent" title="3.11 inspect  " 
+  href="module-inspect.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.11.4 The interpreter stack" 
+  rel="next" title="3.11.4 The interpreter stack" 
+  href="inspect-stack.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="inspect-source.html">3.11.2 Retrieving source code</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="inspect-stack.html">3.11.4 The interpreter stack</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-curses.html">
+<LINK REL="prev" href="module-mutex.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" href="module-curses.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="getpass -- Portable password input">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.13 getpass -- Portable password input</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.12.1 Mutex Objects" 
+  href="mutex-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.14 curses  " 
+  href="module-curses.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="mutex-objects.html">6.12.1 Mutex Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-curses.html">6.14 curses  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081300000000000000000">
+6.13 <tt class="module">getpass</tt>
+         -- Portable password input</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">getpass</tt> module provides two functions:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1803"><tt class="function">getpass</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>prompt</var><big>]</big>)</td></tr></table>
+<dd>
+  Prompt the user for a password without echoing.  The user is
+  prompted using the string <var>prompt</var>, which defaults to
+  <code>'Password: '</code>.
+  Availability: Macintosh, <font style="font-variant: small-caps;">Unix</font>, Windows.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1804"><tt class="function">getuser</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+  Return the ``login name'' of the user.
+  Availability: <font style="font-variant: small-caps;">Unix</font>, Windows.
+
+<P>
+This function checks the environment variables <a class="envvar" name="l2h-1805">LOGNAME</a>,
+  <a class="envvar" name="l2h-1806">USER</a>, <a class="envvar" name="l2h-1807">LNAME</a> and <a class="envvar" name="l2h-1808">USERNAME</a>, in order, and
+  returns the value of the first one which is set to a non-empty
+  string.  If none are set, the login name from the password database
+  is returned on systems which support the <tt class="module"><a href="module-pwd.html">pwd</a></tt> module,
+  otherwise, an exception is raised.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.12.1 Mutex Objects" 
+  rel="prev" title="6.12.1 Mutex Objects" 
+  href="mutex-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.14 curses  " 
+  rel="next" title="6.14 curses  " 
+  href="module-curses.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="mutex-objects.html">6.12.1 Mutex Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-curses.html">6.14 curses  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

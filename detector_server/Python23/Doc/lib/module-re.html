@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-struct.html">
+<LINK REL="prev" href="module-string.html">
+<LINK REL="parent" href="strings.html">
+<LINK REL="next" href="re-syntax.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="re -- Regular expression operations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>4.2 re -- Regular expression operations</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.1 string  " 
+  href="module-string.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4. String Services" 
+  href="strings.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.2.1 Regular Expression Syntax" 
+  href="re-syntax.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-string.html">4.1 string  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006200000000000000000">
+4.2 <tt class="module">re</tt> --
+         Regular expression operations</A>
+</H1>
+
+
+<P>
+
+<P>
+This module provides regular expression matching operations similar to
+those found in Perl.  Regular expression pattern strings may not
+contain null bytes, but can specify the null byte using the
+<code>&#92;<var>number</var></code> notation.  Both patterns and strings to be
+searched can be Unicode strings as well as 8-bit strings.  The
+<tt class="module">re</tt> module is always available.
+
+<P>
+Regular expressions use the backslash character ("<tt class="character">&#92;</tt>") to
+indicate special forms or to allow special characters to be used
+without invoking their special meaning.  This collides with Python's
+usage of the same character for the same purpose in string literals;
+for example, to match a literal backslash, one might have to write
+<code>'&#92;&#92;&#92;&#92;'</code> as the pattern string, because the regular expression
+must be "<tt class="samp">&#92;&#92;</tt>", and each backslash must be expressed as
+"<tt class="samp">&#92;&#92;</tt>" inside a regular Python string literal.
+
+<P>
+The solution is to use Python's raw string notation for regular
+expression patterns; backslashes are not handled in any special way in
+a string literal prefixed with "<tt class="character">r</tt>".  So <code>r"&#92;n"</code> is a
+two-character string containing "<tt class="character">&#92;</tt>" and "<tt class="character">n</tt>",
+while <code>"&#92;n"</code> is a one-character string containing a newline.
+Usually patterns will be expressed in Python code using this raw
+string notation.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"
+        >Mastering Regular Expressions</em>
+    <dd>Book on regular expressions
+            by Jeffrey Friedl, published by O'Reilly.  The second 
+            edition of the book no longer covers Python at all, 
+            but the first edition covered writing good regular expression
+            patterns in great detail.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="re-syntax.html">4.2.1 Regular Expression Syntax</a>
+<LI><A href="matching-searching.html">4.2.2 Matching vs Searching</a>
+<LI><A href="node105.html">4.2.3 Module Contents</a>
+<LI><A href="re-objects.html">4.2.4 Regular Expression Objects</a>
+<LI><A href="match-objects.html">4.2.5 Match Objects</a>
+<LI><A href="node108.html">4.2.6 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.1 string  " 
+  rel="prev" title="4.1 string  " 
+  href="module-string.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4. String Services" 
+  rel="parent" title="4. String Services" 
+  href="strings.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.2.1 Regular Expression Syntax" 
+  rel="next" title="4.2.1 Regular Expression Syntax" 
+  href="re-syntax.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-string.html">4.1 string  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="re-syntax.html">4.2.1 Regular Expression Syntax</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

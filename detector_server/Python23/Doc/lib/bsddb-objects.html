@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-bsddb.html">
+<LINK REL="parent" href="module-bsddb.html">
+<LINK REL="next" href="module-dumbdbm.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Hash, BTree and Record Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.13.1 Hash, BTree and Record Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.13 bsddb  " 
+  href="module-bsddb.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.13 bsddb  " 
+  href="module-bsddb.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.14 dumbdbm  " 
+  href="module-dumbdbm.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-bsddb.html">7.13 bsddb  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-bsddb.html">7.13 bsddb  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-dumbdbm.html">7.14 dumbdbm  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091310000000000000000">&nbsp;</A>
+<BR>
+7.13.1 Hash, BTree and Record Objects 
+</H2>
+
+<P>
+Once instantiated, hash, btree and record objects support
+the same methods as dictionaries.  In addition, they support
+the methods listed below.
+
+<span class="versionnote">Changed in version 2.3.1:
+Added mapping methods.</span>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2603"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Close the underlying file.  The object can no longer be accessed.  Since
+there is no open <tt class="method">open</tt> method for these objects, to open the file
+again a new <tt class="module">bsddb</tt> module open function must be called.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2604"><tt class="method">keys</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the list of keys contained in the DB file.  The order of the list is
+unspecified and should not be relied on.  In particular, the order of the
+list returned is different for different file formats.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2605"><tt class="method">has_key</tt></a></b>(</nobr></td>
+  <td><var>key</var>)</td></tr></table>
+<dd>
+Return <code>1</code> if the DB file contains the argument as a key.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2606"><tt class="method">set_location</tt></a></b>(</nobr></td>
+  <td><var>key</var>)</td></tr></table>
+<dd>
+Set the cursor to the item indicated by <var>key</var> and return a tuple
+containing the key and its value.  For binary tree databases (opened
+using <tt class="function">btopen()</tt>), if <var>key</var> does not actually exist in
+the database, the cursor will point to the next item in sorted order
+and return that key and value.  For other databases,
+<tt class="exception">KeyError</tt> will be raised if <var>key</var> is not found in the
+database.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2607"><tt class="method">first</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Set the cursor to the first item in the DB file and return it.  The order of 
+keys in the file is unspecified, except in the case of B-Tree databases.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2608"><tt class="method">next</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Set the cursor to the next item in the DB file and return it.  The order of 
+keys in the file is unspecified, except in the case of B-Tree databases.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2609"><tt class="method">previous</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Set the cursor to the previous item in the DB file and return it.  The
+order of keys in the file is unspecified, except in the case of B-Tree
+databases.  This is not supported on hashtable databases (those opened
+with <tt class="function">hashopen()</tt>).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2610"><tt class="method">last</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Set the cursor to the last item in the DB file and return it.  The
+order of keys in the file is unspecified.  This is not supported on
+hashtable databases (those opened with <tt class="function">hashopen()</tt>).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2611"><tt class="method">sync</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Synchronize the database on disk.
+</dl>
+
+<P>
+Example:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import bsddb
+&gt;&gt;&gt; db = bsddb.btopen('/tmp/spam.db', 'c')
+&gt;&gt;&gt; for i in range(10): db['%d'%i] = '%d'% (i*i)
+... 
+&gt;&gt;&gt; db['3']
+'9'
+&gt;&gt;&gt; db.keys()
+['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+&gt;&gt;&gt; db.first()
+('0', '0')
+&gt;&gt;&gt; db.next()
+('1', '1')
+&gt;&gt;&gt; db.last()
+('9', '81')
+&gt;&gt;&gt; db.set_location('2')
+('2', '4')
+&gt;&gt;&gt; db.previous() 
+('1', '1')
+&gt;&gt;&gt; for k, v in db.iteritems():
+...     print k, v
+0 0
+1 1
+2 4
+3 9
+4 16
+5 25
+6 36
+7 49
+8 64
+9 81
+&gt;&gt;&gt; 8 in db
+True
+&gt;&gt;&gt; db.sync()
+0
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.13 bsddb  " 
+  rel="prev" title="7.13 bsddb  " 
+  href="module-bsddb.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.13 bsddb  " 
+  rel="parent" title="7.13 bsddb  " 
+  href="module-bsddb.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.14 dumbdbm  " 
+  rel="next" title="7.14 dumbdbm  " 
+  href="module-dumbdbm.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-bsddb.html">7.13 bsddb  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-bsddb.html">7.13 bsddb  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-dumbdbm.html">7.14 dumbdbm  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

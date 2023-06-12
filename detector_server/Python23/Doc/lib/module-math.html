@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-cmath.html">
+<LINK REL="prev" href="module-test.testsupport.html">
+<LINK REL="parent" href="misc.html">
+<LINK REL="next" href="module-cmath.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="math -- Mathematical functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.6 math -- Mathematical functions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.5 test.test_support  " 
+  href="module-test.testsupport.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.7 cmath  " 
+  href="module-cmath.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-test.testsupport.html">5.5 test.test_support  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-cmath.html">5.7 cmath  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007600000000000000000">
+5.6 <tt class="module">math</tt> --
+         Mathematical functions</A>
+</H1>
+
+<P>
+
+
+<P>
+This module is always available.  It provides access to the
+mathematical functions defined by the C standard.
+
+<P>
+These functions cannot be used with complex numbers; use the functions
+of the same name from the <tt class="module"><a href="module-cmath.html">cmath</a></tt> module if you require
+support for complex numbers.  The distinction between functions which
+support complex numbers and those which don't is made since most users
+do not want to learn quite as much mathematics as required to
+understand complex numbers.  Receiving an exception instead of a
+complex result allows earlier detection of the unexpected complex
+number used as a parameter, so that the programmer can determine how
+and why it was generated in the first place.
+
+<P>
+The following functions are provided by this module.  Except
+when explicitly noted otherwise, all return values are floats:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1094"><tt class="function">acos</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the arc cosine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1095"><tt class="function">asin</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the arc sine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1096"><tt class="function">atan</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the arc tangent of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1097"><tt class="function">atan2</tt></a></b>(</nobr></td>
+  <td><var>y, x</var>)</td></tr></table>
+<dd>
+Return <code>atan(<var>y</var> / <var>x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1098"><tt class="function">ceil</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the ceiling of <var>x</var> as a float.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1099"><tt class="function">cos</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the cosine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1100"><tt class="function">cosh</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the hyperbolic cosine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1101"><tt class="function">degrees</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Converts angle <var>x</var> from radians to degrees.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1102"><tt class="function">exp</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return <code>e**<var>x</var></code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1103"><tt class="function">fabs</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the absolute value of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1104"><tt class="function">floor</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the floor of <var>x</var> as a float.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1105"><tt class="function">fmod</tt></a></b>(</nobr></td>
+  <td><var>x, y</var>)</td></tr></table>
+<dd>
+Return <code>fmod(<var>x</var>, <var>y</var>)</code>, as defined by the platform C library.
+Note that the Python expression <code><var>x</var> % <var>y</var></code> may not return
+the same result.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1106"><tt class="function">frexp</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the mantissa and exponent of <var>x</var> as the pair
+<code>(<var>m</var>, <var>e</var>)</code>.  <var>m</var> is a float and <var>e</var> is an
+integer such that <code><var>x</var> == <var>m</var> * 2**<var>e</var></code>.
+If <var>x</var> is zero, returns <code>(0.0, 0)</code>, otherwise
+<code>0.5 &lt;= abs(<var>m</var>) &lt; 1</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1107"><tt class="function">hypot</tt></a></b>(</nobr></td>
+  <td><var>x, y</var>)</td></tr></table>
+<dd>
+Return the Euclidean distance, <code>sqrt(<var>x</var>*<var>x</var> + <var>y</var>*<var>y</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1108"><tt class="function">ldexp</tt></a></b>(</nobr></td>
+  <td><var>x, i</var>)</td></tr></table>
+<dd>
+Return <code><var>x</var> * (2**<var>i</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1109"><tt class="function">log</tt></a></b>(</nobr></td>
+  <td><var>x</var><big>[</big><var>, base</var><big>]</big>)</td></tr></table>
+<dd>
+Returns the logarithm of <var>x</var> to the given <var>base</var>.
+If the <var>base</var> is not specified, returns the natural logarithm of <var>x</var>.
+
+<span class="versionnote">Changed in version 2.3:
+<var>base</var> argument added.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1110"><tt class="function">log10</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the base-10 logarithm of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1111"><tt class="function">modf</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the fractional and integer parts of <var>x</var>.  Both results
+carry the sign of <var>x</var>.  The integer part is returned as a float.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1112"><tt class="function">pow</tt></a></b>(</nobr></td>
+  <td><var>x, y</var>)</td></tr></table>
+<dd>
+Return <code><var>x</var>**<var>y</var></code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1113"><tt class="function">radians</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Converts angle <var>x</var> from degrees to radians.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1114"><tt class="function">sin</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the sine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1115"><tt class="function">sinh</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the hyperbolic sine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1116"><tt class="function">sqrt</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the square root of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1117"><tt class="function">tan</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the tangent of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1118"><tt class="function">tanh</tt></a></b>(</nobr></td>
+  <td><var>x</var>)</td></tr></table>
+<dd>
+Return the hyperbolic tangent of <var>x</var>.
+</dl>
+
+<P>
+Note that <tt class="function">frexp()</tt> and <tt class="function">modf()</tt> have a different
+call/return pattern than their C equivalents: they take a single
+argument and return a pair of values, rather than returning their
+second return value through an `output parameter' (there is no such
+thing in Python).
+
+<P>
+The module also defines two mathematical constants:
+
+<P>
+<dl><dt><b><a name="l2h-1119"><tt>pi</tt></a></b>
+<dd>
+The mathematical constant <i>pi</i>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1120"><tt>e</tt></a></b>
+<dd>
+The mathematical constant <i>e</i>.
+</dl>
+
+<P>
+<div class="note"><b class="label">Note:</b>
+The <tt class="module">math</tt> module consists mostly of thin wrappers around
+  the platform C math library functions.  Behavior in exceptional cases is
+  loosely specified by the C standards, and Python inherits much of its
+  math-function error-reporting behavior from the platform C
+  implementation.  As a result,
+  the specific exceptions raised in error cases (and even whether some
+  arguments are considered to be exceptional at all) are not defined in any
+  useful cross-platform or cross-release way.  For example, whether
+  <code>math.log(0)</code> returns <code>-Inf</code> or raises <tt class="exception">ValueError</tt> or
+  <tt class="exception">OverflowError</tt> isn't defined, and in
+  cases where <code>math.log(0)</code> raises <tt class="exception">OverflowError</tt>,
+  <code>math.log(0L)</code> may raise <tt class="exception">ValueError</tt> instead.
+</div>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-cmath.html">cmath</a></tt>:</b>
+    <dd>Complex number versions of many of these functions.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.5 test.test_support  " 
+  rel="prev" title="5.5 test.test_support  " 
+  href="module-test.testsupport.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.7 cmath  " 
+  rel="next" title="5.7 cmath  " 
+  href="module-cmath.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-test.testsupport.html">5.5 test.test_support  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-cmath.html">5.7 cmath  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-asyncore.html">
+<LINK REL="prev" href="module-SimpleXMLRPCServer.html">
+<LINK REL="parent" href="internet.html">
+<LINK REL="next" href="doc-xmlrpc-servers.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="DocXMLRPCServer -- Self-documenting XML-RPC server">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.22 DocXMLRPCServer -- Self-documenting XML-RPC server</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.21.2 CGIXMLRPCRequestHandler" 
+  HREF="node478.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11. Internet Protocols and" 
+  href="internet.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.22.1 DocXMLRPCServer Objects" 
+  href="doc-xmlrpc-servers.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node478.html">11.21.2 CGIXMLRPCRequestHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="doc-xmlrpc-servers.html">11.22.1 DocXMLRPCServer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00132200000000000000000">
+11.22 <tt class="module">DocXMLRPCServer</tt> --
+         Self-documenting XML-RPC server</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+The <tt class="module">DocXMLRPCServer</tt> module extends the classes found in
+<tt class="module">SimpleXMLRPCServer</tt> to serve HTML documentation in response to
+HTTP GET requests. Servers can either be free standing, using
+<tt class="class">DocXMLRPCServer</tt>, or embedded in a CGI environment, using
+<tt class="class">DocCGIXMLRPCRequestHandler</tt>.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3440"><tt class="class">DocXMLRPCServer</tt></a></b>(</nobr></td>
+  <td><var>addr</var><big>[</big><var>, 
+                                   requestHandler</var><big>[</big><var>, logRequests</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+
+<P>
+Create a new server instance. All parameters have the same meaning as
+for <tt class="class">SimpleXMLRPCServer.SimpleXMLRPCServer</tt>;
+<var>requestHandler</var> defaults to <tt class="class">DocXMLRPCRequestHandler</tt>.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3441"><tt class="class">DocCGIXMLRPCRequestHandler</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+
+<P>
+Create a new instance to handle XML-RPC requests in a CGI environment.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3442"><tt class="class">DocXMLRPCRequestHandler</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+
+<P>
+Create a new request handler instance. This request handler supports
+XML-RPC POST requests, documentation GET requests, and modifies
+logging so that the <var>logRequests</var> parameter to the
+<tt class="class">DocXMLRPCServer</tt> constructor parameter is honored.
+
+<P>
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="doc-xmlrpc-servers.html">11.22.1 DocXMLRPCServer Objects</a>
+<LI><A href="node481.html">11.22.2 DocCGIXMLRPCRequestHandler</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.21.2 CGIXMLRPCRequestHandler" 
+  rel="prev" title="11.21.2 CGIXMLRPCRequestHandler" 
+  HREF="node478.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11. Internet Protocols and" 
+  rel="parent" title="11. Internet Protocols and" 
+  href="internet.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.22.1 DocXMLRPCServer Objects" 
+  rel="next" title="11.22.1 DocXMLRPCServer Objects" 
+  href="doc-xmlrpc-servers.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node478.html">11.21.2 CGIXMLRPCRequestHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="doc-xmlrpc-servers.html">11.22.1 DocXMLRPCServer Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

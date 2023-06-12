@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-gettext.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" HREF="node281.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="logging -- Logging facility for Python">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28 logging -- Logging facility for Python</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.27.4 Acknowledgements" 
+  HREF="node279.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.1 Logger Objects" 
+  HREF="node281.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node279.html">6.27.4 Acknowledgements</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node281.html">6.28.1 Logger Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0082800000000000000000">
+6.28 <tt class="module">logging</tt> --
+         Logging facility for Python</A>
+</H1>
+
+<P>
+
+<P>
+
+<P>
+
+<P>
+<a name="l2h-2288">&nbsp;</a>
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+This module defines functions and classes which implement a flexible
+error logging system for applications.
+
+<P>
+Logging is performed by calling methods on instances of the
+<tt class="class">Logger</tt> class (hereafter called <i class="dfn">loggers</i>). Each instance has a
+name, and they are conceptually arranged in a name space hierarchy
+using dots (periods) as separators. For example, a logger named
+"scan" is the parent of loggers "scan.text", "scan.html" and "scan.pdf".
+Logger names can be anything you want, and indicate the area of an
+application in which a logged message originates.
+
+<P>
+Logged messages also have levels of importance associated with them.
+The default levels provided are <tt class="constant">DEBUG</tt>, <tt class="constant">INFO</tt>,
+<tt class="constant">WARNING</tt>, <tt class="constant">ERROR</tt> and <tt class="constant">CRITICAL</tt>. As a
+convenience, you indicate the importance of a logged message by calling
+an appropriate method of <tt class="class">Logger</tt>. The methods are
+<tt class="method">debug()</tt>, <tt class="method">info()</tt>, <tt class="method">warning()</tt>, <tt class="method">error()</tt> and
+<tt class="method">critical()</tt>, which mirror the default levels. You are not
+constrained to use these levels: you can specify your own and use a
+more general <tt class="class">Logger</tt> method, <tt class="method">log()</tt>, which takes an
+explicit level argument.
+
+<P>
+Levels can also be associated with loggers, being set either by the
+developer or through loading a saved logging configuration. When a
+logging method is called on a logger, the logger compares its own
+level with the level associated with the method call. If the logger's
+level is higher than the method call's, no logging message is actually
+generated. This is the basic mechanism controlling the verbosity of
+logging output.
+
+<P>
+Logging messages are encoded as instances of the <tt class="class">LogRecord</tt> class.
+When a logger decides to actually log an event, an <tt class="class">LogRecord</tt>
+instance is created from the logging message.
+
+<P>
+Logging messages are subjected to a dispatch mechanism through the
+use of <i class="dfn">handlers</i>, which are instances of subclasses of the
+<tt class="class">Handler</tt> class. Handlers are responsible for ensuring that a logged
+message (in the form of a <tt class="class">LogRecord</tt>) ends up in a particular
+location (or set of locations) which is useful for the target audience for
+that message (such as end users, support desk staff, system administrators,
+developers). Handlers are passed <tt class="class">LogRecord</tt> instances intended for
+particular destinations. Each logger can have zero, one or more handlers
+associated with it (via the <tt class="method">addHandler</tt> method of <tt class="class">Logger</tt>).
+In addition to any handlers directly associated with a logger,
+<i>all handlers associated with all ancestors of the logger</i> are
+called to dispatch the message.
+
+<P>
+Just as for loggers, handlers can have levels associated with them.
+A handler's level acts as a filter in the same way as a logger's level does.
+If a handler decides to actually dispatch an event, the <tt class="method">emit()</tt> method
+is used to send the message to its destination. Most user-defined subclasses
+of <tt class="class">Handler</tt> will need to override this <tt class="method">emit()</tt>.
+
+<P>
+In addition to the base <tt class="class">Handler</tt> class, many useful subclasses
+are provided:
+
+<P>
+
+<OL>
+<LI><tt class="class">StreamHandler</tt> instances send error messages to
+streams (file-like objects).
+
+<P>
+</LI>
+<LI><tt class="class">FileHandler</tt> instances send error messages to disk
+files.
+
+<P>
+</LI>
+<LI><tt class="class">RotatingFileHandler</tt> instances send error messages to disk
+files, with support for maximum log file sizes and log file rotation.
+
+<P>
+</LI>
+<LI><tt class="class">SocketHandler</tt> instances send error messages to
+TCP/IP sockets.
+
+<P>
+</LI>
+<LI><tt class="class">DatagramHandler</tt> instances send error messages to UDP
+sockets.
+
+<P>
+</LI>
+<LI><tt class="class">SMTPHandler</tt> instances send error messages to a
+designated email address.
+
+<P>
+</LI>
+<LI><tt class="class">SysLogHandler</tt> instances send error messages to a
+<font style="font-variant: small-caps;">Unix</font> syslog daemon, possibly on a remote machine.
+
+<P>
+</LI>
+<LI><tt class="class">NTEventLogHandler</tt> instances send error messages to a
+Windows NT/2000/XP event log.
+
+<P>
+</LI>
+<LI><tt class="class">MemoryHandler</tt> instances send error messages to a
+buffer in memory, which is flushed whenever specific criteria are
+met.
+
+<P>
+</LI>
+<LI><tt class="class">HTTPHandler</tt> instances send error messages to an
+HTTP server using either "<tt class="samp">GET</tt>" or "<tt class="samp">POST</tt>" semantics.
+
+<P>
+</LI>
+</OL>
+
+<P>
+The <tt class="class">StreamHandler</tt> and <tt class="class">FileHandler</tt> classes are defined
+in the core logging package. The other handlers are defined in a sub-
+module, <tt class="module">logging.handlers</tt>. (There is also another sub-module,
+<tt class="module">logging.config</tt>, for configuration functionality.)
+
+<P>
+Logged messages are formatted for presentation through instances of the
+<tt class="class">Formatter</tt> class. They are initialized with a format string
+suitable for use with the % operator and a dictionary.
+
+<P>
+For formatting multiple messages in a batch, instances of
+<tt class="class">BufferingFormatter</tt> can be used. In addition to the format string
+(which is applied to each message in the batch), there is provision for
+header and trailer format strings.
+
+<P>
+When filtering based on logger level and/or handler level is not enough,
+instances of <tt class="class">Filter</tt> can be added to both <tt class="class">Logger</tt> and
+<tt class="class">Handler</tt> instances (through their <tt class="method">addFilter()</tt> method).
+Before deciding to process a message further, both loggers and handlers
+consult all their filters for permission. If any filter returns a false
+value, the message is not processed further.
+
+<P>
+The basic <tt class="class">Filter</tt> functionality allows filtering by specific logger
+name. If this feature is used, messages sent to the named logger and its
+children are allowed through the filter, and all others dropped.
+
+<P>
+In addition to the classes described above, there are a number of module-
+level functions.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2289"><tt class="function">getLogger</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>name</var><big>]</big>)</td></tr></table>
+<dd>
+Return a logger with the specified name or, if no name is specified, return
+a logger which is the root logger of the hierarchy.
+
+<P>
+All calls to this function with a given name return the same logger instance.
+This means that logger instances never need to be passed between different
+parts of an application.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2290"><tt class="function">debug</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>[</big><var>, **kwargs</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">DEBUG</tt> on the root logger.
+The <var>msg</var> is the message format string, and the <var>args</var> are the
+arguments which are merged into <var>msg</var>. The only keyword argument in
+<var>kwargs</var> which is inspected is <var>exc_info</var> which, if it does not
+evaluate as false, causes exception information (via a call to
+<tt class="function">sys.exc_info()</tt>) to be added to the logging message.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2291"><tt class="function">info</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>[</big><var>, **kwargs</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">INFO</tt> on the root logger.
+The arguments are interpreted as for <tt class="function">debug()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2292"><tt class="function">warning</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>[</big><var>, **kwargs</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">WARNING</tt> on the root logger.
+The arguments are interpreted as for <tt class="function">debug()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2293"><tt class="function">error</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>[</big><var>, **kwargs</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">ERROR</tt> on the root logger.
+The arguments are interpreted as for <tt class="function">debug()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2294"><tt class="function">critical</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>[</big><var>, **kwargs</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">CRITICAL</tt> on the root logger.
+The arguments are interpreted as for <tt class="function">debug()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2295"><tt class="function">exception</tt></a></b>(</nobr></td>
+  <td><var>msg</var><big>[</big><var>, *args</var><big>]</big>)</td></tr></table>
+<dd>
+Logs a message with level <tt class="constant">ERROR</tt> on the root logger.
+The arguments are interpreted as for <tt class="function">debug()</tt>. Exception info
+is added to the logging message. This function should only be called
+from an exception handler.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2296"><tt class="function">disable</tt></a></b>(</nobr></td>
+  <td><var>lvl</var>)</td></tr></table>
+<dd>
+Provides an overriding level <var>lvl</var> for all loggers which takes
+precedence over the logger's own level. When the need arises to
+temporarily throttle logging output down across the whole application,
+this function can be useful.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2297"><tt class="function">addLevelName</tt></a></b>(</nobr></td>
+  <td><var>lvl, levelName</var>)</td></tr></table>
+<dd>
+Associates level <var>lvl</var> with text <var>levelName</var> in an internal
+dictionary, which is used to map numeric levels to a textual
+representation, for example when a <tt class="class">Formatter</tt> formats a message.
+This function can also be used to define your own levels. The only
+constraints are that all levels used must be registered using this
+function, levels should be positive integers and they should increase
+in increasing order of severity.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2298"><tt class="function">getLevelName</tt></a></b>(</nobr></td>
+  <td><var>lvl</var>)</td></tr></table>
+<dd>
+Returns the textual representation of logging level <var>lvl</var>. If the
+level is one of the predefined levels <tt class="constant">CRITICAL</tt>,
+<tt class="constant">ERROR</tt>, <tt class="constant">WARNING</tt>, <tt class="constant">INFO</tt> or <tt class="constant">DEBUG</tt>
+then you get the corresponding string. If you have associated levels
+with names using <tt class="function">addLevelName()</tt> then the name you have associated
+with <var>lvl</var> is returned. Otherwise, the string "Level %s" % lvl is
+returned.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2299"><tt class="function">makeLogRecord</tt></a></b>(</nobr></td>
+  <td><var>attrdict</var>)</td></tr></table>
+<dd>
+Creates and returns a new <tt class="class">LogRecord</tt> instance whose attributes are
+defined by <var>attrdict</var>. This function is useful for taking a pickled
+<tt class="class">LogRecord</tt> attribute dictionary, sent over a socket, and reconstituting
+it as a <tt class="class">LogRecord</tt> instance at the receiving end.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2300"><tt class="function">basicConfig</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Does basic configuration for the logging system by creating a
+<tt class="class">StreamHandler</tt> with a default <tt class="class">Formatter</tt> and adding it to
+the root logger. The functions <tt class="function">debug()</tt>, <tt class="function">info()</tt>,
+<tt class="function">warning()</tt>, <tt class="function">error()</tt> and <tt class="function">critical()</tt> will call
+<tt class="function">basicConfig()</tt> automatically if no handlers are defined for the
+root logger.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2301"><tt class="function">shutdown</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Informs the logging system to perform an orderly shutdown by flushing and
+closing all handlers.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2302"><tt class="function">setLoggerClass</tt></a></b>(</nobr></td>
+  <td><var>klass</var>)</td></tr></table>
+<dd>
+Tells the logging system to use the class <var>klass</var> when instantiating a
+logger. The class should define <tt class="method">__init__()</tt> such that only a name
+argument is required, and the <tt class="method">__init__()</tt> should call
+<tt class="method">Logger.__init__()</tt>. This function is typically called before any
+loggers are instantiated by applications which need to use custom logger
+behavior.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://www.python.org/peps/pep-0282.html"
+        title="A Logging System"
+        >PEP 282, <em>A Logging System</em></a>
+    <dd>The proposal which described this feature for inclusion in
+          the Python standard library.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node281.html">6.28.1 Logger Objects</a>
+<LI><A href="node282.html">6.28.2 Handler Objects</a>
+<UL>
+<LI><A href="node283.html">6.28.2.1 StreamHandler</a>
+<LI><A href="node284.html">6.28.2.2 FileHandler</a>
+<LI><A href="node285.html">6.28.2.3 RotatingFileHandler</a>
+<LI><A href="node286.html">6.28.2.4 SocketHandler</a>
+<LI><A href="node287.html">6.28.2.5 DatagramHandler</a>
+<LI><A href="node288.html">6.28.2.6 SysLogHandler</a>
+<LI><A href="node289.html">6.28.2.7 NTEventLogHandler</a>
+<LI><A href="node290.html">6.28.2.8 SMTPHandler</a>
+<LI><A href="node291.html">6.28.2.9 MemoryHandler</a>
+<LI><A href="node292.html">6.28.2.10 HTTPHandler</a>
+</ul>
+<LI><A href="node293.html">6.28.3 Formatter Objects</a>
+<LI><A href="node294.html">6.28.4 Filter Objects</a>
+<LI><A href="node295.html">6.28.5 LogRecord Objects</a>
+<LI><A href="node296.html">6.28.6 Thread Safety</a>
+<LI><A href="node297.html">6.28.7 Configuration</a>
+<UL>
+<LI><A href="node298.html">6.28.7.1 Configuration functions</a>
+<LI><A href="node299.html">6.28.7.2 Configuration file format</a>
+</ul>
+<LI><A href="node300.html">6.28.8 Using the logging package</a>
+<UL>
+<LI><A href="node301.html">6.28.8.1 Basic example - log to a file</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.27.4 Acknowledgements" 
+  rel="prev" title="6.27.4 Acknowledgements" 
+  HREF="node279.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.1 Logger Objects" 
+  rel="next" title="6.28.1 Logger Objects" 
+  HREF="node281.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node279.html">6.27.4 Acknowledgements</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node281.html">6.28.1 Logger Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

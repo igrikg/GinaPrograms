@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-imp.html">
+<LINK REL="parent" href="module-imp.html">
+<LINK REL="next" href="module-pkgutil.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.21.1 Examples</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.21 imp  " 
+  href="module-imp.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.21 imp  " 
+  href="module-imp.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.22 pkgutil  " 
+  href="module-pkgutil.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-imp.html">3.21 imp  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-imp.html">3.21 imp  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-pkgutil.html">3.22 pkgutil  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052110000000000000000">&nbsp;</A>
+<BR>
+3.21.1 Examples
+</H2>
+
+<P>
+The following function emulates what was the standard import statement
+up to Python 1.4 (no hierarchical module names).  (This
+<i>implementation</i> wouldn't work in that version, since
+<tt class="function">find_module()</tt> has been extended and
+<tt class="function">load_module()</tt> has been added in 1.4.)
+
+<P>
+<div class="verbatim"><pre>
+import imp
+import sys
+
+def __import__(name, globals=None, locals=None, fromlist=None):
+    # Fast path: see if the module has already been imported.
+    try:
+        return sys.modules[name]
+    except KeyError:
+        pass
+
+    # If any of the following calls raises an exception,
+    # there's a problem we can't handle -- let the caller handle it.
+
+    fp, pathname, description = imp.find_module(name)
+    
+    try:
+        return imp.load_module(name, fp, pathname, description)
+    finally:
+        # Since we may exit via an exception, close fp explicitly.
+        if fp:
+            fp.close()
+</pre></div>
+
+<P>
+A more complete example that implements hierarchical module names and
+includes a <tt class="function">reload()</tt><a name="l2h-710">&nbsp;</a> function can be
+found in the module <tt class="module">knee</tt><a name="l2h-711">&nbsp;</a>.  The
+<tt class="module">knee</tt> module can be found in <span class="file">Demo/imputil/</span> in the
+Python source distribution.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.21 imp  " 
+  rel="prev" title="3.21 imp  " 
+  href="module-imp.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.21 imp  " 
+  rel="parent" title="3.21 imp  " 
+  href="module-imp.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.22 pkgutil  " 
+  rel="next" title="3.22 pkgutil  " 
+  href="module-pkgutil.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-imp.html">3.21 imp  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-imp.html">3.21 imp  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-pkgutil.html">3.22 pkgutil  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

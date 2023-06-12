@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node631.html">
+<LINK REL="prev" href="module-Tkinter.html">
+<LINK REL="parent" href="module-Tkinter.html">
+<LINK REL="next" HREF="node631.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Tkinter Modules">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>16.1.1 Tkinter Modules</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="16.1 Tkinter  " 
+  href="module-Tkinter.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="16.1 Tkinter  " 
+  href="module-Tkinter.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="16.1.2 Tkinter Life Preserver" 
+  HREF="node631.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node631.html">16.1.2 Tkinter Life Preserver</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0018110000000000000000">
+16.1.1 Tkinter Modules</A>
+</H2>
+
+<P>
+Most of the time, the <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module is all you really
+need, but a number of additional modules are available as well.  The
+Tk interface is located in a binary module named <tt class="module">_tkinter</tt>.
+This module contains the low-level interface to Tk, and should never
+be used directly by application programmers. It is usually a shared
+library (or DLL), but might in some cases be statically linked with
+the Python interpreter.
+
+<P>
+In addition to the Tk interface module, <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> includes a
+number of Python modules. The two most important modules are the
+<tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module itself, and a module called
+<tt class="module">Tkconstants</tt>. The former automatically imports the latter, so
+to use Tkinter, all you need to do is to import one module:
+
+<P>
+<div class="verbatim"><pre>
+import Tkinter
+</pre></div>
+
+<P>
+Or, more often:
+
+<P>
+<div class="verbatim"><pre>
+from Tkinter import *
+</pre></div>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-4544"><tt class="class">Tk</tt></a></b>(</nobr></td>
+  <td><var>screenName=None, baseName=None, className='Tk'</var>)</td></tr></table>
+<dd>
+The <tt class="class">Tk</tt> class is instantiated without arguments.
+This creates a toplevel widget of Tk which usually is the main window
+of an appliation. Each instance has its own associated Tcl interpreter.
+</dl>
+
+<P>
+Other modules that provide Tk support include:
+
+<P>
+<DL>
+<DT><STRONG><tt class="module"><a href="module-ScrolledText.html">ScrolledText</a></tt></STRONG></DT>
+<DD>Text widget with a vertical scroll bar built in.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkColorChooser</tt></STRONG></DT>
+<DD>Dialog to let the user choose a color.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkCommonDialog</tt></STRONG></DT>
+<DD>Base class for the dialogs defined in the other modules listed here.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkFileDialog</tt></STRONG></DT>
+<DD>Common dialogs to allow the user to specify a file to open or save.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkFont</tt></STRONG></DT>
+<DD>Utilities to help work with fonts.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkMessageBox</tt></STRONG></DT>
+<DD>Access to standard Tk dialog boxes.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tkSimpleDialog</tt></STRONG></DT>
+<DD>Basic dialogs and convenience functions.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">Tkdnd</tt></STRONG></DT>
+<DD>Drag-and-drop support for <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt>.
+This is experimental and should become deprecated when it is replaced 
+with the Tk DND.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module"><a href="module-turtle.html">turtle</a></tt></STRONG></DT>
+<DD>Turtle graphics in a Tk window.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="16.1 Tkinter  " 
+  rel="prev" title="16.1 Tkinter  " 
+  href="module-Tkinter.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="16.1 Tkinter  " 
+  rel="parent" title="16.1 Tkinter  " 
+  href="module-Tkinter.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="16.1.2 Tkinter Life Preserver" 
+  rel="next" title="16.1.2 Tkinter Life Preserver" 
+  HREF="node631.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node631.html">16.1.2 Tkinter Life Preserver</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

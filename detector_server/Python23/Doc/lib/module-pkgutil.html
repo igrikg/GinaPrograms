@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-code.html">
+<LINK REL="prev" href="module-imp.html">
+<LINK REL="parent" href="python.html">
+<LINK REL="next" href="module-code.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="pkgutil -- Package extension utility">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.22 pkgutil -- Package extension utility</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.21.1 Examples" 
+  href="examples-imp.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.23 code  " 
+  href="module-code.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="examples-imp.html">3.21.1 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-code.html">3.23 code  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052200000000000000000">
+3.22 <tt class="module">pkgutil</tt> --
+         Package extension utility</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+<div class="warning"><b class="label">Warning:</b>
+
+  This is an experimental module.  It may be withdrawn or completely
+  changed up to an including the release of Python 2.3 beta 1.
+</div>
+
+<P>
+This module provides a single function:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-713"><tt class="function">extend_path</tt></a></b>(</nobr></td>
+  <td><var>path, name</var>)</td></tr></table>
+<dd>
+  Extend the search path for the modules which comprise a package.
+  Intended use is to place the following code in a package's
+  <span class="file">__init__.py</span>:
+
+<P>
+<div class="verbatim"><pre>
+from pkgutil import extend_path
+__path__ = extend_path(__path__, __name__)
+</pre></div>
+
+<P>
+This will add to the package's <code>__path__</code> all subdirectories of
+  directories on <code>sys.path</code> named after the package.  This is
+  useful if one wants to distribute different parts of a single
+  logical package as multiple directories.
+
+<P>
+It also looks for <span class="file">*.pkg</span> files beginning where <code>*</code>
+  matches the <var>name</var> argument.  This feature is similar to
+  <span class="file">*.pth</span> files (see the <tt class="module"><a href="module-site.html">site</a></tt> module for more
+  information), except that it doesn't special-case lines starting
+  with <code>import</code>.  A <span class="file">*.pkg</span> file is trusted at face value:
+  apart from checking for duplicates, all entries found in a
+  <span class="file">*.pkg</span> file are added to the path, regardless of whether they
+  exist the filesystem.  (This is a feature.)
+
+<P>
+If the input path is not a list (as is the case for frozen
+  packages) it is returned unchanged.  The input path is not
+  modified; an extended copy is returned.  Items are only appended
+  to the copy at the end.
+
+<P>
+It is assumed that <code>sys.path</code> is a sequence.  Items of
+  <code>sys.path</code> that are not (Unicode or 8-bit) strings referring to
+  existing directories are ignored.  Unicode items on <code>sys.path</code>
+  that cause errors when used as filenames may cause this function to
+  raise an exception (in line with <tt class="function">os.path.isdir()</tt> behavior).
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.21.1 Examples" 
+  rel="prev" title="3.21.1 Examples" 
+  href="examples-imp.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.23 code  " 
+  rel="next" title="3.23 code  " 
+  href="module-code.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="examples-imp.html">3.21.1 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-code.html">3.23 code  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

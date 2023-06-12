@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-encodings.idna.html">
+<LINK REL="prev" HREF="node120.html">
+<LINK REL="parent" href="module-codecs.html">
+<LINK REL="next" href="module-encodings.idna.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Standard Encodings">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>4.9.2 Standard Encodings</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.9.1.5 StreamRecoder Objects" 
+  href="stream-recoder-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.9 codecs  " 
+  href="module-codecs.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.9.3 encodings.idna  " 
+  href="module-encodings.idna.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="stream-recoder-objects.html">4.9.1.5 StreamRecoder Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-codecs.html">4.9 codecs  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-encodings.idna.html">4.9.3 encodings.idna  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006920000000000000000">
+4.9.2 Standard Encodings</A>
+</H2>
+
+<P>
+Python comes with a number of codecs builtin, either implemented as C
+functions, or with dictionaries as mapping tables. The following table
+lists the codecs by name, together with a few common aliases, and the
+languages for which the encoding is likely used. Neither the list of
+aliases nor the list of languages is meant to be exhaustive. Notice
+that spelling alternatives that only differ in case or use a hyphen
+instead of an underscore are also valid aliases.
+
+<P>
+Many of the character sets support the same languages. They vary in
+individual characters (e.g. whether the EURO SIGN is supported or
+not), and in the assignment of characters to code positions. For the
+European languages in particular, the following variants typically
+exist:
+
+<P>
+
+<UL>
+<LI>an ISO 8859 codeset
+</LI>
+<LI>a Microsoft Windows code page, which is typically derived from
+      a 8859 codeset, but replaces control characters with additional
+      graphic characters
+</LI>
+<LI>an IBM EBCDIC code page
+</LI>
+<LI>an IBM PC code page, which is ASCII compatible
+</LI>
+</UL>
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Codec</b>&nbsp;</th>
+      <th align="left"><b>Aliases</b>&nbsp;</th>
+      <th align="left"><b>Languages</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+<P>
+
+    <tr><td align="left" valign="baseline">ascii</td>
+        <td align="left">646, us-ascii</td>
+        <td align="left">English</td><P>
+
+    <tr><td align="left" valign="baseline">cp037</td>
+        <td align="left">IBM037, IBM039</td>
+        <td align="left">English</td><P>
+
+    <tr><td align="left" valign="baseline">cp424</td>
+        <td align="left">EBCDIC-CP-HE, IBM424</td>
+        <td align="left">Hebrew</td><P>
+
+    <tr><td align="left" valign="baseline">cp437</td>
+        <td align="left">437, IBM437</td>
+        <td align="left">English</td><P>
+
+    <tr><td align="left" valign="baseline">cp500</td>
+        <td align="left">EBCDIC-CP-BE, EBCDIC-CP-CH, IBM500</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp737</td>
+        
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">cp775</td>
+        <td align="left">IBM775</td>
+        <td align="left">Baltic languages</td><P>
+
+    <tr><td align="left" valign="baseline">cp850</td>
+        <td align="left">850, IBM850</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp852</td>
+        <td align="left">852, IBM852</td>
+        <td align="left">Central and Eastern Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp855</td>
+        <td align="left">855, IBM855</td>
+        <td align="left">Bulgarian, Byelorussian, Macedonian, Russian, Serbian</td><P>
+
+    <tr><td align="left" valign="baseline">cp856</td>
+        
+        <td align="left">Hebrew</td><P>
+
+    <tr><td align="left" valign="baseline">cp857</td>
+        <td align="left">857, IBM857</td>
+        <td align="left">Turkish</td><P>
+
+    <tr><td align="left" valign="baseline">cp860</td>
+        <td align="left">860, IBM860</td>
+        <td align="left">Portuguese</td><P>
+
+    <tr><td align="left" valign="baseline">cp861</td>
+        <td align="left">861, CP-IS, IBM861</td>
+        <td align="left">Icelandic</td><P>
+
+    <tr><td align="left" valign="baseline">cp862</td>
+        <td align="left">862, IBM862</td>
+        <td align="left">Hebrew</td><P>
+
+    <tr><td align="left" valign="baseline">cp863</td>
+        <td align="left">863, IBM863</td>
+        <td align="left">Canadian</td><P>
+
+    <tr><td align="left" valign="baseline">cp864</td>
+        <td align="left">IBM864</td>
+        <td align="left">Arabic</td><P>
+
+    <tr><td align="left" valign="baseline">cp865</td>
+        <td align="left">865, IBM865</td>
+        <td align="left">Danish, Norwegian</td><P>
+
+    <tr><td align="left" valign="baseline">cp869</td>
+        <td align="left">869, CP-GR, IBM869</td>
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">cp874</td>
+        
+        <td align="left">Thai</td><P>
+
+    <tr><td align="left" valign="baseline">cp875</td>
+        
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">cp1006</td>
+        
+        <td align="left">Urdu</td><P>
+
+    <tr><td align="left" valign="baseline">cp1026</td>
+        <td align="left">ibm1026</td>
+        <td align="left">Turkish</td><P>
+
+    <tr><td align="left" valign="baseline">cp1140</td>
+        <td align="left">ibm1140</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp1250</td>
+        <td align="left">windows-1250</td>
+        <td align="left">Central and Eastern Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp1251</td>
+        <td align="left">windows-1251</td>
+        <td align="left">Bulgarian, Byelorussian, Macedonian, Russian, Serbian</td><P>
+
+    <tr><td align="left" valign="baseline">cp1252</td>
+        <td align="left">windows-1252</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">cp1253</td>
+        <td align="left">windows-1253</td>
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">cp1254</td>
+        <td align="left">windows-1254</td>
+        <td align="left">Turkish</td><P>
+
+    <tr><td align="left" valign="baseline">cp1255</td>
+        <td align="left">windows-1255</td>
+        <td align="left">Hebrew</td><P>
+
+    <tr><td align="left" valign="baseline">cp1256</td>
+        <td align="left">windows1256</td>
+        <td align="left">Arabic</td><P>
+
+    <tr><td align="left" valign="baseline">cp1257</td>
+        <td align="left">windows-1257</td>
+        <td align="left">Baltic languages</td><P>
+
+    <tr><td align="left" valign="baseline">cp1258</td>
+        <td align="left">windows-1258</td>
+        <td align="left">Vietnamese</td><P>
+
+    <tr><td align="left" valign="baseline">latin_1</td>
+        <td align="left">iso-8859-1, iso8859-1, 8859, cp819, latin, latin1, L1</td>
+        <td align="left">West Europe</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_2</td>
+        <td align="left">iso-8859-2, latin2, L2</td>
+        <td align="left">Central and Eastern Europe</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_3</td>
+        <td align="left">iso-8859-3, latin3, L3</td>
+        <td align="left">Esperanto, Maltese</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_4</td>
+        <td align="left">iso-8859-4, latin4, L4</td>
+        <td align="left">Baltic languagues</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_5</td>
+        <td align="left">iso-8859-5, cyrillic</td>
+        <td align="left">Bulgarian, Byelorussian, Macedonian, Russian, Serbian</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_6</td>
+        <td align="left">iso-8859-6, arabic</td>
+        <td align="left">Arabic</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_7</td>
+        <td align="left">iso-8859-7, greek, greek8</td>
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_8</td>
+        <td align="left">iso-8859-8, hebrew</td>
+        <td align="left">Hebrew</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_9</td>
+        <td align="left">iso-8859-9, latin5, L5</td>
+        <td align="left">Turkish</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_10</td>
+        <td align="left">iso-8859-10, latin6, L6</td>
+        <td align="left">Nordic languages</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_13</td>
+        <td align="left">iso-8859-13</td>
+        <td align="left">Baltic languages</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_14</td>
+        <td align="left">iso-8859-14, latin8, L8</td>
+        <td align="left">Celtic languages</td><P>
+
+    <tr><td align="left" valign="baseline">iso8859_15</td>
+        <td align="left">iso-8859-15</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">koi8_r</td>
+        
+        <td align="left">Russian</td><P>
+
+    <tr><td align="left" valign="baseline">koi8_u</td>
+        
+        <td align="left">Ukrainian</td><P>
+
+    <tr><td align="left" valign="baseline">mac_cyrillic</td>
+        <td align="left">maccyrillic</td>
+        <td align="left">Bulgarian, Byelorussian, Macedonian, Russian, Serbian</td><P>
+
+    <tr><td align="left" valign="baseline">mac_greek</td>
+        <td align="left">macgreek</td>
+        <td align="left">Greek</td><P>
+
+    <tr><td align="left" valign="baseline">mac_iceland</td>
+        <td align="left">maciceland</td>
+        <td align="left">Icelandic</td><P>
+
+    <tr><td align="left" valign="baseline">mac_latin2</td>
+        <td align="left">maclatin2, maccentraleurope</td>
+        <td align="left">Central and Eastern Europe</td><P>
+
+    <tr><td align="left" valign="baseline">mac_roman</td>
+        <td align="left">macroman</td>
+        <td align="left">Western Europe</td><P>
+
+    <tr><td align="left" valign="baseline">mac_turkish</td>
+        <td align="left">macturkish</td>
+        <td align="left">Turkish</td><P>
+
+    <tr><td align="left" valign="baseline">utf_16</td>
+        <td align="left">U16, utf16</td>
+        <td align="left">all languages</td><P>
+
+    <tr><td align="left" valign="baseline">utf_16_be</td>
+        <td align="left">UTF-16BE</td>
+        <td align="left">all languages (BMP only)</td><P>
+
+    <tr><td align="left" valign="baseline">utf_16_le</td>
+        <td align="left">UTF-16LE</td>
+        <td align="left">all languages (BMP only)</td><P>
+
+    <tr><td align="left" valign="baseline">utf_7</td>
+        <td align="left">U7</td>
+        <td align="left">all languages</td><P>
+
+    <tr><td align="left" valign="baseline">utf_8</td>
+        <td align="left">U8, UTF, utf8</td>
+        <td align="left">all languages</td><P>
+
+    </tbody>
+</table>
+
+<P>
+A number of codecs are specific to Python, so their codec names have
+no meaning outside Python. Some of them don't convert from Unicode
+strings to byte strings, but instead use the property of the Python
+codecs machinery that any bijective function with one argument can be
+considered as an encoding.
+
+<P>
+For the codecs listed below, the result in the ``encoding'' direction
+is always a byte string. The result of the ``decoding'' direction is
+listed as operand type in the table.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Codec</b>&nbsp;</th>
+      <th align="left"><b>Aliases</b>&nbsp;</th>
+      <th align="left"><b>Operand type</b>&nbsp;</th>
+      <th align="left"><b>Purpose</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+<P>
+
+    <tr><td align="left" valign="baseline">base64_codec</td>
+        <td align="left">base64, base-64</td>
+        <td align="left">byte string</td>
+        <td align="left">Convert operand to MIME base64</td><P>
+
+    <tr><td align="left" valign="baseline">hex_codec</td>
+        <td align="left">hex</td>
+        <td align="left">byte string</td>
+        <td align="left">Convert operand to hexadecimal representation, with two
+          digits per byte</td><P>
+
+    <tr><td align="left" valign="baseline">idna</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Implements <a class="rfc" name="rfcref-77874"
+href="http://www.faqs.org/rfcs/rfc3490.html">RFC 3490</a>.
+          
+<span class="versionnote">New in version 2.3.</span>
+
+          See also <tt class="module"><a href="module-encodings.idna.html">encodings.idna</a></tt></td><P>
+
+    <tr><td align="left" valign="baseline">mbcs</td>
+        <td align="left">dbcs</td>
+        <td align="left">Unicode string</td>
+        <td align="left">Windows only: Encode operand according to the ANSI codepage (CP_ACP)</td><P>
+
+    <tr><td align="left" valign="baseline">palmos</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Encoding of PalmOS 3.5</td><P>
+
+    <tr><td align="left" valign="baseline">punycode</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Implements <a class="rfc" name="rfcref-77876"
+href="http://www.faqs.org/rfcs/rfc3492.html">RFC 3492</a>.
+          
+<span class="versionnote">New in version 2.3.</span>
+</td><P>
+
+    <tr><td align="left" valign="baseline">quopri_codec</td>
+        <td align="left">quopri, quoted-printable, quotedprintable</td>
+        <td align="left">byte string</td>
+        <td align="left">Convert operand to MIME quoted printable</td><P>
+
+    <tr><td align="left" valign="baseline">raw_unicode_escape</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Produce a string that is suitable as raw Unicode literal in
+          Python source code</td><P>
+
+    <tr><td align="left" valign="baseline">rot_13</td>
+        <td align="left">rot13</td>
+        <td align="left">byte string</td>
+        <td align="left">Returns the Caesar-cypher encryption of the operand</td><P>
+
+    <tr><td align="left" valign="baseline">string_escape</td>
+        
+        <td align="left">byte string</td>
+        <td align="left">Produce a string that is suitable as string literal in
+          Python source code</td><P>
+
+    <tr><td align="left" valign="baseline">undefined</td>
+        
+        <td align="left">any</td>
+        <td align="left">Raise an exception for all conversion. Can be used as the
+          system encoding if no automatic coercion between byte and
+          Unicode strings is desired.</td><P>
+
+    <tr><td align="left" valign="baseline">unicode_escape</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Produce a string that is suitable as Unicode literal in
+          Python source code</td><P>
+
+    <tr><td align="left" valign="baseline">unicode_internal</td>
+        
+        <td align="left">Unicode string</td>
+        <td align="left">Return the internal represenation of the operand</td><P>
+
+    <tr><td align="left" valign="baseline">uu_codec</td>
+        <td align="left">uu</td>
+        <td align="left">byte string</td>
+        <td align="left">Convert the operand using uuencode</td><P>
+
+    <tr><td align="left" valign="baseline">zlib_codec</td>
+        <td align="left">zip, zlib</td>
+        <td align="left">byte string</td>
+        <td align="left">Compress the operand using gzip</td><P>
+
+    </tbody>
+</table>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.9.1.5 StreamRecoder Objects" 
+  rel="prev" title="4.9.1.5 StreamRecoder Objects" 
+  href="stream-recoder-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4.9 codecs  " 
+  rel="parent" title="4.9 codecs  " 
+  href="module-codecs.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.9.3 encodings.idna  " 
+  rel="next" title="4.9.3 encodings.idna  " 
+  href="module-encodings.idna.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="stream-recoder-objects.html">4.9.1.5 StreamRecoder Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-codecs.html">4.9 codecs  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-encodings.idna.html">4.9.3 encodings.idna  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

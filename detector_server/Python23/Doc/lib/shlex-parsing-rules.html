@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="shlex-objects.html">
+<LINK REL="parent" href="module-shlex.html">
+<LINK REL="next" href="allos.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Parsing Rules">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.20.3 Parsing Rules</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.20.2 shlex Objects" 
+  href="shlex-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="shlex-objects.html">5.20.2 shlex Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="allos.html">6. Generic Operating System</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0072030000000000000000">&nbsp;</A>
+<BR>
+5.20.3 Parsing Rules
+</H2>
+
+<P>
+When operating in non-POSIX mode, <tt class="class">shlex</tt> will try to obey to
+the following rules.
+
+<P>
+
+<UL>
+<LI>Quote characters are not recognized within words
+      (<code>Do"Not"Separate</code> is parsed as the single word
+      <code>Do"Not"Separate</code>);
+</LI>
+<LI>Escape characters are not recognized;
+</LI>
+<LI>Enclosing characters in quotes preserve the literal value of
+      all characters within the quotes;
+</LI>
+<LI>Closing quotes separate words (<code>"Do"Separate</code> is parsed
+      as <code>"Do"</code> and <code>Separate</code>);
+</LI>
+<LI>If <tt class="member">whitespace_split</tt> is <code>False</code>, any character not
+      declared to be a word character, whitespace, or a quote will be
+      returned as a single-character token. If it is <code>True</code>,
+      <tt class="class">shlex</tt> will only split words in whitespaces;
+</LI>
+<LI>EOF is signaled with an empty string (<code>''</code>);
+</LI>
+<LI>It's not possible to parse empty strings, even if quoted.
+</LI>
+</UL>
+
+<P>
+When operating in POSIX mode, <tt class="class">shlex</tt> will try to obey to the
+following parsing rules.
+
+<P>
+
+<UL>
+<LI>Quotes are stripped out, and do not separate words
+      (<code>"Do"Not"Separate"</code> is parsed as the single word
+      <code>DoNotSeparate</code>);
+</LI>
+<LI>Non-quoted escape characters (e.g. "<tt class="character">&#92;</tt>")
+      preserve the literal value of the next character that follows;
+</LI>
+<LI>Enclosing characters in quotes which are not part of
+      <tt class="member">escapedquotes</tt> (e.g. "<tt class="character">'</tt>") preserve the literal
+      value of all characters within the quotes;
+</LI>
+<LI>Enclosing characters in quotes which are part of
+      <tt class="member">escapedquotes</tt> (e.g. "<tt class="character">"</tt>") preserves the literal
+      value of all characters within the quotes, with the exception of
+      the characters mentioned in <tt class="member">escape</tt>. The escape characters
+      retain its special meaning only when followed by the quote in use,
+      or the escape character itself. Otherwise the escape character
+      will be considered a normal character.
+</LI>
+<LI>EOF is signaled with a <code>None</code> value;
+</LI>
+<LI>Quoted empty strings (<code>''</code>) are allowed;
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.20.2 shlex Objects" 
+  rel="prev" title="5.20.2 shlex Objects" 
+  href="shlex-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.20 shlex  " 
+  rel="parent" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6. Generic Operating System" 
+  rel="next" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="shlex-objects.html">5.20.2 shlex Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="allos.html">6. Generic Operating System</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

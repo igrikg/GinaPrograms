@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-Queue.html">
+<LINK REL="prev" href="module-dummythread.html">
+<LINK REL="parent" href="someos.html">
+<LINK REL="next" href="module-Queue.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="dummy_threading -- Drop-in replacement for the threading module">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.7 dummy_threading -- Drop-in replacement for the threading module</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.6 dummy_thread  " 
+  href="module-dummythread.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-dummythread.html">7.6 dummy_thread  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-Queue.html">7.8 Queue  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009700000000000000000">
+7.7 <tt class="module">dummy_threading</tt> --
+         Drop-in replacement for the <tt class="module">threading</tt> module</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides a duplicate interface to the
+<tt class="module"><a href="module-threading.html">threading</a></tt> module.  It is meant to be imported when the
+<tt class="module"><a href="module-thread.html">thread</a></tt> module is not provided on a platform.
+
+<P>
+Suggested usage is:
+
+<P>
+<div class="verbatim"><pre>
+try:
+    import threading as _threading
+except ImportError:
+    import dummy_threading as _threading
+</pre></div>
+
+<P>
+Be careful to not use this module where deadlock might occur from a thread 
+being created that blocks waiting for another thread to be created.  This 
+often occurs with blocking I/O.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.6 dummy_thread  " 
+  rel="prev" title="7.6 dummy_thread  " 
+  href="module-dummythread.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.8 Queue  " 
+  rel="next" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-dummythread.html">7.6 dummy_thread  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-Queue.html">7.8 Queue  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

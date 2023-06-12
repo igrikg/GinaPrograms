@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="ref.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="ref.html" title='Python Reference Manual'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="sequence-types.html">
+<LINK REL="prev" href="metaclasses.html">
+<LINK REL="parent" href="specialnames.html">
+<LINK REL="next" href="sequence-types.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Emulating callable objects">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.3.4 Emulating callable objects</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.3.3 Customizing class creation" 
+  href="metaclasses.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.3 Special method names" 
+  href="specialnames.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.3.5 Emulating container types" 
+  href="sequence-types.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="metaclasses.html">3.3.3 Customizing class creation</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="sequence-types.html">3.3.5 Emulating container types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005340000000000000000">&nbsp;</A>
+<BR>
+3.3.4 Emulating callable objects
+</H2>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-218"><tt class="method">__call__</tt></a></b>(</nobr></td>
+  <td><var>self</var><big>[</big><var>, args...</var><big>]</big>)</td></tr></table>
+<dd>
+Called when the instance is ``called'' as a function; if this method
+is defined, <code><var>x</var>(arg1, arg2, ...)</code> is a shorthand for
+<code><var>x</var>.__call__(arg1, arg2, ...)</code>.
+<a name="l2h-219">&nbsp;</a></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.3.3 Customizing class creation" 
+  rel="prev" title="3.3.3 Customizing class creation" 
+  href="metaclasses.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.3 Special method names" 
+  rel="parent" title="3.3 Special method names" 
+  href="specialnames.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.3.5 Emulating container types" 
+  rel="next" title="3.3.5 Emulating container types" 
+  href="sequence-types.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="metaclasses.html">3.3.3 Customizing class creation</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="sequence-types.html">3.3.5 Emulating container types</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

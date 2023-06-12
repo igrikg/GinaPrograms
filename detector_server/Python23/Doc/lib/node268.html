@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node269.html">
+<LINK REL="prev" href="module-gettext.html">
+<LINK REL="parent" href="module-gettext.html">
+<LINK REL="next" HREF="node269.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="GNU gettext API">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.27.1 GNU gettext API</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.27 gettext  " 
+  href="module-gettext.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.27 gettext  " 
+  href="module-gettext.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.27.2 Class-based API" 
+  HREF="node269.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-gettext.html">6.27 gettext  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-gettext.html">6.27 gettext  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node269.html">6.27.2 Class-based API</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082710000000000000000">
+6.27.1 GNU <b class="program">gettext</b> API</A>
+</H2>
+
+<P>
+The <tt class="module">gettext</tt> module defines the following API, which is very
+similar to the GNU <b class="program">gettext</b> API.  If you use this API you
+will affect the translation of your entire application globally.  Often
+this is what you want if your application is monolingual, with the choice
+of language dependent on the locale of your user.  If you are
+localizing a Python module, or if your application needs to switch
+languages on the fly, you probably want to use the class-based API
+instead.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2255"><tt class="function">bindtextdomain</tt></a></b>(</nobr></td>
+  <td><var>domain</var><big>[</big><var>, localedir</var><big>]</big>)</td></tr></table>
+<dd>
+Bind the <var>domain</var> to the locale directory
+<var>localedir</var>.  More concretely, <tt class="module">gettext</tt> will look for
+binary <span class="file">.mo</span> files for the given domain using the path (on <font style="font-variant: small-caps;">Unix</font>):
+<span class="file"><var>localedir</var>/<var>language</var>/LC_MESSAGES/<var>domain</var>.mo</span>,
+where <var>languages</var> is searched for in the environment variables
+<a class="envvar" name="l2h-2261">LANGUAGE</a>, <a class="envvar" name="l2h-2262">LC_ALL</a>, <a class="envvar" name="l2h-2263">LC_MESSAGES</a>, and
+<a class="envvar" name="l2h-2264">LANG</a> respectively.
+
+<P>
+If <var>localedir</var> is omitted or <code>None</code>, then the current binding
+for <var>domain</var> is returned.<A NAME="tex2html41"
+  HREF="#foot31426"><SUP>6.2</SUP></A></dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2256"><tt class="function">textdomain</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>domain</var><big>]</big>)</td></tr></table>
+<dd>
+Change or query the current global domain.  If <var>domain</var> is
+<code>None</code>, then the current global domain is returned, otherwise the
+global domain is set to <var>domain</var>, which is returned.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2257"><tt class="function">gettext</tt></a></b>(</nobr></td>
+  <td><var>message</var>)</td></tr></table>
+<dd>
+Return the localized translation of <var>message</var>, based on the
+current global domain, language, and locale directory.  This function
+is usually aliased as <tt class="function">_</tt> in the local namespace (see
+examples below).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2258"><tt class="function">dgettext</tt></a></b>(</nobr></td>
+  <td><var>domain, message</var>)</td></tr></table>
+<dd>
+Like <tt class="function">gettext()</tt>, but look the message up in the specified
+<var>domain</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2259"><tt class="function">ngettext</tt></a></b>(</nobr></td>
+  <td><var>singular, plural, n</var>)</td></tr></table>
+<dd>
+
+<P>
+Like <tt class="function">gettext()</tt>, but consider plural forms. If a translation
+is found, apply the plural formula to <var>n</var>, and return the
+resulting message (some languages have more than two plural forms).
+If no translation is found, return <var>singular</var> if <var>n</var> is 1;
+return <var>plural</var> otherwise.
+
+<P>
+The Plural formula is taken from the catalog header. It is a C or
+Python expression that has a free variable n; the expression evaluates
+to the index of the plural in the catalog. See the GNU gettext
+documentation for the precise syntax to be used in .po files, and the
+formulas for a variety of languages.
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2260"><tt class="function">dngettext</tt></a></b>(</nobr></td>
+  <td><var>domain, singular, plural, n</var>)</td></tr></table>
+<dd>
+Like <tt class="function">ngettext()</tt>, but look the message up in the specified
+<var>domain</var>.
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+Note that GNU <b class="program">gettext</b> also defines a <tt class="function">dcgettext()</tt>
+method, but this was deemed not useful and so it is currently
+unimplemented.
+
+<P>
+Here's an example of typical usage for this API:
+
+<P>
+<div class="verbatim"><pre>
+import gettext
+gettext.bindtextdomain('myapplication', '/path/to/my/language/directory')
+gettext.textdomain('myapplication')
+_ = gettext.gettext
+# ...
+print _('This is a translatable string.')
+</pre></div>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot31426">... returned.</A><A
+ HREF="node268.html#tex2html41"><SUP>6.2</SUP></A></DT>
+<DD>
+        The default locale directory is system dependent; for example,
+        on RedHat Linux it is <span class="file">/usr/share/locale</span>, but on Solaris
+        it is <span class="file">/usr/lib/locale</span>.  The <tt class="module">gettext</tt> module
+        does not try to support these system dependent defaults;
+        instead its default is <span class="file"><code>sys.prefix</code>/share/locale</span>.
+        For this reason, it is always best to call
+        <tt class="function">bindtextdomain()</tt> with an explicit absolute path at
+        the start of your application.
+
+</DD>
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.27 gettext  " 
+  rel="prev" title="6.27 gettext  " 
+  href="module-gettext.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.27 gettext  " 
+  rel="parent" title="6.27 gettext  " 
+  href="module-gettext.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.27.2 Class-based API" 
+  rel="next" title="6.27.2 Class-based API" 
+  HREF="node269.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-gettext.html">6.27 gettext  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-gettext.html">6.27 gettext  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node269.html">6.27.2 Class-based API</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

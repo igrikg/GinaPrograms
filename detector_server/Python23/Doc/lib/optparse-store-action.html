@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-other-store-actions.html">
+<LINK REL="prev" href="optparse-basic-usage.html">
+<LINK REL="parent" href="optparse-basic-usage.html">
+<LINK REL="next" href="optparse-other-store-actions.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="The store action">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.2.1 The store action</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.2 Other store_* actions" 
+  href="optparse-other-store-actions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-other-store-actions.html">6.20.2.2 Other store_* actions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082021000000000000000">&nbsp;</A>
+<BR>
+6.20.2.1 The <i>store</i> action
+</H3>
+
+<P>
+The action tells <tt class="module">optparse</tt> what to do when it sees one of the
+option strings for this option on the command-line.  For example, the
+action <i>store</i> means: take the next argument (or the remainder of
+the current argument), ensure that it is of the correct type, and
+store it to your chosen destination.
+
+<P>
+For example, let's fill in the ``...'' of that last option:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-f", "--file",
+                  action="store", type="string", dest="filename")
+</pre></div>
+
+<P>
+Now let's make up a fake command-line and ask <tt class="module">optparse</tt> to
+parse it:
+
+<P>
+<div class="verbatim"><pre>
+args = ["-f", "foo.txt"]
+(options, args) = parser.parse_args(args)
+</pre></div>
+
+<P>
+(Note that if you don't pass an argument list to
+<tt class="function">parse_args()</tt>, it automatically uses <code>sys.argv[1:]</code>.)
+
+<P>
+When <tt class="module">optparse</tt> sees the <b class="programopt">-f</b>, it consumes the next
+argument--<code>foo.txt</code>--and stores it in the <tt class="member">filename</tt>
+attribute of a special object.  That object is the first return value
+from <tt class="function">parse_args()</tt>, so:
+
+<P>
+<div class="verbatim"><pre>
+print options.filename
+</pre></div>
+
+<P>
+will print <code>foo.txt</code>.
+
+<P>
+Other option types supported by <tt class="module">optparse</tt> are <code>int</code> and
+<code>float</code>.  Here's an option that expects an integer argument:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-n", type="int", dest="num")
+</pre></div>
+
+<P>
+This example doesn't provide a long option, which is perfectly
+acceptable.  It also doesn't specify the action--it defaults to
+``store''.
+
+<P>
+Let's parse another fake command-line.  This time, we'll jam the option
+argument right up against the option, since <b class="programopt">-n42</b> (one
+argument) is equivalent to <b class="programopt">-n 42</b> (two arguments).
+
+<P>
+<div class="verbatim"><pre>
+(options, args) = parser.parse_args(["-n42"])
+print options.num
+</pre></div>
+
+<P>
+This prints <code>42</code>.
+
+<P>
+Trying out the ``float'' type is left as an exercise for the reader.
+
+<P>
+If you don't specify a type, <tt class="module">optparse</tt> assumes ``string''.
+Combined with the fact that the default action is ``store'', that
+means our first example can be a lot shorter:
+
+<P>
+<div class="verbatim"><pre>
+parser.add_option("-f", "--file", dest="filename")
+</pre></div>
+
+<P>
+If you don't supply a destination, <tt class="module">optparse</tt> figures out a
+sensible default from the option strings: if the first long option
+string is <b class="programopt">--foo-bar</b>, then the default destination is
+<tt class="member">foo_bar</tt>.  If there are no long option strings,
+<tt class="module">optparse</tt> looks at the first short option: the default
+destination for <b class="programopt">-f</b> is <tt class="member">f</tt>.
+
+<P>
+Adding types is fairly easy; please refer to
+section&nbsp;<A href="optparse-adding-types.html#optparse-adding-types">6.20.5</A>, ``Adding new types.''
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2 Basic Usage" 
+  rel="prev" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.2 Other store_* actions" 
+  rel="next" title="6.20.2.2 Other store_* actions" 
+  href="optparse-other-store-actions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-other-store-actions.html">6.20.2.2 Other store_* actions</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

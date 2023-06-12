@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="writer-interface.html">
+<LINK REL="parent" href="module-formatter.html">
+<LINK REL="next" href="module-email.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Writer Implementations ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>12.1.4 Writer Implementations </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.1.3 The Writer Interface" 
+  href="writer-interface.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.1 formatter  " 
+  href="module-formatter.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.2 email  " 
+  href="module-email.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="writer-interface.html">12.1.3 The Writer Interface</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-formatter.html">12.1 formatter  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-email.html">12.2 email  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014140000000000000000">&nbsp;</A>
+<BR>
+12.1.4 Writer Implementations 
+</H2>
+
+<P>
+Three implementations of the writer object interface are provided as
+examples by this module.  Most applications will need to derive new
+writer classes from the <tt class="class">NullWriter</tt> class.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3531"><tt class="class">NullWriter</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A writer which only provides the interface definition; no actions are
+taken on any methods.  This should be the base class for all writers
+which do not need to inherit any implementation methods.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3532"><tt class="class">AbstractWriter</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A writer which can be used in debugging formatters, but not much
+else.  Each method simply announces itself by printing its name and
+arguments on standard output.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-3533"><tt class="class">DumbWriter</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>file</var><big>[</big><var>, maxcol<code> = 72</code></var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Simple writer class which writes output on the file object passed in
+as <var>file</var> or, if <var>file</var> is omitted, on standard output.  The
+output is simply word-wrapped to the number of columns specified by
+<var>maxcol</var>.  This class is suitable for reflowing a sequence of
+paragraphs.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.1.3 The Writer Interface" 
+  rel="prev" title="12.1.3 The Writer Interface" 
+  href="writer-interface.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.1 formatter  " 
+  rel="parent" title="12.1 formatter  " 
+  href="module-formatter.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.2 email  " 
+  rel="next" title="12.2 email  " 
+  href="module-email.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="writer-interface.html">12.1.3 The Writer Interface</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-formatter.html">12.1 formatter  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-email.html">12.2 email  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

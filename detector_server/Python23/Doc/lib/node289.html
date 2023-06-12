@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node290.html">
+<LINK REL="prev" HREF="node288.html">
+<LINK REL="parent" HREF="node282.html">
+<LINK REL="next" HREF="node290.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="NTEventLogHandler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.28.2.7 NTEventLogHandler</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.6 SysLogHandler" 
+  HREF="node288.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.8 SMTPHandler" 
+  HREF="node290.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node288.html">6.28.2.6 SysLogHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node290.html">6.28.2.8 SMTPHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082827000000000000000">
+6.28.2.7 NTEventLogHandler</A>
+</H3>
+
+<P>
+The <tt class="class">NTEventLogHandler</tt> class supports sending logging messages
+to a local Windows NT, Windows 2000 or Windows XP event log. Before
+you can use it, you need Mark Hammond's Win32 extensions for Python
+installed.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2362"><tt class="class">NTEventLogHandler</tt></a></b>(</nobr></td>
+  <td><var>appname</var><big>[</big><var>,
+                                     dllname</var><big>[</big><var>, logtype</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Returns a new instance of the <tt class="class">NTEventLogHandler</tt> class. The
+<var>appname</var> is used to define the application name as it appears in the
+event log. An appropriate registry entry is created using this name.
+The <var>dllname</var> should give the fully qualified pathname of a .dll or .exe
+which contains message definitions to hold in the log (if not specified,
+<code>'win32service.pyd'</code> is used - this is installed with the Win32
+extensions and contains some basic placeholder message definitions.
+Note that use of these placeholders will make your event logs big, as the
+entire message source is held in the log. If you want slimmer logs, you have
+to pass in the name of your own .dll or .exe which contains the message
+definitions you want to use in the event log). The <var>logtype</var> is one of
+<code>'Application'</code>, <code>'System'</code> or <code>'Security'</code>, and
+defaults to <code>'Application'</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2363"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+At this point, you can remove the application name from the registry as a
+source of event log entries. However, if you do this, you will not be able
+to see the events as you intended in the Event Log Viewer - it needs to be
+able to access the registry to get the .dll name. The current version does
+not do this (in fact it doesn't do anything).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2364"><tt class="method">emit</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Determines the message ID, event category and event type, and then logs the
+message in the NT event log.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2365"><tt class="method">getEventCategory</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Returns the event category for the record. Override this if you
+want to specify your own categories. This version returns 0.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2366"><tt class="method">getEventType</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Returns the event type for the record. Override this if you want
+to specify your own types. This version does a mapping using the
+handler's typemap attribute, which is set up in <tt class="method">__init__()</tt>
+to a dictionary which contains mappings for <tt class="constant">DEBUG</tt>,
+<tt class="constant">INFO</tt>, <tt class="constant">WARNING</tt>, <tt class="constant">ERROR</tt> and
+<tt class="constant">CRITICAL</tt>. If you are using your own levels, you will either need
+to override this method or place a suitable dictionary in the
+handler's <var>typemap</var> attribute.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2367"><tt class="method">getMessageID</tt></a></b>(</nobr></td>
+  <td><var>record</var>)</td></tr></table>
+<dd>
+Returns the message ID for the record. If you are using your
+own messages, you could do this by having the <var>msg</var> passed to the
+logger being an ID rather than a format string. Then, in here,
+you could use a dictionary lookup to get the message ID. This
+version returns 1, which is the base message ID in
+<span class="file">win32service.pyd</span>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.28.2.6 SysLogHandler" 
+  rel="prev" title="6.28.2.6 SysLogHandler" 
+  HREF="node288.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.28.2 Handler Objects" 
+  rel="parent" title="6.28.2 Handler Objects" 
+  HREF="node282.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.28.2.8 SMTPHandler" 
+  rel="next" title="6.28.2.8 SMTPHandler" 
+  HREF="node290.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node288.html">6.28.2.6 SysLogHandler</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node282.html">6.28.2 Handler Objects</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node290.html">6.28.2.8 SMTPHandler</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

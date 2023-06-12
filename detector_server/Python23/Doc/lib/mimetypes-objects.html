@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-mimetypes.html">
+<LINK REL="parent" href="module-mimetypes.html">
+<LINK REL="next" href="module-MimeWriter.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="MimeTypes Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>12.7.1 MimeTypes Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.7 mimetypes  " 
+  href="module-mimetypes.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.7 mimetypes  " 
+  href="module-mimetypes.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.8 MimeWriter  " 
+  href="module-MimeWriter.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-mimetypes.html">12.7 mimetypes  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-mimetypes.html">12.7 mimetypes  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-MimeWriter.html">12.8 MimeWriter  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014710000000000000000">&nbsp;</A>
+<BR>
+12.7.1 MimeTypes Objects 
+</H2>
+
+<P>
+<tt class="class">MimeTypes</tt> instances provide an interface which is very like
+that of the <tt class="module"><a href="module-mimetypes.html">mimetypes</a></tt> module.
+
+<P>
+<dl><dt><b><a name="l2h-3741"><tt>suffix_map</tt></a></b>
+<dd>
+  Dictionary mapping suffixes to suffixes.  This is used to allow
+  recognition of encoded files for which the encoding and the type are
+  indicated by the same extension.  For example, the <span class="file">.tgz</span>
+  extension is mapped to <span class="file">.tar.gz</span> to allow the encoding and type
+  to be recognized separately.  This is initially a copy of the global
+  <code>suffix_map</code> defined in the module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3742"><tt>encodings_map</tt></a></b>
+<dd>
+  Dictionary mapping filename extensions to encoding types.  This is
+  initially a copy of the global <code>encodings_map</code> defined in the
+  module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3743"><tt>types_map</tt></a></b>
+<dd>
+  Dictionary mapping filename extensions to MIME types.  This is
+  initially a copy of the global <code>types_map</code> defined in the
+  module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3744"><tt>common_types</tt></a></b>
+<dd>
+  Dictionary mapping filename extensions to non-standard, but commonly
+  found MIME types.  This is initially a copy of the global
+  <code>common_types</code> defined in the module.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3745"><tt class="method">guess_extension</tt></a></b>(</nobr></td>
+  <td><var>type</var><big>[</big><var>, strict</var><big>]</big>)</td></tr></table>
+<dd>
+  Similar to the <tt class="function">guess_extension()</tt> function, using the
+  tables stored as part of the object.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3746"><tt class="method">guess_type</tt></a></b>(</nobr></td>
+  <td><var>url</var><big>[</big><var>, strict</var><big>]</big>)</td></tr></table>
+<dd>
+  Similar to the <tt class="function">guess_type()</tt> function, using the tables
+  stored as part of the object.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3747"><tt class="method">read</tt></a></b>(</nobr></td>
+  <td><var>path</var>)</td></tr></table>
+<dd>
+  Load MIME information from a file named <var>path</var>.  This uses
+  <tt class="method">readfp()</tt> to parse the file.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3748"><tt class="method">readfp</tt></a></b>(</nobr></td>
+  <td><var>file</var>)</td></tr></table>
+<dd>
+  Load MIME type information from an open file.  The file must have
+  the format of the standard <span class="file">mime.types</span> files.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.7 mimetypes  " 
+  rel="prev" title="12.7 mimetypes  " 
+  href="module-mimetypes.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.7 mimetypes  " 
+  rel="parent" title="12.7 mimetypes  " 
+  href="module-mimetypes.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.8 MimeWriter  " 
+  rel="next" title="12.8 MimeWriter  " 
+  href="module-MimeWriter.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-mimetypes.html">12.7 mimetypes  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-mimetypes.html">12.7 mimetypes  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-MimeWriter.html">12.8 MimeWriter  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

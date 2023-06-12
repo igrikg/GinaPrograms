@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="pop3-objects.html">
+<LINK REL="parent" href="module-poplib.html">
+<LINK REL="next" href="module-imaplib.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="POP3 Example ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.9.2 POP3 Example </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.9.1 POP3 Objects" 
+  href="pop3-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.9 poplib  " 
+  href="module-poplib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.10 imaplib  " 
+  href="module-imaplib.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="pop3-objects.html">11.9.1 POP3 Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-poplib.html">11.9 poplib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-imaplib.html">11.10 imaplib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013920000000000000000">&nbsp;</A>
+<BR>
+11.9.2 POP3 Example 
+</H2>
+
+<P>
+Here is a minimal example (without error checking) that opens a
+mailbox and retrieves and prints all messages:
+
+<P>
+<div class="verbatim"><pre>
+import getpass, poplib
+
+M = poplib.POP3('localhost')
+M.user(getpass.getuser())
+M.pass_(getpass.getpass())
+numMessages = len(M.list()[1])
+for i in range(numMessages):
+    for j in M.retr(i+1)[1]:
+        print j
+</pre></div>
+
+<P>
+At the end of the module, there is a test section that contains a more
+extensive example of usage.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.9.1 POP3 Objects" 
+  rel="prev" title="11.9.1 POP3 Objects" 
+  href="pop3-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.9 poplib  " 
+  rel="parent" title="11.9 poplib  " 
+  href="module-poplib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.10 imaplib  " 
+  rel="next" title="11.10 imaplib  " 
+  href="module-imaplib.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="pop3-objects.html">11.9.1 POP3 Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-poplib.html">11.9 poplib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-imaplib.html">11.10 imaplib  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

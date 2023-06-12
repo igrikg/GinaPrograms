@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-dummythread.html">
+<LINK REL="prev" href="module-thread.html">
+<LINK REL="parent" href="someos.html">
+<LINK REL="next" href="lock-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="threading -- Higher-level threading interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.5 threading -- Higher-level threading interface</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.4 thread  " 
+  href="module-thread.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.5.1 Lock Objects" 
+  href="lock-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-thread.html">7.4 thread  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="lock-objects.html">7.5.1 Lock Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009500000000000000000">
+7.5 <tt class="module">threading</tt> --
+         Higher-level threading interface</A>
+</H1>
+
+<P>
+
+
+<P>
+This module constructs higher-level threading interfaces on top of the 
+lower level <tt class="module"><a href="module-thread.html">thread</a></tt> module.
+
+<P>
+The <tt class="module"><a href="module-dummythreading.html">dummy_threading</a></tt> module is provided for
+situations where <tt class="module">threading</tt> cannot be used because
+<tt class="module"><a href="module-thread.html">thread</a></tt> is missing.
+
+<P>
+This module defines the following functions and objects:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2508"><tt class="function">activeCount</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the number of currently active <tt class="class">Thread</tt> objects.
+The returned count is equal to the length of the list returned by
+<tt class="function">enumerate()</tt>.
+A function that returns the number of currently active threads.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2509"><tt class="function">Condition</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A factory function that returns a new condition variable object.
+A condition variable allows one or more threads to wait until they
+are notified by another thread.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2510"><tt class="function">currentThread</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the current <tt class="class">Thread</tt> object, corresponding to the
+caller's thread of control.  If the caller's thread of control was not
+created through the
+<tt class="module">threading</tt> module, a dummy thread object with limited functionality
+is returned.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2511"><tt class="function">enumerate</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return a list of all currently active <tt class="class">Thread</tt> objects.
+The list includes daemonic threads, dummy thread objects created
+by <tt class="function">currentThread()</tt>, and the main thread.  It excludes terminated
+threads and threads that have not yet been started.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2512"><tt class="function">Event</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A factory function that returns a new event object.  An event manages
+a flag that can be set to true with the <tt class="method">set()</tt> method and
+reset to false with the <tt class="method">clear()</tt> method.  The <tt class="method">wait()</tt>
+method blocks until the flag is true.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2513"><tt class="function">Lock</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A factory function that returns a new primitive lock object.  Once
+a thread has acquired it, subsequent attempts to acquire it block,
+until it is released; any thread may release it.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2514"><tt class="function">RLock</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+A factory function that returns a new reentrant lock object.
+A reentrant lock must be released by the thread that acquired it.
+Once a thread has acquired a reentrant lock, the same thread may
+acquire it again without blocking; the thread must release it once
+for each time it has acquired it.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2515"><tt class="function">Semaphore</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>value</var><big>]</big>)</td></tr></table>
+<dd>
+A factory function that returns a new semaphore object.  A
+semaphore manages a counter representing the number of <tt class="method">release()</tt>
+calls minus the number of <tt class="method">acquire()</tt> calls, plus an initial value.
+The <tt class="method">acquire()</tt> method blocks if necessary until it can return
+without making the counter negative.  If not given, <var>value</var> defaults to
+1. 
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2516"><tt class="function">BoundedSemaphore</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>value</var><big>]</big>)</td></tr></table>
+<dd>
+A factory function that returns a new bounded semaphore object.  A bounded
+semaphore checks to make sure its current value doesn't exceed its initial
+value.  If it does, <tt class="exception">ValueError</tt> is raised. In most situations
+semaphores are used to guard resources with limited capacity.  If the
+semaphore is released too many times it's a sign of a bug.  If not given,
+<var>value</var> defaults to 1. 
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2517"><tt class="class">Thread</tt></a></b>
+<dd>
+A class that represents a thread of control.  This class can be safely
+subclassed in a limited fashion.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2518"><tt class="class">Timer</tt></a></b>
+<dd>
+A thread that executes a function after a specified interval has passed.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2519"><tt class="function">settrace</tt></a></b>(</nobr></td>
+  <td><var>func</var>)</td></tr></table>
+<dd>
+Set a trace function<a name="l2h-2521">&nbsp;</a>for all threads started
+from the <tt class="module">threading</tt> module.  The <var>func</var> will be passed to 
+<tt class="function">sys.settrace()</tt> for each thread, before its <tt class="method">run()</tt>
+method is called.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2520"><tt class="function">setprofile</tt></a></b>(</nobr></td>
+  <td><var>func</var>)</td></tr></table>
+<dd>
+Set a profile function<a name="l2h-2522">&nbsp;</a>for all threads started
+from the <tt class="module">threading</tt> module.  The <var>func</var> will be passed to 
+<tt class="function">sys.setprofile()</tt> for each thread, before its <tt class="method">run()</tt>
+method is called.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+Detailed interfaces for the objects are documented below.  
+
+<P>
+The design of this module is loosely based on Java's threading model.
+However, where Java makes locks and condition variables basic behavior
+of every object, they are separate objects in Python.  Python's <tt class="class">Thread</tt>
+class supports a subset of the behavior of Java's Thread class;
+currently, there are no priorities, no thread groups, and threads
+cannot be destroyed, stopped, suspended, resumed, or interrupted.  The
+static methods of Java's Thread class, when implemented, are mapped to
+module-level functions.
+
+<P>
+All of the methods described below are executed atomically.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="lock-objects.html">7.5.1 Lock Objects</a>
+<LI><A href="rlock-objects.html">7.5.2 RLock Objects</a>
+<LI><A href="condition-objects.html">7.5.3 Condition Objects</a>
+<LI><A href="semaphore-objects.html">7.5.4 Semaphore Objects</a>
+<UL>
+<LI><A href="semaphore-examples.html">7.5.4.1 <tt class="class">Semaphore</tt> Example</a>
+</ul>
+<LI><A href="event-objects.html">7.5.5 Event Objects</a>
+<LI><A href="thread-objects.html">7.5.6 Thread Objects</a>
+<LI><A href="timer-objects.html">7.5.7 Timer Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.4 thread  " 
+  rel="prev" title="7.4 thread  " 
+  href="module-thread.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.5.1 Lock Objects" 
+  rel="next" title="7.5.1 Lock Objects" 
+  href="lock-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-thread.html">7.4 thread  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="lock-objects.html">7.5.1 Lock Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

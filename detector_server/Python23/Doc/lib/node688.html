@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node689.html">
+<LINK REL="prev" HREF="node687.html">
+<LINK REL="parent" HREF="node687.html">
+<LINK REL="next" HREF="node689.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Emulation of compile()">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>18.1.6.1 Emulation of compile()</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.1.6.2 Information Discovery" 
+  HREF="node689.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node687.html">18.1.6 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node687.html">18.1.6 Examples</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node689.html">18.1.6.2 Information Discovery</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0020161000000000000000">
+18.1.6.1 Emulation of <tt class="function">compile()</tt></A>
+</H3>
+
+<P>
+While many useful operations may take place between parsing and
+bytecode generation, the simplest operation is to do nothing.  For
+this purpose, using the <tt class="module">parser</tt> module to produce an
+intermediate data structure is equivalent to the code
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; code = compile('a + 5', 'file.py', 'eval')
+&gt;&gt;&gt; a = 5
+&gt;&gt;&gt; eval(code)
+10
+</pre></div>
+
+<P>
+The equivalent operation using the <tt class="module">parser</tt> module is somewhat
+longer, and allows the intermediate internal parse tree to be retained
+as an AST object:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import parser
+&gt;&gt;&gt; ast = parser.expr('a + 5')
+&gt;&gt;&gt; code = ast.compile('file.py')
+&gt;&gt;&gt; a = 5
+&gt;&gt;&gt; eval(code)
+10
+</pre></div>
+
+<P>
+An application which needs both AST and code objects can package this
+code into readily available functions:
+
+<P>
+<div class="verbatim"><pre>
+import parser
+
+def load_suite(source_string):
+    ast = parser.suite(source_string)
+    return ast, ast.compile()
+
+def load_expression(source_string):
+    ast = parser.expr(source_string)
+    return ast, ast.compile()
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.1.6 Examples" 
+  rel="prev" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18.1.6 Examples" 
+  rel="parent" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.1.6.2 Information Discovery" 
+  rel="next" title="18.1.6.2 Information Discovery" 
+  HREF="node689.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node687.html">18.1.6 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" HREF="node687.html">18.1.6 Examples</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node689.html">18.1.6.2 Information Discovery</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

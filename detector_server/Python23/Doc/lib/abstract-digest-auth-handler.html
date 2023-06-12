@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="http-digest-auth-handler.html">
+<LINK REL="prev" href="proxy-basic-auth-handler.html">
+<LINK REL="parent" href="module-urllib2.html">
+<LINK REL="next" href="http-digest-auth-handler.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="AbstractDigestAuthHandler Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>11.5.10 AbstractDigestAuthHandler Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.5.9 ProxyBasicAuthHandler Objects" 
+  href="proxy-basic-auth-handler.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.5 urllib2  " 
+  href="module-urllib2.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.5.11 HTTPDigestAuthHandler Objects" 
+  href="http-digest-auth-handler.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="proxy-basic-auth-handler.html">11.5.9 ProxyBasicAuthHandler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="http-digest-auth-handler.html">11.5.11 HTTPDigestAuthHandler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00135100000000000000000">&nbsp;</A>
+<BR>
+11.5.10 AbstractDigestAuthHandler Objects
+            
+</H2>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3071"><tt class="method">handle_authentication_request</tt></a></b>(</nobr></td>
+  <td><var>authreq, host, req, headers</var>)</td></tr></table>
+<dd>
+<var>authreq</var> should be the name of the header where the information about
+the realm is included in the request, <var>host</var> should be the host to
+authenticate to, <var>req</var> should be the (failed) <tt class="class">Request</tt>
+object, and <var>headers</var> should be the error headers.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="11.5.9 ProxyBasicAuthHandler Objects" 
+  rel="prev" title="11.5.9 ProxyBasicAuthHandler Objects" 
+  href="proxy-basic-auth-handler.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="11.5 urllib2  " 
+  rel="parent" title="11.5 urllib2  " 
+  href="module-urllib2.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="11.5.11 HTTPDigestAuthHandler Objects" 
+  rel="next" title="11.5.11 HTTPDigestAuthHandler Objects" 
+  href="http-digest-auth-handler.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="proxy-basic-auth-handler.html">11.5.9 ProxyBasicAuthHandler Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="http-digest-auth-handler.html">11.5.11 HTTPDigestAuthHandler Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

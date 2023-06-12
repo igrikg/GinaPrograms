@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="os-process.html">
+<LINK REL="parent" href="module-os.html">
+<LINK REL="next" href="module-os.path.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Miscellaneous System Information ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.1.6 Miscellaneous System Information </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.1.5 Process Management" 
+  href="os-process.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.1 os  " 
+  href="module-os.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.2 os.path  " 
+  href="module-os.path.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="os-process.html">6.1.5 Process Management</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-os.path.html">6.2 os.path  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008160000000000000000">&nbsp;</A>
+<BR>
+6.1.6 Miscellaneous System Information 
+</H2>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1545"><tt class="function">confstr</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Return string-valued system configuration values.
+<var>name</var> specifies the configuration value to retrieve; it may be a
+string which is the name of a defined system value; these names are
+specified in a number of standards (POSIX, <font style="font-variant: small-caps;">Unix</font> 95, <font style="font-variant: small-caps;">Unix</font> 98, and
+others).  Some platforms define additional names as well.  The names
+known to the host operating system are given in the
+<code>confstr_names</code> dictionary.  For configuration variables not
+included in that mapping, passing an integer for <var>name</var> is also
+accepted.
+Availability: <font style="font-variant: small-caps;">Unix</font>.
+
+<P>
+If the configuration value specified by <var>name</var> isn't defined, the
+empty string is returned.
+
+<P>
+If <var>name</var> is a string and is not known, <tt class="exception">ValueError</tt> is
+raised.  If a specific value for <var>name</var> is not supported by the
+host system, even if it is included in <code>confstr_names</code>, an
+<tt class="exception">OSError</tt> is raised with <tt class="constant">errno.EINVAL</tt> for the
+error number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1546"><tt>confstr_names</tt></a></b>
+<dd>
+Dictionary mapping names accepted by <tt class="function">confstr()</tt> to the
+integer values defined for those names by the host operating system.
+This can be used to determine the set of names known to the system.
+Availability: <font style="font-variant: small-caps;">Unix</font>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1547"><tt class="function">getloadavg</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the number of processes in the system run queue averaged over
+the last 1, 5, and 15 minutes or raises OSError if the load average
+was unobtainable.
+
+<P>
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1548"><tt class="function">sysconf</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Return integer-valued system configuration values.
+If the configuration value specified by <var>name</var> isn't defined,
+<code>-1</code> is returned.  The comments regarding the <var>name</var>
+parameter for <tt class="function">confstr()</tt> apply here as well; the dictionary
+that provides information on the known names is given by
+<code>sysconf_names</code>.
+Availability: <font style="font-variant: small-caps;">Unix</font>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1549"><tt>sysconf_names</tt></a></b>
+<dd>
+Dictionary mapping names accepted by <tt class="function">sysconf()</tt> to the
+integer values defined for those names by the host operating system.
+This can be used to determine the set of names known to the system.
+Availability: <font style="font-variant: small-caps;">Unix</font>.
+</dl>
+
+<P>
+The follow data values are used to support path manipulation
+operations.  These are defined for all platforms.
+
+<P>
+Higher-level operations on pathnames are defined in the
+<tt class="module"><a href="module-os.path.html">os.path</a></tt> module.
+
+<P>
+<dl><dt><b><a name="l2h-1550"><tt>curdir</tt></a></b>
+<dd>
+The constant string used by the operating system to refer to the current
+directory.
+For example: <code>'.'</code> for POSIX or <code>':'</code> for the Macintosh.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1551"><tt>pardir</tt></a></b>
+<dd>
+The constant string used by the operating system to refer to the parent
+directory.
+For example: <code>'..'</code> for POSIX or <code>'::'</code> for the Macintosh.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1552"><tt>sep</tt></a></b>
+<dd>
+The character used by the operating system to separate pathname components,
+for example, "<tt class="character">/</tt>" for POSIX or "<tt class="character">:</tt>" for the
+Macintosh.  Note that knowing this is not sufficient to be able to
+parse or concatenate pathnames -- use <tt class="function">os.path.split()</tt> and
+<tt class="function">os.path.join()</tt> -- but it is occasionally useful.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1553"><tt>altsep</tt></a></b>
+<dd>
+An alternative character used by the operating system to separate pathname
+components, or <code>None</code> if only one separator character exists.  This is
+set to "<tt class="character">/</tt>" on Windows systems where <code>sep</code> is a
+backslash.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1554"><tt>extsep</tt></a></b>
+<dd>
+The character which separates the base filename from the extension;
+for example, the "<tt class="character">.</tt>" in <span class="file">os.py</span>.
+Also available via <tt class="module">os.path</tt>.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1555"><tt>pathsep</tt></a></b>
+<dd>
+The character conventionally used by the operating system to separate
+search patch components (as in <a class="envvar" name="l2h-1558">PATH</a>), such as "<tt class="character">:</tt>" for
+POSIX or "<tt class="character">;</tt>" for Windows.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1556"><tt>defpath</tt></a></b>
+<dd>
+The default search path used by <tt class="function">exec*p*()</tt> and
+<tt class="function">spawn*p*()</tt> if the environment doesn't have a <code>'PATH'</code>
+key.
+Also available via <tt class="module">os.path</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1557"><tt>linesep</tt></a></b>
+<dd>
+The string used to separate (or, rather, terminate) lines on the
+current platform.  This may be a single character, such as <code>'&#92;
+n'</code> for POSIX or <code>'&#92;r'</code> for Mac OS, or multiple characters,
+for example, <code>'&#92;r&#92;n'</code> for Windows.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.1.5 Process Management" 
+  rel="prev" title="6.1.5 Process Management" 
+  href="os-process.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.1 os  " 
+  rel="parent" title="6.1 os  " 
+  href="module-os.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.2 os.path  " 
+  rel="next" title="6.2 os.path  " 
+  href="module-os.path.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="os-process.html">6.1.5 Process Management</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-os.path.html">6.2 os.path  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

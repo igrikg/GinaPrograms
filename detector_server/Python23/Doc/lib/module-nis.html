@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-syslog.html">
+<LINK REL="prev" href="module-resource.html">
+<LINK REL="parent" href="unix.html">
+<LINK REL="next" href="module-syslog.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="nis -- Interface to Sun's NIS (Yellow Pages)">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>8.16 nis -- Interface to Sun's NIS (Yellow Pages)</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.15.2 Resource Usage" 
+  HREF="node374.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8. Unix Specific Services" 
+  href="unix.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="8.17 syslog  " 
+  href="module-syslog.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node374.html">8.15.2 Resource Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-syslog.html">8.17 syslog  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101600000000000000000">
+8.16 <tt class="module">nis</tt> --
+         Interface to Sun's NIS (Yellow Pages)</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">UNIX</span>.</p>
+
+<P>
+The <tt class="module">nis</tt> module gives a thin wrapper around the NIS library, useful
+for central administration of several hosts.
+
+<P>
+Because NIS exists only on <font style="font-variant: small-caps;">Unix</font> systems, this module is
+only available for <font style="font-variant: small-caps;">Unix</font>.
+
+<P>
+The <tt class="module">nis</tt> module defines the following functions:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2874"><tt class="function">match</tt></a></b>(</nobr></td>
+  <td><var>key, mapname</var>)</td></tr></table>
+<dd>
+Return the match for <var>key</var> in map <var>mapname</var>, or raise an
+error (<tt class="exception">nis.error</tt>) if there is none.
+Both should be strings, <var>key</var> is 8-bit clean.
+Return value is an arbitrary array of bytes (may contain <code>NULL</code>
+and other joys).
+
+<P>
+Note that <var>mapname</var> is first checked if it is an alias to another
+name.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2875"><tt class="function">cat</tt></a></b>(</nobr></td>
+  <td><var>mapname</var>)</td></tr></table>
+<dd>
+Return a dictionary mapping <var>key</var> to <var>value</var> such that
+<code>match(<var>key</var>, <var>mapname</var>)==<var>value</var></code>.
+Note that both keys and values of the dictionary are arbitrary
+arrays of bytes.
+
+<P>
+Note that <var>mapname</var> is first checked if it is an alias to another
+name.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2876"><tt class="function">maps</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return a list of all valid maps.
+</dl>
+
+<P>
+The <tt class="module">nis</tt> module defines the following exception:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2877"><tt class="exception">error</tt></a></b>
+<dd>
+An error raised when a NIS function returns an error code.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.15.2 Resource Usage" 
+  rel="prev" title="8.15.2 Resource Usage" 
+  HREF="node374.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8. Unix Specific Services" 
+  rel="parent" title="8. Unix Specific Services" 
+  href="unix.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="8.17 syslog  " 
+  rel="next" title="8.17 syslog  " 
+  href="module-syslog.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node374.html">8.15.2 Resource Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-syslog.html">8.17 syslog  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

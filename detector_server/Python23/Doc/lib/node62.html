@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node63.html">
+<LINK REL="prev" HREF="node61.html">
+<LINK REL="parent" href="module-pickle.html">
+<LINK REL="next" HREF="node63.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Data stream format">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.14.2 Data stream format</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.14.1 Relationship to other" 
+  HREF="node61.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.14 pickle  " 
+  href="module-pickle.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.14.3 Usage" 
+  HREF="node63.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node61.html">3.14.1 Relationship to other</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node63.html">3.14.3 Usage</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051420000000000000000">
+3.14.2 Data stream format</A>
+</H2>
+
+<P>
+The data format used by <tt class="module">pickle</tt> is Python-specific.  This has
+the advantage that there are no restrictions imposed by external
+standards such as XDR<a name="l2h-621">&nbsp;</a>(which can't represent pointer sharing); however it means that
+non-Python programs may not be able to reconstruct pickled Python
+objects.
+
+<P>
+By default, the <tt class="module">pickle</tt> data format uses a printable ASCII
+representation.  This is slightly more voluminous than a binary
+representation.  The big advantage of using printable ASCII (and of
+some other characteristics of <tt class="module">pickle</tt>'s representation) is that
+for debugging or recovery purposes it is possible for a human to read
+the pickled file with a standard text editor.
+
+<P>
+There are currently 3 different protocols which can be used for pickling.
+
+<P>
+
+<UL>
+<LI>Protocol version 0 is the original ASCII protocol and is backwards
+compatible with earlier versions of Python.
+
+<P>
+</LI>
+<LI>Protocol version 1 is the old binary format which is also compatible
+with earlier versions of Python.
+
+<P>
+</LI>
+<LI>Protocol version 2 was introduced in Python 2.3.  It provides
+much more efficient pickling of new-style classes.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Refer to PEP 307 for more information.
+
+<P>
+If a <var>protocol</var> is not specified, protocol 0 is used.
+If <var>protocol</var> is specified as a negative value
+or <tt class="constant">HIGHEST_PROTOCOL</tt>,
+the highest protocol version available will be used.
+
+<P>
+
+<span class="versionnote">Changed in version 2.3:
+The <var>bin</var> parameter is deprecated and only provided
+for backwards compatibility.  You should use the <var>protocol</var>
+parameter instead.</span>
+
+<P>
+A binary format, which is slightly more efficient, can be chosen by
+specifying a true value for the <var>bin</var> argument to the
+<tt class="class">Pickler</tt> constructor or the <tt class="function">dump()</tt> and <tt class="function">dumps()</tt>
+functions.  A <var>protocol</var> version &gt;= 1 implies use of a binary format.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.14.1 Relationship to other" 
+  rel="prev" title="3.14.1 Relationship to other" 
+  HREF="node61.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3.14 pickle  " 
+  rel="parent" title="3.14 pickle  " 
+  href="module-pickle.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.14.3 Usage" 
+  rel="next" title="3.14.3 Usage" 
+  HREF="node63.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node61.html">3.14.1 Relationship to other</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node63.html">3.14.3 Usage</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

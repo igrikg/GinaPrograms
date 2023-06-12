@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-StringIO.html">
+<LINK REL="prev" href="module-difflib.html">
+<LINK REL="parent" href="strings.html">
+<LINK REL="next" href="module-StringIO.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="fpformat -- Floating point conversions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>4.5 fpformat -- Floating point conversions</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.4.4 Differ Example" 
+  href="differ-examples.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4. String Services" 
+  href="strings.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.6 StringIO  " 
+  href="module-StringIO.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="differ-examples.html">4.4.4 Differ Example</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-StringIO.html">4.6 StringIO  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006500000000000000000">
+4.5 <tt class="module">fpformat</tt> --
+         Floating point conversions</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">fpformat</tt> module defines functions for dealing with
+floating point numbers representations in 100% pure
+Python. <span class="note"><b class="label">Note:</b>
+This module is unneeded: everything here could
+be done via the <code>%</code> string interpolation operator.</span>
+
+<P>
+The <tt class="module">fpformat</tt> module defines the following functions and an
+exception:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-908"><tt class="function">fix</tt></a></b>(</nobr></td>
+  <td><var>x, digs</var>)</td></tr></table>
+<dd>
+Format <var>x</var> as <code>[-]ddd.ddd</code> with <var>digs</var> digits after the
+point and at least one digit before.
+If <code><var>digs</var> &lt;= 0</code>, the decimal point is suppressed.
+
+<P>
+<var>x</var> can be either a number or a string that looks like
+one. <var>digs</var> is an integer.
+
+<P>
+Return value is a string.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-909"><tt class="function">sci</tt></a></b>(</nobr></td>
+  <td><var>x, digs</var>)</td></tr></table>
+<dd>
+Format <var>x</var> as <code>[-]d.dddE[+-]ddd</code> with <var>digs</var> digits after the 
+point and exactly one digit before.
+If <code><var>digs</var> &lt;= 0</code>, one digit is kept and the point is suppressed.
+
+<P>
+<var>x</var> can be either a real number, or a string that looks like
+one. <var>digs</var> is an integer.
+
+<P>
+Return value is a string.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-910"><tt class="exception">NotANumber</tt></a></b>
+<dd>
+Exception raised when a string passed to <tt class="function">fix()</tt> or
+<tt class="function">sci()</tt> as the <var>x</var> parameter does not look like a number.
+This is a subclass of <tt class="exception">ValueError</tt> when the standard
+exceptions are strings.  The exception value is the improperly
+formatted string that caused the exception to be raised.
+</dl>
+
+<P>
+Example:
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; import fpformat
+&gt;&gt;&gt; fpformat.fix(1.23, 1)
+'1.2'
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="4.4.4 Differ Example" 
+  rel="prev" title="4.4.4 Differ Example" 
+  href="differ-examples.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="4. String Services" 
+  rel="parent" title="4. String Services" 
+  href="strings.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="4.6 StringIO  " 
+  rel="next" title="4.6 StringIO  " 
+  href="module-StringIO.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="differ-examples.html">4.4.4 Differ Example</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-StringIO.html">4.6 StringIO  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

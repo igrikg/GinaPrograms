@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="tarinfo-objects.html">
+<LINK REL="prev" href="module-tarfile.html">
+<LINK REL="parent" href="module-tarfile.html">
+<LINK REL="next" href="tarinfo-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="TarFile Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.19.1 TarFile Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.19 tarfile  " 
+  href="module-tarfile.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.19 tarfile  " 
+  href="module-tarfile.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.19.2 TarInfo Objects" 
+  href="tarinfo-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-tarfile.html">7.19 tarfile  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-tarfile.html">7.19 tarfile  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="tarinfo-objects.html">7.19.2 TarInfo Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091910000000000000000">&nbsp;</A>
+<BR>
+7.19.1 TarFile Objects 
+</H2>
+
+<P>
+The <tt class="class">TarFile</tt> object provides an interface to a tar archive. A tar
+archive is a sequence of blocks. An archive member (a stored file) is made up
+of a header block followed by data blocks. It is possible, to store a file in a
+tar archive several times. Each archive member is represented by a
+<tt class="class">TarInfo</tt> object, see <em class="citetitle"
+ >TarInfo Objects</em> (section
+<A href="tarinfo-objects.html#tarinfo-objects">7.19.2</A>) for details.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2703"><tt class="class">TarFile</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>name
+                           </var><big>[</big><var>, mode</var><big>[</big><var>, fileobj</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+    Open an <i>(uncompressed)</i> tar archive <var>name</var>.
+    <var>mode</var> is either <code>'r'</code> to read from an existing archive,
+    <code>'a'</code> to append data to an existing file or <code>'w'</code> to create a new
+    file overwriting an existing one. <var>mode</var> defaults to <code>'r'</code>.
+
+<P>
+If <var>fileobj</var> is given, it is used for reading or writing data.
+    If it can be determined, <var>mode</var> is overridden by <var>fileobj</var>'s mode.
+    <div class="note"><b class="label">Note:</b>
+<var>fileobj</var> is not closed, when <tt class="class">TarFile</tt> is closed.
+    </div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2704"><tt class="method">open</tt></a></b>(</nobr></td>
+  <td><var>...</var>)</td></tr></table>
+<dd>
+    Alternative constructor. The <tt class="function">open()</tt> function on module level is
+    actually a shortcut to this classmethod. See section <A href="module-tarfile.html#module-tarfile">7.19</A>
+    for details.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2705"><tt class="method">getmember</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+    Return a <tt class="class">TarInfo</tt> object for member <var>name</var>. If <var>name</var> can
+    not be found in the archive, <tt class="exception">KeyError</tt> is raised.
+    <div class="note"><b class="label">Note:</b>
+If a member occurs more than once in the archive, its last
+        occurence is assumed to be the most up-to-date version.
+    </div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2706"><tt class="method">getmembers</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+    Return the members of the archive as a list of <tt class="class">TarInfo</tt> objects.
+    The list has the same order as the members in the archive.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2707"><tt class="method">getnames</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+    Return the members as a list of their names. It has the same order as
+    the list returned by <tt class="method">getmembers()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2708"><tt class="method">list</tt></a></b>(</nobr></td>
+  <td><var>verbose=True</var>)</td></tr></table>
+<dd>
+    Print a table of contents to <code>sys.stdout</code>. If <var>verbose</var> is
+    <code>False</code>, only the names of the members are printed. If it is
+    <code>True</code>, an <code>"ls -l"</code>-like output is produced.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2709"><tt class="method">next</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+    Return the next member of the archive as a <tt class="class">TarInfo</tt> object, when
+    <tt class="class">TarFile</tt> is opened for reading. Return <code>None</code> if there is no
+    more available.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2710"><tt class="method">extract</tt></a></b>(</nobr></td>
+  <td><var>member</var><big>[</big><var>, path</var><big>]</big>)</td></tr></table>
+<dd>
+    Extract a member from the archive to the current working directory,
+    using its full name. Its file information is extracted as accurately as
+    possible.
+    <var>member</var> may be a filename or a <tt class="class">TarInfo</tt> object.
+    You can specify a different directory using <var>path</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2711"><tt class="method">extractfile</tt></a></b>(</nobr></td>
+  <td><var>member</var>)</td></tr></table>
+<dd>
+    Extract a member from the archive as a file object.
+    <var>member</var> may be a filename or a <tt class="class">TarInfo</tt> object.
+    If <var>member</var> is a regular file, a file-like object is returned.
+    If <var>member</var> is a link, a file-like object is constructed from the
+    link's target.
+    If <var>member</var> is none of the above, <code>None</code> is returned.
+    <div class="note"><b class="label">Note:</b>
+The file-like object is read-only and provides the following methods:
+        <tt class="method">read()</tt>, <tt class="method">readline()</tt>, <tt class="method">readlines()</tt>,
+        <tt class="method">seek()</tt>, <tt class="method">tell()</tt>.
+    </div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2712"><tt class="method">add</tt></a></b>(</nobr></td>
+  <td><var>name</var><big>[</big><var>, arcname</var><big>[</big><var>, recursive=True</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+    Add the file <var>name</var> to the archive. <var>name</var> may be any type
+    of file (directory, fifo, symbolic link, etc.).
+    If given, <var>arcname</var> specifies an alternative name for the file in the
+    archive. Directories are added recursively by default.
+    This can be avoided by setting <var>recursive</var> to <code>False</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2713"><tt class="method">addfile</tt></a></b>(</nobr></td>
+  <td><var>tarinfo</var><big>[</big><var>, fileobj</var><big>]</big>)</td></tr></table>
+<dd>
+    Add the <tt class="class">TarInfo</tt> object <var>tarinfo</var> to the archive.
+    If <var>fileobj</var> is given, <code>tarinfo.size</code> bytes are read
+    from it and added to the archive.  You can create <tt class="class">TarInfo</tt> objects
+    using <tt class="method">gettarinfo()</tt>.
+    <div class="note"><b class="label">Note:</b>
+On Windows platforms, <var>fileobj</var> should always be opened with mode
+    <code>'rb'</code> to avoid irritation about the file size.
+    </div>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2714"><tt class="method">gettarinfo</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>name</var><big>[</big><var>, arcname
+                               </var><big>[</big><var>, fileobj</var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+    Create a <tt class="class">TarInfo</tt> object for either the file <var>name</var> or the
+    file object <var>fileobj</var> (using <code>os.fstat()</code> on its file descriptor).
+    You can modify some of the <tt class="class">TarInfo</tt>'s attributes before you add it
+    using <tt class="method">addfile()</tt>.
+    If given, <var>arcname</var> specifies an alternative name for the file in the
+    archive.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2715"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+    Close the <tt class="class">TarFile</tt>. In write-mode, two finishing zero blocks are
+    appended to the archive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2716"><tt class="member">posix=True</tt></a></b>
+<dd>
+    If <code>True</code>, create a POSIX 1003.1-1990 compliant archive. GNU
+    extensions are not used, because they are not part of the POSIX standard.
+    This limits the length of filenames to at most 256 and linknames to 100
+    characters. A <tt class="exception">ValueError</tt> is raised, if a pathname exceeds this
+    limit.
+    If <code>False</code>, create a GNU tar compatible archive. It will not be POSIX
+    compliant, but can store pathnames of unlimited length.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2717"><tt class="member">dereference=False</tt></a></b>
+<dd>
+    If <code>False</code>, add symbolic and hard links to archive. If <code>True</code>,
+    add the content of the target files to the archive. This has no effect on
+    systems that do not support links.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2718"><tt class="member">ignore_zeros=False</tt></a></b>
+<dd>
+    If <code>False</code>, treat an empty block as the end of the archive. If
+    <code>True</code>, skip empty (and invalid) blocks and try to get as many
+    members as possible. This is only useful for concatenated or damaged
+    archives.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2719"><tt class="member">debug=0</tt></a></b>
+<dd>
+    To be set from <code>0</code>(no debug messages) up to <code>3</code>(all debug
+    messages). The messages are written to <code>sys.stdout</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2720"><tt class="member">errorlevel=0</tt></a></b>
+<dd>
+    If <code>0</code>, all errors are ignored when using <tt class="method">extract()</tt>.
+    Nevertheless, they appear as error messages in the debug output, when
+    debugging is enabled.
+    If <code>1</code>, all <i>fatal</i> errors are raised as <tt class="exception">OSError</tt>
+    or <tt class="exception">IOError</tt> exceptions.
+    If <code>2</code>, all <i>non-fatal</i> errors are raised as <tt class="exception">TarError</tt>
+    exceptions as well.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.19 tarfile  " 
+  rel="prev" title="7.19 tarfile  " 
+  href="module-tarfile.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.19 tarfile  " 
+  rel="parent" title="7.19 tarfile  " 
+  href="module-tarfile.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.19.2 TarInfo Objects" 
+  rel="next" title="7.19.2 TarInfo Objects" 
+  href="tarinfo-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-tarfile.html">7.19 tarfile  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-tarfile.html">7.19 tarfile  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="tarinfo-objects.html">7.19.2 TarInfo Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

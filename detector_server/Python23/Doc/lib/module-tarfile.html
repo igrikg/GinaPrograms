@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-readline.html">
+<LINK REL="prev" href="module-zipfile.html">
+<LINK REL="parent" href="someos.html">
+<LINK REL="next" href="tarfile-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="tarfile -- Read and write tar archive files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.19 tarfile -- Read and write tar archive files</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.18.3 ZipInfo Objects" 
+  href="zipinfo-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.19.1 TarFile Objects" 
+  href="tarfile-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="zipinfo-objects.html">7.18.3 ZipInfo Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="tarfile-objects.html">7.19.1 TarFile Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091900000000000000000">
+7.19 <tt class="module">tarfile</tt> -- Read and write tar archive files</A>
+</H1>
+
+<P>
+
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+
+<P>
+The <tt class="module">tarfile</tt> module makes it possible to read and create tar archives.
+Some facts and figures:
+
+<P>
+
+<UL>
+<LI>reads and writes <tt class="module">gzip</tt> and <tt class="module">bzip2</tt> compressed archives.
+</LI>
+<LI>creates POSIX 1003.1-1990 compliant or GNU tar compatible archives.
+</LI>
+<LI>reads GNU tar extensions <i>longname</i>, <i>longlink</i> and
+      <i>sparse</i>.
+</LI>
+<LI>stores pathnames of unlimited length using GNU tar extensions.
+</LI>
+<LI>handles directories, regular files, hardlinks, symbolic links, fifos,
+      character devices and block devices and is able to acquire and
+      restore file information like timestamp, access permissions and owner.
+</LI>
+<LI>can handle tape devices.
+</LI>
+</UL>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2692"><tt class="function">open</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>name</var><big>[</big><var>, mode
+                       </var><big>[</big><var>, fileobj</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+    Return a <tt class="class">TarFile</tt> object for the pathname <var>name</var>.
+    For detailed information on <tt class="class">TarFile</tt> objects,
+    see <em class="citetitle"
+ >TarFile Objects</em> (section <A href="tarfile-objects.html#tarfile-objects">7.19.1</A>).
+
+<P>
+<var>mode</var> has to be a string of the form <code>'filemode[:compression]'</code>,
+    it defaults to <code>'r'</code>. Here is a full list of mode combinations:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>mode</b>&nbsp;</th>
+      <th align="left"><b>action</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>'r'</code></td>
+        <td align="left">Open for reading with transparent compression (recommended).</td>
+    <tr><td align="center" valign="baseline"><code>'r:'</code></td>
+        <td align="left">Open for reading exclusively without compression.</td>
+    <tr><td align="center" valign="baseline"><code>'r:gz'</code></td>
+        <td align="left">Open for reading with gzip compression.</td>
+    <tr><td align="center" valign="baseline"><code>'r:bz2'</code></td>
+        <td align="left">Open for reading with bzip2 compression.</td>
+    <tr><td align="center" valign="baseline"><code>'a' or 'a:'</code></td>
+        <td align="left">Open for appending with no compression.</td>
+    <tr><td align="center" valign="baseline"><code>'w' or 'w:'</code></td>
+        <td align="left">Open for uncompressed writing.</td>
+    <tr><td align="center" valign="baseline"><code>'w:gz'</code></td>
+        <td align="left">Open for gzip compressed writing.</td>
+    <tr><td align="center" valign="baseline"><code>'w:bz2'</code></td>
+        <td align="left">Open for bzip2 compressed writing.</td></tbody>
+</table>
+
+<P>
+Note that <code>'a:gz'</code> or <code>'a:bz2'</code> is not possible.
+    If <var>mode</var> is not suitable to open a certain (compressed) file for
+    reading, <tt class="exception">ReadError</tt> is raised. Use <var>mode</var> <code>'r'</code> to
+    avoid this.  If a compression method is not supported,
+    <tt class="exception">CompressionError</tt> is raised.
+
+<P>
+If <var>fileobj</var> is specified, it is used as an alternative to
+    a file object opened for <var>name</var>.
+
+<P>
+For special purposes, there is a second format for <var>mode</var>:
+    <code>'filemode|[compression]'</code>.  <code>open</code> will return a <tt class="class">TarFile</tt>
+    object that processes its data as a stream of blocks. No random
+    seeking will be done on the file. If given, <var>fileobj</var> may be any
+    object that has a <code>read()</code> resp. <code>write()</code> method.
+    <var>bufsize</var> specifies the blocksize and defaults to <code>20 * 512</code>
+    bytes. Use this variant in combination with e.g. <code>sys.stdin</code>, a socket
+    file object or a tape device.
+    However, such a <tt class="class">TarFile</tt> object is limited in that it does not allow
+    to be accessed randomly, see <em class="citetitle"
+ >Examples</em> (section
+    <A href="tar-examples.html#tar-examples">7.19.3</A>).
+    The currently possible modes:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>mode</b>&nbsp;</th>
+      <th align="left"><b>action</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>'r|'</code></td>
+        <td align="left">Open a <i>stream</i> of uncompressed tar blocks for reading.</td>
+    <tr><td align="center" valign="baseline"><code>'r|gz'</code></td>
+        <td align="left">Open a gzip compressed <i>stream</i> for reading.</td>
+    <tr><td align="center" valign="baseline"><code>'r|bz2'</code></td>
+        <td align="left">Open a bzip2 compressed <i>stream</i> for reading.</td>
+    <tr><td align="center" valign="baseline"><code>'w|'</code></td>
+        <td align="left">Open an uncompressed <i>stream</i> for writing.</td>
+    <tr><td align="center" valign="baseline"><code>'w|gz'</code></td>
+        <td align="left">Open an gzip compressed <i>stream</i> for writing.</td>
+    <tr><td align="center" valign="baseline"><code>'w|bz2'</code></td>
+        <td align="left">Open an bzip2 compressed <i>stream</i> for writing.</td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2693"><tt class="class">TarFile</tt></a></b>
+<dd>
+    Class for reading and writing tar archives. Do not use this
+    class directly, better use <tt class="function">open()</tt> instead.
+    See <em class="citetitle"
+ >TarFile Objects</em> (section <A href="tarfile-objects.html#tarfile-objects">7.19.1</A>).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2694"><tt class="function">is_tarfile</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+    Return <code>True</code> if <var>name</var> is a tar archive file, that the
+    <tt class="module">tarfile</tt> module can read.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-2695"><tt class="class">TarFileCompat</tt></a></b>(</nobr></td>
+  <td><var>filename</var><big>[</big><var>, mode</var><big>[</big><var>,
+    compression</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+
+<P>
+Class for limited access to tar archives with a <code>zipfile</code>-like
+    interface. Please consult the documentation of <code>zipfile</code> for more
+    details.
+    <code>compression</code> must be one of the following constants:
+    <dl><dt><b><a name="l2h-2696"><tt>TAR_PLAIN</tt></a></b>
+<dd>
+        Constant for an uncompressed tar archive.
+    </dl>
+    <dl><dt><b><a name="l2h-2697"><tt>TAR_GZIPPED</tt></a></b>
+<dd>
+        Constant for a <code>gzip</code> compressed tar archive.
+    </dl>
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2698"><tt class="exception">TarError</tt></a></b>
+<dd>
+    Base class for all <tt class="module">tarfile</tt> exceptions.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2699"><tt class="exception">ReadError</tt></a></b>
+<dd>
+    Is raised when a tar archive is opened, that either cannot be handled by
+    the <tt class="module">tarfile</tt> module or is somehow invalid.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2700"><tt class="exception">CompressionError</tt></a></b>
+<dd>
+    Is raised when a compression method is not supported or when the data
+    cannot be decoded properly.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2701"><tt class="exception">StreamError</tt></a></b>
+<dd>
+    Is raised for the limitations that are typical for stream-like
+    <tt class="class">TarFile</tt> objects.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span>&nbsp;<a name="l2h-2702"><tt class="exception">ExtractError</tt></a></b>
+<dd>
+    Is raised for <i>non-fatal</i> errors when using <tt class="method">extract()</tt>, but
+    only if <tt class="member">TarFile.errorlevel</tt><code> == 2</code>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+    <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-module-zipfile.html">zipfile</a></tt>:</b>
+    <dd>Documentation of the <code>zipfile</code>
+    standard module.
+  </dl>
+
+<P>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.gnu.org/manual/tar/html_chapter/tar_8.html#SEC118"
+        >GNU tar manual, Standard Section</a></em>
+    <dd>Documentation for tar archive files,
+    including GNU tar extensions.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="tarfile-objects.html">7.19.1 TarFile Objects</a>
+<LI><A href="tarinfo-objects.html">7.19.2 TarInfo Objects</a>
+<LI><A href="tar-examples.html">7.19.3 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.18.3 ZipInfo Objects" 
+  rel="prev" title="7.18.3 ZipInfo Objects" 
+  href="zipinfo-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7. Optional Operating System" 
+  rel="parent" title="7. Optional Operating System" 
+  href="someos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.19.1 TarFile Objects" 
+  rel="next" title="7.19.1 TarFile Objects" 
+  href="tarfile-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="zipinfo-objects.html">7.18.3 ZipInfo Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="tarfile-objects.html">7.19.1 TarFile Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

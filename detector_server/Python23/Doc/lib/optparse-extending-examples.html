@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="optparse-extending-other-reasons.html">
+<LINK REL="parent" href="optparse-extending.html">
+<LINK REL="next" href="module-tempfile.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.5.4 Examples</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.3 Other reasons to" 
+  href="optparse-extending-other-reasons.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.21 tempfile  " 
+  href="module-tempfile.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-extending-other-reasons.html">6.20.5.3 Other reasons to</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-tempfile.html">6.21 tempfile  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082054000000000000000">&nbsp;</A>
+<BR>
+6.20.5.4 Examples
+</H3>
+
+<P>
+Here are a few examples of extending the <tt class="module">optparse</tt> module.
+
+<P>
+First, let's change the option-parsing to be case-insensitive:
+
+<P>
+<div class="verbatim">
+<pre>from optparse import Option, OptionParser, _match_abbrev
+
+# This case-insensitive option parser relies on having a
+# case-insensitive dictionary type available.  Here's one
+# for Python 2.2.  Note that a *real* case-insensitive
+# dictionary type would also have to implement __new__(),
+# update(), and setdefault() -&#45; but that's not the point
+# of this exercise.
+
+class caseless_dict (dict):
+    def __setitem__ (self, key, value):
+        dict.__setitem__(self, key.lower(), value)
+
+    def __getitem__ (self, key):
+        return dict.__getitem__(self, key.lower())
+
+    def get (self, key, default=None):
+        return dict.get(self, key.lower())
+
+    def has_key (self, key):
+        return dict.has_key(self, key.lower())
+
+class CaselessOptionParser (OptionParser):
+
+    def _create_option_list (self):
+        self.option_list = []
+        self._short_opt = caseless_dict()
+        self._long_opt = caseless_dict()
+        self._long_opts = []
+        self.defaults = {}
+
+    def _match_long_opt (self, opt):
+        return _match_abbrev(opt.lower(), self._long_opt.keys())
+
+if __name__ == "__main__":
+    from optik.errors import OptionConflictError
+
+    # test 1: no options to start with
+    parser = CaselessOptionParser()
+    try:
+        parser.add_option("-H", dest="blah")
+    except OptionConflictError:
+        print "ok: got OptionConflictError for -H"
+    else:
+        print "not ok: no conflict between -h and -H"
+    
+    parser.add_option("-f", "-&#45;file", dest="file")
+    #print `parser.get_option("-f")`
+    #print `parser.get_option("-F")`
+    #print `parser.get_option("-&#45;file")`
+    #print `parser.get_option("-&#45;fIlE")`
+    (options, args) = parser.parse_args(["-&#45;FiLe", "foo"])
+    assert options.file == "foo", options.file
+    print "ok: case insensitive long options work"
+
+    (options, args) = parser.parse_args(["-F", "bar"])
+    assert options.file == "bar", options.file
+    print "ok: case insensitive short options work"
+
+</pre>
+<div class="footer">
+<a href="caseless.txt" type="text/plain">Download as text (original file name: <span class="file">caseless.py</span>).</a>
+</div></div>
+
+<P>
+And two ways of implementing ``required options'' with
+<tt class="module">optparse</tt>.
+
+<P>
+Version 1: Add a method to <tt class="class">OptionParser</tt> which applications
+must call after parsing arguments:
+
+<P>
+<div class="verbatim">
+<pre>import optparse
+
+class OptionParser (optparse.OptionParser):
+
+    def check_required (self, opt):
+      option = self.get_option(opt)
+
+      # Assumes the option's 'default' is set to None!
+      if getattr(self.values, option.dest) is None:
+          self.error("%s option not supplied" % option)
+
+parser = OptionParser()
+parser.add_option("-v", action="count", dest="verbose")
+parser.add_option("-f", "-&#45;file", default=None)
+(options, args) = parser.parse_args()
+
+print "verbose:", options.verbose
+print "file:", options.file
+parser.check_required("-f")
+</pre>
+<div class="footer">
+<a href="required_1.txt" type="text/plain">Download as text (original file name: <span class="file">required_1.py</span>).</a>
+</div></div>
+
+<P>
+Version 2: Extend <tt class="class">Option</tt> and add a <tt class="member">required</tt>
+attribute; extend <tt class="class">OptionParser</tt> to ensure that required options
+are present after parsing:
+
+<P>
+<div class="verbatim">
+<pre>import optparse
+
+class Option (optparse.Option):
+    ATTRS = optparse.Option.ATTRS + ['required']
+
+    def _check_required (self):
+        if self.required and not self.takes_value():
+            raise OptionError(
+                "required flag set for option that doesn't take a value",
+                 self)
+
+    # Make sure _check_required() is called from the constructor!
+    CHECK_METHODS = optparse.Option.CHECK_METHODS + [_check_required]
+
+    def process (self, opt, value, values, parser):
+        optparse.Option.process(self, opt, value, values, parser)
+        parser.option_seen[self] = 1
+
+class OptionParser (optparse.OptionParser):
+
+    def _init_parsing_state (self):
+        optparse.OptionParser._init_parsing_state(self)
+        self.option_seen = {}
+
+    def check_values (self, values, args):
+        for option in self.option_list:
+            if (isinstance(option, Option) and
+                option.required and
+                not self.option_seen.has_key(option)):
+                self.error("%s not supplied" % option)
+        return (values, args)
+
+parser = OptionParser(option_list=[
+    Option("-v", action="count", dest="verbose"),
+    Option("-f", "-&#45;file", required=1)])
+(options, args) = parser.parse_args()
+
+print "verbose:", options.verbose
+print "file:", options.file
+</pre>
+<div class="footer">
+<a href="required_2.txt" type="text/plain">Download as text (original file name: <span class="file">required_2.py</span>).</a>
+</div></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.3 Other reasons to" 
+  rel="prev" title="6.20.5.3 Other reasons to" 
+  href="optparse-extending-other-reasons.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.21 tempfile  " 
+  rel="next" title="6.21 tempfile  " 
+  href="module-tempfile.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-extending-other-reasons.html">6.20.5.3 Other reasons to</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-tempfile.html">6.21 tempfile  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

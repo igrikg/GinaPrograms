@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="shlex-objects.html">
+<LINK REL="prev" href="module-shlex.html">
+<LINK REL="parent" href="module-shlex.html">
+<LINK REL="next" href="shlex-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Module Contents">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.20.1 Module Contents</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.20.2 shlex Objects" 
+  href="shlex-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="shlex-objects.html">5.20.2 shlex Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0072010000000000000000">
+5.20.1 Module Contents</A>
+</H2>
+
+<P>
+The <tt class="module">shlex</tt> module defines the following functions:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1310"><tt class="function">split</tt></a></b>(</nobr></td>
+  <td><var>s</var><big>[</big><var>, comments=<code>False</code></var><big>]</big>)</td></tr></table>
+<dd>
+Split the string <var>s</var> using shell-like syntax. If <var>comments</var> is
+<code>False</code>, the parsing of comments in the given string will be
+disabled (setting the <tt class="member">commenters</tt> member of the <tt class="class">shlex</tt>
+instance to the empty string). This function operates in POSIX mode.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+The <tt class="module">shlex</tt> module defines the following classes:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-1311"><tt class="class">shlex</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>instream=<code>sys.stdin</code></var><big>[</big><var>,
+			 infile=<code>None</code></var><big>[</big><var>,
+			 posix=<code>False</code></var><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+A <tt class="class">shlex</tt> instance or subclass instance is a lexical analyzer
+object.  The initialization argument, if present, specifies where to
+read characters from. It must be a file-/stream-like object with
+<tt class="method">read()</tt> and <tt class="method">readline()</tt> methods, or a string (strings
+are accepted since Python 2.3). If no argument is given, input will be
+taken from <code>sys.stdin</code>.  The second optional argument is a filename
+string, which sets the initial value of the <tt class="member">infile</tt> member.  If
+the <var>instream</var> argument is omitted or equal to <code>sys.stdin</code>,
+this second argument defaults to ``stdin''.  The <var>posix</var> argument
+was introduced in Python 2.3, and defines the operational mode.  When
+<var>posix</var> is not true (default), the <tt class="class">shlex</tt> instance will
+operate in compatibility mode.  When operating in POSIX mode,
+<tt class="class">shlex</tt> will try to be as close as possible to the POSIX shell
+parsing rules.  See&nbsp;<A href="shlex-objects.html#shlex-objects">5.20.2</A>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.20 shlex  " 
+  rel="prev" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.20 shlex  " 
+  rel="parent" title="5.20 shlex  " 
+  href="module-shlex.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.20.2 shlex Objects" 
+  rel="next" title="5.20.2 shlex Objects" 
+  href="shlex-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-shlex.html">5.20 shlex  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="shlex-objects.html">5.20.2 shlex Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

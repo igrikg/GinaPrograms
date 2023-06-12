@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-Queue.html">
+<LINK REL="parent" href="module-Queue.html">
+<LINK REL="next" href="module-mmap.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Queue Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>7.8.1 Queue Objects</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.9 mmap  " 
+  href="module-mmap.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-Queue.html">7.8 Queue  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-Queue.html">7.8 Queue  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-mmap.html">7.9 mmap  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009810000000000000000">&nbsp;</A>
+<BR>
+7.8.1 Queue Objects
+</H2>
+
+<P>
+Class <tt class="class">Queue</tt> implements queue objects and has the methods
+described below.  This class can be derived from in order to implement
+other queue organizations (e.g. stack) but the inheritable interface
+is not described here.  See the source code for details.  The public
+methods are:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2558"><tt class="method">qsize</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the approximate size of the queue.  Because of multithreading
+semantics, this number is not reliable.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2559"><tt class="method">empty</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return <code>True</code> if the queue is empty, <code>False</code> otherwise.
+Becauseof multithreading semantics, this is not reliable.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2560"><tt class="method">full</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return <code>True</code> if the queue is full, <code>False</code> otherwise.
+Because of multithreading semantics, this is not reliable.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2561"><tt class="method">put</tt></a></b>(</nobr></td>
+  <td><var>item</var><big>[</big><var>, block</var><big>[</big><var>, timeout</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Put <var>item</var> into the queue. If optional args <var>block</var> is true
+and <var>timeout</var> is None (the default), block if necessary until a
+free slot is available. If <var>timeout</var> is a positive number, it
+blocks at most <var>timeout</var> seconds and raises the <tt class="exception">Full</tt>
+exception if no free slot was available within that time.
+Otherwise (<var>block</var> is false), put an item on the queue if a free
+slot is immediately available, else raise the <tt class="exception">Full</tt>
+exception (<var>timeout</var> is ignored in that case).
+
+<P>
+
+<span class="versionnote">New in version 2.3:
+the timeout parameter.</span>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2562"><tt class="method">put_nowait</tt></a></b>(</nobr></td>
+  <td><var>item</var>)</td></tr></table>
+<dd>
+Equivalent to <code>put(<var>item</var>, False)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2563"><tt class="method">get</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>block</var><big>[</big><var>, timeout</var><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Remove and return an item from the queue. If optional args
+<var>block</var> is true and <var>timeout</var> is None (the default),
+block if necessary until an item is available. If <var>timeout</var> is
+a positive number, it blocks at most <var>timeout</var> seconds and raises
+the <tt class="exception">Empty</tt> exception if no item was available within that
+time. Otherwise (<var>block</var> is false), return an item if one is
+immediately available, else raise the <tt class="exception">Empty</tt> exception
+(<var>timeout</var> is ignored in that case).
+
+<P>
+
+<span class="versionnote">New in version 2.3:
+the timeout parameter.</span>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2564"><tt class="method">get_nowait</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Equivalent to <code>get(False)</code>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="7.8 Queue  " 
+  rel="prev" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="7.8 Queue  " 
+  rel="parent" title="7.8 Queue  " 
+  href="module-Queue.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="7.9 mmap  " 
+  rel="next" title="7.9 mmap  " 
+  href="module-mmap.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-Queue.html">7.8 Queue  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-Queue.html">7.8 Queue  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-mmap.html">7.9 mmap  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

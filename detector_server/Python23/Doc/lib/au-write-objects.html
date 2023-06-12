@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="au-read-objects.html">
+<LINK REL="parent" href="module-sunau.html">
+<LINK REL="next" href="module-wave.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="AU_write Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>14.4.2 AU_write Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.4.1 AU_read Objects" 
+  href="au-read-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="14.5 wave  " 
+  href="module-wave.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="au-read-objects.html">14.4.1 AU_read Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-wave.html">14.5 wave  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0016420000000000000000">&nbsp;</A>
+<BR>
+14.4.2 AU_write Objects 
+</H2>
+
+<P>
+AU_write objects, as returned by <tt class="function">open()</tt> above, have the
+following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4381"><tt class="method">setnchannels</tt></a></b>(</nobr></td>
+  <td><var>n</var>)</td></tr></table>
+<dd>
+Set the number of channels.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4382"><tt class="method">setsampwidth</tt></a></b>(</nobr></td>
+  <td><var>n</var>)</td></tr></table>
+<dd>
+Set the sample width (in bytes.)
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4383"><tt class="method">setframerate</tt></a></b>(</nobr></td>
+  <td><var>n</var>)</td></tr></table>
+<dd>
+Set the frame rate.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4384"><tt class="method">setnframes</tt></a></b>(</nobr></td>
+  <td><var>n</var>)</td></tr></table>
+<dd>
+Set the number of frames. This can be later changed, when and if more 
+frames are written.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4385"><tt class="method">setcomptype</tt></a></b>(</nobr></td>
+  <td><var>type, name</var>)</td></tr></table>
+<dd>
+Set the compression type and description.
+Only <code>'NONE'</code> and <code>'ULAW'</code> are supported on output.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4386"><tt class="method">setparams</tt></a></b>(</nobr></td>
+  <td><var>tuple</var>)</td></tr></table>
+<dd>
+The <var>tuple</var> should be <code>(<var>nchannels</var>, <var>sampwidth</var>,
+<var>framerate</var>, <var>nframes</var>, <var>comptype</var>, <var>compname</var>)</code>, with
+values valid for the <tt class="method">set*()</tt> methods.  Set all parameters.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4387"><tt class="method">tell</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return current position in the file, with the same disclaimer for
+the <tt class="method">AU_read.tell()</tt> and <tt class="method">AU_read.setpos()</tt> methods.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4388"><tt class="method">writeframesraw</tt></a></b>(</nobr></td>
+  <td><var>data</var>)</td></tr></table>
+<dd>
+Write audio frames, without correcting <var>nframes</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4389"><tt class="method">writeframes</tt></a></b>(</nobr></td>
+  <td><var>data</var>)</td></tr></table>
+<dd>
+Write audio frames and make sure <var>nframes</var> is correct.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4390"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Make sure <var>nframes</var> is correct, and close the file.
+
+<P>
+This method is called upon deletion.
+</dl>
+
+<P>
+Note that it is invalid to set any parameters after calling 
+<tt class="method">writeframes()</tt> or <tt class="method">writeframesraw()</tt>. 
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.4.1 AU_read Objects" 
+  rel="prev" title="14.4.1 AU_read Objects" 
+  href="au-read-objects.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.4 sunau  " 
+  rel="parent" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="14.5 wave  " 
+  rel="next" title="14.5 wave  " 
+  href="module-wave.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="au-read-objects.html">14.4.1 AU_read Objects</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-wave.html">14.5 wave  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

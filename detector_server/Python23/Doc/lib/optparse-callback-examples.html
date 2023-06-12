@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="optparse-callback-error-handling.html">
+<LINK REL="parent" href="optparse-callback-options.html">
+<LINK REL="next" href="optparse-extending.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.4.4 Examples</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.4.3 Error handling" 
+  href="optparse-callback-error-handling.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-callback-error-handling.html">6.20.4.3 Error handling</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082044000000000000000">&nbsp;</A>
+<BR>
+6.20.4.4 Examples
+</H3>
+
+<P>
+Here's an example of a callback option that takes no arguments, and
+simply records that the option was seen:
+
+<P>
+<div class="verbatim"><pre>
+def record_foo_seen (option, opt, value, parser):
+    parser.saw_foo = 1
+
+parser.add_option("--foo", action="callback", callback=record_foo_seen)
+</pre></div>
+
+<P>
+Of course, you could do that with the ``store_true'' action.  Here's a
+slightly more interesting example: record the fact that
+<b class="programopt">-a</b> is seen, but blow up if it comes after <b class="programopt">-b</b>
+in the command-line.
+
+<P>
+<div class="verbatim"><pre>
+def check_order (option, opt, value, parser):
+    if parser.values.b:
+        raise OptionValueError("can't use -a after -b")
+    parser.values.a = 1
+...
+parser.add_option("-a", action="callback", callback=check_order)
+parser.add_option("-b", action="store_true", dest="b")
+</pre></div>
+
+<P>
+If you want to reuse this callback for several similar options (set a
+flag, but blow up if <b class="programopt">-b</b> has already been seen), it needs
+a bit of work: the error message and the flag that it sets must be
+generalized.
+
+<P>
+<div class="verbatim"><pre>
+def check_order (option, opt, value, parser):
+    if parser.values.b:
+        raise OptionValueError("can't use %s after -b" % opt)
+    setattr(parser.values, option.dest, 1)
+...
+parser.add_option("-a", action="callback", callback=check_order, dest='a')
+parser.add_option("-b", action="store_true", dest="b")
+parser.add_option("-c", action="callback", callback=check_order, dest='c')
+</pre></div>
+
+<P>
+Of course, you could put any condition in there--you're not limited
+to checking the values of already-defined options.  For example, if
+you have options that should not be called when the moon is full, all
+you have to do is this:
+
+<P>
+<div class="verbatim"><pre>
+def check_moon (option, opt, value, parser):
+    if is_full_moon():
+        raise OptionValueError("%s option invalid when moon full" % opt)
+    setattr(parser.values, option.dest, 1)
+...
+parser.add_option("--foo",
+                  action="callback", callback=check_moon, dest="foo")
+</pre></div>
+
+<P>
+(The definition of <code>is_full_moon()</code> is left as an exercise for the
+reader.)
+
+<P>
+<b>Fixed arguments</b>
+
+<P>
+Things get slightly more interesting when you define callback options
+that take a fixed number of arguments.  Specifying that a callback
+option takes arguments is similar to defining a ``store'' or
+``append'' option: if you define <var>type</var>, then the option takes one
+argument that must be convertible to that type; if you further define
+<var>nargs</var>, then the option takes that many arguments.
+
+<P>
+Here's an example that just emulates the standard ``store'' action:
+
+<P>
+<div class="verbatim"><pre>
+def store_value (option, opt, value, parser):
+    setattr(parser.values, option.dest, value)
+...
+parser.add_option("--foo",
+                  action="callback", callback=store_value,
+                  type="int", nargs=3, dest="foo")
+</pre></div>
+
+<P>
+Note that <tt class="module">optparse</tt> takes care of consuming 3 arguments and
+converting them to integers for you; all you have to do is store them.
+(Or whatever: obviously you don't need a callback for this example.
+Use your imagination!)
+
+<P>
+<b>Variable arguments</b>
+
+<P>
+Things get hairy when you want an option to take a variable number of
+arguments.  For this case, you have to write a callback;
+<tt class="module">optparse</tt> doesn't provide any built-in capabilities for it.
+You have to deal with the full-blown syntax for conventional <font style="font-variant: small-caps;">Unix</font>
+command-line parsing.  (Previously, <tt class="module">optparse</tt> took care of
+this for you, but I got it wrong.  It was fixed at the cost of making
+this kind of callback more complex.)  In particular, callbacks have to
+worry about bare <b class="programopt">--</b> and <b class="programopt">-</b> arguments; the
+convention is:
+
+<P>
+
+<UL>
+<LI>bare <b class="programopt">--</b>, if not the argument to some option,
+causes command-line processing to halt and the <b class="programopt">--</b>
+itself is lost.
+
+<P>
+</LI>
+<LI>bare <b class="programopt">-</b> similarly causes command-line processing to
+halt, but the <b class="programopt">-</b> itself is kept.
+
+<P>
+</LI>
+<LI>either <b class="programopt">--</b> or <b class="programopt">-</b> can be option
+arguments.
+</LI>
+</UL>
+
+<P>
+If you want an option that takes a variable number of arguments, there
+are several subtle, tricky issues to worry about.  The exact
+implementation you choose will be based on which trade-offs you're
+willing to make for your application (which is why <tt class="module">optparse</tt>
+doesn't support this sort of thing directly).
+
+<P>
+Nevertheless, here's a stab at a callback for an option with variable
+arguments:
+
+<P>
+<div class="verbatim"><pre>
+def varargs (option, opt, value, parser):
+    assert value is None
+    done = 0
+    value = []
+    rargs = parser.rargs
+    while rargs:
+        arg = rargs[0]
+
+        # Stop if we hit an arg like "--foo", "-a", "-fx", "--file=f",
+        # etc.  Note that this also stops on "-3" or "-3.0", so if
+        # your option takes numeric values, you will need to handle
+        # this.
+        if ((arg[:2] == "--" and len(arg) &gt; 2) or
+            (arg[:1] == "-" and len(arg) &gt; 1 and arg[1] != "-")):
+            break
+        else:
+            value.append(arg)
+            del rargs[0]
+
+     setattr(parser.values, option.dest, value)
+
+...
+parser.add_option("-c", "--callback",
+                  action="callback", callback=varargs)
+</pre></div>
+
+<P>
+The main weakness with this particular implementation is that negative
+numbers in the arguments following <b class="programopt">-c</b> will be interpreted
+as further options, rather than as arguments to <b class="programopt">-c</b>.
+Fixing this is left as an exercise for the reader.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.4.3 Error handling" 
+  rel="prev" title="6.20.4.3 Error handling" 
+  href="optparse-callback-error-handling.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.4 Callback Options" 
+  rel="parent" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5 Extending optparse" 
+  rel="next" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-callback-error-handling.html">6.20.4.3 Error handling</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

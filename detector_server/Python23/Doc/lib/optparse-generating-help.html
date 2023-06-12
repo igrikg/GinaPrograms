@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-print-version.html">
+<LINK REL="prev" href="optparse-setting-default-values.html">
+<LINK REL="parent" href="optparse-basic-usage.html">
+<LINK REL="next" href="optparse-print-version.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Generating help">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.2.4 Generating help</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2.3 Setting default values" 
+  href="optparse-setting-default-values.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.5 Print a version" 
+  href="optparse-print-version.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-setting-default-values.html">6.20.2.3 Setting default values</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-print-version.html">6.20.2.5 Print a version</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082024000000000000000">&nbsp;</A>
+<BR>
+6.20.2.4 Generating help
+</H3>
+
+<P>
+The last feature that you will use in every script is
+<tt class="module">optparse</tt>'s ability to generate help messages.  All you have
+to do is supply a <var>help</var> argument when you add an option.  Let's
+create a new parser and populate it with user-friendly (documented)
+options:
+
+<P>
+<div class="verbatim"><pre>
+usage = "usage: %prog [options] arg1 arg2"
+parser = OptionParser(usage=usage)
+parser.add_option("-v", "--verbose",
+                  action="store_true", dest="verbose", default=True,
+                  help="make lots of noise [default]")
+parser.add_option("-q", "--quiet",
+                  action="store_false", dest="verbose", 
+                  help="be vewwy quiet (I'm hunting wabbits)")
+parser.add_option("-f", "--file", dest="filename",
+                  metavar="FILE", help="write output to FILE"),
+parser.add_option("-m", "--mode",
+                  default="intermediate",
+                  help="interaction mode: one of 'novice', "
+                       "'intermediate' [default], 'expert'")
+</pre></div>
+
+<P>
+If <tt class="module">optparse</tt> encounters either <b class="programopt">-h</b> or
+<b class="programopt">--help</b> on the command-line, or if you just call
+<tt class="method">parser.print_help()</tt>, it prints the following to stdout:
+
+<P>
+<div class="verbatim"><pre>
+usage: &lt;yourscript&gt; [options] arg1 arg2
+
+options:
+  -h, --help           show this help message and exit
+  -v, --verbose        make lots of noise [default]
+  -q, --quiet          be vewwy quiet (I'm hunting wabbits)
+  -fFILE, --file=FILE  write output to FILE
+  -mMODE, --mode=MODE  interaction mode: one of 'novice', 'intermediate'
+                       [default], 'expert'
+</pre></div>
+
+<P>
+There's a lot going on here to help <tt class="module">optparse</tt> generate the
+best possible help message:
+
+<P>
+
+<UL>
+<LI>the script defines its own usage message:
+
+<P>
+<div class="verbatim"><pre>
+usage = "usage: %prog [options] arg1 arg2"
+</pre></div>
+
+<P>
+<tt class="module">optparse</tt> expands "<tt class="samp">%prog</tt>" in the usage string to the name of the
+current script, i.e. <code>os.path.basename(sys.argv[0])</code>.  The
+expanded string is then printed before the detailed option help.
+
+<P>
+If you don't supply a usage string, <tt class="module">optparse</tt> uses a bland but
+sensible default: <code>"usage: %prog [options]"</code>, which is fine if your
+script doesn't take any positional arguments.
+
+<P>
+</LI>
+<LI>every option defines a help string, and doesn't worry about 
+line-wrapping--<tt class="module">optparse</tt> takes care of wrapping lines and 
+making the help output look good.
+
+<P>
+</LI>
+<LI>options that take a value indicate this fact in their
+automatically-generated help message, e.g. for the ``mode'' option:
+
+<P>
+<div class="verbatim"><pre>
+-mMODE, --mode=MODE
+</pre></div>
+
+<P>
+Here, ``MODE'' is called the meta-variable: it stands for the argument
+that the user is expected to supply to
+<b class="programopt">-m</b>/<b class="programopt">--mode</b>.  By default, <tt class="module">optparse</tt>
+converts the destination variable name to uppercase and uses that for
+the meta-variable.  Sometimes, that's not what you want--for
+example, the <var>filename</var> option explicitly sets
+<code>metavar="FILE"</code>, resulting in this automatically-generated
+option description:
+
+<P>
+<div class="verbatim"><pre>
+-fFILE, --file=FILE
+</pre></div>
+
+<P>
+This is important for more than just saving space, though: the
+manually written help text uses the meta-variable ``FILE'', to clue
+the user in that there's a connection between the formal syntax
+``-fFILE'' and the informal semantic description ``write output to
+FILE''.  This is a simple but effective way to make your help text a
+lot clearer and more useful for end users.
+</LI>
+</UL>
+
+<P>
+When dealing with many options, it is convenient to group these
+options for better help output.  An <tt class="class">OptionParser</tt> can contain
+several option groups, each of which can contain several options.
+
+<P>
+Continuing with the parser defined above, adding an
+<tt class="class">OptionGroup</tt> to a parser is easy:
+
+<P>
+<div class="verbatim"><pre>
+group = OptionGroup(parser, "Dangerous Options",
+                    "Caution: use these options at your own risk.  "
+                    "It is believed that some of them bite.")
+group.add_option("-g", action="store_true", help="Group option.")
+parser.add_option_group(group)
+</pre></div>
+
+<P>
+This would result in the following help output:
+
+<P>
+<div class="verbatim"><pre>
+usage:  [options] arg1 arg2
+
+options:
+  -h, --help           show this help message and exit
+  -v, --verbose        make lots of noise [default]
+  -q, --quiet          be vewwy quiet (I'm hunting wabbits)
+  -fFILE, --file=FILE  write output to FILE
+  -mMODE, --mode=MODE  interaction mode: one of 'novice', 'intermediate'
+                       [default], 'expert'
+
+  Dangerous Options:
+    Caution: use of these options is at your own risk.  It is believed that
+    some of them bite.
+    -g                 Group option.
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.2.3 Setting default values" 
+  rel="prev" title="6.20.2.3 Setting default values" 
+  href="optparse-setting-default-values.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.2 Basic Usage" 
+  rel="parent" title="6.20.2 Basic Usage" 
+  href="optparse-basic-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.2.5 Print a version" 
+  rel="next" title="6.20.2.5 Print a version" 
+  href="optparse-print-version.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-setting-default-values.html">6.20.2.3 Setting default values</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-basic-usage.html">6.20.2 Basic Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-print-version.html">6.20.2.5 Print a version</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

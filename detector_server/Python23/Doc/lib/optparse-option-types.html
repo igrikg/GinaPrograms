@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-querying-and-manipulating.html">
+<LINK REL="prev" href="optparse-option-actions.html">
+<LINK REL="parent" href="optparse-advanced-usage.html">
+<LINK REL="next" href="optparse-querying-and-manipulating.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Option types">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.3.4 Option types</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.3 Option actions" 
+  href="optparse-option-actions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.5 Querying and manipulating" 
+  href="optparse-querying-and-manipulating.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-option-actions.html">6.20.3.3 Option actions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-querying-and-manipulating.html">6.20.3.5 Querying and manipulating</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082034000000000000000">&nbsp;</A>
+<BR>
+6.20.3.4 Option types
+</H3>
+
+<P>
+<tt class="module">optparse</tt> supports six option types out of the box: <i class="dfn">string</i>,
+<i class="dfn">int</i>, <i class="dfn">long</i>, <i class="dfn">choice</i>, <i class="dfn">float</i> and <i class="dfn">complex</i>.
+(Of these, string, int, float, and choice are the most commonly used
+--long and complex are there mainly for completeness.)  It's easy to
+add new option types by subclassing the <tt class="class">Option</tt> class; see
+section&nbsp;<A href="optparse-extending.html#optparse-extending">6.20.5</A>, ``Extending <tt class="module">optparse</tt>.''
+
+<P>
+Arguments to string options are not checked or converted in any way:
+the text on the command line is stored in the destination (or passed
+to the callback) as-is.
+
+<P>
+Integer arguments are passed to <tt class="function">int()</tt> to convert them to
+Python integers.  If <tt class="function">int()</tt> fails, so will
+<tt class="module">optparse</tt>, although with a more useful error message.
+Internally, <tt class="module">optparse</tt> raises <tt class="exception">OptionValueError</tt> in
+<tt class="function">optparse.check_builtin()</tt>; at a higher level (in
+<tt class="class">OptionParser</tt>), <tt class="module">optparse</tt> catches this exception and
+terminates your program with a useful error message.
+
+<P>
+Likewise, float arguments are passed to <tt class="function">float()</tt> for
+conversion, long arguments to <tt class="function">long()</tt>, and complex arguments
+to <tt class="function">complex()</tt>.  Apart from that, they are handled
+identically to integer arguments.
+
+<P>
+Choice options are a subtype of string options. A master list or
+tuple of choices (strings) must be passed to the option constructor
+(<tt class="function">make_option()</tt> or <tt class="method">OptionParser.add_option()</tt>) as
+the <var>choices</var> keyword argument.  Choice option arguments are
+compared against this master list in
+<tt class="function">optparse.check_choice()</tt>, and <tt class="exception">OptionValueError</tt>
+is raised if an unknown string is given.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.3 Option actions" 
+  rel="prev" title="6.20.3.3 Option actions" 
+  href="optparse-option-actions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.5 Querying and manipulating" 
+  rel="next" title="6.20.3.5 Querying and manipulating" 
+  href="optparse-querying-and-manipulating.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-option-actions.html">6.20.3.3 Option actions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-querying-and-manipulating.html">6.20.3.5 Querying and manipulating</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

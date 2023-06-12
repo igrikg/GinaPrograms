@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-operator.html">
+<LINK REL="prev" href="module-UserList.html">
+<LINK REL="parent" href="python.html">
+<LINK REL="next" href="module-operator.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="UserString -- Class wrapper for string objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.9 UserString -- Class wrapper for string objects</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.8 UserList  " 
+  href="module-UserList.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.10 operator  " 
+  href="module-operator.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-UserList.html">3.8 UserList  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-operator.html">3.10 operator  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005900000000000000000">
+3.9 <tt class="module">UserString</tt> --
+         Class wrapper for string objects</A>
+</H1>
+
+<P>
+
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This <tt class="class">UserString</tt> class from this module is available for
+backward compatibility only.  If you are writing code that does not
+need to work with versions of Python earlier than Python 2.2, please
+consider subclassing directly from the built-in <tt class="class">str</tt> type
+instead of using <tt class="class">UserString</tt> (there is no built-in equivalent
+to <tt class="class">MutableString</tt>).</span>
+
+<P>
+This module defines a class that acts as a wrapper around string
+objects.  It is a useful base class for your own string-like classes,
+which can inherit from them and override existing methods or add new
+ones.  In this way one can add new behaviors to strings.
+
+<P>
+It should be noted that these classes are highly inefficient compared
+to real string or Unicode objects; this is especially the case for
+<tt class="class">MutableString</tt>.
+
+<P>
+The <tt class="module">UserString</tt> module defines the following classes:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-478"><tt class="class">UserString</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>sequence</var><big>]</big>)</td></tr></table>
+<dd>
+Class that simulates a string or a Unicode string
+object.  The instance's content is kept in a regular string or Unicode
+string object, which is accessible via the <tt class="member">data</tt> attribute of
+<tt class="class">UserString</tt> instances.  The instance's contents are initially
+set to a copy of <var>sequence</var>.  <var>sequence</var> can be either a
+regular Python string or Unicode string, an instance of
+<tt class="class">UserString</tt> (or a subclass) or an arbitrary sequence which can
+be converted into a string using the built-in <tt class="function">str()</tt> function.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><span class="typelabel">class</span>&nbsp;<a name="l2h-479"><tt class="class">MutableString</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>sequence</var><big>]</big>)</td></tr></table>
+<dd>
+This class is derived from the <tt class="class">UserString</tt> above and redefines
+strings to be <i>mutable</i>.  Mutable strings can't be used as
+dictionary keys, because dictionaries require <i>immutable</i> objects as
+keys.  The main intention of this class is to serve as an educational
+example for inheritance and necessity to remove (override) the
+<tt class="method">__hash__()</tt> method in order to trap attempts to use a
+mutable object as dictionary key, which would be otherwise very
+error prone and hard to track down.
+</dl>
+
+<P>
+In addition to supporting the methods and operations of string and
+Unicode objects (see section <A href="string-methods.html#string-methods">2.2.6</A>, ``String
+Methods''), <tt class="class">UserString</tt> instances provide the following
+attribute:
+
+<P>
+<dl><dt><b><a name="l2h-480"><tt class="member">data</tt></a></b>
+<dd>
+A real Python string or Unicode object used to store the content of the
+<tt class="class">UserString</tt> class.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.8 UserList  " 
+  rel="prev" title="3.8 UserList  " 
+  href="module-UserList.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.10 operator  " 
+  rel="next" title="3.10 operator  " 
+  href="module-operator.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-UserList.html">3.8 UserList  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-operator.html">3.10 operator  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

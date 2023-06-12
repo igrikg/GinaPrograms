@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="mh-folder-objects.html">
+<LINK REL="prev" href="module-mhlib.html">
+<LINK REL="parent" href="module-mhlib.html">
+<LINK REL="next" href="mh-folder-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="MH Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>12.5.1 MH Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.5 mhlib  " 
+  href="module-mhlib.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.5 mhlib  " 
+  href="module-mhlib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.5.2 Folder Objects" 
+  href="mh-folder-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="mh-folder-objects.html">12.5.2 Folder Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014510000000000000000">&nbsp;</A>
+<BR>
+12.5.1 MH Objects 
+</H2>
+
+<P>
+<tt class="class">MH</tt> instances have the following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3681"><tt class="method">error</tt></a></b>(</nobr></td>
+  <td><var>format</var><big>[</big><var>, ...</var><big>]</big>)</td></tr></table>
+<dd>
+Print an error message - can be overridden.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3682"><tt class="method">getprofile</tt></a></b>(</nobr></td>
+  <td><var>key</var>)</td></tr></table>
+<dd>
+Return a profile entry (<code>None</code> if not set).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3683"><tt class="method">getpath</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the mailbox pathname.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3684"><tt class="method">getcontext</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the current folder name.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3685"><tt class="method">setcontext</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Set the current folder name.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3686"><tt class="method">listfolders</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return a list of top-level folders.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3687"><tt class="method">listallfolders</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return a list of all folders.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3688"><tt class="method">listsubfolders</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Return a list of direct subfolders of the given folder.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3689"><tt class="method">listallsubfolders</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Return a list of all subfolders of the given folder.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3690"><tt class="method">makefolder</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Create a new folder.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3691"><tt class="method">deletefolder</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Delete a folder - must have no subfolders.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-3692"><tt class="method">openfolder</tt></a></b>(</nobr></td>
+  <td><var>name</var>)</td></tr></table>
+<dd>
+Return a new open folder object.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="12.5 mhlib  " 
+  rel="prev" title="12.5 mhlib  " 
+  href="module-mhlib.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="12.5 mhlib  " 
+  rel="parent" title="12.5 mhlib  " 
+  href="module-mhlib.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="12.5.2 Folder Objects" 
+  rel="next" title="12.5.2 Folder Objects" 
+  href="mh-folder-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="mh-folder-objects.html">12.5.2 Folder Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

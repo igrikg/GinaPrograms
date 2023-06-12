@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-defining-options.html">
+<LINK REL="prev" href="optparse-advanced-usage.html">
+<LINK REL="parent" href="optparse-advanced-usage.html">
+<LINK REL="next" href="optparse-defining-options.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Creating and populating the parser">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.3.1 Creating and populating the parser</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.2 Defining options" 
+  href="optparse-defining-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-defining-options.html">6.20.3.2 Defining options</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082031000000000000000">&nbsp;</A>
+<BR>
+6.20.3.1 Creating and populating the
+               parser
+</H3>
+
+<P>
+There are several ways to populate the parser with options.  One way
+is to pass a list of <tt class="class">Options</tt> to the <tt class="class">OptionParser</tt>
+constructor:
+
+<P>
+<div class="verbatim"><pre>
+from optparse import OptionParser, make_option
+[...]
+parser = OptionParser(option_list=[
+    make_option("-f", "--filename",
+                action="store", type="string", dest="filename"),
+    make_option("-q", "--quiet",
+                action="store_false", dest="verbose")])
+</pre></div>
+
+<P>
+(<tt class="function">make_option()</tt> is a factory function for generating
+<tt class="class">Option</tt> objects.)
+
+<P>
+For long option lists, it may be more convenient/readable to create the
+list separately:
+
+<P>
+<div class="verbatim"><pre>
+option_list = [make_option("-f", "--filename",
+                           action="store", type="string", dest="filename"),
+               [... more options ...]
+               make_option("-q", "--quiet",
+                           action="store_false", dest="verbose")]
+parser = OptionParser(option_list=option_list)
+</pre></div>
+
+<P>
+Or, you can use the <tt class="method">add_option()</tt> method of
+<tt class="class">OptionParser</tt> to add options one-at-a-time:
+
+<P>
+<div class="verbatim"><pre>
+parser = OptionParser()
+parser.add_option("-f", "--filename",
+                  action="store", type="string", dest="filename")
+parser.add_option("-q", "--quiet",
+                  action="store_false", dest="verbose")
+</pre></div>
+
+<P>
+This method makes it easier to track down exceptions raised by the
+<tt class="class">Option</tt> constructor, which are common because of the complicated
+interdependencies among the various keyword arguments.  (If you get it
+wrong, <tt class="module">optparse</tt> raises <tt class="exception">OptionError</tt>.)
+
+<P>
+<tt class="method">add_option()</tt> can be called in one of two ways:
+
+<P>
+
+<UL>
+<LI>pass it an <tt class="class">Option</tt> instance  (as returned by <tt class="function">make_option()</tt>)
+</LI>
+<LI>pass it any combination of positional and keyword arguments that
+are acceptable to <tt class="function">make_option()</tt> (i.e., to the <tt class="class">Option</tt>
+constructor), and it will create the <tt class="class">Option</tt> instance for you
+(shown above).
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3 Advanced Usage" 
+  rel="prev" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.2 Defining options" 
+  rel="next" title="6.20.3.2 Defining options" 
+  href="optparse-defining-options.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-defining-options.html">6.20.3.2 Defining options</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

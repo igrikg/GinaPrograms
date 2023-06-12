@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" HREF="node687.html">
+<LINK REL="prev" HREF="node685.html">
+<LINK REL="parent" href="module-parser.html">
+<LINK REL="next" HREF="node687.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="AST Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>18.1.5 AST Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.1.4 Exceptions and Error" 
+  HREF="node685.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18.1 parser  " 
+  href="module-parser.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node685.html">18.1.4 Exceptions and Error</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node687.html">18.1.6 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0020150000000000000000">&nbsp;</A>
+<BR>
+18.1.5 AST Objects 
+</H2>
+
+<P>
+Ordered and equality comparisons are supported between AST objects.
+Pickling of AST objects (using the <tt class="module"><a href="module-pickle.html">pickle</a></tt> module) is also
+supported.
+
+<P>
+<dl><dt><b><a name="l2h-4658"><tt>ASTType</tt></a></b>
+<dd>
+The type of the objects returned by <tt class="function">expr()</tt>,
+<tt class="function">suite()</tt> and <tt class="function">sequence2ast()</tt>.
+</dl>
+
+<P>
+AST objects have the following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4659"><tt class="method">compile</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>filename</var><big>]</big>)</td></tr></table>
+<dd>
+Same as <code>compileast(<var>ast</var>, <var>filename</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4660"><tt class="method">isexpr</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Same as <code>isexpr(<var>ast</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4661"><tt class="method">issuite</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Same as <code>issuite(<var>ast</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4662"><tt class="method">tolist</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>line_info</var><big>]</big>)</td></tr></table>
+<dd>
+Same as <code>ast2list(<var>ast</var>, <var>line_info</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4663"><tt class="method">totuple</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>line_info</var><big>]</big>)</td></tr></table>
+<dd>
+Same as <code>ast2tuple(<var>ast</var>, <var>line_info</var>)</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="18.1.4 Exceptions and Error" 
+  rel="prev" title="18.1.4 Exceptions and Error" 
+  HREF="node685.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="18.1 parser  " 
+  rel="parent" title="18.1 parser  " 
+  href="module-parser.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="18.1.6 Examples" 
+  rel="next" title="18.1.6 Examples" 
+  HREF="node687.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" HREF="node685.html">18.1.4 Exceptions and Error</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node687.html">18.1.6 Examples</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

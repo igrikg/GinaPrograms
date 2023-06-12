@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-ConfigParser.html">
+<LINK REL="prev" href="module-sets.html">
+<LINK REL="parent" href="misc.html">
+<LINK REL="next" href="itertools-functions.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="itertools -- Functions creating iterators for efficient looping">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.14 itertools -- Functions creating iterators for efficient looping</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.13.3 Protocol for automatic" 
+  href="immutable-transforms.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.14.1 Itertool functions" 
+  href="itertools-functions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="immutable-transforms.html">5.13.3 Protocol for automatic</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="itertools-functions.html">5.14.1 Itertool functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0071400000000000000000">
+5.14 <tt class="module">itertools</tt> --
+         Functions creating iterators for efficient looping</A>
+</H1>
+
+<P>
+
+
+<span class="versionnote">New in version 2.3.</span>
+
+<P>
+This module implements a number of iterator building blocks inspired
+by constructs from the Haskell and SML programming languages.  Each
+has been recast in a form suitable for Python.
+
+<P>
+The module standardizes a core set of fast, memory efficient tools
+that are useful by themselves or in combination.  Standardization helps
+avoid the readability and reliability problems which arise when many
+different individuals create their own slightly varying implementations,
+each with their own quirks and naming conventions.
+
+<P>
+The tools are designed to combine readily with one another.  This makes
+it easy to construct more specialized tools succinctly and efficiently
+in pure Python.
+
+<P>
+For instance, SML provides a tabulation tool: <code>tabulate(f)</code>
+which produces a sequence <code>f(0), f(1), ...</code>.  This toolbox
+provides <tt class="function">imap()</tt> and <tt class="function">count()</tt> which can be combined
+to form <code>imap(f, count())</code> and produce an equivalent result.
+
+<P>
+Likewise, the functional tools are designed to work well with the
+high-speed functions provided by the <tt class="module"><a href="module-operator.html">operator</a></tt> module.
+
+<P>
+The module author welcomes suggestions for other basic building blocks
+to be added to future versions of the module.
+
+<P>
+Whether cast in pure python form or C code, tools that use iterators
+are more memory efficient (and faster) than their list based counterparts.
+Adopting the principles of just-in-time manufacturing, they create
+data when and where needed instead of consuming memory with the
+computer equivalent of ``inventory''.
+
+<P>
+The performance advantage of iterators becomes more acute as the number
+of elements increases - at some point, lists grow large enough to
+severely impact memory cache performance and start running slowly.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <div class="seetext"><p>The Standard ML Basis Library,
+           <em class="citetitle"><a
+ href="http://www.standardml.org/Basis/"
+ title="The Standard ML Basis Library"
+ >The Standard ML Basis Library</a></em>.</div>
+
+<P>
+<div class="seetext"><p>Haskell, A Purely Functional Language,
+           <em class="citetitle"><a
+ href="http://www.haskell.org/definition/"
+ title="Definition of Haskell and the Standard Libraries"
+ >Definition of Haskell and the Standard Libraries</a></em>.</div>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="itertools-functions.html">5.14.1 Itertool functions</a>
+<LI><A href="itertools-example.html">5.14.2 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.13.3 Protocol for automatic" 
+  rel="prev" title="5.13.3 Protocol for automatic" 
+  href="immutable-transforms.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.14.1 Itertool functions" 
+  rel="next" title="5.14.1 Itertool functions" 
+  href="itertools-functions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="immutable-transforms.html">5.13.3 Protocol for automatic</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="itertools-functions.html">5.14.1 Itertool functions</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-callback-error-handling.html">
+<LINK REL="prev" href="optparse-defining-callback-option.html">
+<LINK REL="parent" href="optparse-callback-options.html">
+<LINK REL="next" href="optparse-callback-error-handling.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="How callbacks are called">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.4.2 How callbacks are called</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.4.1 Defining a callback" 
+  href="optparse-defining-callback-option.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.4.3 Error handling" 
+  href="optparse-callback-error-handling.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-defining-callback-option.html">6.20.4.1 Defining a callback</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-callback-error-handling.html">6.20.4.3 Error handling</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082042000000000000000">&nbsp;</A>
+<BR>
+6.20.4.2 How callbacks are called
+</H3>
+
+<P>
+All callbacks are called as follows:
+
+<P>
+<div class="verbatim"><pre>
+func(option, opt, value, parser, *args, **kwargs)
+</pre></div>
+
+<P>
+where
+
+<P>
+<dl class="definitions">
+<dt><b><a name="l2h-2027">option</a></b>
+<dd>
+is the <tt class="class">Option</tt> instance that's calling the callback.
+
+<P>
+<dt><b><a name="l2h-2028">opt</a></b>
+<dd>
+is the option string seen on the command-line that's triggering the
+callback.  (If an abbreviated long option was used, <var>opt</var> will be
+the full, canonical option string--for example, if the user puts
+<b class="programopt">--foo</b> on the command-line as an abbreviation for
+<b class="programopt">--foobar</b>, then <var>opt</var> will be
+<b class="programopt">--foobar</b>.)
+
+<P>
+<dt><b><a name="l2h-2029">value</a></b>
+<dd>
+is the argument to this option seen on the command-line.
+<tt class="module">optparse</tt> will only expect an argument if <var>type</var> is
+set; the type of <var>value</var> will be the type implied by the
+option's type (see&nbsp;<A href="optparse-option-types.html#optparse-option-types">6.20.3</A>, ``Option types'').  If
+<var>type</var> for this option is <code>None</code> (no argument expected), then
+<var>value</var> will be <code>None</code>.  If "<tt class="samp">nargs &gt; 1</tt>", <var>value</var> will
+be a tuple of values of the appropriate type.
+
+<P>
+<dt><b><a name="l2h-2030">parser</a></b>
+<dd>
+is the <tt class="class">OptionParser</tt> instance driving the whole thing, mainly
+useful because you can access some other interesting data through it,
+as instance attributes:
+
+<P>
+<dl class="definitions"><dt><b><a name="l2h-2031">parser.rargs</a></b>
+<dd>
+the current remaining argument list, i.e. with <var>opt</var> (and
+<var>value</var>, if any) removed, and only the arguments following
+them still there.  Feel free to modify <tt class="member">parser.rargs</tt>,
+e.g. by consuming more arguments.
+
+<P>
+<dt><b><a name="l2h-2032">parser.largs</a></b>
+<dd>
+the current set of leftover arguments, i.e. arguments that have been
+processed but have not been consumed as options (or arguments to
+options).  Feel free to modify <tt class="member">parser.largs</tt> e.g. by adding
+more arguments to it.
+
+<P>
+<dt><b><a name="l2h-2033">parser.values</a></b>
+<dd>
+the object where option values are by default stored.  This is useful
+because it lets callbacks use the same mechanism as the rest of
+<tt class="module">optparse</tt> for storing option values; you don't need to mess
+around with globals or closures.  You can also access the value(s) of
+any options already encountered on the command-line.
+</dl>
+
+<P>
+<dt><b><a name="l2h-2034">args</a></b>
+<dd>
+is a tuple of arbitrary positional arguments supplied via the
+<var>callback</var>_args option attribute.
+
+<P>
+<dt><b><a name="l2h-2035">kwargs</a></b>
+<dd>
+is a dictionary of arbitrary keyword arguments supplied via
+<var>callback_kwargs</var>.
+</dl>
+
+<P>
+Since <var>args</var> and <var>kwargs</var> are optional (they are only passed
+if you supply <var>callback_args</var> and/or <var>callback_kwargs</var> when
+you define your callback option), the minimal callback function is:
+
+<P>
+<div class="verbatim"><pre>
+def my_callback (option, opt, value, parser):
+    pass
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.4.1 Defining a callback" 
+  rel="prev" title="6.20.4.1 Defining a callback" 
+  href="optparse-defining-callback-option.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.4 Callback Options" 
+  rel="parent" title="6.20.4 Callback Options" 
+  href="optparse-callback-options.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.4.3 Error handling" 
+  rel="next" title="6.20.4.3 Error handling" 
+  href="optparse-callback-error-handling.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-defining-callback-option.html">6.20.4.1 Defining a callback</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-callback-options.html">6.20.4 Callback Options</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-callback-error-handling.html">6.20.4.3 Error handling</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

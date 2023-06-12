@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-option-actions.html">
+<LINK REL="prev" href="optparse-creating-the-parser.html">
+<LINK REL="parent" href="optparse-advanced-usage.html">
+<LINK REL="next" href="optparse-option-actions.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Defining options">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.3.2 Defining options</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.1 Creating and populating" 
+  href="optparse-creating-the-parser.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.3 Option actions" 
+  href="optparse-option-actions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-creating-the-parser.html">6.20.3.1 Creating and populating</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-option-actions.html">6.20.3.3 Option actions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082032000000000000000">&nbsp;</A>
+<BR>
+6.20.3.2 Defining options
+</H3>
+
+<P>
+Each <tt class="class">Option</tt> instance represents a set of synonymous
+command-line options, i.e. options that have the same meaning and
+effect, but different spellings.  You can specify any number of short
+or long option strings, but you must specify at least one option
+string.
+
+<P>
+To define an option with only a short option string:
+
+<P>
+<div class="verbatim"><pre>
+make_option("-f", ...)
+</pre></div>
+
+<P>
+And to define an option with only a long option string:
+
+<P>
+<div class="verbatim"><pre>
+make_option("--foo", ...)
+</pre></div>
+
+<P>
+The ``...'' represents a set of keyword arguments that define attributes
+of the <tt class="class">Option</tt> object.  The rules governing which keyword args
+you must supply for a given <tt class="class">Option</tt> are fairly complicated, but
+you always have to supply <i>some</i>.  If you get it wrong,
+<tt class="module">optparse</tt> raises an <tt class="exception">OptionError</tt> exception explaining
+your mistake.
+
+<P>
+The most important attribute of an option is its action, i.e. what to do
+when we encounter this option on the command-line.  The possible actions
+are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Action</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>store</code></td>
+        <td align="left">store this option's argument (default)</td>
+    <tr><td align="left" valign="baseline"><code>store_const</code></td>
+        <td align="left">store a constant value</td>
+    <tr><td align="left" valign="baseline"><code>store_true</code></td>
+        <td align="left">store a true value</td>
+    <tr><td align="left" valign="baseline"><code>store_false</code></td>
+        <td align="left">store a false value</td>
+    <tr><td align="left" valign="baseline"><code>append</code></td>
+        <td align="left">append this option's argument to a list</td>
+    <tr><td align="left" valign="baseline"><code>count</code></td>
+        <td align="left">increment a counter by one</td>
+    <tr><td align="left" valign="baseline"><code>callback</code></td>
+        <td align="left">call a specified function</td>
+    <tr><td align="left" valign="baseline"><code>help</code></td>
+        <td align="left">print a usage message including all options and the
+              documentation for them</td></tbody>
+</table>
+
+<P>
+(If you don't supply an action, the default is ``store''.  For this
+action, you may also supply <var>type</var> and <var>dest</var> keywords; see
+below.)
+
+<P>
+As you can see, most actions involve storing or updating a value
+somewhere. <tt class="module">optparse</tt> always creates a particular object (an
+instance of the <tt class="class">Values</tt> class) specifically for this
+purpose. Option arguments (and various other values) are stored as
+attributes of this object, according to the <var>dest</var> (destination)
+argument to <tt class="function">make_option()</tt>/<tt class="method">add_option()</tt>.
+
+<P>
+For example, when you call:
+
+<P>
+<div class="verbatim"><pre>
+parser.parse_args()
+</pre></div>
+
+<P>
+one of the first things <tt class="module">optparse</tt> does is create a
+<code>values</code> object:
+
+<P>
+<div class="verbatim"><pre>
+values = Values()
+</pre></div>
+
+<P>
+If one of the options in this parser is defined with:
+
+<P>
+<div class="verbatim"><pre>
+make_option("-f", "--file", action="store", type="string", dest="filename")
+</pre></div>
+
+<P>
+and the command-line being parsed includes any of the following:
+
+<P>
+<div class="verbatim"><pre>
+-ffoo
+-f foo
+--file=foo
+--file foo
+</pre></div>
+
+<P>
+then <tt class="module">optparse</tt>, on seeing the <b class="programopt">-f</b> or
+<b class="programopt">--file</b> option, will do the equivalent of this:
+
+<P>
+<div class="verbatim"><pre>
+  values.filename = "foo"
+</pre></div>
+
+<P>
+Clearly, the <var>type</var> and <var>dest</var> arguments are almost
+as important as <var>action</var>.  <var>action</var> is the only attribute that
+is meaningful for <i>all</i> options, though, so it is the most
+important.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.3.1 Creating and populating" 
+  rel="prev" title="6.20.3.1 Creating and populating" 
+  href="optparse-creating-the-parser.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.3 Advanced Usage" 
+  rel="parent" title="6.20.3 Advanced Usage" 
+  href="optparse-advanced-usage.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.3.3 Option actions" 
+  rel="next" title="6.20.3.3 Option actions" 
+  href="optparse-option-actions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-creating-the-parser.html">6.20.3.1 Creating and populating</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-advanced-usage.html">6.20.3 Advanced Usage</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-option-actions.html">6.20.3.3 Option actions</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="itertools-functions.html">
+<LINK REL="parent" href="module-itertools.html">
+<LINK REL="next" href="module-ConfigParser.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Examples ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.14.2 Examples </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.14.1 Itertool functions" 
+  href="itertools-functions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.15 ConfigParser  " 
+  href="module-ConfigParser.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="itertools-functions.html">5.14.1 Itertool functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-ConfigParser.html">5.15 ConfigParser  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0071420000000000000000">&nbsp;</A>
+<BR>
+5.14.2 Examples 
+</H2>
+
+<P>
+The following examples show common uses for each tool and
+demonstrate ways they can be combined.
+
+<P>
+<div class="verbatim"><pre>
+&gt;&gt;&gt; amounts = [120.15, 764.05, 823.14]
+&gt;&gt;&gt; for checknum, amount in izip(count(1200), amounts):
+...     print 'Check %d is for $%.2f' % (checknum, amount)
+...
+Check 1200 is for $120.15
+Check 1201 is for $764.05
+Check 1202 is for $823.14
+
+&gt;&gt;&gt; import operator
+&gt;&gt;&gt; for cube in imap(operator.pow, xrange(1,4), repeat(3)):
+...    print cube
+...
+1
+8
+27
+
+&gt;&gt;&gt; reportlines = ['EuroPython', 'Roster', '', 'alex', '', 'laura',
+                  '', 'martin', '', 'walter', '', 'samuele']
+&gt;&gt;&gt; for name in islice(reportlines, 3, None, 2):
+...    print name.title()
+...
+Alex
+Laura
+Martin
+Walter
+Samuele
+</pre></div>
+
+<P>
+This section shows how itertools can be combined to create other more
+powerful itertools.  Note that <tt class="function">enumerate()</tt> and <tt class="method">iteritems()</tt>
+already have efficient implementations in Python.  They are only included here
+to illustrate how higher level tools can be created from building blocks.
+
+<P>
+<div class="verbatim"><pre>
+def take(n, seq):
+    return list(islice(seq, n))
+
+def enumerate(iterable):
+    return izip(count(), iterable)
+
+def tabulate(function):
+    "Return function(0), function(1), ..."
+    return imap(function, count())
+
+def iteritems(mapping):
+    return izip(mapping.iterkeys(), mapping.itervalues())
+
+def nth(iterable, n):
+    "Returns the nth item"
+    return list(islice(iterable, n, n+1))
+
+def all(pred, seq):
+    "Returns True if pred(x) is True for every element in the iterable"
+    return False not in imap(pred, seq)
+
+def some(pred, seq):
+    "Returns True if pred(x) is True at least one element in the iterable"
+    return True in imap(pred, seq)
+
+def no(pred, seq):
+    "Returns True if pred(x) is False for every element in the iterable"
+    return True not in imap(pred, seq)
+
+def quantify(pred, seq):
+    "Count how many times the predicate is True in the sequence"
+    return sum(imap(pred, seq))
+
+def padnone(seq):
+    "Returns the sequence elements and then returns None indefinitely"
+    return chain(seq, repeat(None))
+
+def ncycles(seq, n):
+    "Returns the sequence elements n times"
+    return chain(*repeat(seq, n))
+
+def dotproduct(vec1, vec2):
+    return sum(imap(operator.mul, vec1, vec2))
+
+def window(seq, n=2):
+    "Returns a sliding window (of width n) over data from the iterable"
+    "   s -&gt; (s0,s1,...s[n-1]), (s1,s2,...,sn), ...                   "
+    it = iter(seq)
+    result = tuple(islice(it, n))
+    if len(result) == n:
+        yield result    
+    for elem in it:
+        result = result[1:] + (elem,)
+        yield result
+
+def tee(iterable):
+    "Return two independent iterators from a single iterable"
+    def gen(next, data={}, cnt=[0]):
+        dpop = data.pop
+        for i in count():
+            if i == cnt[0]:
+                item = data[i] = next()
+                cnt[0] += 1
+            else:
+                item = dpop(i)
+            yield item
+    next = iter(iterable).next
+    return (gen(next), gen(next))
+</pre></div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.14.1 Itertool functions" 
+  rel="prev" title="5.14.1 Itertool functions" 
+  href="itertools-functions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5.14 itertools  " 
+  rel="parent" title="5.14 itertools  " 
+  href="module-itertools.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.15 ConfigParser  " 
+  rel="next" title="5.15 ConfigParser  " 
+  href="module-ConfigParser.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="itertools-functions.html">5.14.1 Itertool functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-itertools.html">5.14 itertools  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-ConfigParser.html">5.15 ConfigParser  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

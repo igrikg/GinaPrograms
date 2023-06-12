@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-errno.html">
+<LINK REL="prev" href="module-optparse.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" href="module-errno.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="tempfile -- Generate temporary files and directories">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.21 tempfile -- Generate temporary files and directories</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.4 Examples" 
+  href="optparse-extending-examples.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.22 errno  " 
+  href="module-errno.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-extending-examples.html">6.20.5.4 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-errno.html">6.22 errno  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0082100000000000000000">
+6.21 <tt class="module">tempfile</tt> --
+         Generate temporary files and directories</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2042">&nbsp;</a><a name="l2h-2043">&nbsp;</a>
+<P>
+This module generates temporary files and directories.  It works on
+all supported platforms.
+
+<P>
+In version 2.3 of Python, this module was overhauled for enhanced
+security.  It now provides three new functions,
+<tt class="function">NamedTemporaryFile()</tt>, <tt class="function">mkstemp()</tt>, and
+<tt class="function">mkdtemp()</tt>, which should eliminate all remaining need to use
+the insecure <tt class="function">mktemp()</tt> function.  Temporary file names created
+by this module no longer contain the process ID; instead a string of
+six random characters is used.
+
+<P>
+Also, all the user-callable functions now take additional arguments
+which allow direct control over the location and name of temporary
+files.  It is no longer necessary to use the global <var>tempdir</var> and
+<var>template</var> variables.  To maintain backward compatibility, the
+argument order is somewhat odd; it is recommended to use keyword
+arguments for clarity.
+
+<P>
+The module defines the following user-callable functions:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2044"><tt class="function">TemporaryFile</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>mode='w+b'</var><big>]</big><big>[</big><var>, bufsize=-1</var><big>]</big><big>[</big><var>, suffix</var><big>]</big><big>[</big><var>, prefix</var><big>]</big><big>[</big><var>, dir</var><big>]</big>)</td></tr></table>
+<dd>
+Return a file (or file-like) object that can be used as a temporary
+storage area.  The file is created using <tt class="function">mkstemp</tt>. It will
+be destroyed as soon as it is closed (including an implicit close when
+the object is garbage collected).  Under <font style="font-variant: small-caps;">Unix</font>, the directory entry
+for the file is removed immediately after the file is created.  Other
+platforms do not support this; your code should not rely on a
+temporary file created using this function having or not having a
+visible name in the file system.
+
+<P>
+The <var>mode</var> parameter defaults to <code>'w+b'</code> so that the file
+created can be read and written without being closed.  Binary mode is
+used so that it behaves consistently on all platforms without regard
+for the data that is stored.  <var>bufsize</var> defaults to <code>-1</code>,
+meaning that the operating system default is used.
+
+<P>
+The <var>dir</var>, <var>prefix</var> and <var>suffix</var> parameters are passed to
+<tt class="function">mkstemp()</tt>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2045"><tt class="function">NamedTemporaryFile</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>mode='w+b'</var><big>]</big><big>[</big><var>, bufsize=-1</var><big>]</big><big>[</big><var>, suffix</var><big>]</big><big>[</big><var>, prefix</var><big>]</big><big>[</big><var>, dir</var><big>]</big>)</td></tr></table>
+<dd>
+This function operates exactly as <tt class="function">TemporaryFile()</tt> does,
+except that the file is guaranteed to have a visible name in the file
+system (on <font style="font-variant: small-caps;">Unix</font>, the directory entry is not unlinked).  That name can
+be retrieved from the <tt class="member">name</tt> member of the file object.  Whether
+the name can be used to open the file a second time, while the
+named temporary file is still open, varies across platforms (it can
+be so used on <font style="font-variant: small-caps;">Unix</font>; it cannot on Windows NT or later).
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2046"><tt class="function">mkstemp</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>suffix</var><big>]</big><big>[</big><var>, prefix</var><big>]</big><big>[</big><var>, dir</var><big>]</big><big>[</big><var>, text=False</var><big>]</big>)</td></tr></table>
+<dd>
+Creates a temporary file in the most secure manner possible.  There
+are no race conditions in the file's creation, assuming that the
+platform properly implements the <tt class="constant">O_EXCL</tt> flag for
+<tt class="function">os.open()</tt>.  The file is readable and writable only by the
+creating user ID.  If the platform uses permission bits to indicate
+whether a file is executable, the file is executable by no one.  The
+file descriptor is not inherited by child processes.
+
+<P>
+Unlike <tt class="function">TemporaryFile()</tt>, the user of <tt class="function">mkstemp()</tt> is
+responsible for deleting the temporary file when done with it.
+
+<P>
+If <var>suffix</var> is specified, the file name will end with that suffix,
+otherwise there will be no suffix.  <tt class="function">mkstemp()</tt> does not put a
+dot between the file name and the suffix; if you need one, put it at
+the beginning of <var>suffix</var>.
+
+<P>
+If <var>prefix</var> is specified, the file name will begin with that
+prefix; otherwise, a default prefix is used.
+
+<P>
+If <var>dir</var> is specified, the file will be created in that directory;
+otherwise, a default directory is used.
+
+<P>
+If <var>text</var> is specified, it indicates whether to open the file in
+binary mode (the default) or text mode.  On some platforms, this makes
+no difference.
+
+<P>
+<tt class="function">mkstemp()</tt> returns a tuple containing an OS-level handle to
+an open file (as would be returned by <tt class="function">os.open()</tt>) and the
+absolute pathname of that file, in that order.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2047"><tt class="function">mkdtemp</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>suffix</var><big>]</big><big>[</big><var>, prefix</var><big>]</big><big>[</big><var>, dir</var><big>]</big>)</td></tr></table>
+<dd>
+Creates a temporary directory in the most secure manner possible.
+There are no race conditions in the directory's creation.  The
+directory is readable, writable, and searchable only by the
+creating user ID.
+
+<P>
+The user of <tt class="function">mkdtemp()</tt> is responsible for deleting the
+temporary directory and its contents when done with it.
+
+<P>
+The <var>prefix</var>, <var>suffix</var>, and <var>dir</var> arguments are the same
+as for <tt class="function">mkstemp()</tt>.
+
+<P>
+<tt class="function">mkdtemp()</tt> returns the absolute pathname of the new directory.
+
+<span class="versionnote">New in version 2.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2048"><tt class="function">mktemp</tt></a></b>(</nobr></td>
+  <td><big>[</big><var>suffix</var><big>]</big><big>[</big><var>, prefix</var><big>]</big><big>[</big><var>, dir</var><big>]</big>)</td></tr></table>
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.3.</b>
+Use <tt class="function">mkstemp()</tt> instead.</div><p>
+Return an absolute pathname of a file that did not exist at the time
+the call is made.  The <var>prefix</var>, <var>suffix</var>, and <var>dir</var>
+arguments are the same as for <tt class="function">mkstemp()</tt>.
+
+<P>
+<span class="warning"><b class="label">Warning:</b>
+Use of this function may introduce a security hole in your
+program.  By the time you get around to doing anything with the file
+name it returns, someone else may have beaten you to the punch.</span>
+</dl>
+
+<P>
+The module uses two global variables that tell it how to construct a
+temporary name.  They are initialized at the first call to any of the
+functions above.  The caller may change them, but this is discouraged;
+use the appropriate function arguments, instead.
+
+<P>
+<dl><dt><b><a name="l2h-2049"><tt>tempdir</tt></a></b>
+<dd>
+When set to a value other than <code>None</code>, this variable defines the
+default value for the <var>dir</var> argument to all the functions defined
+in this module.
+
+<P>
+If <var>tempdir</var> is unset or <code>None</code> at any call to any of the
+above functions, Python searches a standard list of directories and
+sets <var>tempdir</var> to the first one which the calling user can create
+files in.  The list is:
+
+<P>
+
+<OL>
+<LI>The directory named by the <a class="envvar" name="l2h-2053">TMPDIR</a> environment variable.
+</LI>
+<LI>The directory named by the <a class="envvar" name="l2h-2054">TEMP</a> environment variable.
+</LI>
+<LI>The directory named by the <a class="envvar" name="l2h-2055">TMP</a> environment variable.
+</LI>
+<LI>A platform-specific location:
+    
+<UL>
+<LI>On Macintosh, the <span class="file">Temporary Items</span> folder.
+</LI>
+<LI>On RiscOS, the directory named by the
+          <a class="envvar" name="l2h-2056">Wimp$ScrapDir</a> environment variable.
+</LI>
+<LI>On Windows, the directories
+          <span class="file">C:<SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$\backslash$"></SPAN>TEMP</span>,
+          <span class="file">C:<SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$\backslash$"></SPAN>TMP</span>,
+          <span class="file"><SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$\backslash$"></SPAN>TEMP</span>, and
+          <span class="file"><SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$\backslash$"></SPAN>TMP</span>, in that order.
+</LI>
+<LI>On all other platforms, the directories
+          <span class="file">/tmp</span>, <span class="file">/var/tmp</span>, and <span class="file">/usr/tmp</span>, in that order.
+    
+</LI>
+</UL>
+</LI>
+<LI>As a last resort, the current working directory.
+</LI>
+</OL>
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2050"><tt class="function">gettempdir</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the directory currently selected to create temporary files in.
+If <var>tempdir</var> is not None, this simply returns its contents;
+otherwise, the search described above is performed, and the result
+returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2051"><tt>template</tt></a></b>
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+Use <tt class="function">gettempprefix()</tt> instead.</div><p>
+When set to a value other than <code>None</code>, this variable defines the
+prefix of the final component of the filenames returned by
+<tt class="function">mktemp()</tt>.  A string of six random letters and digits is
+appended to the prefix to make the filename unique.  On Windows,
+the default prefix is <span class="file">~T</span>; on all other systems
+it is <span class="file">tmp</span>.
+
+<P>
+Older versions of this module used to require that <code>template</code> be
+set to <code>None</code> after a call to <tt class="function">os.fork()</tt>; this has not
+been necessary since version 1.5.2.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-2052"><tt class="function">gettempprefix</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return the filename prefix used to create temporary files.  This does
+not contain the directory component.  Using this function is preferred
+over reading the <var>template</var> variable directly.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.4 Examples" 
+  rel="prev" title="6.20.5.4 Examples" 
+  href="optparse-extending-examples.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.22 errno  " 
+  rel="next" title="6.22 errno  " 
+  href="module-errno.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-extending-examples.html">6.20.5.4 Examples</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-errno.html">6.22 errno  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

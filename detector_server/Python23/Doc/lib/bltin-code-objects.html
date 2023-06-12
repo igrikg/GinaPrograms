@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="bltin-type-objects.html">
+<LINK REL="prev" href="typesmethods.html">
+<LINK REL="parent" href="typesother.html">
+<LINK REL="next" href="bltin-type-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Code Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>2.2.9.5 Code Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="2.2.9.4 Methods" 
+  href="typesmethods.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="2.2.9 Other Built-in Types" 
+  href="typesother.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="2.2.9.6 Type Objects" 
+  href="bltin-type-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="typesmethods.html">2.2.9.4 Methods</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="bltin-type-objects.html">2.2.9.6 Type Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION004295000000000000000">&nbsp;</A>
+<BR>
+2.2.9.5 Code Objects 
+</H3>
+<a name="l2h-256">&nbsp;</a>
+<P>
+Code objects are used by the implementation to represent
+``pseudo-compiled'' executable Python code such as a function body.
+They differ from function objects because they don't contain a
+reference to their global execution environment.  Code objects are
+returned by the built-in <tt class="function">compile()</tt> function and can be
+extracted from function objects through their <tt class="member">func_code</tt>
+attribute.
+<a name="l2h-257">&nbsp;</a><a name="l2h-259">&nbsp;</a>
+<P>
+A code object can be executed or evaluated by passing it (instead of a
+source string) to the <tt class="keyword">exec</tt> statement or the built-in
+<tt class="function">eval()</tt> function.
+<a name="l2h-260">&nbsp;</a><a name="l2h-261">&nbsp;</a>
+<P>
+See the <em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em> for more
+information.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="2.2.9.4 Methods" 
+  rel="prev" title="2.2.9.4 Methods" 
+  href="typesmethods.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="2.2.9 Other Built-in Types" 
+  rel="parent" title="2.2.9 Other Built-in Types" 
+  href="typesother.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="2.2.9.6 Type Objects" 
+  rel="next" title="2.2.9.6 Type Objects" 
+  href="bltin-type-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="typesmethods.html">2.2.9.4 Methods</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="bltin-type-objects.html">2.2.9.6 Type Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

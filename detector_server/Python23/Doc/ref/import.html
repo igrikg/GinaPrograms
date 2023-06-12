@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="ref.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="ref.html" title='Python Reference Manual'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="global.html">
+<LINK REL="prev" href="continue.html">
+<LINK REL="parent" href="simple.html">
+<LINK REL="next" href="future.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="The import statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.12 The import statement </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.11 The continue statement" 
+  href="continue.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Simple statements" 
+  href="simple.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.12.1 Future statements" 
+  href="future.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="continue.html">6.11 The continue statement</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="future.html">6.12.1 Future statements</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081200000000000000000">&nbsp;</A>
+<BR>
+6.12 The <tt class="keyword">import</tt> statement 
+</H1>
+<a name="l2h-525">&nbsp;</a><a name="l2h-546">&nbsp;</a><a name="l2h-526">&nbsp;</a><a name="l2h-527">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-import_stmt">import_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"import" <a href="import.html#tok-module">module</a> ["as" <a href="">name</a>]
+                ( "," <a href="import.html#tok-module">module</a> ["as" <a href="">name</a>] )*</code></td></tr>
+  <tr valign="baseline">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><code>| "from" <a href="import.html#tok-module">module</a> "import" <a href="identifiers.html#tok-identifier">identifier</a>
+                    ["as" <a href="">name</a>]</code></td></tr>
+  <tr valign="baseline">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><code>&nbsp;&nbsp;( "," <a href="identifiers.html#tok-identifier">identifier</a> ["as" <a href="">name</a>] )*</code></td></tr>
+  <tr valign="baseline">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><code>| "from" <a href="import.html#tok-module">module</a> "import" "*"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-module">module</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>(<a href="identifiers.html#tok-identifier">identifier</a> ".")* <a href="identifiers.html#tok-identifier">identifier</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Import statements are executed in two steps: (1) find a module, and
+initialize it if necessary; (2) define a name or names in the local
+namespace (of the scope where the <tt class="keyword">import</tt> statement occurs).
+The first form (without <tt class="keyword">from</tt>) repeats these steps for each
+identifier in the list.  The form with <tt class="keyword">from</tt> performs step
+(1) once, and then performs step (2) repeatedly.
+
+<P>
+In this context, to ``initialize'' a built-in or extension module means to
+call an initialization function that the module must provide for the purpose
+(in the reference implementation, the function's name is obtained by
+prepending string ``init'' to the module's name); to ``initialize'' a
+Python-coded module means to execute the module's body.
+
+<P>
+The system maintains a table of modules that have been or are being
+initialized,
+indexed by module name.  This table is
+accessible as <code>sys.modules</code>.  When a module name is found in
+this table, step (1) is finished.  If not, a search for a module
+definition is started.  When a module is found, it is loaded.  Details
+of the module searching and loading process are implementation and
+platform specific.  It generally involves searching for a ``built-in''
+module with the given name and then searching a list of locations
+given as <code>sys.path</code>.
+<a name="l2h-529">&nbsp;</a><a name="l2h-547">&nbsp;</a><a name="l2h-530">&nbsp;</a><a name="l2h-531">&nbsp;</a><a name="l2h-532">&nbsp;</a><a name="l2h-548">&nbsp;</a><a name="l2h-533">&nbsp;</a><a name="l2h-534">&nbsp;</a>
+<P>
+If a built-in module is found,<a name="l2h-535">&nbsp;</a> its
+built-in initialization code is executed and step (1) is finished.  If
+no matching file is found,
+<tt class="exception">ImportError</tt><a name="l2h-536">&nbsp;</a> is raised.
+<a name="l2h-549">&nbsp;</a>If a file is found, it is parsed,
+yielding an executable code block.  If a syntax error occurs,
+<tt class="exception">SyntaxError</tt><a name="l2h-537">&nbsp;</a> is raised.  Otherwise, an
+empty module of the given name is created and inserted in the module
+table, and then the code block is executed in the context of this
+module.  Exceptions during this execution terminate step (1).
+
+<P>
+When step (1) finishes without raising an exception, step (2) can
+begin.
+
+<P>
+The first form of <tt class="keyword">import</tt> statement binds the module name in
+the local namespace to the module object, and then goes on to import
+the next identifier, if any.  If the module name is followed by
+<tt class="keyword">as</tt>, the name following <tt class="keyword">as</tt> is used as the local
+name for the module. 
+
+<P>
+The <tt class="keyword">from</tt> form does not bind the module name: it goes through the
+list of identifiers, looks each one of them up in the module found in step
+(1), and binds the name in the local namespace to the object thus found. 
+As with the first form of <tt class="keyword">import</tt>, an alternate local name can be
+supplied by specifying "<tt class="keyword">as</tt> localname".  If a name is not found,
+<tt class="exception">ImportError</tt> is raised.  If the list of identifiers is replaced
+by a star ("<tt class="character">*</tt>"), all public names defined in the module are
+bound in the local namespace of the <tt class="keyword">import</tt> statement..
+<a name="l2h-538">&nbsp;</a><a name="l2h-539">&nbsp;</a>
+<P>
+The <i>public names</i> defined by a module are determined by checking
+the module's namespace for a variable named <code>__all__</code>; if
+defined, it must be a sequence of strings which are names defined or
+imported by that module.  The names given in <code>__all__</code> are all
+considered public and are required to exist.  If <code>__all__</code> is not
+defined, the set of public names includes all names found in the
+module's namespace which do not begin with an underscore character
+("<tt class="character">_</tt>").  <code>__all__</code> should contain the entire public API.
+It is intended to avoid accidentally exporting items that are not part
+of the API (such as library modules which were imported and used within
+the module).
+<a name="l2h-541">&nbsp;</a>
+<P>
+The <tt class="keyword">from</tt> form with "<tt class="samp">*</tt>" may only occur in a module
+scope.  If the wild card form of import -- "<tt class="samp">import *</tt>" -- is
+used in a function and the function contains or is a nested block with
+free variables, the compiler will raise a <tt class="exception">SyntaxError</tt>.
+
+<P>
+<a name="l2h-542">&nbsp;</a><a name="l2h-543">&nbsp;</a>
+<P>
+<b>Hierarchical module names:</b><a name="l2h-544">&nbsp;</a>when the module names contains one or more dots, the module search
+path is carried out differently.  The sequence of identifiers up to
+the last dot is used to find a ``package''<a name="l2h-550">&nbsp;</a>; the final
+identifier is then searched inside the package.  A package is
+generally a subdirectory of a directory on <code>sys.path</code> that has a
+file <span class="file">__init__.py</span>.<a name="l2h-551">&nbsp;</a>[XXX Can't be bothered to spell this out right now; see the URL
+<a class="url" href="http://www.python.org/doc/essays/packages.html">http://www.python.org/doc/essays/packages.html</a> for more details, also
+about how the module search works from inside a package.]
+
+<P>
+The built-in function <tt class="function">__import__()</tt> is provided to support
+applications that determine which modules need to be loaded
+dynamically; refer to <a class="ulink" href="../lib/built-in-funcs.html"
+  >Built-in
+Functions</a> in the
+<em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em> for additional
+information.
+<a name="l2h-545">&nbsp;</a>
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="future.html">6.12.1 Future statements</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.11 The continue statement" 
+  rel="prev" title="6.11 The continue statement" 
+  href="continue.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Simple statements" 
+  rel="parent" title="6. Simple statements" 
+  href="simple.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.12.1 Future statements" 
+  rel="next" title="6.12.1 Future statements" 
+  href="future.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><img src='../icons/blank.gif'
+  border='0' height='32'  alt='' width='32'></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="continue.html">6.11 The continue statement</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="future.html">6.12.1 Future statements</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

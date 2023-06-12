@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="au-write-objects.html">
+<LINK REL="prev" href="module-sunau.html">
+<LINK REL="parent" href="module-sunau.html">
+<LINK REL="next" href="au-write-objects.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="AU_read Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>14.4.1 AU_read Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="14.4.2 AU_write Objects" 
+  href="au-write-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="au-write-objects.html">14.4.2 AU_write Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0016410000000000000000">&nbsp;</A>
+<BR>
+14.4.1 AU_read Objects 
+</H2>
+
+<P>
+AU_read objects, as returned by <tt class="function">open()</tt> above, have the
+following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4367"><tt class="method">close</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Close the stream, and make the instance unusable. (This is 
+called automatically on deletion.)
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4368"><tt class="method">getnchannels</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns number of audio channels (1 for mone, 2 for stereo).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4369"><tt class="method">getsampwidth</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns sample width in bytes.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4370"><tt class="method">getframerate</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns sampling frequency.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4371"><tt class="method">getnframes</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns number of audio frames.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4372"><tt class="method">getcomptype</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns compression type.
+Supported compression types are <code>'ULAW'</code>, <code>'ALAW'</code> and <code>'NONE'</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4373"><tt class="method">getcompname</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Human-readable version of <tt class="method">getcomptype()</tt>. 
+The supported types have the respective names <code>'CCITT G.711
+u-law'</code>, <code>'CCITT G.711 A-law'</code> and <code>'not compressed'</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4374"><tt class="method">getparams</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns a tuple <code>(<var>nchannels</var>, <var>sampwidth</var>,
+<var>framerate</var>, <var>nframes</var>, <var>comptype</var>, <var>compname</var>)</code>,
+equivalent to output of the <tt class="method">get*()</tt> methods.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4375"><tt class="method">readframes</tt></a></b>(</nobr></td>
+  <td><var>n</var>)</td></tr></table>
+<dd>
+Reads and returns at most <var>n</var> frames of audio, as a string of
+bytes.  The data will be returned in linear format.  If the original
+data is in u-LAW format, it will be converted.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4376"><tt class="method">rewind</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Rewind the file pointer to the beginning of the audio stream.
+</dl>
+
+<P>
+The following two methods define a term ``position'' which is compatible
+between them, and is otherwise implementation dependent.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4377"><tt class="method">setpos</tt></a></b>(</nobr></td>
+  <td><var>pos</var>)</td></tr></table>
+<dd>
+Set the file pointer to the specified position.  Only values returned
+from <tt class="method">tell()</tt> should be used for <var>pos</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4378"><tt class="method">tell</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Return current file pointer position.  Note that the returned value
+has nothing to do with the actual position in the file.
+</dl>
+
+<P>
+The following two functions are defined for compatibility with the 
+<tt class="module"><a href="module-aifc.html">aifc</a></tt>, and don't do anything interesting.
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4379"><tt class="method">getmarkers</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-4380"><tt class="method">getmark</tt></a></b>(</nobr></td>
+  <td><var>id</var>)</td></tr></table>
+<dd>
+Raise an error.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="14.4 sunau  " 
+  rel="prev" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="14.4 sunau  " 
+  rel="parent" title="14.4 sunau  " 
+  href="module-sunau.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="14.4.2 AU_write Objects" 
+  rel="next" title="14.4.2 AU_write Objects" 
+  href="au-write-objects.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-sunau.html">14.4 sunau  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="au-write-objects.html">14.4.2 AU_write Objects</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

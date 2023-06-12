@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-curses.textpad.html">
+<LINK REL="prev" href="module-getpass.html">
+<LINK REL="parent" href="allos.html">
+<LINK REL="next" href="curses-functions.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="curses -- Terminal handling for character-cell displays">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.14 curses -- Terminal handling for character-cell displays</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.13 getpass  " 
+  href="module-getpass.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.14.1 Functions" 
+  href="curses-functions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-getpass.html">6.13 getpass  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="curses-functions.html">6.14.1 Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081400000000000000000">
+6.14 <tt class="module">curses</tt> --
+         Terminal handling for character-cell displays</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">Changed in version 1.6:
+Added support for the <code>ncurses</code> library and
+                converted to a package.</span>
+
+<P>
+The <tt class="module">curses</tt> module provides an interface to the curses
+library, the de-facto standard for portable advanced terminal
+handling.
+
+<P>
+While curses is most widely used in the <font style="font-variant: small-caps;">Unix</font> environment, versions
+are available for DOS, OS/2, and possibly other systems as well.  This
+extension module is designed to match the API of ncurses, an
+open-source curses library hosted on Linux and the BSD variants of
+<font style="font-variant: small-caps;">Unix</font>.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-curses.ascii.html">curses.ascii</a></tt>:</b>
+    <dd>Utilities for working with ASCII
+                           characters, regardless of your locale
+                           settings.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-curses.panel.html">curses.panel</a></tt>:</b>
+    <dd>A panel stack extension that adds depth to 
+                           curses windows.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-curses.textpad.html">curses.textpad</a></tt>:</b>
+    <dd>Editable text widget for curses supporting 
+                             <b class="program">Emacs</b>-like bindings.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-curses.wrapper.html">curses.wrapper</a></tt>:</b>
+    <dd>Convenience function to ensure proper
+                             terminal setup and resetting on
+                             application entry and exit.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.python.org/doc/howto/curses/curses.html"
+        >Curses
+            Programming with Python</a></em>
+    <dd>Tutorial material on using curses
+            with Python, by Andrew Kuchling and Eric Raymond, is
+            available on the Python Web site.
+  </dl>
+  <div class="seetext"><p>The <span class="file">Demo/curses/</span> directory in the Python source
+           distribution contains some example programs using the
+           curses bindings provided by this module.</div>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="curses-functions.html">6.14.1 Functions</a>
+<LI><A href="curses-window-objects.html">6.14.2 Window Objects</a>
+<LI><A href="node218.html">6.14.3 Constants</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.13 getpass  " 
+  rel="prev" title="6.13 getpass  " 
+  href="module-getpass.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6. Generic Operating System" 
+  rel="parent" title="6. Generic Operating System" 
+  href="allos.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.14.1 Functions" 
+  rel="next" title="6.14.1 Functions" 
+  href="curses-functions.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-getpass.html">6.13 getpass  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="curses-functions.html">6.14.1 Functions</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

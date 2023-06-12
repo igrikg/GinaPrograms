@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="module-termios.html">
+<LINK REL="parent" href="module-termios.html">
+<LINK REL="next" href="module-TERMIOSuppercase.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Example">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>8.8.1 Example</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.8 termios  " 
+  href="module-termios.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8.8 termios  " 
+  href="module-termios.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="8.9 TERMIOS  " 
+  href="module-TERMIOSuppercase.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-termios.html">8.8 termios  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-termios.html">8.8 termios  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-TERMIOSuppercase.html">8.9 TERMIOS  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0010810000000000000000">
+8.8.1 Example</A>
+</H2>
+
+<P>
+Here's a function that prompts for a password with echoing turned
+off.  Note the technique using a separate <tt class="function">tcgetattr()</tt> call
+and a <tt class="keyword">try</tt> ... <tt class="keyword">finally</tt> statement to ensure that the
+old tty attributes are restored exactly no matter what happens:
+
+<P>
+<div class="verbatim"><pre>
+def getpass(prompt = "Password: "):
+    import termios, sys
+    fd = sys.stdin.fileno()
+    old = termios.tcgetattr(fd)
+    new = termios.tcgetattr(fd)
+    new[3] = new[3] &amp; ~termios.ECHO          # lflags
+    try:
+        termios.tcsetattr(fd, termios.TCSADRAIN, new)
+        passwd = raw_input(prompt)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old)
+    return passwd
+</pre></div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="8.8 termios  " 
+  rel="prev" title="8.8 termios  " 
+  href="module-termios.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="8.8 termios  " 
+  rel="parent" title="8.8 termios  " 
+  href="module-termios.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="8.9 TERMIOS  " 
+  rel="next" title="8.9 TERMIOS  " 
+  href="module-TERMIOSuppercase.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-termios.html">8.8 termios  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-termios.html">8.8 termios  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-TERMIOSuppercase.html">8.9 TERMIOS  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

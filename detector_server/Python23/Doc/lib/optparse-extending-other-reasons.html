@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="optparse-extending-examples.html">
+<LINK REL="prev" href="optparse-adding-actions.html">
+<LINK REL="parent" href="optparse-extending.html">
+<LINK REL="next" href="optparse-extending-examples.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Other reasons to extend optparse">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.20.5.3 Other reasons to extend optparse</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.2 Adding new actions" 
+  href="optparse-adding-actions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5.4 Examples" 
+  href="optparse-extending-examples.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-adding-actions.html">6.20.5.2 Adding new actions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending-examples.html">6.20.5.4 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082053000000000000000">&nbsp;</A>
+<BR>
+6.20.5.3 Other reasons to extend <tt class="module">optparse</tt>
+</H3>
+
+<P>
+Adding new types and new actions are the big, obvious reasons why you
+might want to extend <tt class="module">optparse</tt>.  I can think of at least two
+other areas to play with.
+
+<P>
+First, the simple one: <tt class="class">OptionParser</tt> tries to be helpful by
+calling <tt class="function">sys.exit()</tt> when appropriate, i.e. when there's an
+error on the command-line or when the user requests help.  In the
+former case, the traditional course of letting the script crash with a
+traceback is unacceptable; it will make users think there's a bug in
+your script when they make a command-line error.  In the latter case,
+there's generally not much point in carrying on after printing a help
+message.
+
+<P>
+If this behaviour bothers you, it shouldn't be too hard to ``fix'' it.
+You'll have to
+
+<P>
+
+<OL>
+<LI>subclass OptionParser and override the error() method
+</LI>
+<LI>subclass Option and override the take_action() method--you'll
+      need to provide your own handling of the ``help'' action that
+      doesn't call sys.exit()
+</LI>
+</OL>
+
+<P>
+The second, much more complex, possibility is to override the
+command-line syntax implemented by <tt class="module">optparse</tt>.  In this case,
+you'd leave the whole machinery of option actions and types alone, but
+rewrite the code that processes <code>sys.argv</code>.  You'll need to
+subclass <tt class="class">OptionParser</tt> in any case; depending on how radical a
+rewrite you want, you'll probably need to override one or all of
+<tt class="method">parse_args()</tt>, <tt class="method">_process_long_opt()</tt>, and
+<tt class="method">_process_short_opts()</tt>.
+
+<P>
+Both of these are left as an exercise for the reader.  I have not
+tried to implement either myself, since I'm quite happy with
+<tt class="module">optparse</tt>'s default behaviour (naturally).
+
+<P>
+Happy hacking, and don't forget: Use the Source, Luke.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.20.5.2 Adding new actions" 
+  rel="prev" title="6.20.5.2 Adding new actions" 
+  href="optparse-adding-actions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.20.5 Extending optparse" 
+  rel="parent" title="6.20.5 Extending optparse" 
+  href="optparse-extending.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.20.5.4 Examples" 
+  rel="next" title="6.20.5.4 Examples" 
+  href="optparse-extending-examples.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="optparse-adding-actions.html">6.20.5.2 Adding new actions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="optparse-extending.html">6.20.5 Extending optparse</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="optparse-extending-examples.html">6.20.5.4 Examples</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

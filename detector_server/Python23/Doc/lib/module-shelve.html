@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-copy.html">
+<LINK REL="prev" href="module-copyreg.html">
+<LINK REL="parent" href="python.html">
+<LINK REL="next" HREF="node74.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="shelve -- Python object persistence">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>3.17 shelve -- Python object persistence</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.16 copy_reg  " 
+  href="module-copyreg.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.17.1 Restrictions" 
+  HREF="node74.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-copyreg.html">3.16 copy_reg  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node74.html">3.17.1 Restrictions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051700000000000000000">
+3.17 <tt class="module">shelve</tt> --
+         Python object persistence</A>
+</H1>
+
+<P>
+
+
+<P>
+A ``shelf'' is a persistent, dictionary-like object.  The difference
+with ``dbm'' databases is that the values (not the keys!) in a shelf
+can be essentially arbitrary Python objects -- anything that the
+<tt class="module"><a href="module-pickle.html">pickle</a></tt> module can handle.  This includes most class
+instances, recursive data types, and objects containing lots of shared 
+sub-objects.  The keys are ordinary strings.
+<a name="l2h-654">&nbsp;</a>
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-653"><tt class="function">open</tt></a></b>(</nobr></td>
+  <td><var>filename</var><big>[</big><var>,flag='c'</var><big>[</big><var>,protocol=<code>None</code></var><big>[</big><var>,writeback=<code>False</code></var><big>[</big><var>,binary=<code>None</code></var><big>]</big><big>]</big><big>]</big><big>]</big>)</td></tr></table>
+<dd>
+Open a persistent dictionary.  The filename specified is the base filename
+for the underlying database.  As a side-effect, an extension may be added to
+the filename and more than one file may be created.  By default, the
+underlying database file is opened for reading and writing.  The optional
+<var>flag</var> pararameter has the same interpretation as the <var>flag</var>
+parameter of <tt class="function">anydbm.open</tt>.  
+
+<P>
+By default, version 0 pickles are used to serialize values. 
+The version of the pickle protocol can be specified with the
+<var>protocol</var> parameter. 
+<span class="versionnote">Changed in version 2.3:
+The <var>protocol</var>
+parameter was added. The <var>binary</var> parameter is deprecated
+and provided for backwards compatibility only.</span>
+
+<P>
+By default, mutations to persistent-dictionary mutable entries are not
+automatically written back.  If the optional <var>writeback</var> parameter
+is set to <var>True</var>, all entries accessed are cached in memory, and
+written back at close time; this can make it handier to mutate mutable
+entries in the persistent dictionary, but, if many entries are
+accessed, it can consume vast amounts of memory for the cache, and it
+can make the close operation very slow since all accessed entries are
+written back (there is no way to determine which accessed entries are
+mutable, nor which ones were actually mutated).
+
+<P>
+</dl>
+
+<P>
+Shelve objects support all methods supported by dictionaries.  This eases
+the transition from dictionary based scripts to those requiring persistent
+storage.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node74.html">3.17.1 Restrictions</a>
+<LI><A href="node75.html">3.17.2 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="3.16 copy_reg  " 
+  rel="prev" title="3.16 copy_reg  " 
+  href="module-copyreg.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="3. Python Runtime Services" 
+  rel="parent" title="3. Python Runtime Services" 
+  href="python.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="3.17.1 Restrictions" 
+  rel="next" title="3.17.1 Restrictions" 
+  HREF="node74.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="module-copyreg.html">3.16 copy_reg  </A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" HREF="node74.html">3.17.1 Restrictions</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

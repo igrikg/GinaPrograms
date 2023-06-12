@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="prev" href="cursespanel-functions.html">
+<LINK REL="parent" href="module-curses.panel.html">
+<LINK REL="next" href="module-getopt.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="Panel Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>6.18.2 Panel Objects </title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.18.1 Functions" 
+  href="cursespanel-functions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.18 curses.panel  " 
+  href="module-curses.panel.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.19 getopt  " 
+  href="module-getopt.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="cursespanel-functions.html">6.18.1 Functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-curses.panel.html">6.18 curses.panel  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-getopt.html">6.19 getopt  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081820000000000000000">&nbsp;</A>
+<BR>
+6.18.2 Panel Objects 
+</H2>
+
+<P>
+Panel objects, as returned by <tt class="function">new_panel()</tt> above, are windows
+with a stacking order. There's always a window associated with a
+panel which determines the content, while the panel methods are
+responsible for the window's depth in the panel stack.
+
+<P>
+Panel objects have the following methods:
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1988"><tt class="method">above</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns the panel above the current panel.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1989"><tt class="method">below</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns the panel below the current panel.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1990"><tt class="method">bottom</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Push the panel to the bottom of the stack.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1991"><tt class="method">hidden</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns true if the panel is hidden (not visible), false otherwise.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1992"><tt class="method">hide</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Hide the panel. This does not delete the object, it just makes the
+window on screen invisible.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1993"><tt class="method">move</tt></a></b>(</nobr></td>
+  <td><var>y, x</var>)</td></tr></table>
+<dd>
+Move the panel to the screen coordinates <code>(<var>y</var>, <var>x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1994"><tt class="method">replace</tt></a></b>(</nobr></td>
+  <td><var>win</var>)</td></tr></table>
+<dd>
+Change the window associated with the panel to the window <var>win</var>.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1995"><tt class="method">set_userptr</tt></a></b>(</nobr></td>
+  <td><var>obj</var>)</td></tr></table>
+<dd>
+Set the panel's user pointer to <var>obj</var>. This is used to associate an
+arbitrary piece of data with the panel, and can be any Python object.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1996"><tt class="method">show</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Display the panel (which might have been hidden).
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1997"><tt class="method">top</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Push panel to the top of the stack.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1998"><tt class="method">userptr</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns the user pointer for the panel.  This might be any Python object.
+</dl>
+
+<P>
+<dl><dt><table cellpadding="0" cellspacing="0"><tr valign="baseline">
+  <td><nobr><b><a name="l2h-1999"><tt class="method">window</tt></a></b>(</nobr></td>
+  <td>)</td></tr></table>
+<dd>
+Returns the window object associated with the panel.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="6.18.1 Functions" 
+  rel="prev" title="6.18.1 Functions" 
+  href="cursespanel-functions.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="6.18 curses.panel  " 
+  rel="parent" title="6.18 curses.panel  " 
+  href="module-curses.panel.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="6.19 getopt  " 
+  rel="next" title="6.19 getopt  " 
+  href="module-getopt.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="cursespanel-functions.html">6.18.1 Functions</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="module-curses.panel.html">6.18 curses.panel  </A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="module-getopt.html">6.19 getopt  </A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

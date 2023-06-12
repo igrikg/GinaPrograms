@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="STYLESHEET" href="lib.css" type='text/css'>
+<link rel="SHORTCUT ICON" href="../icons/pyfav.gif">
+<link rel='start' href='../index.html' title='Python Documentation Index'>
+<link rel="first" href="lib.html" title='Python Library Reference'>
+<link rel='contents' href='contents.html' title="Contents">
+<link rel='index' href='genindex.html' title='Index'>
+<link rel='last' href='about.html' title='About this document...'>
+<link rel='help' href='about.html' title='About this document...'>
+<LINK REL="next" href="module-test.testsupport.html">
+<LINK REL="prev" href="module-unittest.html">
+<LINK REL="parent" href="misc.html">
+<LINK REL="next" href="writing-tests.html">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name='aesop' content='information'>
+<META NAME="description" CONTENT="test -- Regression tests package for Python">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<title>5.4 test -- Regression tests package for Python</title>
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.3.9 Getting Extended Error" 
+  href="unittest-error-info.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.4.1 Writing Unit Tests" 
+  href="writing-tests.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="unittest-error-info.html">5.3.9 Getting Extended Error</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="writing-tests.html">5.4.1 Writing Unit Tests</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007400000000000000000">
+5.4 <tt class="module">test</tt> --
+         Regression tests package for Python</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">test</tt> package contains all regression tests for Python as
+well as the modules <tt class="module">test.test_support</tt> and
+<tt class="module">test.regrtest</tt>.  <tt class="module">test.test_support</tt> is used to enhance
+your tests while <tt class="module">test.regrtest</tt> drives the testing suite.
+
+<P>
+Each module in the <tt class="module">test</tt> package whose name starts with
+"<tt class="samp">test_</tt>" is a testing suite for a specific module or feature.
+All new tests should be written using the <tt class="module"><a href="module-unittest.html">unittest</a></tt> module;
+using <tt class="module"><a href="module-unittest.html">unittest</a></tt> is not required but makes the tests more
+flexible and maintenance of the tests easier.  Some older tests are
+written to use <tt class="module"><a href="module-doctest.html">doctest</a></tt> and a ``traditional'' testing
+style; these styles of tests will not be covered.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-unittest.html">unittest</a></tt>:</b>
+    <dd>Writing PyUnit regression tests.
+  </dl>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-doctest.html">doctest</a></tt>:</b>
+    <dd>Tests embedded in documentation strings.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="writing-tests.html">5.4.1 Writing Unit Tests for the <tt class="module">test</tt> package</a>
+<LI><A href="regrtest.html">5.4.2 Running tests Using <tt class="module">test.regrtest</tt></a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><a rel="prev" title="5.3.9 Getting Extended Error" 
+  rel="prev" title="5.3.9 Getting Extended Error" 
+  href="unittest-error-info.html"><img src='../icons/previous.gif'
+  border='0' height='32'  alt='Previous Page' width='32'></A></td>
+<td><a rel="parent" title="5. Miscellaneous Services" 
+  rel="parent" title="5. Miscellaneous Services" 
+  href="misc.html"><img src='../icons/up.gif'
+  border='0' height='32'  alt='Up One Level' width='32'></A></td>
+<td><a rel="next" title="5.4.1 Writing Unit Tests" 
+  rel="next" title="5.4.1 Writing Unit Tests" 
+  href="writing-tests.html"><img src='../icons/next.gif'
+  border='0' height='32'  alt='Next Page' width='32'></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><a rel="contents" title="Table of Contents" 
+  rel="contents" title="Table of Contents" 
+  href="contents.html"><img src='../icons/contents.gif'
+  border='0' height='32'  alt='Contents' width='32'></A></td>
+<td><a href="modindex.html" title="Module Index"><img src='../icons/modules.gif'
+  border='0' height='32'  alt='Module Index' width='32'></a></td>
+<td><a rel="index" title="Index" 
+  rel="index" title="Index" 
+  href="genindex.html"><img src='../icons/index.gif'
+  border='0' height='32'  alt='Index' width='32'></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b>
+<a class="sectref" rel="prev" href="unittest-error-info.html">5.3.9 Getting Extended Error</A>
+<b class="navlabel">Up:</b>
+<a class="sectref" rel="parent" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b>
+<a class="sectref" rel="next" href="writing-tests.html">5.4.1 Writing Unit Tests</A>
+<hr>
+<span class="release-info">Release 2.3.2, documentation updated on October 3, 2003.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

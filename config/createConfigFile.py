@@ -85,7 +85,6 @@ config = {
             'goto_minus_limit': [],
             'goto_plus_limit': [],
             'stop': []
-
         }
 
 }

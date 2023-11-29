@@ -1,7 +1,15 @@
-import pickle
+import json
 
 config = {
     'database':
+        {
+            'ipAddress': '127.0.0.1',
+            'port': 27017,
+            'user': 'gina',
+            'password': 'gina19',
+            'namedb': 'ginadb'
+        },
+    'database2':
         {
             'ipAddress': '127.0.0.1',
             'port': 5432,
@@ -88,5 +96,5 @@ config = {
         }
 
 }
-with open('config.conf', 'wb') as f:
-    pickle.dump(config, f)
+with open('config.conf', 'w') as f:
+    json.dump(config, f)
